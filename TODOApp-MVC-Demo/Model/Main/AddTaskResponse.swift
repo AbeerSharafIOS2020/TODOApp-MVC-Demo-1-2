@@ -1,5 +1,5 @@
 //
-//  TaskData.swift
+//  AddTaskResponse.swift
 //  TODOApp-MVC-Demo
 //
 //  Created by AbeerSharaf on 10/31/20.
@@ -7,14 +7,12 @@
 //
 
 import Foundation
-
-struct TaskData : Codable {
+struct AddTaskResponse : Codable {
     
-    let description : String
-    let createdAt : String
+    let data : TaskData
 
     enum CodingKeys: String, CodingKey {
-        case description = "description"
-        case createdAt = "createdAt"
+
+        case data = "data"
     }
 }

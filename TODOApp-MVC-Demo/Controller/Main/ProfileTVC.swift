@@ -9,13 +9,12 @@
 import UIKit
 
 class ProfileTVC: UITableViewController {
-//MARK:- Outlites
+//MARK:- Outlets
     @IBOutlet weak var nameIconImg: UIImageView!
     @IBOutlet weak var emailIconImg: UIImageView!
     @IBOutlet weak var ageIconeImg: UIImageView!
     @IBOutlet weak var dateUserIconImg: UIImageView!
     @IBOutlet weak var dateOfUpdateProfileImg: UIImageView!
-
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
@@ -77,7 +76,7 @@ class ProfileTVC: UITableViewController {
         return 6
     }
     //MARK:-Private Methods
-    func  confirmLogOut(){
+    private func  confirmLogOut(){
         let okAction = UIAlertAction(title: "OK", style: .default) {
             (UIAlertAction) in
             print("ok")
@@ -86,24 +85,26 @@ class ProfileTVC: UITableViewController {
         showCustomAlertWithAction(title: "Log Out", message: "Are you sure you want To log out?", firstBtn: okAction)
     }
     // MARK:- Handle Response of Log Out
-    func serviceOfLogout(){
+    private func serviceOfLogout(){
+        self.view.processOnStart()
         APIManager.logout { (error, logOut) in
             if let error = error {
-                self.showAlert(message: "\(error.localizedDescription)", title: "Error")
+                self.presentError(with: error.localizedDescription)
             } else if let logOut = logOut {
                 UserDefaultsManager.shared().token = nil
                 AppDelegate.shared().switchToAuthState()
                 print("profile: \(logOut)")
             }
+            self.view.processOnStop()
         }
     }
     //MARK:- Handle Response of Get Profile
     func serviceOfGetProfileData() {
+        self.view.processOnStart()
         APIManager.getProfile { (error, profile) in
        if let error = error {
-           self.showAlert(message: "\(error.localizedDescription)", title: "Error")
-       } else if let profile = profile?.user{
-        self.tableView.reloadData()
+           self.presentError(with: error.localizedDescription)
+       } else if let profile = profile?.user {
           print("profile: \(profile)")
         self.ageLabel.text = "\(profile.age)"
         self.dateOfCreateUserLabel.text = "\(profile.createdAt)"
@@ -111,6 +112,7 @@ class ProfileTVC: UITableViewController {
         self.userNameLabel.text = "\(profile.name)"
         self.dateOfUpdateProfileLabel.text = "\(profile.updatedAt)"
             }
+            self.view.processOnStop()
         }
     }
    // MARK:- Public Methods

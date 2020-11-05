@@ -7,13 +7,11 @@
 //
 
 import Foundation
-struct UpdateProfileResponse : Codable {
-    let success : Bool
+struct ProfileResponse : Codable {
     let user : UserData
     
     enum CodingKeys: String, CodingKey {
-        
-        case success = "success"
         case user = "data"
     }
+
 }

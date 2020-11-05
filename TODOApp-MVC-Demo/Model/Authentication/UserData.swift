@@ -10,6 +10,7 @@ import Foundation
 
 struct UserData: Codable {
     
+    var id: String
     var name, email: String
     var age: Int
     let createdAt : String
@@ -19,5 +20,6 @@ struct UserData: Codable {
         case age, name, email
         case createdAt = "createdAt"
         case updatedAt = "updatedAt"
+        case id = "_id"
     }
 }

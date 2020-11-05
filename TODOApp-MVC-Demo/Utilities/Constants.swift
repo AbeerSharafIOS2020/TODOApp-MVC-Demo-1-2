@@ -13,8 +13,12 @@ import NVActivityIndicatorView
 struct Storyboards {
     static let authentication = "Authentication"
     static let main = "Main"
+    
 }
-
+// Cells
+struct Cells {
+    static let taskDataTVCell = "TaskDataTVCell"
+}
 // View Controllers
 struct ViewControllers {
     static let signUpVC = "SignUpVC"
@@ -26,13 +30,14 @@ struct ViewControllers {
 
 // Urls
 struct URLs {
-    static let base = "https://api-nodejs-todolist.herokuapp.com/user"
-    static let login = base + "/login"
-    static let register = base + "/register"
-    static let logout = base + "/logout"
-    static let addTask = "https://api-nodejs-todolist.herokuapp.com/task"
+    static let base = "https://api-nodejs-todolist.herokuapp.com"
+    static let user = "/user"
+    static let login = base + user + "/login"
+    static let register = base + user + "/register"
+    static let logout = base + user + "/logout"
+    static let addTask = base + "/task"
     static let getAllTask = addTask
-    static let getUserProfile = base + "/me"
+    static let getUserProfile = base + user + "/me"
 }
 
 // Header Keys
@@ -55,7 +60,7 @@ struct UserDefaultsKeys {
     static let token = "UDKToken"
 }
 
-struct LoadingProgress {
-    static let  loading : NVActivityIndicatorView = NVActivityIndicatorView(frame: CGRect.init(x: 0, y: 0, width: 70, height: 70), type: .ballRotateChase, color: UIColor.blue , padding: 2)
-
-}
+//struct LoadingProgress {
+//    static let  loading : NVActivityIndicatorView = NVActivityIndicatorView(frame: CGRect.init(x: 0, y: 0, width: 70, height: 70), type: .ballRotateChase, color: UIColor.blue , padding: 2)
+//
+//}

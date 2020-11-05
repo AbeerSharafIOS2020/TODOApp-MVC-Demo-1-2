@@ -9,7 +9,7 @@
 import UIKit
 
 class ADDTaskVC: MainViewController {
-    // MARK:- OutLites
+       // MARK:- Outlets
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var screenTitle: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -18,36 +18,35 @@ class ADDTaskVC: MainViewController {
     // MARK:- Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        descriptionTxtView.text = ""
     }
     // MARK:- Action Methods:
     @IBAction func saveBtnPressed(_ sender: Any) {
         if descriptionTxtView.text.isEmpty {
-            showAlert(message: "Enter your task details..")
+          self.presentError(with: "Enter your task details..")
         } else {
           serviceSaveTask()
         }
     }
     //MARK:- Handle Response
     func serviceSaveTask() {
-        processOnStart()
+        self.view.processOnStart()
         let descriptionView = "\(descriptionTxtView.text ?? "")"
         APIManager.addTask(with: descriptionView, completion: {
             (error, taskData) in
             if let error = error {
-                self.processOnStop()
+                 self.view.processOnStop()
                 print(error.localizedDescription)
-                self.showAlert(message: "\(error.localizedDescription)", title: "Error")
+                self.presentError(with: error.localizedDescription)
             } else if let taskData = taskData {
-                self.processOnStop()
-                self.showAlert(message: "Done saved the task successfully", title: "Success")
+                   self.view.processOnStop()
+                self.presentSuccess(with: "Done saved the task successfully")
                 AppDelegate.shared().switchToMainState()
                 print("description: \(taskData.data.description )")
             }
+            self.view.processOnStop()
         })
     }
-    
-        // MARK:- Public Methods
+            // MARK:- Public Methods
         class func create() -> ADDTaskVC {
             let addTaskVC: ADDTaskVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.addTaskVC)
             return addTaskVC

@@ -9,28 +9,24 @@
 import UIKit
 
 class TaskDataTVCell: UITableViewCell {
-    // MARK:- Outlite
+    // MARK:- Outlets
     @IBOutlet weak var createdAtLabel: UILabel!
     @IBOutlet weak var taskImg: UIImageView!
-    @IBOutlet weak var taskDataLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
-    // MARK:- Properties
-    static let identifier = "TaskDataTVCell"
-    static func nib() -> UINib {
-        return UINib(nibName: identifier, bundle: nil)
-    }
+//    // MARK:- Properties
+//    static let identifier = "TaskDataTVCell"
+//    static func nib() -> UINib {
+//        return UINib(nibName: identifier, bundle: nil)
+//    }
     
     // MARK:- Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
     // MARK:- Configuration Of Cell
     func setupCellTaskData(object: TaskData)
-        {   taskDataLabel.text = "\(object.description ) "
+    {   descriptionLabel.text = "\(object.description ) "
             let date = object.createdAt
             createdAtLabel.text = "\(date)" //"30/10/2020"
             

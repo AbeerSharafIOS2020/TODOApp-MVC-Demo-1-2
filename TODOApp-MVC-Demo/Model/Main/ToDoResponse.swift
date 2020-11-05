@@ -1,5 +1,5 @@
 //
-//  LogOutResponse.swift
+//  AddTaskResponse.swift
 //  TODOApp-MVC-Demo
 //
 //  Created by AbeerSharaf on 10/31/20.
@@ -7,6 +7,7 @@
 //
 
 import Foundation
-struct LogOutResponse : Codable {
-    let success : Bool
+
+struct ToDoResponse : Codable {
+    let data : [TaskData]
 }

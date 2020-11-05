@@ -9,77 +9,84 @@
 import UIKit
 
 class TodoListVC: MainViewController {
-    // MARK:- OutLites
+    // MARK:- Outletss
     @IBOutlet weak var noTaskLabel: UILabel!
     @IBOutlet weak var taskTableView: UITableView!
     
-    //MARK:- Properties
-    let cellIdentifier = "TaskDataTVCell"
-    var allTaskObj = [TaskData]()
+    //MARK:- Private Properties
+    private var allTaskObj = [TaskData]()
     
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableViewConfiguration()
+        setupView()
         serviceOfGetAllTask()
     }
+    
     // MARK:- Actions Methods
     //Go to Profile screen
     @IBAction func goToProfileTapButton() {
         self.navigationController?.pushViewController(ProfileTVC.create(), animated: true)
     }
     
+    // MARK:- Public Methods
+        class func create() -> TodoListVC {
+            let todoListVC: TodoListVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.todoListVC)
+            return todoListVC
+        }
     // add task Btn
-    @IBAction func addTaskBtnPressed(_ sender: Any) {
+    @objc func addTaskBtnPressed(_ sender: Any) {
         AppDelegate.shared().switchToAddTaskState()
     }
+
+    
+
     
     // MARK:- Private Methods
-    func tableViewConfiguration(){
-        taskTableView.register(UINib(nibName: cellIdentifier, bundle: Bundle.main), forCellReuseIdentifier: cellIdentifier)
-        taskTableView.dataSource = self
-        taskTableView.delegate = self
-        taskTableView.rowHeight = UITableView.automaticDimension
-        taskTableView.separatorStyle = .none
-        noTaskLabel.isHidden = true
-        taskTableView.reloadData()
+private func setupView() {
+    setupNavbar()
+    tableViewConfiguration()
+}
+    private func setupNavbar() {
+        let addingButton = UIBarButtonItem(barButtonSystemItem: .add , target: self, action: #selector(addTaskBtnPressed))
+        self.navigationItem.rightBarButtonItem = addingButton
+    }
+        private func tableViewConfiguration(){
+            self.taskTableView.register(UINib(nibName: Cells.taskDataTVCell, bundle: nil), forCellReuseIdentifier: Cells.taskDataTVCell)
+            self.taskTableView.dataSource = self
+            self.taskTableView.delegate = self
+            self.taskTableView.rowHeight = UITableView.automaticDimension
+            self.taskTableView.separatorStyle = .none
+            self.taskTableView.isOpaque = false
+            self.noTaskLabel.isHidden = true
+            self.taskTableView.reloadData()
     }
     
     //MARK:- Handle Response
-    func serviceOfGetAllTask(){
-        processOnStart()
+    private func serviceOfGetAllTask(){
+        self.view.processOnStart()
         APIManager.getAllTask() { (error, taskData) in
             if let error = error {
-                self.processOnStop()
                 print(error.localizedDescription)
-                self.showAlert(message: "\(error.localizedDescription)", title: "Error")
-            }
-            else if let taskData = taskData {
+                self.presentError(with: error.localizedDescription)
+            } else if let taskData = taskData {
                 self.allTaskObj = taskData.data
                 if self.allTaskObj.count == 0 {
                    self.noTaskLabel.text = "No Data Found"
                    self.noTaskLabel.isHidden = false
-                   self.processOnStop()
                 }else {
                 self.noTaskLabel.isHidden = true
                 self.taskTableView.reloadData()
                 print("data:  \(self.allTaskObj.description)")
                 print("count in data: \(self.allTaskObj.count)")
                 self.taskTableView.reloadData()
-                self.processOnStop()
                 }
+                self.view.processOnStop()
             }
         }
     }
-    
-    // MARK:- Public Methods
-    class func create() -> TodoListVC {
-        let todoListVC: TodoListVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.todoListVC)
-        return todoListVC
-    }
 }
 // MARK:- Table View Methods
-
 extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,7 +97,7 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TaskDataTVCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.taskDataTVCell, for: indexPath) as! TaskDataTVCell
         cell.selectionStyle = .none
         let task = allTaskObj[indexPath.row]
         cell.setupCellTaskData(object: task)
@@ -118,7 +125,7 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return taskTableView.rowHeight
+        return 80 //taskTableView.rowHeight
     }
 }
 
