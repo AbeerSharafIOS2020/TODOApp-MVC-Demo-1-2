@@ -30,4 +30,16 @@ class UserDefaultsManager {
             return UserDefaults.standard.string(forKey: UserDefaultsKeys.token)!
         }
     }
-}
+    var imagName: String? {
+            set {
+                UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.imagName)
+            }
+            get {
+                guard UserDefaults.standard.object(forKey: UserDefaultsKeys.imagName) != nil else {
+                    return nil
+                }
+                return UserDefaults.standard.string(forKey: UserDefaultsKeys.imagName)!
+            }
+        }
+    }
+

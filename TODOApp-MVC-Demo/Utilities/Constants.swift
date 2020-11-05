@@ -58,6 +58,7 @@ struct ParameterKeys {
 // UserDefaultsKeys
 struct UserDefaultsKeys {
     static let token = "UDKToken"
+    static let imagName = "ImageName"
 }
 
 //struct LoadingProgress {

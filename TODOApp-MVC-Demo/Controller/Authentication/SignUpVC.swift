@@ -95,6 +95,7 @@ class SignUpVC: MainViewController {
         let email = emailTxtField.text ?? ""
         let age = Int(userAgeTxtField.text ?? "") ?? 0
         UserDefaultsManager.shared().token = nil
+        UserDefaultsManager.shared().imagName = nil
         APIManager.register(name: name, email: email, password: pass, age: age ) {
             (error, loginData) in
             if let error = error {
@@ -104,6 +105,9 @@ class SignUpVC: MainViewController {
                 self.view.processOnStop()
                 print(loginData.token)
                 UserDefaultsManager.shared().token = loginData.token
+                let imageName = "\((loginData.user.name.first)?.uppercased() ?? "")"
+                print("image: \(imageName) \((loginData.user.name.first)?.uppercased() ?? "" )")
+                UserDefaultsManager.shared().imagName = "\(imageName)"
                 AppDelegate.shared().switchToAuthState()
             }
         }

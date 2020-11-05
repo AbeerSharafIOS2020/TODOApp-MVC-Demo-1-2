@@ -15,6 +15,7 @@ class SignInVC: MainViewController {
     @IBOutlet weak var passTxtField: UITextField!
     @IBOutlet weak var signUpLabel: UILabel!
     @IBOutlet var mainView: UIView!
+    @IBOutlet weak var loginImagLabel: UILabel!
     
     // MARK:- Constants & Variables
 
@@ -22,6 +23,8 @@ class SignInVC: MainViewController {
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imageConfiguration()
+        self.loadIoginImag()
     }
     
     // MARK:- Actions Methods
@@ -41,8 +44,24 @@ class SignInVC: MainViewController {
           let signInVC: SignInVC = UIViewController.create(storyboardName: Storyboards.authentication, identifier: ViewControllers.signInVC)
           return signInVC
       }
+   //MARK:- Private Methods
+    private func imageConfiguration(){
+        logoImg.layer.masksToBounds = true
+        logoImg.layer.cornerRadius = logoImg.bounds.width / 2
 
+//        logoImg?.layer.cornerRadius = (logoImg?.frame.size.width ?? 0.0) / 2
+//        logoImg?.clipsToBounds = true
+//        logoImg?.layer.borderWidth = 3.0
+//        logoImg?.layer.borderColor = UIColor.white.cgColor
+    }
     
+    private func loadIoginImag(){
+        if UserDefaultsManager.shared().imagName != nil {
+            loginImagLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
+        }else {
+            loginImagLabel.isHidden = true
+        }
+    }
 //    // MARK:- Validation Methods
 //    // check validation
 //    func  checkValidation(_ txtField: UITextField)  {
