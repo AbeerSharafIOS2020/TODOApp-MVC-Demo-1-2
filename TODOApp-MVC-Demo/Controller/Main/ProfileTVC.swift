@@ -9,7 +9,10 @@
 import UIKit
 
 class ProfileTVC: UITableViewController {
-//MARK:- Outlets
+    //MARK:- Outlets
+    @IBOutlet weak var profileImg: UIImageView!
+    @IBOutlet weak var imageLabel: UILabel!
+    @IBOutlet weak var updateProfileLabel: UILabel!
     @IBOutlet weak var nameIconImg: UIImageView!
     @IBOutlet weak var emailIconImg: UIImageView!
     @IBOutlet weak var ageIconeImg: UIImageView!
@@ -22,11 +25,13 @@ class ProfileTVC: UITableViewController {
     @IBOutlet weak var dateOfUpdateProfileLabel: UILabel!
     @IBOutlet weak var logoutLabel: UILabel!
     
-//MARK:-Properties:
-    
+    // MARK:- Properties
+    let imagePicker = UIImagePickerController()
     //MARK:-Life Cycle:
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imageConfiguration()
+        loadIoginImag()
         serviceOfGetProfileData()
     }
     //MARK:-Actions Methods :
@@ -35,16 +40,20 @@ class ProfileTVC: UITableViewController {
         confirmLogOut()
     }
     
+    @IBAction func addImagBtnTapPressed(_ sender: Any) {
+        self.ChooseSourceType()
+    }
     //Back Btn
     @IBAction func backTapButton() {
-    self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         if indexPath.row % 2 == 0
@@ -66,7 +75,9 @@ class ProfileTVC: UITableViewController {
         })
         
     }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 5
@@ -76,6 +87,8 @@ class ProfileTVC: UITableViewController {
         return 6
     }
     //MARK:-Private Methods
+    
+    
     private func  confirmLogOut(){
         let okAction = UIAlertAction(title: "OK", style: .default) {
             (UIAlertAction) in
@@ -92,6 +105,8 @@ class ProfileTVC: UITableViewController {
                 self.presentError(with: error.localizedDescription)
             } else if let logOut = logOut {
                 UserDefaultsManager.shared().token = nil
+                UserDefaultsManager.shared().isLogin = false
+                
                 AppDelegate.shared().switchToAuthState()
                 print("profile: \(logOut)")
             }
@@ -102,24 +117,94 @@ class ProfileTVC: UITableViewController {
     func serviceOfGetProfileData() {
         self.view.processOnStart()
         APIManager.getProfile { (error, profile) in
-       if let error = error {
-           self.presentError(with: error.localizedDescription)
-       } else if let profile = profile?.user {
-          print("profile: \(profile)")
-        self.ageLabel.text = "\(profile.age)"
-        self.dateOfCreateUserLabel.text = "\(profile.createdAt)"
-        self.emailLabel.text = "\(profile.email)"
-        self.userNameLabel.text = "\(profile.name)"
-        self.dateOfUpdateProfileLabel.text = "\(profile.updatedAt)"
+            if let error = error {
+                self.presentError(with: error.localizedDescription)
+            } else if let profile = profile?.user {
+                print("profile: \(profile)")
+                self.ageLabel.text = "\(profile.age)"
+                self.dateOfCreateUserLabel.text = "\(profile.createdAt)"
+                self.emailLabel.text = "\(profile.email)"
+                self.userNameLabel.text = "\(profile.name)"
+                self.dateOfUpdateProfileLabel.text = "\(profile.updatedAt)"
             }
             self.view.processOnStop()
         }
     }
-   // MARK:- Public Methods
-   class func create() -> ProfileTVC {
-    let profileTVC: ProfileTVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.profileTVC)
-       return profileTVC
-   }
-
+    // MARK:- Public Methods
+    class func create() -> ProfileTVC {
+        let profileTVC: ProfileTVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.profileTVC)
+        return profileTVC
+    }
+    
 }
 
+//MARK:- Image Picker
+extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    //MARK:- Private Methods
+    private func ChooseSourceType(){
+        let alert = UIAlertController(title: "Image Selection", message: "From where you want to pick this image?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action: UIAlertAction) in
+            self.imagePicker.sourceType = .camera
+            self.imagePicker.allowsEditing = true
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: {(action: UIAlertAction) in
+            self.imagePicker.sourceType = .photoLibrary
+            self.imagePicker.allowsEditing = true
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    private func loadIoginImag(){
+        if UserDefaultsManager.shared().imagName != nil {
+            imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
+        }else {
+            imageLabel.isHidden = true
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        self.dismiss(animated: true) { [weak self] in
+            
+            guard let profileImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
+            self?.imageLabel.isHidden = true
+            //Setting image to your image view
+            self?.profileImg.image = profileImage
+//            uploadImage()
+            // Load Image
+            let image = UIImage(named: "profileImage")
+            // Convert to Data
+            if let data = image?.pngData() {
+                // Create URL
+                let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                print("doc: \(documents)")
+                let url = documents.appendingPathComponent("profileImage.png")
+                print("url: \(url)")
+                do {
+                    // Write to Disk
+                    try data.write(to: url)
+
+                    // Store URL in User Defaults
+                    UserDefaults.standard.set(url, forKey: "profileImage")
+                    print("it is saved")
+
+                } catch {
+                    print("Unable to Write Data to Disk (\(error))")
+                }
+            }
+        }
+    }
+    private func imageConfiguration(){
+        imagePicker.delegate = self
+        profileImg?.layer.cornerRadius = (profileImg?.frame.size.width ?? 0.0) / 2
+        profileImg?.clipsToBounds = true
+        profileImg?.layer.borderWidth = 3.0
+        profileImg?.layer.borderColor = UIColor.white.cgColor
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+}

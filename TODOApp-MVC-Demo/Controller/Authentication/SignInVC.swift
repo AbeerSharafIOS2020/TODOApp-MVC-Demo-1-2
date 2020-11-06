@@ -46,13 +46,13 @@ class SignInVC: MainViewController {
       }
    //MARK:- Private Methods
     private func imageConfiguration(){
-        logoImg.layer.masksToBounds = true
-        logoImg.layer.cornerRadius = logoImg.bounds.width / 2
-
-//        logoImg?.layer.cornerRadius = (logoImg?.frame.size.width ?? 0.0) / 2
-//        logoImg?.clipsToBounds = true
-//        logoImg?.layer.borderWidth = 3.0
-//        logoImg?.layer.borderColor = UIColor.white.cgColor
+//        logoImg.layer.cornerRadius = logoImg.bounds.width / 2
+        //        logoImg.layer.masksToBounds = true
+//
+        logoImg?.layer.cornerRadius = (logoImg?.frame.size.width ?? 0.0) / 2
+        logoImg?.clipsToBounds = true
+        logoImg?.layer.borderWidth = 3.0
+        logoImg?.layer.borderColor = UIColor.white.cgColor
     }
     
     private func loadIoginImag(){
@@ -93,6 +93,7 @@ class SignInVC: MainViewController {
             } else if let loginData = loginData {
                 print("token: \(loginData.token)")
                 UserDefaultsManager.shared().token = loginData.token
+                UserDefaultsManager.shared().isLogin = true
                 AppDelegate.shared().switchToMainState()
             }
             self.view.processOnStop()

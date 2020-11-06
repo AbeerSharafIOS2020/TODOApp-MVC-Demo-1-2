@@ -13,7 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        if UserDefaultsManager.shared().token != nil {
+        if  (UserDefaultsManager.shared().token != nil) && (UserDefaultsManager.shared().isLogin!)
+{
             switchToMainState()
         } else {
             switchToAuthState()
@@ -51,6 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = UINavigationController(rootViewController: profileTVC)
         self.window?.rootViewController = navigationController
     }
+    //----------------------------------------------------------------------------------------
+
     
 }
 //MARK:- Extension

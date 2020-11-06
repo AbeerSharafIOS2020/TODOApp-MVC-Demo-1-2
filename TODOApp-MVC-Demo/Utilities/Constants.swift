@@ -26,6 +26,7 @@ struct ViewControllers {
     static let todoListVC = "TodoListVC"
     static let addTaskVC = "ADDTaskVC"
     static let profileTVC = "ProfileTVC"
+    static let showImageVC = "ShowImageVC"
 }
 
 // Urls
@@ -35,9 +36,12 @@ struct URLs {
     static let login = base + user + "/login"
     static let register = base + user + "/register"
     static let logout = base + user + "/logout"
-    static let addTask = base + "/task"
-    static let getAllTask = addTask
+    static let task = base + "/task"
+    static let getAllTask = task
     static let getUserProfile = base + user + "/me"
+    static let uploadImage = getUserProfile + "/avatar"
+    static let id = "/\(UserDefaultsManager.shared().id ?? "")"
+    static let deleteTask = task + id
 }
 
 // Header Keys
@@ -59,6 +63,8 @@ struct ParameterKeys {
 struct UserDefaultsKeys {
     static let token = "UDKToken"
     static let imagName = "ImageName"
+    static let isLogin = "isLogin"
+    static let id = "id"
 }
 
 //struct LoadingProgress {

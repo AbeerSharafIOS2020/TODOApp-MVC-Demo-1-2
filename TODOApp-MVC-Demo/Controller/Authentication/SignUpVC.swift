@@ -17,7 +17,7 @@ class SignUpVC: MainViewController {
     @IBOutlet weak var passTxtField: UITextField!
     @IBOutlet weak var userAgeTxtField: UITextField!
     @IBOutlet weak var signInLabel: UILabel!
-    
+
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +105,7 @@ class SignUpVC: MainViewController {
                 self.view.processOnStop()
                 print(loginData.token)
                 UserDefaultsManager.shared().token = loginData.token
+                UserDefaultsManager.shared().isLogin = false
                 let imageName = "\((loginData.user.name.first)?.uppercased() ?? "")"
                 print("image: \(imageName) \((loginData.user.name.first)?.uppercased() ?? "" )")
                 UserDefaultsManager.shared().imagName = "\(imageName)"
@@ -115,7 +116,6 @@ class SignUpVC: MainViewController {
 
     
     
-  //MARK:- Private Methods
     func validation()-> Bool {
         guard self.isValidName(userNameTxtField.text) else {return false}
         guard self.isValidEmail(emailTxtField.text) else {return false}
@@ -129,3 +129,4 @@ class SignUpVC: MainViewController {
         return signUpVC
     }
 }
+

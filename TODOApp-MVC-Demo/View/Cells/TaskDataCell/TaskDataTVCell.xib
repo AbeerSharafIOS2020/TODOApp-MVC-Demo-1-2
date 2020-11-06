@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -21,27 +22,27 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Whb-vT-qaY" customClass="ShadowView" customModule="TODOApp_MVC_Demo" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="286" height="67"/>
+                        <rect key="frame" x="14" y="9" width="254" height="47"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LOGINImage" translatesAutoresizingMaskIntoConstraints="NO" id="QRB-Vb-qMW">
-                                <rect key="frame" x="11" y="13" width="40" height="40"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoImg" translatesAutoresizingMaskIntoConstraints="NO" id="QRB-Vb-qMW">
+                                <rect key="frame" x="11" y="3" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="CgQ-wY-AeV"/>
                                     <constraint firstAttribute="width" constant="40" id="KaX-P7-dXz"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11/07/2020 10:30:13" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnp-pn-XfI" userLabel="Created Label">
-                                <rect key="frame" x="159.5" y="41" width="111.5" height="14"/>
+                                <rect key="frame" x="67.5" y="31" width="111.5" height="14"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="task" lineBreakMode="tailTruncation" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7D-6M-SCl">
-                                <rect key="frame" x="59" y="13" width="218" height="24"/>
+                                <rect key="frame" x="59" y="3" width="138" height="24"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="218" id="gFr-3j-xtA"/>
+                                    <constraint firstAttribute="width" constant="138" id="gFr-3j-xtA"/>
                                     <constraint firstAttribute="height" constant="24" id="zNo-hv-fs7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -49,17 +50,30 @@
                                 <color key="highlightedColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="shadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9q-jH-iPT">
+                                <rect key="frame" x="242" y="12.5" width="14" height="22"/>
+                                <state key="normal" image="deleteIconCopy">
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteBtnPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gUY-2h-Qp8"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                         <constraints>
                             <constraint firstItem="QRB-Vb-qMW" firstAttribute="top" secondItem="p7D-6M-SCl" secondAttribute="top" id="1jS-T6-oYA"/>
+                            <constraint firstItem="b9q-jH-iPT" firstAttribute="centerY" secondItem="Whb-vT-qaY" secondAttribute="centerY" id="9hL-zz-Yfe"/>
                             <constraint firstItem="p7D-6M-SCl" firstAttribute="leading" secondItem="QRB-Vb-qMW" secondAttribute="trailing" constant="8" id="C7M-ui-WZt"/>
-                            <constraint firstAttribute="trailing" secondItem="p7D-6M-SCl" secondAttribute="trailing" constant="9" id="GUY-Ri-K84"/>
-                            <constraint firstItem="p7D-6M-SCl" firstAttribute="top" secondItem="Whb-vT-qaY" secondAttribute="top" constant="13" id="JCA-F6-gAZ"/>
-                            <constraint firstItem="hnp-pn-XfI" firstAttribute="leading" secondItem="Whb-vT-qaY" secondAttribute="leading" constant="159.5" id="UWh-Uo-UoM"/>
+                            <constraint firstAttribute="trailing" secondItem="p7D-6M-SCl" secondAttribute="trailing" constant="57" id="GUY-Ri-K84"/>
+                            <constraint firstItem="p7D-6M-SCl" firstAttribute="top" secondItem="Whb-vT-qaY" secondAttribute="top" constant="3" id="JCA-F6-gAZ"/>
+                            <constraint firstItem="b9q-jH-iPT" firstAttribute="width" secondItem="Whb-vT-qaY" secondAttribute="width" multiplier="0.048951" constant="1.5664335664335667" id="MYe-zo-Bqy"/>
+                            <constraint firstItem="hnp-pn-XfI" firstAttribute="leading" secondItem="Whb-vT-qaY" secondAttribute="leading" constant="67.5" id="UWh-Uo-UoM"/>
+                            <constraint firstItem="b9q-jH-iPT" firstAttribute="height" secondItem="Whb-vT-qaY" secondAttribute="height" multiplier="0.328358" constant="6.567164179104477" id="XIo-SU-x50"/>
                             <constraint firstItem="hnp-pn-XfI" firstAttribute="top" secondItem="p7D-6M-SCl" secondAttribute="bottom" constant="4" id="uXE-Pd-qn7"/>
                             <constraint firstItem="hnp-pn-XfI" firstAttribute="top" secondItem="p7D-6M-SCl" secondAttribute="bottom" constant="4" id="v96-HN-dqr"/>
-                            <constraint firstAttribute="bottom" secondItem="hnp-pn-XfI" secondAttribute="bottom" constant="12" id="y5k-mO-Mbs"/>
+                            <constraint firstAttribute="bottom" secondItem="hnp-pn-XfI" secondAttribute="bottom" constant="2" id="y5k-mO-Mbs"/>
+                            <constraint firstAttribute="trailing" secondItem="b9q-jH-iPT" secondAttribute="trailing" constant="-2" id="zYH-xw-uyy"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -83,10 +97,10 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Whb-vT-qaY" secondAttribute="bottom" constant="-4" id="Og2-Df-A65"/>
-                    <constraint firstAttribute="trailing" secondItem="Whb-vT-qaY" secondAttribute="trailing" constant="-6" id="btc-En-h8G"/>
-                    <constraint firstItem="Whb-vT-qaY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="hf2-Ye-tbU"/>
-                    <constraint firstItem="Whb-vT-qaY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="s4Q-R0-Nwg"/>
+                    <constraint firstAttribute="bottom" secondItem="Whb-vT-qaY" secondAttribute="bottom" constant="7" id="Og2-Df-A65"/>
+                    <constraint firstAttribute="trailing" secondItem="Whb-vT-qaY" secondAttribute="trailing" constant="12" id="btc-En-h8G"/>
+                    <constraint firstItem="Whb-vT-qaY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="hf2-Ye-tbU"/>
+                    <constraint firstItem="Whb-vT-qaY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="s4Q-R0-Nwg"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -100,6 +114,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="LOGINImage" width="244" height="224"/>
+        <image name="deleteIconCopy" width="14" height="20"/>
+        <image name="logoImg" width="594" height="484"/>
     </resources>
 </document>

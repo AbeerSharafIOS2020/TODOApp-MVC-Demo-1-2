@@ -32,5 +32,8 @@ class TaskDataTVCell: UITableViewCell {
             
             
         }
-
+ 
+    @IBAction func deleteBtnPressed(_ sender: Any) {
+        
+    }
 }

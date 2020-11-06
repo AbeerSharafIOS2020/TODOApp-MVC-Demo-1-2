@@ -30,6 +30,19 @@ class UserDefaultsManager {
             return UserDefaults.standard.string(forKey: UserDefaultsKeys.token)!
         }
     }
+    var isLogin: Bool? {
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.isLogin)
+        }
+        get {
+            guard UserDefaults.standard.bool(forKey: UserDefaultsKeys.isLogin) != false
+                else {
+                return false
+            }
+            return UserDefaults.standard.bool(forKey: UserDefaultsKeys.isLogin)
+        }
+    }
+
     var imagName: String? {
             set {
                 UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.imagName)
@@ -41,5 +54,17 @@ class UserDefaultsManager {
                 return UserDefaults.standard.string(forKey: UserDefaultsKeys.imagName)!
             }
         }
+    var id: String? {
+            set {
+                UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.id)
+            }
+            get {
+                guard UserDefaults.standard.object(forKey: UserDefaultsKeys.id) != nil else {
+                    return nil
+                }
+                return UserDefaults.standard.string(forKey: UserDefaultsKeys.id)!
+            }
+        }
+
     }
 

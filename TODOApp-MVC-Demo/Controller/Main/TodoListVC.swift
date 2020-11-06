@@ -55,6 +55,7 @@ private func setupView() {
             self.taskTableView.register(UINib(nibName: Cells.taskDataTVCell, bundle: nil), forCellReuseIdentifier: Cells.taskDataTVCell)
             self.taskTableView.dataSource = self
             self.taskTableView.delegate = self
+            self.taskTableView.separatorStyle = .none
             self.taskTableView.rowHeight = UITableView.automaticDimension
             self.taskTableView.separatorStyle = .none
             self.taskTableView.isOpaque = false
@@ -85,6 +86,44 @@ private func setupView() {
             }
         }
     }
+//    private func getID(_ row: Int){
+//        print("row\(row)")
+//        self.view.processOnStart()
+//        APIManager.getAllTask() { (error, taskData) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//                self.presentError(with: error.localizedDescription)
+//            } else if let taskData = taskData {
+//                self.allTaskObj = taskData.data
+//                for i in 0 ... self.allTaskObj.count - 1 {
+//                    if i == row {
+//                       UserDefaultsManager.shared().id = nil
+//                       UserDefaultsManager.shared().id = self.allTaskObj[i].id
+//                        print("id: \(UserDefaultsManager.shared().id ?? "")")
+//                      //  self.callDeleteService()
+//                        }
+//                    }
+//
+//                }
+//                self.view.processOnStop()
+//            }
+//        }
+    private func callDeleteService(_ item: TaskData){
+        UserDefaultsManager.shared().id = item.id
+        print("id in userDefult : \(UserDefaultsManager.shared().id ?? "")")
+        self.view.processOnStop()
+        APIManager.deleteTask { (error, deletData) in
+        if let error = error {
+                print(error.localizedDescription)
+                self.presentError(with: error.localizedDescription)
+        } else {
+                self.view.processOnStop()
+                print("Delete the task Successfully")
+                self.presentSuccess(with: "Delete the task Successfully")
+                }
+            self.view.processOnStop()
+       }
+    }
 }
 // MARK:- Table View Methods
 extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
@@ -103,6 +142,29 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
         cell.setupCellTaskData(object: task)
         return cell
     }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            
+            let alertConfirmDeleteNotifiy = UIAlertController(title:"Confirm", message: "Are you sure you want to Delete the task ? ", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style:.default)
+            { (UIAlertAction) in
+                // handle delete (by removing the data from your array and updating the tableview)
+                self.callDeleteService(self.allTaskObj[indexPath.row])
+                print("self.allTaskObj[indexPath.row]: \(self.allTaskObj[indexPath.row] )")
+                self.allTaskObj.remove(at: indexPath.item)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                let row = indexPath.row
+                print("row:\(row) ")
+            }
+            
+            let noAlertAction = UIAlertAction(title: "cancel", style: .cancel,handler: nil)
+            alertConfirmDeleteNotifiy.addAction(alertAction)
+            alertConfirmDeleteNotifiy.addAction(noAlertAction)
+            self.present(alertConfirmDeleteNotifiy, animated: true, completion: nil)
+
+        }
+    }
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         if indexPath.row % 2 == 0

@@ -39,6 +39,8 @@
 		C3D510C6254CD109008DB194 /* ADDTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D510C5254CD109008DB194 /* ADDTaskVC.swift */; };
 		C3E24CF0254B64C20096F934 /* CustomBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E24CEF254B64C20096F934 /* CustomBtn.swift */; };
 		C3EB2C3A2553DCBB003C77E1 /* AddTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB2C392553DCBB003C77E1 /* AddTaskResponse.swift */; };
+		C3EB2C402554B3DE003C77E1 /* DeleteTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB2C3F2554B3DE003C77E1 /* DeleteTaskResponse.swift */; };
+		C3EB2C422554B519003C77E1 /* DeleteTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB2C412554B519003C77E1 /* DeleteTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +79,8 @@
 		C3D510C5254CD109008DB194 /* ADDTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADDTaskVC.swift; sourceTree = "<group>"; };
 		C3E24CEF254B64C20096F934 /* CustomBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBtn.swift; sourceTree = "<group>"; };
 		C3EB2C392553DCBB003C77E1 /* AddTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskResponse.swift; sourceTree = "<group>"; };
+		C3EB2C3F2554B3DE003C77E1 /* DeleteTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTaskResponse.swift; sourceTree = "<group>"; };
+		C3EB2C412554B519003C77E1 /* DeleteTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTask.swift; sourceTree = "<group>"; };
 		D0AC84BFD376CBB368B7D53F /* Pods-TODOApp-MVC-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TODOApp-MVC-Demo.release.xcconfig"; path = "Target Support Files/Pods-TODOApp-MVC-Demo/Pods-TODOApp-MVC-Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -281,6 +285,8 @@
 				C3D510BF254CC72F008DB194 /* ToDoResponse.swift */,
 				C3D510C1254CC7A5008DB194 /* TaskData.swift */,
 				C3EB2C392553DCBB003C77E1 /* AddTaskResponse.swift */,
+				C3EB2C3F2554B3DE003C77E1 /* DeleteTaskResponse.swift */,
+				C3EB2C412554B519003C77E1 /* DeleteTask.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -442,6 +448,7 @@
 				C3CF89182552C93100140A58 /* UIView+Loader.swift in Sources */,
 				C3D510C2254CC7A5008DB194 /* TaskData.swift in Sources */,
 				B76E56B92548A76600C13D43 /* SignInVC.swift in Sources */,
+				C3EB2C402554B3DE003C77E1 /* DeleteTaskResponse.swift in Sources */,
 				C33C8FF025507F0E00F3C0B2 /* ShadowView.swift in Sources */,
 				C3D510BE254C95BB008DB194 /* MainViewController.swift in Sources */,
 				B76E56BC2548A84600C13D43 /* SignUpVC.swift in Sources */,
@@ -451,6 +458,7 @@
 				B76E56B52548A63E00C13D43 /* UIViewController+Storyboard.swift in Sources */,
 				C3CF89162552C7C600140A58 /* String+trimming.swift in Sources */,
 				C3D510C0254CC72F008DB194 /* ToDoResponse.swift in Sources */,
+				C3EB2C422554B519003C77E1 /* DeleteTask.swift in Sources */,
 				B76E56C12548B0FD00C13D43 /* LoginResponse.swift in Sources */,
 				B76E56C32548B2B100C13D43 /* Constants.swift in Sources */,
 			);
