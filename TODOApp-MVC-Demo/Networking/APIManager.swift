@@ -183,31 +183,31 @@
         
         class func deleteTask(completion: @escaping (_ error: Error?, _ profile: DeleteTaskByIdResponse?) -> Void) {
             print("url: \(URLs.deleteTask)")
-        let headers: HTTPHeaders = [HeaderKeys.contentType: "application/json",
-                                    HeaderKeys.authorization: "Bearer " + "\(UserDefaultsManager.shared().token ?? "")"]
-          
+            let headers: HTTPHeaders = [HeaderKeys.contentType: "application/json",
+                                        HeaderKeys.authorization: "Bearer " + "\(UserDefaultsManager.shared().token ?? "")"]
+            
             AF.request(URLs.deleteTask, method: HTTPMethod.delete, parameters: nil, encoding: JSONEncoding.default, headers: headers).response {
-            response in
-            guard response.error == nil else {
-                print(response.error!)
-                completion(response.error, nil)
-                return
-            }
-            
-            guard let data = response.data else {
-                print("didn't get any data from API")
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                let DeleteTask = try decoder.decode(DeleteTaskByIdResponse.self, from: data)
-                completion(nil, DeleteTask)
-            } catch let error {
-                print(error)
+                response in
+                guard response.error == nil else {
+                    print(response.error!)
+                    completion(response.error, nil)
+                    return
+                }
+                
+                guard let data = response.data else {
+                    print("didn't get any data from API")
+                    return
+                }
+                
+                do {
+                    let decoder = JSONDecoder()
+                    let DeleteTask = try decoder.decode(DeleteTaskByIdResponse.self, from: data)
+                    completion(nil, DeleteTask)
+                } catch let error {
+                    print(error)
+                }
             }
         }
-    }
         class func updateProfile(_ data: String,completion: @escaping (_ error: Error?, _ profile: ProfileResponse?) -> Void) {
             let headers: HTTPHeaders = [HeaderKeys.contentType: "application/json",
                                         HeaderKeys.authorization: "Bearer " + "\(UserDefaultsManager.shared().token ?? "")"]

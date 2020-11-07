@@ -41,7 +41,6 @@
 		C3EB2C3A2553DCBB003C77E1 /* AddTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB2C392553DCBB003C77E1 /* AddTaskResponse.swift */; };
 		C3EB2C402554B3DE003C77E1 /* DeleteTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB2C3F2554B3DE003C77E1 /* DeleteTaskResponse.swift */; };
 		C3EB2C422554B519003C77E1 /* DeleteTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB2C412554B519003C77E1 /* DeleteTask.swift */; };
-		C3EB2C4425560565003C77E1 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB2C4325560565003C77E1 /* String+Validation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,7 +81,6 @@
 		C3EB2C392553DCBB003C77E1 /* AddTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskResponse.swift; sourceTree = "<group>"; };
 		C3EB2C3F2554B3DE003C77E1 /* DeleteTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTaskResponse.swift; sourceTree = "<group>"; };
 		C3EB2C412554B519003C77E1 /* DeleteTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTask.swift; sourceTree = "<group>"; };
-		C3EB2C4325560565003C77E1 /* String+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
 		D0AC84BFD376CBB368B7D53F /* Pods-TODOApp-MVC-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TODOApp-MVC-Demo.release.xcconfig"; path = "Target Support Files/Pods-TODOApp-MVC-Demo/Pods-TODOApp-MVC-Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,7 +173,6 @@
 				C33C8FED25507A2600F3C0B2 /* UIView+EXtention.swift */,
 				C3CF89152552C7C600140A58 /* String+trimming.swift */,
 				C3CF89172552C93100140A58 /* UIView+Loader.swift */,
-				C3EB2C4325560565003C77E1 /* String+Validation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -461,7 +458,6 @@
 				B76E56B52548A63E00C13D43 /* UIViewController+Storyboard.swift in Sources */,
 				C3CF89162552C7C600140A58 /* String+trimming.swift in Sources */,
 				C3D510C0254CC72F008DB194 /* ToDoResponse.swift in Sources */,
-				C3EB2C4425560565003C77E1 /* String+Validation.swift in Sources */,
 				C3EB2C422554B519003C77E1 /* DeleteTask.swift in Sources */,
 				B76E56C12548B0FD00C13D43 /* LoginResponse.swift in Sources */,
 				B76E56C32548B2B100C13D43 /* Constants.swift in Sources */,

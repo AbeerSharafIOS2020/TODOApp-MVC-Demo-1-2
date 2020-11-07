@@ -37,34 +37,34 @@ class UserDefaultsManager {
         get {
             guard UserDefaults.standard.bool(forKey: UserDefaultsKeys.isLogin) != false
                 else {
-                return false
+                    return false
             }
             return UserDefaults.standard.bool(forKey: UserDefaultsKeys.isLogin)
         }
     }
-
+    
     var imagName: String? {
-            set {
-                UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.imagName)
-            }
-            get {
-                guard UserDefaults.standard.object(forKey: UserDefaultsKeys.imagName) != nil else {
-                    return nil
-                }
-                return UserDefaults.standard.string(forKey: UserDefaultsKeys.imagName)!
-            }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.imagName)
         }
-    var id: String? {
-            set {
-                UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.id)
+        get {
+            guard UserDefaults.standard.object(forKey: UserDefaultsKeys.imagName) != nil else {
+                return nil
             }
-            get {
-                guard UserDefaults.standard.object(forKey: UserDefaultsKeys.id) != nil else {
-                    return nil
-                }
-                return UserDefaults.standard.string(forKey: UserDefaultsKeys.id)!
-            }
+            return UserDefaults.standard.string(forKey: UserDefaultsKeys.imagName)!
         }
-
     }
+    var id: String? {
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.id)
+        }
+        get {
+            guard UserDefaults.standard.object(forKey: UserDefaultsKeys.id) != nil else {
+                return nil
+            }
+            return UserDefaults.standard.string(forKey: UserDefaultsKeys.id)!
+        }
+    }
+    
+}
 

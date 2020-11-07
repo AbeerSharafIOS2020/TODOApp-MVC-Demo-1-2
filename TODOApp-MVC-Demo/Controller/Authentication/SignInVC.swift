@@ -18,7 +18,7 @@ class SignInVC: MainViewController {
     @IBOutlet weak var loginImagLabel: UILabel!
     
     // MARK:- Constants & Variables
-
+    
     
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class SignInVC: MainViewController {
     //Sign in Btn
     @IBAction func signInBtnPressed(_ sender: Any) {
         if validation(emailTxtField.text, passTxtField.text) {
-        self.serviceLogin(with: emailTxtField.text, password: passTxtField.text)
+            self.serviceLogin(with: emailTxtField.text, password: passTxtField.text)
         }
     }
     
@@ -39,16 +39,16 @@ class SignInVC: MainViewController {
     @IBAction func goToSignUpScreenBtnPressed(_ sender: Any) {
         AppDelegate.shared().switchToRegisterState()
     }
-   // MARK:- Public Methods
-      class func create() -> SignInVC {
-          let signInVC: SignInVC = UIViewController.create(storyboardName: Storyboards.authentication, identifier: ViewControllers.signInVC)
-          return signInVC
-      }
-   //MARK:- Private Methods
+    // MARK:- Public Methods
+    class func create() -> SignInVC {
+        let signInVC: SignInVC = UIViewController.create(storyboardName: Storyboards.authentication, identifier: ViewControllers.signInVC)
+        return signInVC
+    }
+    //MARK:- Private Methods
     private func imageConfiguration(){
-//        logoImg.layer.cornerRadius = logoImg.bounds.width / 2
+        //        logoImg.layer.cornerRadius = logoImg.bounds.width / 2
         //        logoImg.layer.masksToBounds = true
-//
+        //
         logoImg?.layer.cornerRadius = (logoImg?.frame.size.width ?? 0.0) / 2
         logoImg?.clipsToBounds = true
         logoImg?.layer.borderWidth = 3.0
@@ -62,25 +62,25 @@ class SignInVC: MainViewController {
             loginImagLabel.isHidden = true
         }
     }
-//    // MARK:- Validation Methods
-//    // check validation
-//    func  checkValidation(_ txtField: UITextField)  {
-//        if (emailTxtField.text!.isEmpty){
-//
-//            emailTxtField.placeholder = "Enter your Email"
-//            emailTxtField.becomeFirstResponder()
-//
-//        }else if (passTxtField.text!.isEmpty){
-//            passTxtField.placeholder = "Enter your Password"
-//            passTxtField.becomeFirstResponder()
-//        }else
-//            if !emailTxtField.text!.isEmail  {
-//                showAlert(message: "Enter valid email", title: "Error")
-//            } else {
-//                serviceLogin()
-//        }
-//    }
-
+    //    // MARK:- Validation Methods
+    //    // check validation
+    //    func  checkValidation(_ txtField: UITextField)  {
+    //        if (emailTxtField.text!.isEmpty){
+    //
+    //            emailTxtField.placeholder = "Enter your Email"
+    //            emailTxtField.becomeFirstResponder()
+    //
+    //        }else if (passTxtField.text!.isEmpty){
+    //            passTxtField.placeholder = "Enter your Password"
+    //            passTxtField.becomeFirstResponder()
+    //        }else
+    //            if !emailTxtField.text!.isEmail  {
+    //                showAlert(message: "Enter valid email", title: "Error")
+    //            } else {
+    //                serviceLogin()
+    //        }
+    //    }
+    
     // MARK:- Handle Response
     //check login data
     private func serviceLogin(with email: String?, password: String?) {
@@ -99,6 +99,4 @@ class SignInVC: MainViewController {
             self.view.processOnStop()
         })
     }
-
-    
 }

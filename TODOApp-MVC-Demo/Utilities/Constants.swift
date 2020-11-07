@@ -72,7 +72,3 @@ struct UserDefaultsKeys {
     static let id = "id"
 }
 
-//struct LoadingProgress {
-//    static let  loading : NVActivityIndicatorView = NVActivityIndicatorView(frame: CGRect.init(x: 0, y: 0, width: 70, height: 70), type: .ballRotateChase, color: UIColor.blue , padding: 2)
-//
-//}
