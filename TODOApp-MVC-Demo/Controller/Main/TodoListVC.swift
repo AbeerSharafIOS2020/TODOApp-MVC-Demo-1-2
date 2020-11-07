@@ -142,6 +142,25 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
         cell.setupCellTaskData(object: task)
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let alertConfirmDeleteNotifiy = UIAlertController(title:"Confirm", message: "Are you sure you want to Delete the task ? ", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style:.default)
+            { (UIAlertAction) in
+                // handle delete (by removing the data from your array and updating the tableview)
+                self.callDeleteService(self.allTaskObj[indexPath.row])
+                print("self.allTaskObj[indexPath.row]: \(self.allTaskObj[indexPath.row] )")
+                self.allTaskObj.remove(at: indexPath.item)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                let row = indexPath.row
+                print("row:\(row) ")
+            }
+            
+            let noAlertAction = UIAlertAction(title: "cancel", style: .cancel,handler: nil)
+            alertConfirmDeleteNotifiy.addAction(alertAction)
+            alertConfirmDeleteNotifiy.addAction(noAlertAction)
+            self.present(alertConfirmDeleteNotifiy, animated: true, completion: nil)
+
+        }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             
