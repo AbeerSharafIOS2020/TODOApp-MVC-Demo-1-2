@@ -28,7 +28,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mnh-en-5lY">
-                                <rect key="frame" x="140" y="212" width="120" height="120"/>
+                                <rect key="frame" x="140" y="212" width="120" height="100"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ks9-08-Wz4">
@@ -76,7 +76,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4TW-c0-xEe">
-                                <rect key="frame" x="200" y="272" width="0.0" height="0.0"/>
+                                <rect key="frame" x="200" y="262" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -97,10 +97,10 @@
                             <constraint firstItem="4TW-c0-xEe" firstAttribute="centerX" secondItem="mnh-en-5lY" secondAttribute="centerX" id="Liw-pv-mYl"/>
                             <constraint firstItem="zgY-TG-KRJ" firstAttribute="trailing" secondItem="ks9-08-Wz4" secondAttribute="trailing" identifier="300:300" id="MRy-BZ-y1L"/>
                             <constraint firstItem="ks9-08-Wz4" firstAttribute="height" secondItem="Zpo-mT-JwU" secondAttribute="height" multiplier="0.0642857" id="MvU-wP-sXi"/>
-                            <constraint firstItem="ks9-08-Wz4" firstAttribute="top" secondItem="mnh-en-5lY" secondAttribute="bottom" constant="34" id="N1e-bO-GwE"/>
+                            <constraint firstItem="ks9-08-Wz4" firstAttribute="top" secondItem="mnh-en-5lY" secondAttribute="bottom" constant="54" id="N1e-bO-GwE"/>
                             <constraint firstItem="0cw-V5-JMI" firstAttribute="height" secondItem="Zpo-mT-JwU" secondAttribute="height" multiplier="0.0607143" id="PSQ-ZX-O8c"/>
                             <constraint firstItem="zgY-TG-KRJ" firstAttribute="height" secondItem="ks9-08-Wz4" secondAttribute="height" id="Pkp-pC-zf9"/>
-                            <constraint firstItem="mnh-en-5lY" firstAttribute="height" secondItem="Zpo-mT-JwU" secondAttribute="height" multiplier="0.171429" id="R4B-nz-wBu"/>
+                            <constraint firstItem="mnh-en-5lY" firstAttribute="height" secondItem="Zpo-mT-JwU" secondAttribute="height" multiplier="0.171429" constant="-20" id="R4B-nz-wBu"/>
                             <constraint firstItem="lbJ-Hw-eQp" firstAttribute="leading" secondItem="eqz-r3-5mS" secondAttribute="trailing" constant="20" id="R6R-A0-Ydq"/>
                             <constraint firstItem="ks9-08-Wz4" firstAttribute="centerX" secondItem="ZD4-pD-Dq7" secondAttribute="centerX" id="SWj-o5-GjH"/>
                             <constraint firstItem="mnh-en-5lY" firstAttribute="width" secondItem="Zpo-mT-JwU" secondAttribute="width" multiplier="0.3" id="VMk-m5-Irw"/>

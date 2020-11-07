@@ -57,8 +57,11 @@ class SignUpVC: MainViewController {
                 print(loginData.token)
                 UserDefaultsManager.shared().token = loginData.token
                 UserDefaultsManager.shared().isLogin = false
-                let imageName = "\((loginData.user.name.first)?.uppercased() ?? "")"
-                print("image: \(imageName) \((loginData.user.name.first)?.uppercased() ?? "" )")
+                let nameTemp = name.split(separator: " ")
+                let firstName = nameTemp[0]
+                let lastName = nameTemp[1]
+                let imageName = "\(firstName.first?.uppercased() ?? "" )\(lastName.first?.uppercased() ?? "")"
+                print("image: \(imageName) )")
                 UserDefaultsManager.shared().imagName = "\(imageName)"
                 AppDelegate.shared().switchToAuthState()
             }

@@ -17,8 +17,9 @@ class MainViewController: UIViewController {
     //MARK:- Public Methods
     // name validation
     func isValidName(_ name: String?) -> Bool {
-        guard let name =  name?.trimmed, !name.isEmpty, name.count  >= 2  else {
-            self.presentError(with: "Enter Valid name ..at least consists two letters")
+        let nameTemp = name?.split(separator: " ")
+        guard let name =  name?.trimmed, !name.isEmpty, nameTemp?.count ?? 0 >= 2, name.count  >= 2  else {
+            self.presentError(with: "Enter Valid name ..at least consists two letters and first & last name")
                return false
            }
                return true
