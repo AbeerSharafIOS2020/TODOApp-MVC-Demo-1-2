@@ -76,7 +76,9 @@ class ProfileTVC: UITableViewController {
         
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if indexPath.row == 0 {
+            confirmEdittingMsg()
+        }
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -87,15 +89,112 @@ class ProfileTVC: UITableViewController {
         return 6
     }
     //MARK:-Private Methods
-    
-    
+    private func edittingAlert(){
+        let alert = UIAlertController(title: "Editting Selection", message: "please...press what do you whant to edit it?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Name", style: .default, handler: {(action: UIAlertAction) in
+            self.openAlert("Name")
+        }))
+        alert.addAction(UIAlertAction(title: "Email", style: .default, handler: {(action: UIAlertAction) in
+            self.openAlert("Email")
+        }))
+        alert.addAction(UIAlertAction(title: "Password", style: .default, handler: {(action: UIAlertAction) in
+            self.openAlert("Password")
+        }))
+        alert.addAction(UIAlertAction(title: "Age", style: .default, handler: {(action: UIAlertAction) in
+            self.openAlert("Age")
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    private func openAlert(_ txt: String){
+        let alertController = UIAlertController(title: txt, message: "Enter your new \(txt.lowercased())", preferredStyle: .alert)
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "your new \(txt.lowercased())"
+        }
+        
+        let saveAction = UIAlertAction(title: "Confirm", style: .default, handler: { alert -> Void in
+            if let textField = alertController.textFields?[0] {
+                if textField.text!.count > 0 {
+                    print("Text :: \(textField.text ?? "")")
+                    self.editProfile(txt,"\(textField.text ?? "")")
+                }else {
+                    self.presentInfoMsg(with: "Enter you new \(txt.lowercased())")
+                }
+            }
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {
+            (action : UIAlertAction!) -> Void in })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(saveAction)
+        
+        alertController.preferredAction = saveAction
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    private func editProfile(_ txt: String, _ editTxt: String){
+        switch txt {
+        case "Name":
+            if !(UI.mainViewController.isValidName(editTxt)){
+                self.presentError(with: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
+            }else {
+                self.presentSuccess(with: "Editting Done Successfully..")
+                self.serviceUpdateProfile(txt.lowercased(),editTxt)
+                
+            }
+        case "Email":
+            if !(UI.mainViewController.isValidEmail(editTxt)){
+                self.presentError(with: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
+                
+            }else {
+                self.presentSuccess(with: "Editting Done Successfully..")
+                self.serviceUpdateProfile(txt.lowercased(),editTxt)
+                
+            }
+            
+        case "Password":
+            if !(UI.mainViewController.isValidPassword(editTxt)){
+                self.presentError(with: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
+                
+            }else {
+                self.presentSuccess(with: "Editting Done Successfully..")
+                self.serviceUpdateProfile(txt.lowercased(),editTxt)
+                
+            }
+        case "Age":
+            if !(UI.mainViewController.isValidAge(Int(editTxt))){
+                self.presentError(with: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
+                
+                
+            }else {
+                self.presentSuccess(with: "Editting Done Successfully..")
+                self.serviceUpdateProfile(txt.lowercased(),editTxt)
+                
+            }
+            
+            
+            
+        default:
+            break
+        }
+    }
+    private func confirmEdittingMsg(){
+        let okAction = UIAlertAction(title: "Yes", style: .default) {
+            (UIAlertAction) in
+            print("ok")
+            self.edittingAlert()
+        }
+        showCustomAlertWithAction(title: "Profile Editting", message: "Are you sure , Do you want to edit your profile?", firstBtn: okAction)
+        
+    }
     private func  confirmLogOut(){
         let okAction = UIAlertAction(title: "OK", style: .default) {
             (UIAlertAction) in
             print("ok")
             self.serviceOfLogout()
         }
-        showCustomAlertWithAction(title: "Log Out", message: "Are you sure you want To log out?", firstBtn: okAction)
+        showCustomAlertWithAction(title: "Log Out", message: "Are you sure Do you want log out?", firstBtn: okAction)
     }
     // MARK:- Handle Response of Log Out
     private func serviceOfLogout(){
@@ -114,7 +213,7 @@ class ProfileTVC: UITableViewController {
         }
     }
     //MARK:- Handle Response of Get Profile
-    func serviceOfGetProfileData() {
+    private func serviceOfGetProfileData() {
         self.view.processOnStart()
         APIManager.getProfile { (error, profile) in
             if let error = error {
@@ -130,6 +229,22 @@ class ProfileTVC: UITableViewController {
             self.view.processOnStop()
         }
     }
+    private func serviceUpdateProfile(_ txt: String,_ data: String){
+        self.view.processOnStart()
+        ParameterKeys.edit = txt
+        APIManager.updateProfile(data, completion: { (error, profile) in
+            if let error = error {
+                self.presentError(with: error.localizedDescription)
+            } else if let profile = profile?.user {
+                print("profile: \(profile)")
+                self.serviceOfGetProfileData()
+            }
+            self.view.processOnStop()
+        })
+        
+    }
+    
+    
     // MARK:- Public Methods
     class func create() -> ProfileTVC {
         let profileTVC: ProfileTVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.profileTVC)
@@ -172,7 +287,7 @@ extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
             self?.imageLabel.isHidden = true
             //Setting image to your image view
             self?.profileImg.image = profileImage
-//            uploadImage()
+            //            uploadImage()
             // Load Image
             let image = UIImage(named: "profileImage")
             // Convert to Data
@@ -185,11 +300,11 @@ extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
                 do {
                     // Write to Disk
                     try data.write(to: url)
-
+                    
                     // Store URL in User Defaults
                     UserDefaults.standard.set(url, forKey: "profileImage")
                     print("it is saved")
-
+                    
                 } catch {
                     print("Unable to Write Data to Disk (\(error))")
                 }

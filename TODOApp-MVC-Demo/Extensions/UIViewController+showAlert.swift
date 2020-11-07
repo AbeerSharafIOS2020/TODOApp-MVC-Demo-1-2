@@ -31,5 +31,9 @@ extension UIViewController {
     @objc func presentSuccess(with message: String) {
            self.showAlert(message: message, title: "Success")
        }
+    @objc func presentInfoMsg(with message: String) {
+           self.showAlert(message: message)
+       }
+
 
 }

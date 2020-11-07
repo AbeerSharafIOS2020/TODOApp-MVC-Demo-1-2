@@ -15,6 +15,10 @@ struct Storyboards {
     static let main = "Main"
     
 }
+struct UI {
+    static let controller = UIViewController()
+    static let mainViewController = MainViewController()
+}
 // Cells
 struct Cells {
     static let taskDataTVCell = "TaskDataTVCell"
@@ -57,6 +61,7 @@ struct ParameterKeys {
     static let name = "name"
     static let age = "age"
     static let description = "description"
+    static var edit = "edit"
 }
 
 // UserDefaultsKeys

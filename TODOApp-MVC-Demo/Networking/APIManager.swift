@@ -208,4 +208,30 @@
             }
         }
     }
+        class func updateProfile(_ data: String,completion: @escaping (_ error: Error?, _ profile: ProfileResponse?) -> Void) {
+            let headers: HTTPHeaders = [HeaderKeys.contentType: "application/json",
+                                        HeaderKeys.authorization: "Bearer " + "\(UserDefaultsManager.shared().token ?? "")"]
+            let params: [String: Any] = [ParameterKeys.edit : data]
+            AF.request(URLs.getUserProfile, method: HTTPMethod.put, parameters: params, encoding: JSONEncoding.default, headers: headers).response {
+                response in
+                guard response.error == nil else {
+                    print(response.error!)
+                    completion(response.error, nil)
+                    return
+                }
+                
+                guard let data = response.data else {
+                    print("didn't get any data from API")
+                    return
+                }
+                
+                do {
+                    let decoder = JSONDecoder()
+                    let profile = try decoder.decode(ProfileResponse.self, from: data)
+                    completion(nil, profile)
+                } catch let error {
+                    print(error)
+                }
+            }
+        }
     }
