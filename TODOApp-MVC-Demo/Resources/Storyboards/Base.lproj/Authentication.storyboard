@@ -27,9 +27,9 @@
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mnh-en-5lY">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoImg" translatesAutoresizingMaskIntoConstraints="NO" id="mnh-en-5lY">
                                 <rect key="frame" x="140" y="212" width="120" height="100"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ks9-08-Wz4">
                                 <rect key="frame" x="48.5" y="366" width="303" height="45"/>
@@ -63,14 +63,14 @@
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J4w-PK-Qll">
-                                <rect key="frame" x="227" y="567" width="64" height="24"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J4w-PK-Qll">
+                                <rect key="frame" x="226.5" y="565" width="51" height="30"/>
                                 <connections>
                                     <action selector="goToSignUpScreenBtnPressed:" destination="T6n-BO-Yei" eventType="touchUpInside" id="aRU-ev-qNU"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text=" Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbJ-Hw-eQp">
-                                <rect key="frame" x="224" y="568" width="68" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbJ-Hw-eQp">
+                                <rect key="frame" x="224" y="565" width="56" height="30"/>
                                 <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
                                 <color key="textColor" red="0.23529411764705882" green="0.50980392156862742" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -88,7 +88,7 @@
                             <constraint firstItem="ks9-08-Wz4" firstAttribute="width" secondItem="Zpo-mT-JwU" secondAttribute="width" multiplier="0.7575" id="6s0-uy-AUM"/>
                             <constraint firstItem="mnh-en-5lY" firstAttribute="centerX" secondItem="1FQ-6d-shb" secondAttribute="centerX" id="7GA-tk-XmQ"/>
                             <constraint firstItem="J4w-PK-Qll" firstAttribute="height" secondItem="lbJ-Hw-eQp" secondAttribute="height" id="9FH-cN-tv8"/>
-                            <constraint firstItem="J4w-PK-Qll" firstAttribute="width" secondItem="lbJ-Hw-eQp" secondAttribute="width" multiplier="0.913043" constant="1.9130434782608745" id="Bf0-0Y-ElC"/>
+                            <constraint firstItem="J4w-PK-Qll" firstAttribute="width" secondItem="lbJ-Hw-eQp" secondAttribute="width" multiplier="0.913043" id="Bf0-0Y-ElC"/>
                             <constraint firstItem="OQU-E4-BbC" firstAttribute="height" secondItem="ks9-08-Wz4" secondAttribute="height" id="CkP-cb-05U"/>
                             <constraint firstItem="mnh-en-5lY" firstAttribute="top" secondItem="1FQ-6d-shb" secondAttribute="bottom" constant="5" id="CyQ-JR-XLb"/>
                             <constraint firstItem="0cw-V5-JMI" firstAttribute="leading" secondItem="ZD4-pD-Dq7" secondAttribute="leading" constant="122" id="DpH-2s-kKW"/>
@@ -108,10 +108,10 @@
                             <constraint firstItem="0cw-V5-JMI" firstAttribute="centerX" secondItem="ZD4-pD-Dq7" secondAttribute="centerX" id="bEN-pg-AAU"/>
                             <constraint firstItem="eqz-r3-5mS" firstAttribute="top" secondItem="zgY-TG-KRJ" secondAttribute="bottom" constant="32" id="bGz-Vn-jZu"/>
                             <constraint firstItem="OQU-E4-BbC" firstAttribute="top" secondItem="ks9-08-Wz4" secondAttribute="bottom" constant="14.5" id="bdy-Na-wTZ"/>
-                            <constraint firstItem="zgY-TG-KRJ" firstAttribute="leading" secondItem="ks9-08-Wz4" secondAttribute="leading" id="idI-wJ-4Im"/>
+                            <constraint firstItem="zgY-TG-KRJ" firstAttribute="leading" secondItem="ks9-08-Wz4" secondAttribute="leading" identifier="300:300" id="idI-wJ-4Im"/>
                             <constraint firstItem="eqz-r3-5mS" firstAttribute="leading" secondItem="ZD4-pD-Dq7" secondAttribute="leading" constant="39" id="m9g-Ib-pdi"/>
-                            <constraint firstItem="J4w-PK-Qll" firstAttribute="centerX" secondItem="lbJ-Hw-eQp" secondAttribute="centerX" constant="1" id="oDz-sc-nIk"/>
-                            <constraint firstItem="J4w-PK-Qll" firstAttribute="centerY" secondItem="lbJ-Hw-eQp" secondAttribute="centerY" constant="-1" id="pKi-6C-IEC"/>
+                            <constraint firstItem="J4w-PK-Qll" firstAttribute="centerX" secondItem="lbJ-Hw-eQp" secondAttribute="centerX" id="oDz-sc-nIk"/>
+                            <constraint firstItem="J4w-PK-Qll" firstAttribute="centerY" secondItem="lbJ-Hw-eQp" secondAttribute="centerY" id="pKi-6C-IEC"/>
                             <constraint firstItem="0cw-V5-JMI" firstAttribute="top" secondItem="ZD4-pD-Dq7" secondAttribute="top" multiplier="4:3" constant="108" identifier="72:700" id="s8n-7I-cks"/>
                             <constraint firstItem="1FQ-6d-shb" firstAttribute="top" secondItem="0cw-V5-JMI" secondAttribute="bottom" constant="10" id="wJB-jI-a2O"/>
                             <constraint firstItem="4TW-c0-xEe" firstAttribute="centerY" secondItem="mnh-en-5lY" secondAttribute="centerY" id="xbf-bl-nwf"/>
@@ -285,10 +285,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="At9-gl-IUX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1428" y="112.89355322338831"/>
+            <point key="canvasLocation" x="1422" y="105"/>
         </scene>
     </scenes>
     <resources>
         <image name="loginImage" width="244" height="224"/>
+        <image name="logoImg" width="594" height="484"/>
     </resources>
 </document>
