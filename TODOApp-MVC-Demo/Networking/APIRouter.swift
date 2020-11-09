@@ -22,7 +22,6 @@ enum APIRouter: URLRequestConvertible{
     case uploadImage(_ image: UIImage )
     case getUserImage
     case updateProfile(_ data: String )
-    
     // MARK: - HttpMethod
     private var method: HTTPMethod {
         switch self {
@@ -48,7 +47,6 @@ enum APIRouter: URLRequestConvertible{
             return . put
         }
     }
-    
     // MARK: - Parameters
     private var parameters: Parameters? {
         switch self {
@@ -99,55 +97,46 @@ enum APIRouter: URLRequestConvertible{
         urlRequest.httpMethod = method.rawValue
         switch self {
         case .getAllTask:
-        urlRequest.setValue(HeaderValues.brearerToken,
-                forHTTPHeaderField: HeaderKeys.authorization)
-
-        urlRequest.setValue(HeaderValues.applicationJson,
-                            forHTTPHeaderField: HeaderKeys.contentType)
-            
+            urlRequest.setValue(HeaderValues.brearerToken,
+                                forHTTPHeaderField: HeaderKeys.authorization)
+            urlRequest.setValue(HeaderValues.applicationJson,
+                                forHTTPHeaderField: HeaderKeys.contentType)
         case .login:
-        urlRequest.setValue(HeaderValues.applicationJson,
-            forHTTPHeaderField: HeaderKeys.contentType)
-            
+            urlRequest.setValue(HeaderValues.applicationJson,
+                                forHTTPHeaderField: HeaderKeys.contentType)
         case .register:
-        urlRequest.setValue(HeaderValues.applicationJson,
-            forHTTPHeaderField: HeaderKeys.contentType)
-            
+            urlRequest.setValue(HeaderValues.applicationJson,
+                                forHTTPHeaderField: HeaderKeys.contentType)
         case .addTask:
-        urlRequest.setValue(HeaderValues.applicationJson,
-                             forHTTPHeaderField: HeaderKeys.contentType)
-        urlRequest.setValue( HeaderValues.brearerToken,
-forHTTPHeaderField: HeaderKeys.authorization)
-
-        
+            urlRequest.setValue(HeaderValues.applicationJson,
+                                forHTTPHeaderField: HeaderKeys.contentType)
+            urlRequest.setValue( HeaderValues.brearerToken,
+                                 forHTTPHeaderField: HeaderKeys.authorization)
         case .logout:
-                    urlRequest.setValue( HeaderValues.brearerToken,
-            forHTTPHeaderField: HeaderKeys.authorization)
-            
+            urlRequest.setValue( HeaderValues.brearerToken,
+                                 forHTTPHeaderField: HeaderKeys.authorization)
         case .getProfile:
-                    urlRequest.setValue(HeaderValues.applicationJson,
-                                         forHTTPHeaderField: HeaderKeys.contentType)
-                    urlRequest.setValue( HeaderValues.brearerToken,
-            forHTTPHeaderField: HeaderKeys.authorization)
+            urlRequest.setValue(HeaderValues.applicationJson,
+                                forHTTPHeaderField: HeaderKeys.contentType)
+            urlRequest.setValue( HeaderValues.brearerToken,
+                                 forHTTPHeaderField: HeaderKeys.authorization)
         case .deleteTask:
-                            urlRequest.setValue( HeaderValues.brearerToken,
-                    forHTTPHeaderField: HeaderKeys.authorization)
-urlRequest.setValue(HeaderValues.applicationJson,
-                                         forHTTPHeaderField: HeaderKeys.contentType)
+            urlRequest.setValue( HeaderValues.brearerToken,
+                                 forHTTPHeaderField: HeaderKeys.authorization)
+            urlRequest.setValue(HeaderValues.applicationJson,
+                                forHTTPHeaderField: HeaderKeys.contentType)
         case .uploadImage:
             urlRequest.setValue( HeaderValues.brearerToken,
-            forHTTPHeaderField: HeaderKeys.authorization)
-            
+                                 forHTTPHeaderField: HeaderKeys.authorization)
         case .updateProfile:
-                    urlRequest.setValue(HeaderValues.applicationJson,
-                                         forHTTPHeaderField: HeaderKeys.contentType)
-                    urlRequest.setValue( HeaderValues.brearerToken,
-            forHTTPHeaderField: HeaderKeys.authorization)
+            urlRequest.setValue(HeaderValues.applicationJson,
+                                forHTTPHeaderField: HeaderKeys.contentType)
+            urlRequest.setValue( HeaderValues.brearerToken,
+                                 forHTTPHeaderField: HeaderKeys.authorization)
         default:
             break
         }
-        
-        // HTTP Body
+        // MARK: - HTTP Body
         let httpBody: Data? = {
             switch self {
                 
@@ -155,8 +144,7 @@ urlRequest.setValue(HeaderValues.applicationJson,
                 return nil
             }
         }()
-        
-        // Encoding
+        // MARK: - Encoding
         let encoding: ParameterEncoding = {
             switch method {
             case .get, .delete:
@@ -171,7 +159,7 @@ urlRequest.setValue(HeaderValues.applicationJson,
     }
     
 }
-
+// MARK: - extension
 extension APIRouter {
     private func encodeToJSON<T: Encodable>(_ body: T) -> Data? {
         do {

@@ -14,15 +14,11 @@ extension UIView {
     
     struct LoadingProgress {
         static let  loading : NVActivityIndicatorView = NVActivityIndicatorView(frame: CGRect.init(x: 0, y: 0, width: 70, height: 70), type: .ballRotateChase, color: UIColor.blue , padding: 2)
-    
     }
     func processOnStart() {
         let activityIndicator = setupActivityIndicator()
         activityIndicator.startAnimating()
         self.addSubview(activityIndicator)
-//
-//        self.isUserInteractionEnabled = false
-//        LoadingProgress.loading.startAnimating()
     }
     func processOnStop() {
         self.isUserInteractionEnabled = true
@@ -31,8 +27,6 @@ extension UIView {
 
     // Start Loader
     func setupActivityIndicator() -> NVActivityIndicatorView {
-    
-        //LoadingProgress.loading.sty = .medium
         LoadingProgress.loading.tag = 333
         LoadingProgress.loading.center = self.center
         self.addSubview(LoadingProgress.loading)

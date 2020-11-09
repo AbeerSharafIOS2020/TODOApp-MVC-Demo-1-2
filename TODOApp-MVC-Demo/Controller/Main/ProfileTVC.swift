@@ -27,6 +27,7 @@ class ProfileTVC: UITableViewController {
     
     // MARK:- Properties
     let imagePicker = UIImagePickerController()
+    
     let image = Data()
     //MARK:-Life Cycle:
     override func viewDidLoad() {
@@ -234,6 +235,9 @@ class ProfileTVC: UITableViewController {
                 self.dateOfCreateUserLabel.text = "\(result.createdAt)"
                 self.emailLabel.text = "\(result.email)"
                 self.userNameLabel.text = "\(result.name)"
+                let name = "\(result.name)"
+                UI.mainViewController.createImageByName(name)
+
                 self.dateOfUpdateProfileLabel.text = "\(result.updatedAt)"
             }
             self.view.processOnStop()
@@ -259,8 +263,8 @@ class ProfileTVC: UITableViewController {
     
     //MARK:- Handle Response of Get user image
     private func serviceOfGetImage(){
-        if UserDefaultsManager.shared().isUploadImage = false {
-            self.loadIoginImag()
+        if UserDefaultsManager.shared().isUploadImage == false {
+            self.loadImagByName()
         } else {
         let id = "\(UserDefaultsManager.shared().userID ?? "")"
         self.view.processOnStart()
@@ -286,6 +290,7 @@ class ProfileTVC: UITableViewController {
             }
         })
         self.view.processOnStop()
+        UserDefaultsManager.shared().isUploadImage = true
     }
 }
 //MARK:- Image Picker
@@ -306,15 +311,14 @@ extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    private func loadIoginImag(){
-        self.serviceOfGetImage()
-        //        if UserDefaultsManager.shared().imagName != nil {
-        //            imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
-        //        }else {
-        //            imageLabel.isHidden = true
-        //        }
+    private func loadImagByName(){
+        if UserDefaultsManager.shared().imagName != nil {
+            imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
+        }else {
+            imageLabel.isHidden = true
+        }
     }
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // This function is to catch file image from your photo library.
         //when i finished selected image from picker to handle value edited Image and non-edited Image, here is :

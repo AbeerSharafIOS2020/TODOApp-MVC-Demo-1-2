@@ -37,16 +37,16 @@ class SignUpVC: MainViewController {
         AppDelegate.shared().switchToAuthState()
     }
     
-    //MARK:- Private Methods
-    //create image by user name
-    private func createImageByName(_ name: String) {
-        let nameBuffer = name.split(separator: " ")
-        let firstName = nameBuffer[0]
-        let lastName = nameBuffer[1]
-        let imageByName = "\(firstName.first?.uppercased() ?? "" )\(lastName.first?.uppercased() ?? "")"
-        print("image: \(imageByName) )")
-        UserDefaultsManager.shared().imagName = "\(imageByName)"
-    }
+//    //MARK:- Private Methods
+//    //create image by user name
+//    private func createImageByName(_ name: String) {
+//        let nameBuffer = name.split(separator: " ")
+//        let firstName = nameBuffer[0]
+//        let lastName = nameBuffer[1]
+//        let imageByName = "\(firstName.first?.uppercased() ?? "" )\(lastName.first?.uppercased() ?? "")"
+//        print("image: \(imageByName) )")
+//        UserDefaultsManager.shared().imagName = "\(imageByName)"
+//    }
     
    //Validation Method:
     private func validation()-> Bool {
@@ -78,7 +78,8 @@ class SignUpVC: MainViewController {
                 case .success(let result):                UserDefaultsManager.shared().token = result.token
                 UserDefaultsManager.shared().isLogin = false
                 UserDefaultsManager.shared().userID = result.user.id
-                self.createImageByName(result.user.name)
+                let name = "\(result.user.name)"
+                self.createImageByName(name)
                 AppDelegate.shared().switchToAuthState()
             }
         }

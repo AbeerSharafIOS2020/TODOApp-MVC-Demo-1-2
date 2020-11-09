@@ -10,7 +10,6 @@
     import UIKit
     import Alamofire
     
-    
     class APIManager {
         //MARK:- Login
         class func  login(email: String, password: String, completion: @escaping (Result<LoginResponse, Error>)-> ()){
@@ -42,33 +41,32 @@
                 completion(response)
             }
         }
-
         //MARK:- GetProfile
         class func getProfile(completion: @escaping (Result<ProfileResponse, Error>)-> ()){
             request(APIRouter.getProfile){ (response) in
                 completion(response)
             }
         }
-
         //MARK:- DeleteTask
         class func deleteTask(completion: @escaping (Result<DeleteTaskByIdResponse, Error>)-> ()){
             request(APIRouter.deleteTask){ (response) in
                completion(response)
            }
         }
+
+            //MARK:- UpdateProfile
+            class func updateProfile(data: String, completion: @escaping (Result<ProfileResponse, Error>)-> ()){
+                request(APIRouter.updateProfile(data)){ (response) in
+                   completion(response)
+               }
+            }
         
         //MARK:- UploadImage
-//        class func uploadImage(image: UIImage, completion: @escaping (Result<UploadImageResponse, Error>)-> ()){
-//            request(APIRouter.uploadImage(image)){ (response) in
-//               completion(response)
-//           }
-//        }
-        // Upload photo
         class func uploadPhoto(with image: UIImage, completion: @escaping (Bool) -> Void) {
             guard let imageJpegData = image.jpegData(compressionQuality: 0.8),
-                let token = UserDefaultsManager.shared().token else {return}
-            
-            let headers: HTTPHeaders = [HeaderKeys.authorization: "Bearer \(token)"]
+            let token = UserDefaultsManager.shared().token else {return}
+            print("token: \(token)")
+            let headers: HTTPHeaders = [HeaderKeys.authorization: HeaderValues.brearerToken]
             
             AF.upload(multipartFormData: { (formData) in
                 formData.append(imageJpegData, withName: "avatar", fileName: "/home/ali/Mine/c/nodejs-blog/public/img/blog-header.jpg", mimeType: "blog-header.jpg")
@@ -83,14 +81,7 @@
                 completion(true)
             }
         }
-//        //MARK:- GetUserImage
-//        class func getUserImage(id : String, completion: @escaping (Result<(GetUserImageResponse), Error >)-> ()){
-//            request(APIRouter.getUserImage){ (response) in
-//               completion(response)
-//           }
-//        }
-
-        // getUserPhoto
+        //MARK:- GetImage
         class func getProfilePhoto(with id: String, completion: @escaping (_ error: Error?,_ image: Data?,_ imageResponse: GetUserImageResponse?) -> Void) {
             
             AF.request(URLs.getImg, method: .get).response {
@@ -118,43 +109,7 @@
                 }
             }
         }
-//        class func uploadImage(with image: UIImage, completion: @escaping (_ error: Error?, _ success: UploadImageResponse?) -> Void) {
-//            guard let imageJpegData = image.jpegData(compressionQuality: 1) else {return}
-//            let headers: HTTPHeaders = [ HeaderKeys.authorization: "Bearer " + "\(UserDefaultsManager.shared().token ?? "")"]
-//            AF.upload(multipartFormData: { (formData) in
-//                formData.append(imageJpegData, withName: "avatar", fileName: "test.jpeg", mimeType: "test.jpeg")}
-//                , to: URLs.uploadImg, method: HTTPMethod.post, headers: headers).response {
-//                response in
-//                        guard response.error == nil else {
-//                        print(response.error!)
-//                        completion(response.error,nil)
-//                        return
-//                    }
-//                    guard let data = response.data else {
-//                        print("didn't get any data from API")
-//                        return
-//                    }
-//                    do {
-//                        let decoder = JSONDecoder()
-//                        let success = try decoder.decode(UploadImageResponse?.self, from: data)
-//                        completion(nil, success)
-//                    } catch let error {
-//                        print(error)
-//                    }
-//
-//            }
-//        }
-//
-//
-
-        //MARK:- UpdateProfile
-        class func updateProfile(data: String, completion: @escaping (Result<ProfileResponse, Error>)-> ()){
-            request(APIRouter.updateProfile(data)){ (response) in
-               completion(response)
-           }
-        }
     }
-
     extension APIManager{
         // MARK:- The request function to get results in a closure
         private static func request<T: Decodable>(_ urlConvertible: URLRequestConvertible, completion:  @escaping (Result<T, Error>) -> ()) {

@@ -16,17 +16,12 @@ class SignInVC: MainViewController {
     @IBOutlet weak var signUpLabel: UILabel!
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var loginImagLabel: UILabel!
-    
-    // MARK:- Constants & Variables
-    
-    
+
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.imageConfiguration()
-        self.loadIoginImag()
     }
-    
+
     // MARK:- Actions Methods
     //Sign in Btn
     @IBAction func signInBtnPressed(_ sender: Any) {
@@ -44,26 +39,8 @@ class SignInVC: MainViewController {
         let signInVC: SignInVC = UIViewController.create(storyboardName: Storyboards.authentication, identifier: ViewControllers.signInVC)
         return signInVC
     }
-    //MARK:- Private Methods
-    private func imageConfiguration(){
-        //        logoImg.layer.cornerRadius = logoImg.bounds.width / 2
-        //        logoImg.layer.masksToBounds = true
-        //
-        logoImg?.layer.cornerRadius = (logoImg?.frame.size.width ?? 0.0) / 2
-        logoImg?.clipsToBounds = true
-        logoImg?.layer.borderWidth = 3.0
-        logoImg?.layer.borderColor = UIColor.white.cgColor
-    }
-    
-    private func loadIoginImag(){
-        if UserDefaultsManager.shared().imagName != nil {
-            loginImagLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
-        }else {
-            loginImagLabel.isHidden = true
-        }
-    }
     // MARK:- Handle Response
-       //serviceLogin
+    //serviceLogin
     private func serviceLogin(with email: String?, password: String?) {
         UserDefaultsManager.shared().userID = nil
         guard let email = email, self.isValidEmail(email) else {return}
@@ -78,7 +55,8 @@ class SignInVC: MainViewController {
                 UserDefaultsManager.shared().isLogin = true
                 UserDefaultsManager.shared().token = result.token
                 UserDefaultsManager.shared().userID = result.user.id
-
+                let name = "\(result.user.name)"
+                self.createImageByName(name)
                 AppDelegate.shared().switchToMainState()
             }
             self.view.processOnStop()

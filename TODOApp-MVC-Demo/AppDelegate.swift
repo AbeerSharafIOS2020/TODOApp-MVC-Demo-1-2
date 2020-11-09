@@ -22,39 +22,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    //MARK:- Public Methods
+//MARK:- Public Methods
     func switchToMainState() {
         let todoListVC = TodoListVC.create()
         let navigationController = UINavigationController(rootViewController: todoListVC)
         self.window?.rootViewController = navigationController
     }
-    //----------------------------------------------------------------------------------------
+// switchToAuthState
     func switchToAuthState() {
         let signInVC = SignInVC.create()
         let navigationController = UINavigationController(rootViewController: signInVC)
         self.window?.rootViewController = navigationController
     }
-    //----------------------------------------------------------------------------------------
+//switchToRegisterState
     func switchToRegisterState() {
         let signUpVC = SignUpVC.create()
         let navigationController = UINavigationController(rootViewController: signUpVC)
         self.window?.rootViewController = navigationController
     }
-    //----------------------------------------------------------------------------------------
+//switchToAddTaskState
     func switchToAddTaskState() {
         let addTaskVC = ADDTaskVC.create()
         let navigationController = UINavigationController(rootViewController: addTaskVC)
         self.window?.rootViewController = navigationController
     }
-    //----------------------------------------------------------------------------------------
+//switchToProfileState
     func switchToProfileState() {
         let profileTVC = ProfileTVC.create()
         let navigationController = UINavigationController(rootViewController: profileTVC)
         self.window?.rootViewController = navigationController
     }
-    //----------------------------------------------------------------------------------------
-    
-    
 }
 //MARK:- Extension
 extension AppDelegate {
