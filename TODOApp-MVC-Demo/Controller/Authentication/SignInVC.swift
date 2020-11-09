@@ -39,7 +39,9 @@ class SignInVC: MainViewController {
         let signInVC: SignInVC = UIViewController.create(storyboardName: Storyboards.authentication, identifier: ViewControllers.signInVC)
         return signInVC
     }
+}
     // MARK:- Handle Response
+    extension SignInVC {
     //serviceLogin
     private func serviceLogin(with email: String?, password: String?) {
         UserDefaultsManager.shared().userID = nil

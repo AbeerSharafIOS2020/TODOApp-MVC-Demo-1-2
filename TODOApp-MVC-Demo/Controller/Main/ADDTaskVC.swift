@@ -24,11 +24,18 @@
                 if descriptionTxtView.text.isEmpty {
                     self.presentError(with: "Enter your task details..")
                 } else {
-                    serviceSaveTask()
+                    self.serviceSaveTask()
                 }
             }
+            // MARK:- Public Methods
+            class func create() -> ADDTaskVC {
+                let addTaskVC: ADDTaskVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.addTaskVC)
+                return addTaskVC
+            }
+        }
             //MARK:- Handle Response
-            func serviceSaveTask() {
+            extension ADDTaskVC {
+            private func serviceSaveTask() {
                 self.view.processOnStart()
                 let description = "\(descriptionTxtView.text ?? "")"
                 APIManager.addTask(description: description){
@@ -45,11 +52,6 @@
                     }
                     self.view.processOnStop()
                 }
-            }
-            // MARK:- Public Methods
-            class func create() -> ADDTaskVC {
-                let addTaskVC: ADDTaskVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.addTaskVC)
-                return addTaskVC
             }
         }
         
