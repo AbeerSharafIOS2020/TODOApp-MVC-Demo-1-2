@@ -31,8 +31,9 @@ class ProfileTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imageConfiguration()
-        loadIoginImag()
+        //loadIoginImag()
         serviceOfGetProfileData()
+        serviceOfGetImage()
     }
     //MARK:-Actions Methods :
     //log out Btn
@@ -42,6 +43,7 @@ class ProfileTVC: UITableViewController {
     
     @IBAction func addImagBtnTapPressed(_ sender: Any) {
         self.ChooseSourceType()
+        //        self.save()
     }
     //Back Btn
     @IBAction func backTapButton() {
@@ -213,12 +215,16 @@ class ProfileTVC: UITableViewController {
         }
     }
     //MARK:- Handle Response of Get Profile
+    
     private func serviceOfGetProfileData() {
         self.view.processOnStart()
-        APIManager.getProfile { (error, profile) in
-            if let error = error {
+        APIManager.g { (error, response) in
+            switch response{
+            case .failure(let error):
+                print(error.localizedDescription)
                 self.presentError(with: error.localizedDescription)
-            } else if let profile = profile?.user {
+            case .success(let result):
+                if let result = result. {
                 print("profile: \(profile)")
                 self.ageLabel.text = "\(profile.age)"
                 self.dateOfCreateUserLabel.text = "\(profile.createdAt)"
@@ -250,9 +256,34 @@ class ProfileTVC: UITableViewController {
         let profileTVC: ProfileTVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.profileTVC)
         return profileTVC
     }
+    //MARK:- Handle Response of Get user image
+    private func serviceOfGetImage(){
+        self.view.processOnStart()
+        APIManager.getUserImage(completion: { (error, userImage,imageRes) in
+            if let error = error {
+                self.presentError(with: "in get imag: \(error.localizedDescription)")
+            } else if let imageRes = imageRes{
+                print("Success")
+            }
+            self.view.processOnStop()
+        })
+        
+    }
     
+    private func uploadImage(_ image: UIImage){
+        self.view.processOnStart()
+        APIManager.uploadImage(with: image, completion: { (error, success) in
+                if let error = error {
+                    self.presentError(with: "false in upload image  \(error.localizedDescription)")
+                } else if let success = success?.success {
+                    if success == true {
+                    self.presentSuccess(with: "Upload the image Successfully")
+                }
+                self.view.processOnStop()
+            }
+            })
+    }
 }
-
 //MARK:- Image Picker
 extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK:- Private Methods
@@ -272,54 +303,108 @@ extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         self.present(alert, animated: true, completion: nil)
     }
     private func loadIoginImag(){
-        if UserDefaultsManager.shared().imagName != nil {
-            imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
-        }else {
-            imageLabel.isHidden = true
-        }
+        self.serviceOfGetImage()
+        //        if UserDefaultsManager.shared().imagName != nil {
+        //            imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
+        //        }else {
+        //            imageLabel.isHidden = true
+        //        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
+        // This function is to catch file image from your photo library.
+        //when i finished selected image from picker to handle value edited Image and non-edited Image, here is :
         self.dismiss(animated: true) { [weak self] in
-            
+
             guard let profileImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
+            
             self?.imageLabel.isHidden = true
+            
+            
             //Setting image to your image view
             self?.profileImg.image = profileImage
-            //            uploadImage()
-            // Load Image
-            let image = UIImage(named: "profileImage")
-            // Convert to Data
-            if let data = image?.pngData() {
-                // Create URL
-                let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                print("doc: \(documents)")
-                let url = documents.appendingPathComponent("profileImage.png")
-                print("url: \(url)")
-                do {
-                    // Write to Disk
-                    try data.write(to: url)
-                    
-                    // Store URL in User Defaults
-                    UserDefaults.standard.set(url, forKey: "profileImage")
-                    print("it is saved")
-                    
-                } catch {
-                    print("Unable to Write Data to Disk (\(error))")
-                }
+            let img = UIImage()
+            self?.uploadImage(img)
+            
+            //Save image
+            let data = img.jpegData(compressionQuality: 1)
+            UserDefaults.standard.set(data, forKey: "myImageKey")
+            UserDefaults.standard.synchronize()
+
+            //Get image
+            if (UserDefaults.standard.object(forKey: "myImageKey") as? Data) != nil {
+                //let retrievedImg = UIImage(data: imgData as Data)
+                print("get image")
+                self?.serviceOfGetImage()
             }
+////            // Convert to Data
+////            if let data1 = image?.pngData() {
+//                // Create URL
+//                let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//                print("doc: \(documents)")
+//                let url = documents.appendingPathComponent("profileImage.png")
+//                print("url: \(url)")
+//                do {
+//                    // Write to Disk
+//                    try data1.write(to: url)
+//
+//                    // Store URL in User Defaults
+//                    UserDefaults.standard.set(url, forKey: "profileImage")
+//                    print("it is saved")
+//
+//                } catch {
+//                    print("Unable to Write Data to Disk (\(error))")
+//                }
         }
     }
+    //MARK: - Saving Image here
+    private func save() {
+        guard let selectedImage = self.profileImg.image else {
+            print("Image not found!")
+            return
+        }
+        UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            print("Save error")
+            // we got back an error!
+            self.showAlertWith(title: "Save error", message: error.localizedDescription)
+        } else {
+            print("Your image has been saved to your photos.")
+            self.showAlertWith(title: "Saved!", message: "Your image has been saved to your photos.")
+        }
+    }
+    
+    
+    
     private func imageConfiguration(){
         imagePicker.delegate = self
         profileImg?.layer.cornerRadius = (profileImg?.frame.size.width ?? 0.0) / 2
         profileImg?.clipsToBounds = true
         profileImg?.layer.borderWidth = 3.0
         profileImg?.layer.borderColor = UIColor.white.cgColor
+        imageLabel.isHidden = true
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
+    
+    //you need to adding delegate UIImagePickerController inside your function
+    func handleProfilePicker() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        // ....(your custom code for navigationBar in Picker color)
+        self.present(picker,animated: true,completion: nil)
+    }
+    
+    
+    
+    
+    
+    
+    
 }

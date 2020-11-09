@@ -54,15 +54,26 @@ class UserDefaultsManager {
             return UserDefaults.standard.string(forKey: UserDefaultsKeys.imagName)!
         }
     }
-    var id: String? {
+    var taskID: String? {
         set {
-            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.id)
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.taskID)
         }
         get {
-            guard UserDefaults.standard.object(forKey: UserDefaultsKeys.id) != nil else {
+            guard UserDefaults.standard.object(forKey: UserDefaultsKeys.taskID) != nil else {
                 return nil
             }
-            return UserDefaults.standard.string(forKey: UserDefaultsKeys.id)!
+            return UserDefaults.standard.string(forKey: UserDefaultsKeys.taskID)!
+        }
+    }
+    var userID: String? {
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.taskID)
+        }
+        get {
+            guard UserDefaults.standard.object(forKey: UserDefaultsKeys.taskID) != nil else {
+                return nil
+            }
+            return UserDefaults.standard.string(forKey: UserDefaultsKeys.taskID)!
         }
     }
     

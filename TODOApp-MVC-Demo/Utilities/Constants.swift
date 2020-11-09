@@ -30,28 +30,36 @@ struct ViewControllers {
     static let todoListVC = "TodoListVC"
     static let addTaskVC = "ADDTaskVC"
     static let profileTVC = "ProfileTVC"
-    static let showImageVC = "ShowImageVC"
 }
 
 // Urls
 struct URLs {
     static let base = "https://api-nodejs-todolist.herokuapp.com"
     static let user = "/user"
-    static let login = base + user + "/login"
-    static let register = base + user + "/register"
-    static let logout = base + user + "/logout"
-    static let task = base + "/task"
+    static let login = user + "/login"
+    static let register = user + "/register"
+    static let logout = user + "/logout"
+    static let task = "/task"
     static let getAllTask = task
-    static let getUserProfile = base + user + "/me"
+    static let getUserProfile = user + "/me"
     static let uploadImage = getUserProfile + "/avatar"
-    static let id = "/\(UserDefaultsManager.shared().id ?? "")"
-    static let deleteTask = task + id
+    static let taskID = "/\(UserDefaultsManager.shared().taskID ?? "")"
+    static let deleteTask = task + taskID
+    static let uploadImg = getUserProfile + "/avatar"
+    static let imageID = "/\(UserDefaultsManager.shared().userID ?? "")"
+    static let getImg = user + imageID + "/avatar"
 }
 
 // Header Keys
 struct HeaderKeys {
     static let contentType = "Content-Type"
     static let authorization = "Authorization"
+}
+
+// Header Values
+struct HeaderValues {
+    static let applicationJson = "application/json"
+    static let brearerToken = "Bearer \(UserDefaultsManager.shared().token ?? "")"
 }
 
 // Parameters Keys
@@ -62,6 +70,7 @@ struct ParameterKeys {
     static let age = "age"
     static let description = "description"
     static var edit = "edit"
+    static let image = "image"
 }
 
 // UserDefaultsKeys
@@ -69,6 +78,7 @@ struct UserDefaultsKeys {
     static let token = "UDKToken"
     static let imagName = "ImageName"
     static let isLogin = "isLogin"
-    static let id = "id"
+    static let taskID = "id"
+    static let userID = "id"
 }
 

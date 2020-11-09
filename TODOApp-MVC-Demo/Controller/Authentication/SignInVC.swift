@@ -87,16 +87,16 @@ class SignInVC: MainViewController {
         guard let email = email, self.isValidEmail(email) else {return}
         guard let password = password, self.isValidPassword(password) else {return}
         self.view.processOnStart()
-        APIManager.login(with: email , password: password, completion: { (error, loginData) in
-            if let error = error {
-                self.presentError(with:error.localizedDescription)
-            } else if let loginData = loginData {
-                print("token: \(loginData.token)")
-                UserDefaultsManager.shared().token = loginData.token
+        APIManager.login(email: email, password: password) { (response) in
+            switch response {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let result):
                 UserDefaultsManager.shared().isLogin = true
+                UserDefaultsManager.shared().token = result.token
                 AppDelegate.shared().switchToMainState()
             }
             self.view.processOnStop()
-        })
+        }
     }
 }

@@ -28,6 +28,9 @@
 		C33C8FEC25503DC100F3C0B2 /* TaskDataTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33C8FEA25503DC100F3C0B2 /* TaskDataTVCell.xib */; };
 		C33C8FEE25507A2600F3C0B2 /* UIView+EXtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C8FED25507A2600F3C0B2 /* UIView+EXtention.swift */; };
 		C33C8FF025507F0E00F3C0B2 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C8FEF25507F0E00F3C0B2 /* ShadowView.swift */; };
+		C3C6E84E2557D5EE008250BE /* GetUserImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6E84D2557D5EE008250BE /* GetUserImageResponse.swift */; };
+		C3C6E85025581F61008250BE /* UploadImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6E84F25581F61008250BE /* UploadImageResponse.swift */; };
+		C3C6E85225591EB7008250BE /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6E85125591EB7008250BE /* APIRouter.swift */; };
 		C3CF89162552C7C600140A58 /* String+trimming.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CF89152552C7C600140A58 /* String+trimming.swift */; };
 		C3CF89182552C93100140A58 /* UIView+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CF89172552C93100140A58 /* UIView+Loader.swift */; };
 		C3D3BC72254DB57B004D2B56 /* LogOutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D3BC71254DB57B004D2B56 /* LogOutResponse.swift */; };
@@ -41,6 +44,7 @@
 		C3EB2C3A2553DCBB003C77E1 /* AddTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB2C392553DCBB003C77E1 /* AddTaskResponse.swift */; };
 		C3EB2C402554B3DE003C77E1 /* DeleteTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB2C3F2554B3DE003C77E1 /* DeleteTaskResponse.swift */; };
 		C3EB2C422554B519003C77E1 /* DeleteTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB2C412554B519003C77E1 /* DeleteTask.swift */; };
+		C3EB2C4825568DBE003C77E1 /* showImgVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB2C4725568DBE003C77E1 /* showImgVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +72,9 @@
 		C33C8FEA25503DC100F3C0B2 /* TaskDataTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskDataTVCell.xib; sourceTree = "<group>"; };
 		C33C8FED25507A2600F3C0B2 /* UIView+EXtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+EXtention.swift"; sourceTree = "<group>"; };
 		C33C8FEF25507F0E00F3C0B2 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		C3C6E84D2557D5EE008250BE /* GetUserImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserImageResponse.swift; sourceTree = "<group>"; };
+		C3C6E84F25581F61008250BE /* UploadImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageResponse.swift; sourceTree = "<group>"; };
+		C3C6E85125591EB7008250BE /* APIRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		C3CF89152552C7C600140A58 /* String+trimming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+trimming.swift"; sourceTree = "<group>"; };
 		C3CF89172552C93100140A58 /* UIView+Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Loader.swift"; sourceTree = "<group>"; };
 		C3D3BC71254DB57B004D2B56 /* LogOutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutResponse.swift; sourceTree = "<group>"; };
@@ -81,6 +88,7 @@
 		C3EB2C392553DCBB003C77E1 /* AddTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskResponse.swift; sourceTree = "<group>"; };
 		C3EB2C3F2554B3DE003C77E1 /* DeleteTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTaskResponse.swift; sourceTree = "<group>"; };
 		C3EB2C412554B519003C77E1 /* DeleteTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTask.swift; sourceTree = "<group>"; };
+		C3EB2C4725568DBE003C77E1 /* showImgVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showImgVC.swift; sourceTree = "<group>"; };
 		D0AC84BFD376CBB368B7D53F /* Pods-TODOApp-MVC-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TODOApp-MVC-Demo.release.xcconfig"; path = "Target Support Files/Pods-TODOApp-MVC-Demo/Pods-TODOApp-MVC-Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +159,7 @@
 		B76E56A42548A2B400C13D43 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				C3C6E85125591EB7008250BE /* APIRouter.swift */,
 				B76E56BE2548AFA000C13D43 /* APIManager.swift */,
 			);
 			path = Networking;
@@ -257,6 +266,7 @@
 				B76E56942548A24A00C13D43 /* TodoListVC.swift */,
 				C3D510C5254CD109008DB194 /* ADDTaskVC.swift */,
 				C33C8FE3254F48DC00F3C0B2 /* ProfileTVC.swift */,
+				C3EB2C4725568DBE003C77E1 /* showImgVC.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -287,6 +297,8 @@
 				C3EB2C392553DCBB003C77E1 /* AddTaskResponse.swift */,
 				C3EB2C3F2554B3DE003C77E1 /* DeleteTaskResponse.swift */,
 				C3EB2C412554B519003C77E1 /* DeleteTask.swift */,
+				C3C6E84D2557D5EE008250BE /* GetUserImageResponse.swift */,
+				C3C6E84F25581F61008250BE /* UploadImageResponse.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -438,6 +450,7 @@
 				B76E56952548A24A00C13D43 /* TodoListVC.swift in Sources */,
 				C3D510C6254CD109008DB194 /* ADDTaskVC.swift in Sources */,
 				C3D3BC72254DB57B004D2B56 /* LogOutResponse.swift in Sources */,
+				C3C6E85225591EB7008250BE /* APIRouter.swift in Sources */,
 				C3EB2C3A2553DCBB003C77E1 /* AddTaskResponse.swift in Sources */,
 				C33C8FE62550073300F3C0B2 /* ProfileResponse.swift in Sources */,
 				B76E56912548A24A00C13D43 /* AppDelegate.swift in Sources */,
@@ -453,11 +466,14 @@
 				C3D510BE254C95BB008DB194 /* MainViewController.swift in Sources */,
 				B76E56BC2548A84600C13D43 /* SignUpVC.swift in Sources */,
 				B76E56C72548BEE100C13D43 /* UserDefaultsManager.swift in Sources */,
+				C3C6E85025581F61008250BE /* UploadImageResponse.swift in Sources */,
 				C3D510B9254C6FA1008DB194 /* UIViewController+showAlert.swift in Sources */,
 				C33C8FEE25507A2600F3C0B2 /* UIView+EXtention.swift in Sources */,
 				B76E56B52548A63E00C13D43 /* UIViewController+Storyboard.swift in Sources */,
 				C3CF89162552C7C600140A58 /* String+trimming.swift in Sources */,
 				C3D510C0254CC72F008DB194 /* ToDoResponse.swift in Sources */,
+				C3C6E84E2557D5EE008250BE /* GetUserImageResponse.swift in Sources */,
+				C3EB2C4825568DBE003C77E1 /* showImgVC.swift in Sources */,
 				C3EB2C422554B519003C77E1 /* DeleteTask.swift in Sources */,
 				B76E56C12548B0FD00C13D43 /* LoginResponse.swift in Sources */,
 				B76E56C32548B2B100C13D43 /* Constants.swift in Sources */,

@@ -61,14 +61,16 @@ class TodoListVC: MainViewController {
     }
     
     //MARK:- Handle Response
+    
+    
     private func serviceOfGetAllTask(){
         self.view.processOnStart()
-        APIManager.getAllTask() { (error, taskData) in
-            if let error = error {
+        APIManager.getAllTask { (response) in
+        switch response{
+            case .failure(let error):
                 print(error.localizedDescription)
-                self.presentError(with: error.localizedDescription)
-            } else if let taskData = taskData {
-                self.allTaskObj = taskData.data
+            case .success(let result):
+                self.allTaskObj = result.data
                 if self.allTaskObj.count == 0 {
                     self.noTaskLabel.text = "No Data Found"
                     self.noTaskLabel.isHidden = false
@@ -84,8 +86,8 @@ class TodoListVC: MainViewController {
         }
     }
     private func callDeleteService(_ item: TaskData){
-        UserDefaultsManager.shared().id = item.id
-        print("id in userDefult : \(UserDefaultsManager.shared().id ?? "")")
+        UserDefaultsManager.shared().taskID = item.id
+        print("id in userDefult : \(UserDefaultsManager.shared().taskID ?? "")")
         self.view.processOnStop()
         APIManager.deleteTask { (error, deletData) in
             if let error = error {
