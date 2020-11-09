@@ -42,7 +42,19 @@ class UserDefaultsManager {
             return UserDefaults.standard.bool(forKey: UserDefaultsKeys.isLogin)
         }
     }
-    
+    var isUploadImage: Bool? {
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.isUploadImage)
+        }
+        get {
+            guard UserDefaults.standard.bool(forKey: UserDefaultsKeys.isUploadImage) != false
+                else {
+                    return false
+            }
+            return UserDefaults.standard.bool(forKey: UserDefaultsKeys.isUploadImage)
+        }
+    }
+
     var imagName: String? {
         set {
             UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.imagName)

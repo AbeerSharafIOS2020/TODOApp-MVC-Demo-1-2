@@ -27,7 +27,7 @@ class SignUpVC: MainViewController {
     //Sign Up Btn
     @IBAction func signUpBtnPressed(_ sender: Any) {
         if self.validation() {
-            serviceRegisterData()
+            self.serviceRegisterData()
         }
         
     }
@@ -37,9 +37,29 @@ class SignUpVC: MainViewController {
         AppDelegate.shared().switchToAuthState()
     }
     
+    //MARK:- Private Methods
+    //create image by user name
+    private func createImageByName(_ name: String) {
+        let nameBuffer = name.split(separator: " ")
+        let firstName = nameBuffer[0]
+        let lastName = nameBuffer[1]
+        let imageByName = "\(firstName.first?.uppercased() ?? "" )\(lastName.first?.uppercased() ?? "")"
+        print("image: \(imageByName) )")
+        UserDefaultsManager.shared().imagName = "\(imageByName)"
+    }
     
+   //Validation Method:
+    private func validation()-> Bool {
+        guard self.isValidName(userNameTxtField.text) else {return false}
+        guard self.isValidEmail(emailTxtField.text) else {return false}
+        guard self.isValidPassword(passTxtField.text) else {return false}
+        guard self.isValidAge(Int(userAgeTxtField.text ?? "")) else {return false}
+        return true
+    }
+
     // MARK:- Handle Response
-    func serviceRegisterData() {
+    //serviceRegisterData
+    private func serviceRegisterData() {
         self.view.processOnStart()
         let name = userNameTxtField.text ?? ""
         let pass = passTxtField.text ?? ""
@@ -47,34 +67,23 @@ class SignUpVC: MainViewController {
         let age = Int(userAgeTxtField.text ?? "") ?? 0
         UserDefaultsManager.shared().token = nil
         UserDefaultsManager.shared().imagName = nil
+        UserDefaultsManager.shared().userID = nil
+
         APIManager.register(name: name, email: email, password: pass, age: age ) {
-            (error, loginData) in
-            if let error = error {
-                self.view.processOnStop()
-                self.presentError(with: error.localizedDescription)
-            } else if let loginData = loginData {
-                self.view.processOnStop()
-                print(loginData.token)
-                UserDefaultsManager.shared().token = loginData.token
+            (response) in
+                switch response {
+                case .failure(let error):
+                   print(error.localizedDescription)
+                   self.presentError(with: error.localizedDescription)
+                case .success(let result):                UserDefaultsManager.shared().token = result.token
                 UserDefaultsManager.shared().isLogin = false
-                let nameTemp = name.split(separator: " ")
-                let firstName = nameTemp[0]
-                let lastName = nameTemp[1]
-                let imageName = "\(firstName.first?.uppercased() ?? "" )\(lastName.first?.uppercased() ?? "")"
-                print("image: \(imageName) )")
-                UserDefaultsManager.shared().imagName = "\(imageName)"
+                UserDefaultsManager.shared().userID = result.user.id
+                self.createImageByName(result.user.name)
                 AppDelegate.shared().switchToAuthState()
             }
         }
     }
     
-    func validation()-> Bool {
-        guard self.isValidName(userNameTxtField.text) else {return false}
-        guard self.isValidEmail(emailTxtField.text) else {return false}
-        guard self.isValidPassword(passTxtField.text) else {return false}
-        guard self.isValidAge(Int(userAgeTxtField.text ?? "")) else {return false}
-        return true
-    }
     // MARK:- Public Methods
     class func create() -> SignUpVC {
         let signUpVC: SignUpVC = UIViewController.create(storyboardName: Storyboards.authentication, identifier: ViewControllers.signUpVC)

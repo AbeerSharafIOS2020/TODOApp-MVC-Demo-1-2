@@ -20,13 +20,14 @@ class TodoListVC: MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        serviceOfGetAllTask()
+        self.serviceOfGetAllTask()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+    }
     // MARK:- Actions Methods
     //Go to Profile screen
     @IBAction func goToProfileTapButton() {
-        self.navigationController?.pushViewController(ProfileTVC.create(), animated: true)
+self.navigationController?.pushViewController(ProfileTVC.create(), animated: true)
     }
     
     // MARK:- Public Methods
@@ -61,8 +62,6 @@ class TodoListVC: MainViewController {
     }
     
     //MARK:- Handle Response
-    
-    
     private func serviceOfGetAllTask(){
         self.view.processOnStart()
         APIManager.getAllTask { (response) in
@@ -71,7 +70,7 @@ class TodoListVC: MainViewController {
                 print(error.localizedDescription)
             case .success(let result):
                 self.allTaskObj = result.data
-                if self.allTaskObj.count == 0 {
+                if  self.allTaskObj.count == 0 {
                     self.noTaskLabel.text = "No Data Found"
                     self.noTaskLabel.isHidden = false
                 }else {
@@ -89,17 +88,21 @@ class TodoListVC: MainViewController {
         UserDefaultsManager.shared().taskID = item.id
         print("id in userDefult : \(UserDefaultsManager.shared().taskID ?? "")")
         self.view.processOnStop()
-        APIManager.deleteTask { (error, deletData) in
-            if let error = error {
+        APIManager.deleteTask { (response) in
+            switch response {
+            case .failure(let error):
                 print(error.localizedDescription)
-                self.presentError(with: error.localizedDescription)
-            } else {
-                self.view.processOnStop()
-                print("Delete the task Successfully")
-                self.presentSuccess(with: "Delete the task Successfully")
+                self.presentError(with: "del task \(error.localizedDescription)")
+            case .success(let result):
+                let result = result
+                if result.success == true {
+                    self.view.processOnStop()
+                    self.presentSuccess(with: "Delete the task Successfully")
+                }
             }
             self.view.processOnStop()
         }
+        self.serviceOfGetAllTask()
     }
 }
 // MARK:- Table View Methods

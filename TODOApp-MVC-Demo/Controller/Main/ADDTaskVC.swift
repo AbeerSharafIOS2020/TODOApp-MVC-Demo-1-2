@@ -30,21 +30,21 @@
             //MARK:- Handle Response
             func serviceSaveTask() {
                 self.view.processOnStart()
-                let descriptionView = "\(descriptionTxtView.text ?? "")"
-                APIManager.addTask(with: descriptionView, completion: {
-                    (error, taskData) in
-                    if let error = error {
-                        self.view.processOnStop()
+                let description = "\(descriptionTxtView.text ?? "")"
+                APIManager.addTask(description: description){
+                    (response) in
+                    switch response {
+                    case .failure(let error):
                         print(error.localizedDescription)
                         self.presentError(with: error.localizedDescription)
-                    } else if let taskData = taskData {
+                    case .success(let result):
                         self.view.processOnStop()
                         self.presentSuccess(with: "Done saved the task successfully")
                         AppDelegate.shared().switchToMainState()
-                        print("description: \(taskData.data.description )")
+                        print("description: \(result.data.description )")
                     }
                     self.view.processOnStop()
-                })
+                }
             }
             // MARK:- Public Methods
             class func create() -> ADDTaskVC {

@@ -42,12 +42,12 @@ struct URLs {
     static let task = "/task"
     static let getAllTask = task
     static let getUserProfile = user + "/me"
-    static let uploadImage = getUserProfile + "/avatar"
+    static let uploadImage = base + getUserProfile + "/avatar"
     static let taskID = "/\(UserDefaultsManager.shared().taskID ?? "")"
     static let deleteTask = task + taskID
     static let uploadImg = getUserProfile + "/avatar"
     static let imageID = "/\(UserDefaultsManager.shared().userID ?? "")"
-    static let getImg = user + imageID + "/avatar"
+    static let getImg =  user + imageID + "/avatar"
 }
 
 // Header Keys
@@ -80,5 +80,6 @@ struct UserDefaultsKeys {
     static let isLogin = "isLogin"
     static let taskID = "id"
     static let userID = "id"
+    static let isUploadImage = "isUploadImage"
 }
 

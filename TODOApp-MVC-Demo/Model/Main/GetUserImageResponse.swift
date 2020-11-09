@@ -9,5 +9,5 @@
 import Foundation
 
 struct GetUserImageResponse : Codable {
-    var image: URL
+    var image: Data
 }

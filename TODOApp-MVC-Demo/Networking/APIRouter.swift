@@ -99,11 +99,11 @@ enum APIRouter: URLRequestConvertible{
         urlRequest.httpMethod = method.rawValue
         switch self {
         case .getAllTask:
-        urlRequest.setValue(HeaderValues.applicationJson,
-                                 forHTTPHeaderField: HeaderKeys.contentType)
-
         urlRequest.setValue(HeaderValues.brearerToken,
-            forHTTPHeaderField: HeaderKeys.authorization)
+                forHTTPHeaderField: HeaderKeys.authorization)
+
+        urlRequest.setValue(HeaderValues.applicationJson,
+                            forHTTPHeaderField: HeaderKeys.contentType)
             
         case .login:
         urlRequest.setValue(HeaderValues.applicationJson,
@@ -130,10 +130,10 @@ forHTTPHeaderField: HeaderKeys.authorization)
                     urlRequest.setValue( HeaderValues.brearerToken,
             forHTTPHeaderField: HeaderKeys.authorization)
         case .deleteTask:
-                    urlRequest.setValue(HeaderValues.applicationJson,
+                            urlRequest.setValue( HeaderValues.brearerToken,
+                    forHTTPHeaderField: HeaderKeys.authorization)
+urlRequest.setValue(HeaderValues.applicationJson,
                                          forHTTPHeaderField: HeaderKeys.contentType)
-                    urlRequest.setValue( HeaderValues.brearerToken,
-            forHTTPHeaderField: HeaderKeys.authorization)
         case .uploadImage:
             urlRequest.setValue( HeaderValues.brearerToken,
             forHTTPHeaderField: HeaderKeys.authorization)

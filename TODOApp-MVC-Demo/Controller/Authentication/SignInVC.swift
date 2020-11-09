@@ -62,28 +62,10 @@ class SignInVC: MainViewController {
             loginImagLabel.isHidden = true
         }
     }
-    //    // MARK:- Validation Methods
-    //    // check validation
-    //    func  checkValidation(_ txtField: UITextField)  {
-    //        if (emailTxtField.text!.isEmpty){
-    //
-    //            emailTxtField.placeholder = "Enter your Email"
-    //            emailTxtField.becomeFirstResponder()
-    //
-    //        }else if (passTxtField.text!.isEmpty){
-    //            passTxtField.placeholder = "Enter your Password"
-    //            passTxtField.becomeFirstResponder()
-    //        }else
-    //            if !emailTxtField.text!.isEmail  {
-    //                showAlert(message: "Enter valid email", title: "Error")
-    //            } else {
-    //                serviceLogin()
-    //        }
-    //    }
-    
     // MARK:- Handle Response
-    //check login data
+       //serviceLogin
     private func serviceLogin(with email: String?, password: String?) {
+        UserDefaultsManager.shared().userID = nil
         guard let email = email, self.isValidEmail(email) else {return}
         guard let password = password, self.isValidPassword(password) else {return}
         self.view.processOnStart()
@@ -91,9 +73,12 @@ class SignInVC: MainViewController {
             switch response {
             case .failure(let error):
                 print(error.localizedDescription)
+                self.presentError(with: error.localizedDescription)
             case .success(let result):
                 UserDefaultsManager.shared().isLogin = true
                 UserDefaultsManager.shared().token = result.token
+                UserDefaultsManager.shared().userID = result.user.id
+
                 AppDelegate.shared().switchToMainState()
             }
             self.view.processOnStop()
