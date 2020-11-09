@@ -66,13 +66,16 @@
                 case .failure(let error):
                     print(error.localizedDescription)
                     self.presentError(with: error.localizedDescription)
-                case .success(let result):                UserDefaultsManager.shared().token = result.token
+                    self.view.processOnStop()
+                case .success(let result):
+                UserDefaultsManager.shared().token = result.token
                 UserDefaultsManager.shared().isLogin = false
                 UserDefaultsManager.shared().userID = result.user.id
                 UserDefaultsManager.shared().name = "\(result.user.name)"
                 self.createImageByName()
                 AppDelegate.shared().switchToAuthState()
                 }
+                self.view.processOnStop()
             }
         }
     }
