@@ -63,10 +63,18 @@ class MainViewController: UIViewController {
     }
     //create image by user name
      func createImageByName() {
-        let name = "\(UserDefaultsManager.shared().imagName ?? "" )"
+        let name = "\(UserDefaultsManager.shared().name ?? "" )"
+        var firstName = ""
+        var lastName = ""
+        print("name: \(name)")
         let nameBuffer = name.split(separator: " ")
-        let firstName = nameBuffer[0]
-        let lastName = nameBuffer[1]
+        print("nameBuffer : \(nameBuffer)")
+        if nameBuffer.count >= 2 {
+            firstName = String(nameBuffer[0])
+            lastName = String(nameBuffer[1])
+        } else {
+            firstName = String(nameBuffer[0])
+        }
         let imageByName = "\(firstName.first?.uppercased() ?? "" )\(lastName.first?.uppercased() ?? "")"
         print("image: \(imageByName) )")
         UserDefaultsManager.shared().imagName = "\(imageByName)"

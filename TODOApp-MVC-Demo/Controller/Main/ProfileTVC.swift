@@ -223,6 +223,7 @@ extension ProfileTVC {
                 self.view.processOnStop()
                 UserDefaultsManager.shared().name = "\(result.name)"
                 UI.mainViewController.createImageByName()
+                
                 self.dateOfUpdateProfileLabel.text = "\(result.updatedAt)"
             }
             self.view.processOnStop()

@@ -97,7 +97,7 @@ enum APIRouter: URLRequestConvertible{
         urlRequest.httpMethod = method.rawValue
         switch self {
         case .getAllTask:
-            urlRequest.setValue(HeaderValues.brearerToken,
+            urlRequest.setValue("Bearer \(UserDefaultsManager.shared().token ?? "")",
                                 forHTTPHeaderField: HeaderKeys.authorization)
             urlRequest.setValue(HeaderValues.applicationJson,
                                 forHTTPHeaderField: HeaderKeys.contentType)
@@ -110,28 +110,28 @@ enum APIRouter: URLRequestConvertible{
         case .addTask:
             urlRequest.setValue(HeaderValues.applicationJson,
                                 forHTTPHeaderField: HeaderKeys.contentType)
-            urlRequest.setValue( HeaderValues.brearerToken,
+            urlRequest.setValue( "Bearer \(UserDefaultsManager.shared().token ?? "")",
                                  forHTTPHeaderField: HeaderKeys.authorization)
         case .logout:
-            urlRequest.setValue( HeaderValues.brearerToken,
+            urlRequest.setValue( "Bearer \(UserDefaultsManager.shared().token ?? "")",
                                  forHTTPHeaderField: HeaderKeys.authorization)
         case .getProfile:
             urlRequest.setValue(HeaderValues.applicationJson,
                                 forHTTPHeaderField: HeaderKeys.contentType)
-            urlRequest.setValue( HeaderValues.brearerToken,
+            urlRequest.setValue( "Bearer \(UserDefaultsManager.shared().token ?? "")",
                                  forHTTPHeaderField: HeaderKeys.authorization)
         case .deleteTask:
-            urlRequest.setValue( HeaderValues.brearerToken,
+            urlRequest.setValue( "Bearer \(UserDefaultsManager.shared().token ?? "")",
                                  forHTTPHeaderField: HeaderKeys.authorization)
             urlRequest.setValue(HeaderValues.applicationJson,
                                 forHTTPHeaderField: HeaderKeys.contentType)
         case .uploadImage:
-            urlRequest.setValue( HeaderValues.brearerToken,
+            urlRequest.setValue( "Bearer \(UserDefaultsManager.shared().token ?? "")",
                                  forHTTPHeaderField: HeaderKeys.authorization)
         case .updateProfile:
             urlRequest.setValue(HeaderValues.applicationJson,
                                 forHTTPHeaderField: HeaderKeys.contentType)
-            urlRequest.setValue( HeaderValues.brearerToken,
+            urlRequest.setValue( "Bearer \(UserDefaultsManager.shared().token ?? "")",
                                  forHTTPHeaderField: HeaderKeys.authorization)
         default:
             break

@@ -44,6 +44,7 @@ class SignInVC: MainViewController {
     extension SignInVC {
     //serviceLogin
     private func serviceLogin(with email: String?, password: String?) {
+        UserDefaultsManager.shared().token = nil
         UserDefaultsManager.shared().userID = nil
         guard let email = email, self.isValidEmail(email) else {return}
         guard let password = password, self.isValidPassword(password) else {return}
