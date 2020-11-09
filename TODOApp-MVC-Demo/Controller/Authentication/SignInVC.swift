@@ -57,8 +57,8 @@ class SignInVC: MainViewController {
                 UserDefaultsManager.shared().isLogin = true
                 UserDefaultsManager.shared().token = result.token
                 UserDefaultsManager.shared().userID = result.user.id
-                let name = "\(result.user.name)"
-                self.createImageByName(name)
+                UserDefaultsManager.shared().name = "\(result.user.name)"
+                self.createImageByName()
                 AppDelegate.shared().switchToMainState()
             }
             self.view.processOnStop()

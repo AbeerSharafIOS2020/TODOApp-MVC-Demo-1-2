@@ -54,7 +54,17 @@ class UserDefaultsManager {
             return UserDefaults.standard.bool(forKey: UserDefaultsKeys.isUploadImage)
         }
     }
-
+    var name: String? {
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.name)
+        }
+        get {
+            guard UserDefaults.standard.object(forKey: UserDefaultsKeys.name) != nil else {
+                return nil
+            }
+            return UserDefaults.standard.string(forKey: UserDefaultsKeys.name)!
+        }
+    }
     var imagName: String? {
         set {
             UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.imagName)

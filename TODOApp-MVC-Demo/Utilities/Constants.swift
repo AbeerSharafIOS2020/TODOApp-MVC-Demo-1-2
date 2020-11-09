@@ -81,5 +81,6 @@ struct UserDefaultsKeys {
     static let taskID = "id"
     static let userID = "id"
     static let isUploadImage = "isUploadImage"
+    static let name = "name"
 }
 

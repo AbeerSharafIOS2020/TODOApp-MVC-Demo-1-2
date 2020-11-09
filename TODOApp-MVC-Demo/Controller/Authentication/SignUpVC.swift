@@ -69,8 +69,8 @@
                 case .success(let result):                UserDefaultsManager.shared().token = result.token
                 UserDefaultsManager.shared().isLogin = false
                 UserDefaultsManager.shared().userID = result.user.id
-                let name = "\(result.user.name)"
-                self.createImageByName(name)
+                UserDefaultsManager.shared().name = "\(result.user.name)"
+                self.createImageByName()
                 AppDelegate.shared().switchToAuthState()
                 }
             }

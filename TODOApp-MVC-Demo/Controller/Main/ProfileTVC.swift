@@ -221,8 +221,8 @@ extension ProfileTVC {
                 self.emailLabel.text = "\(result.email)"
                 self.userNameLabel.text = "\(result.name)"
                 self.view.processOnStop()
-                let name = "\(result.name)"
-                UI.mainViewController.createImageByName(name)
+                UserDefaultsManager.shared().name = "\(result.name)"
+                UI.mainViewController.createImageByName()
                 self.dateOfUpdateProfileLabel.text = "\(result.updatedAt)"
             }
             self.view.processOnStop()
