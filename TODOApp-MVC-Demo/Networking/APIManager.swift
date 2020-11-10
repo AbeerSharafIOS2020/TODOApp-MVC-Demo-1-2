@@ -82,33 +82,40 @@
             }
         }
         //MARK:- GetImage
-        class func getProfilePhoto(with id: String, completion: @escaping (_ error: Error?,_ image: Data?,_ imageResponse: GetUserImageResponse?) -> Void) {
-            
-            AF.request(URLs.getImg, method: .get).response {
-                response in
-                guard response.error == nil else {
-                    print(response.error!)
-                    completion(response.error!, nil, nil)
-                    return
-                }
-                
-                print(response)
-                
-                guard let data = response.data else {
-                    print("can't find any data")
-                    return
-                }
-                
-                do {
-                    let decoder = JSONDecoder()
-                    let imageData = try decoder.decode(GetUserImageResponse.self, from: data)
-                    completion(nil, nil, imageData)
-                } catch let error {
-                    print(error)
-                    completion(nil, data, nil)
-                }
+        class func getUserImage(_ id: String , completion: @escaping (Result<GetUserImageResponse, Error>) -> ()){
+            request(APIRouter.getUserImage(id)){ (response) in
+                completion(response)
             }
         }
+
+
+//        class func getProfilePhoto(with id: String, completion: @escaping (_ error: Error?,_ image: Data?,_ imageResponse: GetUserImageResponse?) -> Void) {
+//            
+//            AF.request(URLs.getImg, method: .get).response {
+//                response in
+//                guard response.error == nil else {
+//                    print(response.error!)
+//                    completion(response.error!, nil, nil)
+//                    return
+//                }
+//                
+//                print(response)
+//                
+//                guard let data = response.data else {
+//                    print("can't find any data")
+//                    return
+//                }
+//                
+//                do {
+//                    let decoder = JSONDecoder()
+//                    let imageData = try decoder.decode(GetUserImageResponse.self, from: data)
+//                    completion(nil, nil, imageData)
+//                } catch let error {
+//                    print(error)
+//                    completion(nil, data, nil)
+//                }
+//            }
+//        }
     }
     extension APIManager{
         // MARK:- The request function to get results in a closure

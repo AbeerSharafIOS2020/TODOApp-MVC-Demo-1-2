@@ -20,7 +20,7 @@ enum APIRouter: URLRequestConvertible{
     case getProfile
     case deleteTask
     case uploadImage(_ image: UIImage )
-    case getUserImage
+    case getUserImage(_ id: String)
     case updateProfile(_ data: String )
     // MARK: - HttpMethod
     private var method: HTTPMethod {
@@ -40,7 +40,7 @@ enum APIRouter: URLRequestConvertible{
         switch self {
         case .login(let email, let password):
             return [ParameterKeys.email: email, ParameterKeys.password: password]
-        case .register(let email, let password, let name, let age):
+        case .register( let name, let email, let password, let age):
             return [ParameterKeys.name: name, ParameterKeys.email: email, ParameterKeys.password: password, ParameterKeys.age: age]
         case .addTask(let description):
             return [ParameterKeys.description: description]
@@ -82,10 +82,15 @@ enum APIRouter: URLRequestConvertible{
         //httpMethod
         urlRequest.httpMethod = method.rawValue
         urlRequest.setValue(HeaderValues.applicationJson, forHTTPHeaderField: HeaderKeys.contentType)
+        print(HeaderValues.applicationJson)
         switch self {
-        case .getAllTask, .addTask, .getProfile,  .deleteTask, .updateProfile, .getUserImage, .logout, .uploadImage :
+        case .getAllTask, .addTask, .getProfile,  .deleteTask, .updateProfile, .logout, .uploadImage :
             urlRequest.setValue(HeaderValues.brearerToken,
                                 forHTTPHeaderField: HeaderKeys.authorization)
+        case .login, .register :
+            urlRequest.setValue(HeaderValues.applicationJson, forHTTPHeaderField: HeaderKeys.contentType)
+        case .getUserImage:
+           urlRequest.setValue("image/png", forHTTPHeaderField: HeaderKeys.contentType)
         default:
             break
         }
@@ -103,6 +108,7 @@ enum APIRouter: URLRequestConvertible{
             case .get, .delete:
                 return URLEncoding.default
             default:
+                
                 return JSONEncoding.default
             }
         }()

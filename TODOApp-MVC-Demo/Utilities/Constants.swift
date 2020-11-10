@@ -47,7 +47,7 @@ struct URLs {
     static let deleteTask = task + taskID
     static let uploadImg = getUserProfile + "/avatar"
     static let imageID = "/\(UserDefaultsManager.shared().userID ?? "")"
-    static let getImg =  base + user + imageID + "/avatar"
+    static let getImg =  user + imageID + "/avatar"
 }
 
 // Header Keys
@@ -71,6 +71,7 @@ struct ParameterKeys {
     static let description = "description"
     static var edit = "edit"
     static let image = "image"
+    static let id = "id"
 }
 
 // UserDefaultsKeys

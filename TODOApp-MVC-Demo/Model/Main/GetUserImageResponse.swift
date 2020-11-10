@@ -10,4 +10,7 @@ import Foundation
 
 struct GetUserImageResponse : Codable {
     var image: Data
+    enum CodingKeys: String, CodingKey {
+       case image = "data"
+}
 }

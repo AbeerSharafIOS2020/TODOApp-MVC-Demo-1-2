@@ -26,7 +26,7 @@
         //Sign Up Btn
         @IBAction func signUpBtnPressed(_ sender: Any) {
             if self.validation() {
-                self.serviceRegisterData()
+                self.serviceRegisterData(with: userNameTxtField.text, email: emailTxtField.text, password: passTxtField.text, age: Int(userAgeTxtField.text ?? ""))
             }
         }
         //Go to Sign In
@@ -50,17 +50,17 @@
     }
     // MARK:- Handle Response
     extension SignUpVC {
-        //serviceRegisterData
-        private func serviceRegisterData() {
-            self.view.processOnStart()
-            let name = userNameTxtField.text ?? ""
-            let pass = passTxtField.text ?? ""
-            let email = emailTxtField.text ?? ""
-            let age = Int(userAgeTxtField.text ?? "") ?? 0
-            UserDefaultsManager.shared().token = nil
+        //serviceRegisterData 
+        private func serviceRegisterData(with name: String?, email: String?, password: String?, age: Int?) {
+//            UserDefaultsManager.shared().token = nil
             UserDefaultsManager.shared().imagName = nil
             UserDefaultsManager.shared().userID = nil
-            APIManager.register(name: name, email: email, password: pass, age: age ) {
+            guard let name = name, self.isValidName(name) else {return}
+            guard let password = password, self.isValidPassword(password) else {return}
+            guard let email = email, self.isValidEmail(email) else {return}
+            guard let age = age, self.isValidAge(age) else {return}
+            self.view.processOnStart()
+            APIManager.register(name: name, email: email, password: password, age: age ) {
                 (response) in
                 switch response {
                 case .failure(let error):

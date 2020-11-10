@@ -220,11 +220,10 @@ extension ProfileTVC {
                 self.dateOfCreateUserLabel.text = "\(result.createdAt)"
                 self.emailLabel.text = "\(result.email)"
                 self.userNameLabel.text = "\(result.name)"
+                self.dateOfUpdateProfileLabel.text = "\(result.updatedAt)"
                 self.view.processOnStop()
                 UserDefaultsManager.shared().name = "\(result.name)"
                 UI.mainViewController.createImageByName()
-                
-                self.dateOfUpdateProfileLabel.text = "\(result.updatedAt)"
             }
             self.view.processOnStop()
         }
@@ -249,23 +248,28 @@ extension ProfileTVC {
     }
     //MARK:- Handle Response of Get user image
     private func serviceOfGetImage(){
-        if UserDefaultsManager.shared().isUploadImage == false {
-            self.loadImagByName()
-        } else {
+        self.view.processOnStart()
+        print("is uploadimg:\(String(describing: UserDefaultsManager.shared().isUploadImage))")
+//        if UserDefaultsManager.shared().isUploadImage == nil ||  UserDefaultsManager.shared().isUploadImage == false {
+//            self.loadImagByName()
+//        } else {
             let id = "\(UserDefaultsManager.shared().userID ?? "")"
-            self.view.processOnStart()
-            self.view.processOnStart()
-            APIManager.getProfilePhoto(with: id, completion: { (error,GetUserImageResponse, image) in
-                if let error = error {
-                    self.presentError(with: error.localizedDescription)
-                } else if let dataImage = image {
-                    let retreivedImage = UIImage(data: dataImage.image)
-                    self.profileImg.image = retreivedImage
+            print("id : \(id)")
+            APIManager.getUserImage(id) { (response) in
+                switch response {
+                    case .success(let result):
+                        let retreivedImage = UIImage(data: result.image)
+                        self.profileImg.image = retreivedImage
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    self.loadImagByName()
+//                    self.presentError(with: error.localizedDescription)
                 }
                 self.view.processOnStop()
-            })
+            }
         }
-    }
+   // }
     //MARK:- Handle Response of Upload user image
     private  func uploadImage(_ image: UIImage){
         self.view.processOnStart()
@@ -275,6 +279,7 @@ extension ProfileTVC {
             }
         })
         self.view.processOnStop()
+        UserDefaultsManager.shared().imagName = nil
         UserDefaultsManager.shared().isUploadImage = true
     }
 }
@@ -297,10 +302,15 @@ extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         self.present(alert, animated: true, completion: nil)
     }
     private func loadImagByName(){
+        imageLabel.isHidden = false
         if UserDefaultsManager.shared().imagName != nil {
             imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
+            print("if is not nil \(UserDefaultsManager.shared().imagName ?? "")")
         }else {
-            imageLabel.isHidden = true
+            UI.mainViewController.createImageByName()
+            imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
+            print("if is nil \(UserDefaultsManager.shared().imagName ?? "")")
+
         }
     }
     
