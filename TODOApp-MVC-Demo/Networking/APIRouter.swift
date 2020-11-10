@@ -25,26 +25,14 @@ enum APIRouter: URLRequestConvertible{
     // MARK: - HttpMethod
     private var method: HTTPMethod {
         switch self {
-        case .login:
+        case .login, .register, .addTask, .logout, .uploadImage :
             return .post
-        case .getAllTask:
+        case .getAllTask, .getUserImage :
             return .get
-        case .register:
-            return .post
-        case .addTask:
-            return .post
-        case .logout:
-            return .post
-        case .getProfile:
+        case .getProfile, .updateProfile :
             return .put
         case .deleteTask:
             return .delete
-        case .uploadImage:
-            return .post
-        case .getUserImage:
-            return .get
-        case .updateProfile:
-            return . put
         }
     }
     // MARK: - Parameters
@@ -69,12 +57,10 @@ enum APIRouter: URLRequestConvertible{
         switch self {
         case .login:
             return URLs.login
-        case .getAllTask:
+        case .getAllTask, .addTask:
             return URLs.task
         case .register:
             return URLs.register
-        case .addTask:
-            return URLs.task
         case .logout:
             return URLs.logout
         case .getProfile:
@@ -95,44 +81,11 @@ enum APIRouter: URLRequestConvertible{
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         //httpMethod
         urlRequest.httpMethod = method.rawValue
+        urlRequest.setValue(HeaderValues.applicationJson, forHTTPHeaderField: HeaderKeys.contentType)
         switch self {
-        case .getAllTask:
-            urlRequest.setValue("Bearer \(UserDefaultsManager.shared().token ?? "")",
+        case .getAllTask, .addTask, .getProfile,  .deleteTask, .updateProfile, .getUserImage, .logout, .uploadImage :
+            urlRequest.setValue(HeaderValues.brearerToken,
                                 forHTTPHeaderField: HeaderKeys.authorization)
-            urlRequest.setValue("application/json",
-                                forHTTPHeaderField: HeaderKeys.contentType)
-        case .login:
-            urlRequest.setValue("application/json",
-                                forHTTPHeaderField: HeaderKeys.contentType)
-        case .register:
-            urlRequest.setValue("application/json",
-                                forHTTPHeaderField: HeaderKeys.contentType)
-        case .addTask:
-            urlRequest.setValue("application/json",
-                                forHTTPHeaderField: HeaderKeys.contentType)
-            urlRequest.setValue( "Bearer \(UserDefaultsManager.shared().token ?? "")",
-                                 forHTTPHeaderField: HeaderKeys.authorization)
-        case .logout:
-            urlRequest.setValue( "Bearer \(UserDefaultsManager.shared().token ?? "")",
-                                 forHTTPHeaderField: HeaderKeys.authorization)
-        case .getProfile:
-            urlRequest.setValue("application/json",
-                                forHTTPHeaderField: HeaderKeys.contentType)
-            urlRequest.setValue( "Bearer \(UserDefaultsManager.shared().token ?? "")",
-                                 forHTTPHeaderField: HeaderKeys.authorization)
-        case .deleteTask:
-            urlRequest.setValue( "Bearer \(UserDefaultsManager.shared().token ?? "")",
-                                 forHTTPHeaderField: HeaderKeys.authorization)
-            urlRequest.setValue("application/json",
-                                forHTTPHeaderField: HeaderKeys.contentType)
-        case .uploadImage:
-            urlRequest.setValue( "Bearer \(UserDefaultsManager.shared().token ?? "")",
-                                 forHTTPHeaderField: HeaderKeys.authorization)
-        case .updateProfile:
-            urlRequest.setValue("application/json",
-                                forHTTPHeaderField: HeaderKeys.contentType)
-            urlRequest.setValue( "Bearer \(UserDefaultsManager.shared().token ?? "")",
-                                 forHTTPHeaderField: HeaderKeys.authorization)
         default:
             break
         }
