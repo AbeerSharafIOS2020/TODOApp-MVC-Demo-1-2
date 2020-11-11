@@ -45,15 +45,8 @@ class SignInVCPresenter: NSObject {
               return true
           }
     
-//    fileprivate func verify(email: String, password: String){
-//        if email == "p.ab_sh@homail.com" && password == "12345678" {
-//            self.delegate.userSuccessFullyLoggedIn()
-//        }else{
-//            self.delegate.showErrorMsg(message:"Please valid email and password ")
-//        }
-//    }
-
     }
+//MARK:-  Handle Response
 extension SignInVCPresenter {
 private func serviceLogin(with email: String?, password: String?) {
             UserDefaultsManager.shared().token = nil
