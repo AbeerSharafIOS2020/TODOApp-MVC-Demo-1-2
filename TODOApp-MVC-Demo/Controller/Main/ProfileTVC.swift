@@ -257,7 +257,7 @@ extension ProfileTVC {
             print("id : \(id)")
             APIManager.getUserImage(id) { (response) in
                 switch response {
-                    case .success(let result):
+                case .success(let result):
                         let retreivedImage = UIImage(data: result.image)
                         self.profileImg.image = retreivedImage
 
@@ -271,7 +271,7 @@ extension ProfileTVC {
         }
    // }
     //MARK:- Handle Response of Upload user image
-    private  func uploadImage(_ image: UIImage){
+    private func uploadImage(_ image: UIImage){
         self.view.processOnStart()
         APIManager.uploadPhoto(with: image, completion: { _ in ()
             guard image.jpegData(compressionQuality: 1) != nil else {
@@ -317,7 +317,6 @@ extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.dismiss(animated: true) { [weak self] in
             guard let profileImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
-            
             self?.imageLabel.isHidden = true
             self?.profileImg.image = profileImage
             self?.uploadImage(profileImage)

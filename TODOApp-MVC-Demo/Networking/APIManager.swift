@@ -63,7 +63,7 @@
         
         //MARK:- UploadImage
         class func uploadPhoto(with image: UIImage, completion: @escaping (Bool) -> Void) {
-            guard let imageJpegData = image.jpegData(compressionQuality: 0.8),
+            guard let imageJpegData = image.jpegData(compressionQuality: 1),
             let token = UserDefaultsManager.shared().token else {return}
             print("token: \(token)")
             let headers: HTTPHeaders = [HeaderKeys.authorization: HeaderValues.brearerToken]
@@ -77,7 +77,7 @@
                     completion(false)
                     return
                 }
-                print(response)
+                print("it is success\(String(describing: response))")
                 completion(true)
             }
         }
@@ -87,35 +87,6 @@
                 completion(response)
             }
         }
-
-
-//        class func getProfilePhoto(with id: String, completion: @escaping (_ error: Error?,_ image: Data?,_ imageResponse: GetUserImageResponse?) -> Void) {
-//            
-//            AF.request(URLs.getImg, method: .get).response {
-//                response in
-//                guard response.error == nil else {
-//                    print(response.error!)
-//                    completion(response.error!, nil, nil)
-//                    return
-//                }
-//                
-//                print(response)
-//                
-//                guard let data = response.data else {
-//                    print("can't find any data")
-//                    return
-//                }
-//                
-//                do {
-//                    let decoder = JSONDecoder()
-//                    let imageData = try decoder.decode(GetUserImageResponse.self, from: data)
-//                    completion(nil, nil, imageData)
-//                } catch let error {
-//                    print(error)
-//                    completion(nil, data, nil)
-//                }
-//            }
-//        }
     }
     extension APIManager{
         // MARK:- The request function to get results in a closure
