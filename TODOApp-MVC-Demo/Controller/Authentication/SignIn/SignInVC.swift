@@ -7,7 +7,16 @@
 //
 
 import UIKit
-class SignInVC: MainViewController {
+
+protocol SignInVCDelegate: class {
+    func validateData(email: String , password: String)
+    func showErrorMsg(message: String)
+    func showSuccessMsg(message: String)
+    func processOnStart()
+    func processOnStop()
+}
+class SignInVC: UIViewController {
+    
     // MARK:- Outlets
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var logoImg: UIImageView!
@@ -17,19 +26,23 @@ class SignInVC: MainViewController {
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var loginImagLabel: UILabel!
     //MARK:- Properties
-    var signInPresenter: SignInVCPresenter!
+    private var signInPresenter: SignInVCPresenterDelegate?
+    
+
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.viewDidLoad()
+        signInPresenter?.onViewDidLoad(delegate: self)
         UserDefaultsManager.shared().isUploadImage = false
-        signInPresenter = SignInVCPresenter()
-        signInPresenter.delegate = self
+//        signInPresenter = SignInVCPresenter()
+        //signInPresenter.self = self as! SignInVCPresenterDelegate
     }
     
     // MARK:- Actions Methods
     //Sign in Btn
     @IBAction func signInBtnPressed(_ sender: Any) {
-        self.signInPresenter.validateData(email: emailTxtField.text ?? "" , password: passTxtField.text ?? "")
+        self.signInPresenter?.validateData(email: emailTxtField.text ?? "" , password: passTxtField.text ?? "")
 //        if validation(emailTxtField.text, passTxtField.text) {
 //            self.serviceLogin(with: emailTxtField.text, password: passTxtField.text)
 //        }
@@ -75,6 +88,10 @@ class SignInVC: MainViewController {
 //}
 //MARK:- extension for SignInVCPresenter delegate
 extension SignInVC: SignInVCDelegate {
+    func validateData(email: String, password: String) {
+        self.signInPresenter?.validateData(email: email, password: password)
+    }
+    
     func showErrorMsg(message: String){
         self.presentError(with: message)
     }
