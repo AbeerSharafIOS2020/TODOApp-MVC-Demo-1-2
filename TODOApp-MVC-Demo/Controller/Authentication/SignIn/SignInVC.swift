@@ -8,15 +8,14 @@
 
 import UIKit
 
+//MARK:- Protocol  of view of sign in
 protocol SignInVCDelegate: class {
-    func validateData(email: String , password: String)
     func showErrorMsg(message: String)
     func showSuccessMsg(message: String)
     func processOnStart()
     func processOnStop()
 }
-class SignInVC: UIViewController {
-    
+class SignInVC: MainViewController {
     // MARK:- Outlets
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var logoImg: UIImageView!
@@ -26,26 +25,21 @@ class SignInVC: UIViewController {
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var loginImagLabel: UILabel!
     //MARK:- Properties
-    private var signInPresenter: SignInVCPresenterDelegate?
-    
-
+    private var signInPresenter: SignInVCPresenter?
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.viewDidLoad()
-        signInPresenter?.onViewDidLoad(delegate: self)
+        self.signInPresenter = SignInVCPresenter()
+        self.signInPresenter?.onViewDidLoad(view: self)
         UserDefaultsManager.shared().isUploadImage = false
-//        signInPresenter = SignInVCPresenter()
-        //signInPresenter.self = self as! SignInVCPresenterDelegate
     }
-    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
     // MARK:- Actions Methods
     //Sign in Btn
     @IBAction func signInBtnPressed(_ sender: Any) {
         self.signInPresenter?.validateData(email: emailTxtField.text ?? "" , password: passTxtField.text ?? "")
-//        if validation(emailTxtField.text, passTxtField.text) {
-//            self.serviceLogin(with: emailTxtField.text, password: passTxtField.text)
-//        }
     }
     
     // Go to Sing UP
@@ -58,52 +52,18 @@ class SignInVC: UIViewController {
         return signInVC
     }
 }
-// MARK:- Handle Response
-//extension SignInVC {
-//    //serviceLogin
-//    private func serviceLogin(with email: String?, password: String?) {
-//        //        UserDefaultsManager.shared().token = nil
-//        //        UserDefaultsManager.shared().userID = nil
-//        guard let email = email, self.isValidEmail(email) else {return}
-//        guard let password = password, self.isValidPassword(password) else {return}
-//        self.view.processOnStart()
-//        APIManager.login(email: email, password: password) { (response) in
-//            switch response {
-//            case .success(let result):
-//                let result = result
-//                UserDefaultsManager.shared().isLogin = true
-//                UserDefaultsManager.shared().token = result.token
-//                UserDefaultsManager.shared().userID = result.user.id
-//                UserDefaultsManager.shared().name = "\(result.user.name)"
-//                //                self.createImageByName()
-//                AppDelegate.shared().switchToMainState()
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//                self.presentError(with: error.localizedDescription)
-//
-//            }
-//            self.view.processOnStop()
-//        }
-//    }
-//}
-//MARK:- extension for SignInVCPresenter delegate
+//MARK:- extension that confirm the SignInVCDelegate Protocol
 extension SignInVC: SignInVCDelegate {
-    func validateData(email: String, password: String) {
-        self.signInPresenter?.validateData(email: email, password: password)
-    }
-    
     func showErrorMsg(message: String){
         self.presentError(with: message)
     }
     func showSuccessMsg(message: String){
         self.showAlert(message: message, title: "Success")
-
     }
     func processOnStart(){
         self.view.processOnStart()
     }
     func processOnStop(){
         self.view.processOnStop()
-    }
-
+    }    
 }
