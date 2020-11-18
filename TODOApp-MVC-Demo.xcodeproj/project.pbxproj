@@ -28,6 +28,8 @@
 		C33C8FEC25503DC100F3C0B2 /* TaskDataTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33C8FEA25503DC100F3C0B2 /* TaskDataTVCell.xib */; };
 		C33C8FEE25507A2600F3C0B2 /* UIView+EXtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C8FED25507A2600F3C0B2 /* UIView+EXtention.swift */; };
 		C33C8FF025507F0E00F3C0B2 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C8FEF25507F0E00F3C0B2 /* ShadowView.swift */; };
+		C34045432564FD8F00329923 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34045422564FD8F00329923 /* SignUpPresenter.swift */; };
+		C34045452564FDBC00329923 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34045442564FDBC00329923 /* Validator.swift */; };
 		C3C5AF35255C4E30007C7135 /* SignInVCPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5AF34255C4E30007C7135 /* SignInVCPresenter.swift */; };
 		C3C6E84E2557D5EE008250BE /* GetUserImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6E84D2557D5EE008250BE /* GetUserImageResponse.swift */; };
 		C3C6E85025581F61008250BE /* UploadImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6E84F25581F61008250BE /* UploadImageResponse.swift */; };
@@ -72,6 +74,8 @@
 		C33C8FEA25503DC100F3C0B2 /* TaskDataTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskDataTVCell.xib; sourceTree = "<group>"; };
 		C33C8FED25507A2600F3C0B2 /* UIView+EXtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+EXtention.swift"; sourceTree = "<group>"; };
 		C33C8FEF25507F0E00F3C0B2 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		C34045422564FD8F00329923 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
+		C34045442564FDBC00329923 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		C3C5AF34255C4E30007C7135 /* SignInVCPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVCPresenter.swift; sourceTree = "<group>"; };
 		C3C6E84D2557D5EE008250BE /* GetUserImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserImageResponse.swift; sourceTree = "<group>"; };
 		C3C6E84F25581F61008250BE /* UploadImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageResponse.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 				B76E56A62548A2C900C13D43 /* Extensions */,
 				B76E56A82548A2E400C13D43 /* Model */,
 				B76E56A92548A2EA00C13D43 /* View */,
+				C34045402564FD4000329923 /* Presenter */,
 				B76E56AA2548A2F200C13D43 /* Controller */,
 				B76E56A72548A2D300C13D43 /* Resources */,
 				B76E569E2548A24C00C13D43 /* Info.plist */,
@@ -254,7 +259,7 @@
 		B76E56BA2548A77900C13D43 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				C3C5AF36255C7F9F007C7135 /* SignIn */,
+				B76E56B82548A76600C13D43 /* SignInVC.swift */,
 				B76E56BB2548A84600C13D43 /* SignUpVC.swift */,
 			);
 			path = Authentication;
@@ -279,6 +284,24 @@
 			path = TaskDataCell;
 			sourceTree = "<group>";
 		};
+		C34045402564FD4000329923 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				C34045412564FD6300329923 /* Authentication */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		C34045412564FD6300329923 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				C3C5AF34255C4E30007C7135 /* SignInVCPresenter.swift */,
+				C34045422564FD8F00329923 /* SignUpPresenter.swift */,
+				C34045442564FDBC00329923 /* Validator.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		C3A456182551FF360064B074 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,15 +323,6 @@
 				C3C6E84F25581F61008250BE /* UploadImageResponse.swift */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		C3C5AF36255C7F9F007C7135 /* SignIn */ = {
-			isa = PBXGroup;
-			children = (
-				B76E56B82548A76600C13D43 /* SignInVC.swift */,
-				C3C5AF34255C4E30007C7135 /* SignInVCPresenter.swift */,
-			);
-			path = SignIn;
 			sourceTree = "<group>";
 		};
 		C3D510BA254C943C008DB194 /* MainViewController */ = {
@@ -462,8 +476,10 @@
 				C3EB2C3A2553DCBB003C77E1 /* AddTaskResponse.swift in Sources */,
 				C33C8FE62550073300F3C0B2 /* ProfileResponse.swift in Sources */,
 				B76E56912548A24A00C13D43 /* AppDelegate.swift in Sources */,
+				C34045432564FD8F00329923 /* SignUpPresenter.swift in Sources */,
 				C33C8FEB25503DC100F3C0B2 /* TaskDataTVCell.swift in Sources */,
 				C3D510B7254C6D9D008DB194 /* String + RegEx.swift in Sources */,
+				C34045452564FDBC00329923 /* Validator.swift in Sources */,
 				C3C5AF35255C4E30007C7135 /* SignInVCPresenter.swift in Sources */,
 				B76E56C52548BACC00C13D43 /* UserData.swift in Sources */,
 				C33C8FE4254F48DC00F3C0B2 /* ProfileTVC.swift in Sources */,

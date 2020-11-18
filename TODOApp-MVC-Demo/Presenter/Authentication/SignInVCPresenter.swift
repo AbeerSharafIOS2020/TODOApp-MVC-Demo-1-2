@@ -7,7 +7,7 @@
 //
 
 import Foundation
-//MARK:- Protocol  of SignInVCPresenter
+//MARK:- Protocol of SignInVCPresenter
 protocol SignInVCPresenterDelegate: class {
     associatedtype View
     func onViewDidLoad(view : View)
@@ -18,8 +18,7 @@ class SignInVCPresenter: SignInVCPresenterDelegate {
     //MARK:- Properties
     typealias View = SignInVCDelegate
     private var loginView : SignInVCDelegate?
-    
-    
+    private var valaidator : Vali
     //MARK:- Private Methods
     // email validation
     private func isValidEmail(_ email: String?) -> Bool {
@@ -77,7 +76,7 @@ extension SignInVCPresenter {
     }
     
     internal func validateData(email: String, password: String){
-        if isValidEmail(email) && isValidPassword(password){
+        if  isValidEmail(email) && isValidPassword(password){
             self.serviceLogin(with: email, password: password)
         }else {
             self.loginView?.showErrorMsg(message: "Please Enter Valid Email and Password")
