@@ -8,7 +8,7 @@
         
         import UIKit
         
-        class ADDTaskVC: MainViewController {
+        class ADDTaskVC: MainVC {
             // MARK:- Outlets
             @IBOutlet weak var mainView: UIView!
             @IBOutlet weak var screenTitle: UILabel!

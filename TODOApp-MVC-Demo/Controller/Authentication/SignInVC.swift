@@ -9,13 +9,13 @@
 import UIKit
 
 //MARK:- Protocol  of view of sign in
-protocol SignInVCDelegate: class {
-    func showErrorMsg(message: String)
-    func showSuccessMsg(message: String)
-    func processOnStart()
-    func processOnStop()
-}
-class SignInVC: MainViewController {
+//protocol SignInVCDelegate: class {
+//    func showErrorMsg(message: String)
+//    func showSuccessMsg(message: String)
+//    func processOnStart()
+//    func processOnStop()
+//}
+class SignInVC: MainVC {
     // MARK:- Outlets
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var logoImg: UIImageView!
@@ -25,13 +25,13 @@ class SignInVC: MainViewController {
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var loginImagLabel: UILabel!
     //MARK:- Properties
-    private var signInPresenter: SignInVCPresenter?
-    var validator: Validator!
+     var signInPresenter: SignInPresenter!
+     var validator: Validator!
    
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.signInPresenter = SignInVCPresenter(validator: validator)
+        self.signInPresenter = SignInPresenter(validator: validator)
         self.signInPresenter?.onViewDidLoad(view: self)
         UserDefaultsManager.shared().isUploadImage = false
     }
@@ -41,7 +41,7 @@ class SignInVC: MainViewController {
     // MARK:- Actions Methods
     //Sign in Btn
     @IBAction func signInBtnPressed(_ sender: Any) {
-        self.signInPresenter?.validateData(email: emailTxtField.text ?? "" , password: passTxtField.text ?? "")
+        self.signInPresenter?.tryLogin(email: emailTxtField.text, password: passTxtField.text)
     }
     
     // Go to Sing UP
@@ -56,17 +56,17 @@ class SignInVC: MainViewController {
     }
 }
 //MARK:- extension that confirm the SignInVCDelegate Protocol
-extension SignInVC: SignInVCDelegate {
-    func showErrorMsg(message: String){
-        self.presentError(with: message)
-    }
-    func showSuccessMsg(message: String){
-        self.showAlert(message: message, title: "Success")
-    }
-    func processOnStart(){
-        self.view.processOnStart()
-    }
-    func processOnStop(){
-        self.view.processOnStop()
-    }    
-}
+//extension SignInVC: SignInVCDelegate {
+//    func showErrorMsg(message: String){
+//        self.presentError(with: message)
+//    }
+//    func showSuccessMsg(message: String){
+//        self.showAlert(message: message, title: "Success")
+//    }
+//    func processOnStart(){
+//        self.view.processOnStart()
+//    }
+//    func processOnStop(){
+//        self.view.processOnStop()
+//    }
+//}

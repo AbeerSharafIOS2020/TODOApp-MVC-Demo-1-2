@@ -91,8 +91,6 @@ enum APIRouter: URLRequestConvertible{
             urlRequest.setValue(HeaderValues.applicationJson, forHTTPHeaderField: HeaderKeys.contentType)
         case .getUserImage:
            urlRequest.setValue("image/png", forHTTPHeaderField: HeaderKeys.contentType)
-        default:
-            break
         }
         // MARK: - HTTP Body
         let httpBody: Data? = {

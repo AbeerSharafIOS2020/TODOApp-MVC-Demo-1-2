@@ -17,7 +17,7 @@ struct Storyboards {
 }
 struct UI {
     static let controller = UIViewController()
-    static let mainViewController = MainViewController()
+    static let mainViewController = MainVC()
 }
 // Cells
 struct Cells {

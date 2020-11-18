@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodoListVC: MainViewController {
+class TodoListVC: MainVC {
     // MARK:- Outletss
     @IBOutlet weak var noTaskLabel: UILabel!
     @IBOutlet weak var taskTableView: UITableView!

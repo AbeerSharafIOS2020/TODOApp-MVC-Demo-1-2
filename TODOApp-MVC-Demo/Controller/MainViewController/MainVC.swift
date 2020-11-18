@@ -8,9 +8,16 @@
 
 import UIKit
 import NVActivityIndicatorView
+//MARK:- Protocol
+protocol MainViewProtocol: class {
+    func showErrorMsg(message: String)
+    func showSuccessMsg(message: String)
+    func processOnStart()
+    func processOnStop()
+}
 
-class MainViewController: UIViewController {
-
+class MainVC: UIViewController {
+    // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -80,4 +87,19 @@ class MainViewController: UIViewController {
         UserDefaultsManager.shared().imagName = "\(imageByName)"
     }
 
+}
+//MARK:- Extension
+extension MainVC: MainViewProtocol {
+    func showErrorMsg(message: String){
+        self.presentError(with: message)
+    }
+    func showSuccessMsg(message: String){
+        self.showAlert(message: message, title: "Success")
+    }
+    func processOnStart(){
+        self.view.processOnStart()
+    }
+    func processOnStop(){
+        self.view.processOnStop()
+    }
 }

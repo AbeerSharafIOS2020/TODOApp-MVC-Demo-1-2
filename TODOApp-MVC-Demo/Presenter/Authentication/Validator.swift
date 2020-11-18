@@ -7,36 +7,37 @@
 //
 
 import Foundation
-
+//MARK:- Protocol
 protocol ValidatorProtocol: class {
-        func isValidName(_ name: String?) -> Bool
-        func isValidEmail(_ email: String?) -> Bool
-        func isValidPassword(_ password: String?) -> Bool
-        func isValidAge(_ age: Int?) -> Bool
-    }
+    func isValidName(_ name: String?) -> Bool
+    func isValidEmail(_ email: String?) -> Bool
+    func isValidPassword(_ password: String?) -> Bool
+    func isValidAge(_ age: Int?) -> Bool
+}
 class Validator: ValidatorProtocol {
-    weak var view: SignInVC!
-    init(view: SignInVC) {
+    //MARK:- Properties
+    weak var view: MainVC!
+    init(view: MainVC) {
         self.view = view
     }
-    weak var presenter: SignInVCPresenter!
-    init(presenter: SignInVCPresenter) {
+    weak var presenter: SignInPresenter!
+    init(presenter: SignInPresenter) {
         self.presenter = presenter
     }
 }
-    //MARK:- Extension
+//MARK:- Extension
 extension Validator {
     // name validation
     func isValidName(_ name: String?) -> Bool {
         let nameTemp = name?.split(separator: " ")
         guard let name =  name?.trimmed, !name.isEmpty, nameTemp?.count ?? 0 >= 2, name.count  >= 2  else {
             self.view.showErrorMsg(message:"Enter Valid name ..at least consists two letters and first & last name")
-               return false
-           }
-               return true
-       }
+            return false
+        }
+        return true
+    }
     // email validation
-     func isValidEmail(_ email: String?) -> Bool {
+    func isValidEmail(_ email: String?) -> Bool {
         guard let email = email?.trimmed, !email.isEmpty else {
             self.view.showErrorMsg(message: "Please Enter an Email")
             return false
@@ -50,23 +51,23 @@ extension Validator {
         return true
     }
     // password validation
-     func isValidPassword(_ password: String?) -> Bool {
+    func isValidPassword(_ password: String?) -> Bool {
         guard let password = password, !password.isEmpty, password.count >= 8 else {
             self.view.showErrorMsg(message:"Password Must be at Least 8 Characters")
             return false
         }
         return true
     }
-     //age validation
-   func isValidAge(_ age: Int?) -> Bool {
-     guard let age = age, String(age) != "" , age != 0 , age >= 10 else {
-          self.view.showErrorMsg(message: "Enter valid age .. greater than or equal 10 years")
-             return false
-                   }
-                       return true
-                   }
+    //age validation
+    func isValidAge(_ age: Int?) -> Bool {
+        guard let age = age, String(age) != "" , age != 0 , age >= 10 else {
+            self.view.showErrorMsg(message: "Enter valid age .. greater than or equal 10 years")
+            return false
+        }
+        return true
+    }
     //create image by user name
-     func createImageByName() {
+    func createImageByName() {
         let name = "\(UserDefaultsManager.shared().name ?? "" )"
         var firstName = ""
         var lastName = ""
