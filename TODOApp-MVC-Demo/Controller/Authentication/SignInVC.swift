@@ -26,10 +26,12 @@ class SignInVC: MainViewController {
     @IBOutlet weak var loginImagLabel: UILabel!
     //MARK:- Properties
     private var signInPresenter: SignInVCPresenter?
+    var validator: Validator!
+   
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.signInPresenter = SignInVCPresenter()
+        self.signInPresenter = SignInVCPresenter(validator: validator)
         self.signInPresenter?.onViewDidLoad(view: self)
         UserDefaultsManager.shared().isUploadImage = false
     }
@@ -49,6 +51,7 @@ class SignInVC: MainViewController {
     // MARK:- Public Methods
     class func create() -> SignInVC {
         let signInVC: SignInVC = UIViewController.create(storyboardName: Storyboards.authentication, identifier: ViewControllers.signInVC)
+        signInVC.validator = Validator(view: signInVC)
         return signInVC
     }
 }

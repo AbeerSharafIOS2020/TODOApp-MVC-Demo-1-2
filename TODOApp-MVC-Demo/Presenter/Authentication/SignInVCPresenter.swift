@@ -18,38 +18,41 @@ class SignInVCPresenter: SignInVCPresenterDelegate {
     //MARK:- Properties
     typealias View = SignInVCDelegate
     private var loginView : SignInVCDelegate?
-    private var valaidator : Vali
+    weak var validator : Validator!
+    init(validator: Validator) {
+        self.validator = validator
+    }
     //MARK:- Private Methods
     // email validation
-    private func isValidEmail(_ email: String?) -> Bool {
-        guard let email = email?.trimmed, !email.isEmpty else {
-            self.loginView?.showErrorMsg(message: "Please Enter an Email")
-            return false
-        }
-        let regEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let pred = NSPredicate(format:"SELF MATCHES %@", regEx)
-        if !pred.evaluate(with: email) {
-            self.loginView?.showErrorMsg(message: "Please Enter Valid Email")
-            return false
-        }
-        return true
-    }
-    // password validation
-    private func isValidPassword(_ password: String?) -> Bool {
-        guard let password = password, !password.isEmpty, password.count >= 8 else {
-            self.loginView?.showErrorMsg(message:"Password Must be at Least 8 Characters")
-            return false
-        }
-        return true
-    }    
+//    private func isValidEmail(_ email: String?) -> Bool {
+//        guard let email = email?.trimmed, !email.isEmpty else {
+//            self.loginView?.showErrorMsg(message: "Please Enter an Email")
+//            return false
+//        }
+//        let regEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+//        let pred = NSPredicate(format:"SELF MATCHES %@", regEx)
+//        if !pred.evaluate(with: email) {
+//            self.loginView?.showErrorMsg(message: "Please Enter Valid Email")
+//            return false
+//        }
+//        return true
+//    }
+//    // password validation
+//    private func isValidPassword(_ password: String?) -> Bool {
+//        guard let password = password, !password.isEmpty, password.count >= 8 else {
+//            self.loginView?.showErrorMsg(message:"Password Must be at Least 8 Characters")
+//            return false
+//        }
+//        return true
+//    }
 }
 //MARK:-  Handle Response
 extension SignInVCPresenter {
     private func serviceLogin(with email: String?, password: String?) {
         UserDefaultsManager.shared().token = nil
         UserDefaultsManager.shared().userID = nil
-        guard let email = email, self.isValidEmail(email) else {return}
-        guard let password = password, self.isValidPassword(password) else {return}
+        guard let email = email, self.validator.isValidEmail(email) else {return}
+        guard let password = password, self.validator.isValidPassword(password) else {return}
         self.loginView?.processOnStart()
         APIManager.login(email: email, password: password) { (response) in
             switch response {
@@ -76,7 +79,7 @@ extension SignInVCPresenter {
     }
     
     internal func validateData(email: String, password: String){
-        if  isValidEmail(email) && isValidPassword(password){
+        if  validator.isValidEmail(email) && validator.isValidPassword(password){
             self.serviceLogin(with: email, password: password)
         }else {
             self.loginView?.showErrorMsg(message: "Please Enter Valid Email and Password")
