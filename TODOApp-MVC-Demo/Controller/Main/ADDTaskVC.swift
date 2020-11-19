@@ -7,51 +7,30 @@
         //
         
         import UIKit
-        
         class ADDTaskVC: MainVC {
             // MARK:- Outlets
             @IBOutlet weak var mainView: UIView!
             @IBOutlet weak var screenTitle: UILabel!
             @IBOutlet weak var descriptionLabel: UILabel!
             @IBOutlet weak var descriptionTxtView: UITextView!
-            
+            //MARK:- Properties
+             var addTaskPresenter: ADDTaskPresenter!
+             var validator: Validator!
             // MARK:- Life Cycle Methods
             override func viewDidLoad() {
                 super.viewDidLoad()
+                self.addTaskPresenter = ADDTaskPresenter(validator: validator)
+                self.addTaskPresenter?.onViewDidLoad(view: self)
             }
             // MARK:- Action Methods:
             @IBAction func saveBtnPressed(_ sender: Any) {
-                if descriptionTxtView.text.isEmpty {
-                    self.presentError(with: "Enter your task details..")
-                } else {
-                    self.serviceSaveTask()
-                }
+                self.addTaskPresenter?.tryAddTask(description: descriptionTxtView.text)
             }
             // MARK:- Public Methods
             class func create() -> ADDTaskVC {
                 let addTaskVC: ADDTaskVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.addTaskVC)
+                addTaskVC.validator = Validator(view: addTaskVC)
                 return addTaskVC
-            }
-        }
-            //MARK:- Handle Response
-            extension ADDTaskVC {
-            private func serviceSaveTask() {
-                self.view.processOnStart()
-                let description = "\(descriptionTxtView.text ?? "")"
-                APIManager.addTask(description: description){
-                    (response) in
-                    switch response {
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                        self.presentError(with: error.localizedDescription)
-                    case .success(let result):
-                        self.view.processOnStop()
-                        self.presentSuccess(with: "Done saved the task successfully")
-                        AppDelegate.shared().switchToMainState()
-                        print("description: \(result.data.description )")
-                    }
-                    self.view.processOnStop()
-                }
             }
         }
         
