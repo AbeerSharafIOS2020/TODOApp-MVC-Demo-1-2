@@ -44,7 +44,7 @@ class ProfileTVC: UITableViewController {
         super.viewDidLoad()
         self.imageConfiguration()
         self.profileTPresenter?.serviceOfGetProfileData()
-        self.serviceOfGetImage()
+        self.profileTPresenter?.serviceOfGetImage()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -82,12 +82,11 @@ class ProfileTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        if indexPath.row % 2 == 0{
+//        if indexPath.row % 2 == 0{
             cell.transform = CGAffineTransform(translationX: tableView.bounds.width, y: 0)
-        }else{
+//        }else{
             cell.transform = CGAffineTransform(translationX: -tableView.bounds.width, y: 0)
-        }
+//        }
         UIView.animate(
             withDuration: 0.5,
             delay: 0.1 * Double(indexPath.row),
@@ -98,7 +97,7 @@ class ProfileTVC: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            self.confirmEdittingMsg()
+            self.profileTPresenter?.confirmEdittingMsg()
         }
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -108,24 +107,6 @@ class ProfileTVC: UITableViewController {
             return 1
         }
         return 6
-    }
-    //MARK:- Setup EditAlert
-    private func edittingAlert(){
-        let alert = UIAlertController(title: "Editting Selection", message: "please...press what do you whant to edit it?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Name", style: .default, handler: {(action: UIAlertAction) in
-            self.openAlert("Name")
-        }))
-        alert.addAction(UIAlertAction(title: "Email", style: .default, handler: {(action: UIAlertAction) in
-            self.openAlert("Email")
-        }))
-        alert.addAction(UIAlertAction(title: "Password", style: .default, handler: {(action: UIAlertAction) in
-            self.openAlert("Password")
-        }))
-        alert.addAction(UIAlertAction(title: "Age", style: .default, handler: {(action: UIAlertAction) in
-            self.openAlert("Age")
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
     //Open Alert
     private func openAlert(_ txt: String){
@@ -154,29 +135,6 @@ class ProfileTVC: UITableViewController {
         
         self.present(alertController, animated: true, completion: nil)
     }
-    //Confirm Editting Alert
-    private func confirmEdittingMsg(){
-        let okAction = UIAlertAction(title: "Yes", style: .default) {
-            (UIAlertAction) in
-            print("ok")
-            self.edittingAlert()
-        }
-        showCustomAlertWithAction(title: "Profile Editting", message: "Are you sure , Do you want to edit your profile?", firstBtn: okAction)
-        
-    }
-    
-        //Confirm Logout Alert
-//        private func  confirmLogOut(){
-//            confirmationAlert(title: "Confirm", message: "Are you sure Do you want log out?", firstBtn: okAction)
-//            let alertAtion = UIAlertAction.self
-//                self.profileTPresenter?.tryLogOut(alertAtion)
-//            }
-    //            (UIAlertAction) in
-    //            print("ok")
-    //            self.serviceOfLogout()
-    //        }
-    //        showCustomAlertWithAction(title: "Log Out", message: "Are you sure Do you want log out?", firstBtn: okAction)
-    //    }
     //MARK:- Private Methods:
     private func editProfile(_ txt: String, _ editTxt: String){
         switch txt {
@@ -216,45 +174,29 @@ class ProfileTVC: UITableViewController {
 }
 //MARK:- extensions
 extension ProfileTVC {
-    //    // MARK:- Handle Response of Log Out
-    //    private func serviceOfLogout(){
-    //        self.view.processOnStart()
-    //        APIManager.logout { (response) in
-    //            switch response{
-    //            case .failure(let error):
-    //                print(error.localizedDescription)
-    //            case .success(let result):
-    //                UserDefaultsManager.shared().token = nil
-    //                UserDefaultsManager.shared().isLogin = false
-    //                AppDelegate.shared().switchToAuthState()
-    //                print("logout: \(result)")
-    //            }
-    //            self.view.processOnStop()
-    //        }
-    //    }
     //MARK:- Handle Response of Get Profile
-    private func serviceOfGetProfileData() {
-        self.view.processOnStart()
-        APIManager.getProfile { (response) in
-            switch response{
-            case .failure(let error):
-                print(error.localizedDescription)
-                self.presentError(with: error.localizedDescription)
-            case .success(let result):
-                let result = result.user
-                print("profile: \(result)")
-                self.ageLabel.text = "\(result.age)"
-                self.dateOfCreateUserLabel.text = "\(result.createdAt)"
-                self.emailLabel.text = "\(result.email)"
-                self.userNameLabel.text = "\(result.name)"
-                self.dateOfUpdateProfileLabel.text = "\(result.updatedAt)"
-                self.view.processOnStop()
-                UserDefaultsManager.shared().name = "\(result.name)"
-                UI.mainViewController.createImageByName()
-            }
-            self.view.processOnStop()
-        }
-    }
+//    private func serviceOfGetProfileData() {
+//        self.view.processOnStart()
+//        APIManager.getProfile { (response) in
+//            switch response{
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//                self.presentError(with: error.localizedDescription)
+//            case .success(let result):
+//                let result = result.user
+//                print("profile: \(result)")
+//                self.ageLabel.text = "\(result.age)"
+//                self.dateOfCreateUserLabel.text = "\(result.createdAt)"
+//                self.emailLabel.text = "\(result.email)"
+//                self.userNameLabel.text = "\(result.name)"
+//                self.dateOfUpdateProfileLabel.text = "\(result.updatedAt)"
+//                self.view.processOnStop()
+//                UserDefaultsManager.shared().name = "\(result.name)"
+//                UI.mainViewController.createImageByName()
+//            }
+//            self.view.processOnStop()
+//        }
+//    }
     //MARK:- Handle Response of Update Profile
     private func serviceUpdateProfile(_ txt: String,_ data: String){
         self.view.processOnStart()
@@ -267,7 +209,7 @@ extension ProfileTVC {
             case .success(let result):
                 let result = result.user
                 print("profile: \(result)")
-                self.serviceOfGetProfileData()
+                self.profileTPresenter?.serviceOfGetProfileData()
             }
             self.view.processOnStop()
         }
@@ -277,9 +219,6 @@ extension ProfileTVC {
     private func serviceOfGetImage(){
         self.view.processOnStart()
         print("is uploadimg:\(String(describing: UserDefaultsManager.shared().isUploadImage))")
-        //        if UserDefaultsManager.shared().isUploadImage == nil ||  UserDefaultsManager.shared().isUploadImage == false {
-        //            self.loadImagByName()
-        //        } else {
         let id = "\(UserDefaultsManager.shared().userID ?? "")"
         print("id : \(id)")
         APIManager.getUserImage(id) { (response) in
@@ -291,7 +230,6 @@ extension ProfileTVC {
             case .failure(let error):
                 print(error.localizedDescription)
                 self.profileTPresenter.loadImagByName()
-                //                    self.presentError(with: error.localizedDescription)
             }
             self.view.processOnStop()
         }
@@ -306,37 +244,6 @@ extension ProfileTVC {
 //MARK:- Image Picker
 extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK:- Private Methods
-//    private func ChooseSourceType(){
-//        let alert = UIAlertController(title: "Image Selection", message: "From where you want to pick this image?", preferredStyle: .actionSheet)
-//        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action: UIAlertAction) in
-//            self.imagePicker.sourceType = .camera
-//            self.imagePicker.allowsEditing = true
-//            self.present(self.imagePicker, animated: true, completion: nil)
-//        }))
-//        alert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: {(action: UIAlertAction) in
-//            self.imagePicker.sourceType = .photoLibrary
-//            self.imagePicker.allowsEditing = true
-//            self.present(self.imagePicker, animated: true, completion: nil)
-//        }))
-//        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-//        self.present(alert, animated: true, completion: nil)
-//    }
-    
-    
-    
-//    private func loadImagByName(){
-//        imageLabel.isHidden = false
-//        if UserDefaultsManager.shared().imagName != nil {
-//            imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
-//            print("if is not nil \(UserDefaultsManager.shared().imagName ?? "")")
-//        }else {
-//            UI.mainViewController.createImageByName()
-//            imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
-//            print("if is nil \(UserDefaultsManager.shared().imagName ?? "")")
-//
-//        }
-//    }
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.dismiss(animated: true) { [weak self] in
             guard let profileImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
@@ -345,6 +252,7 @@ extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
             self?.uploadImage(profileImage)
         }
     }
+    
     private func imageConfiguration() {
         imagePicker.delegate = self
         profileImg?.layer.cornerRadius = (profileImg?.frame.size.width ?? 0.0) / 2

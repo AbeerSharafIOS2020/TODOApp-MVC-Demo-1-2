@@ -156,7 +156,7 @@ func serviceOfGetImage(){
             
         }
     }
-    
+    //MARK:- tryLogOutConfirm()
     func tryLogOutConfirm(){
         self.profileTVC.presentAlert(title: "Confirm", message: "Are you sure Do you want log out?",
              actions: [
@@ -169,6 +169,7 @@ func serviceOfGetImage(){
              }
          )
      }
+    //MARK:- ChooseSourceType action sheet
  func ChooseSourceType(){   self.profileTVC.presentAlertWithActionSheet(title: "Image Selection", message: "From where you want to pick this image?", actions: [
      AlertableAction(title: "Camera", style: .default, result: true),
      AlertableAction(title: "Photo Album", style: .default, result: true),
@@ -193,6 +194,80 @@ func serviceOfGetImage(){
      
      )
  }
+    
+    //MARK:- Setup EditAlert + open text alert
+    //Confirm Editting Alert
+     func confirmEdittingMsg(){
+        self.profileTVC.presentAlert(title: "Profile Editting", message: "Are you sure , Do you want to edit your profile?",
+             actions: [
+                 AlertableAction(title: "No", style: .cancel, result: false),
+                 AlertableAction(title: "Yes", style: .destructive, result: true),
+             ],
+             completion: { [weak self] result in
+                 guard result else { return }
+                self?.edittingAlert()
+             }
+         )
+        
+    }
+//Editting Alert
+    func edittingAlert(){
+        self.profileTVC?.presentAlertWithActionSheet(title: "Editting Selection", message: "please...press what do you whant to edit it?", actions: [
+            AlertableAction(title: "Name", style: .default, result: true),
+            AlertableAction(title: "Email", style: .default, result: true),
+            AlertableAction(title: "Password", style: .default, result: true),
+            AlertableAction(title: "Age", style: .default, result: true),
+
+            AlertableAction(title: "Cancel", style: .default, result: false),
+        ], completion: { [weak self] title in
+            switch title {
+            case "Name" :
+                self?.openAlert("Name")
+                case "Email" :
+                self?.openAlert("Email")
+
+                    case "Password" :
+                self?.openAlert("Password")
+
+                        case "Age" :
+                self?.openAlert("Age")
+                case "Cancel" :
+                    return //self.present(alert, animated: true, completion: nil)
+                 default:
+                   break
+                }
+
+            }
+)
 
 }
 
+    //Open Alert
+    func openAlert(_ txt: String){
+//        let alertController = UIAlertController(title: txt, message: "Enter your new \(txt.lowercased())", preferredStyle: .alert)
+//        alertController.addTextField { (textField : UITextField!) -> Void in
+//            textField.placeholder = "your new \(txt.lowercased())"
+//        }
+//        let saveAction = UIAlertAction(title: "Confirm", style: .default, handler: { alert -> Void in
+//            if let textField = alertController.textFields?[0] {
+//                if textField.text!.count > 0 {
+//                    print("Text :: \(textField.text ?? "")")
+//                    self.editProfile(txt,"\(textField.text ?? "")")
+//                }else {
+//                    self.presentInfoMsg(with: "Enter you new \(txt.lowercased())")
+//                }
+//            }
+//        })
+//
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {
+//            (action : UIAlertAction!) -> Void in })
+//
+//        alertController.addAction(cancelAction)
+//        alertController.addAction(saveAction)
+//
+//        alertController.preferredAction = saveAction
+//
+//        self.present(alertController, animated: true, completion: nil)
+    }
+
+}

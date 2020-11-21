@@ -31,6 +31,43 @@ extension UIViewController {
       }
       present(alertController, animated: true, completion: nil)
     }
+    //MARK:- alert with text field
+    func openAlertWithTextFeild(title: String?, message: String?, actions: [AlertableAction],text: String, completion: ((Bool) -> Void)?) {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+       let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addTextField { (textField : UITextField!) -> Void in
+//            textField.placeholder = "your new \(txt.lowercased())"
+        }
+        actions.forEach { action in
+            alertController.addAction(UIAlertAction(title: action.title, style: action.style, handler: { _ in completion?(action.result) }))
+        }
+        present(alertController, animated: true, completion: nil)
+
+        let saveAction = UIAlertAction(title: "Confirm", style: .default, handler: { alert -> Void in
+            if let textField = alertController.textFields?[0] {
+                if textField.text!.count > 0 {
+                    print("Text :: \(textField.text ?? "")")
+//                    self.editProfile(txt,"\(textField.text ?? "")")
+//                }else {
+//                    self.presentInfoMsg(with: "Enter you new \(txt.lowercased())")
+                }
+            }
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {
+            (action : UIAlertAction!) -> Void in })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(saveAction)
+        
+        alertController.preferredAction = saveAction
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    //MARK:- imagePickerController
+
     //MARK:- showAlert with actionSheet
     func presentAlertWithActionSheet(title: String?, message: String?, actions: [AlertableAction], completion: ((String) -> Void)?) {
       let generator = UIImpactFeedbackGenerator(style: .medium)
@@ -49,6 +86,8 @@ extension UIViewController {
         alert.addAction(oKAction)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    
     func showCustomAlertWithAction(title: String,message: String,firstBtn : UIAlertAction) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
