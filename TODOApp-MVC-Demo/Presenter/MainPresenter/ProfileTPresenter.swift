@@ -40,29 +40,43 @@ class ProfileTPresenter: ProfileTPresenterProtocol {
         self.validator = validator
     }
     //MARK:- Private Methods
+    private func editProfile(_ txt: String, _ editTxt: String){
+        switch txt {
+        case "Name":
+            if !((self.mainVC?.isValidName(editTxt)) ?? false ){
+                self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
+            }else {
+                self.profileTVC?.presentSuccess(with: "Editting Done Successfully..")
+                self.serviceUpdateProfile(txt.lowercased(),editTxt)
+            }
+        case "Email":
+            if !((self.mainVC?.isValidEmail(editTxt)) ?? false ){
+                self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
+            }else {
+                self.profileTVC?.presentSuccess(with: "Editting Done Successfully..")
+                self.serviceUpdateProfile(txt.lowercased(),editTxt)
+            }
+        case "Password":
+            if !((self.mainVC?.isValidPassword(editTxt)) ?? false){
+                self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
+                
+            }else {
+                self.profileTVC?.presentSuccess(with: "Editting Done Successfully..")
+                self.serviceUpdateProfile(txt.lowercased(),editTxt)
+            }
+        case "Age":
+            if !((self.mainVC?.isValidAge(Int(editTxt))) ?? false ){
+                self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
+            }else {
+                self.profileTVC?.presentSuccess(with: "Editting Done Successfully..")
+                self.serviceUpdateProfile(txt.lowercased(),editTxt)
+            }
+        default:
+            break
+        }
+    }
 
-//    private func validateField(name: String?, email: String?, password: String?, age:Int?) -> Bool{
-//        if !validator.isValidName(name){
-//            return false
-//        }
-//        if !validator.isValidEmail(email){
-//            return false
-//        }
-//        if !validator.isValidPassword(password){
-//            return false
-//        }
-//        if !validator.isValidAge(age){
-//            return false
-//        }
-//        return true
-//    }
     
-//    private func userDefaultsData( isLogin: Bool, token: String, userID: String, name: String ){
-//        UserDefaultsManager.shared().isLogin = isLogin
-//        UserDefaultsManager.shared().token = token
-//        UserDefaultsManager.shared().userID = userID
-//        UserDefaultsManager.shared().name = name
-//    }
 }
 //MARK:- extension
 extension ProfileTPresenter {
@@ -89,6 +103,24 @@ extension ProfileTPresenter {
             self.view?.processOnStop()
         }
     }
+    //MARK:- Handle Response of Update Profile
+func serviceUpdateProfile(_ txt: String,_ data: String){
+        self.view?.processOnStart()
+        ParameterKeys.edit = txt
+        APIManager.updateProfile(data: data){ (response) in
+            switch response {
+            case .failure(let error):
+                print(error.localizedDescription)
+                self.view?.showErrorMsg(message:  error.localizedDescription)
+            case .success(let result):
+                let result = result.user
+                print("profile: \(result)")
+        self.serviceOfGetProfileData()
+            }
+            self.view?.processOnStop()
+        }
+    }
+
 //MARK:- Handle Response of Get user image
 func serviceOfGetImage(){
     self.view?.processOnStart()
@@ -104,7 +136,6 @@ func serviceOfGetImage(){
         case .failure(let error):
             print(error.localizedDescription)
             self.loadImagByName()
-            //                    self.presentError(with: error.localizedDescription)
         }
         self.view?.processOnStop()
     }
@@ -244,11 +275,11 @@ func serviceOfGetImage(){
 
     //Open Alert
     func openAlert(_ txt: String){
-//        let alertController = UIAlertController(title: txt, message: "Enter your new \(txt.lowercased())", preferredStyle: .alert)
-//        alertController.addTextField { (textField : UITextField!) -> Void in
-//            textField.placeholder = "your new \(txt.lowercased())"
-//        }
-//        let saveAction = UIAlertAction(title: "Confirm", style: .default, handler: { alert -> Void in
+        self.profileTVC.alertWithTextField(title: txt, message: "Enter your new \(txt.lowercased())", placeholder: "your new \(txt.lowercased())") { result in
+            self.editProfile(txt,"\(result)")
+            print(result)
+        }
+
 //            if let textField = alertController.textFields?[0] {
 //                if textField.text!.count > 0 {
 //                    print("Text :: \(textField.text ?? "")")
@@ -259,15 +290,6 @@ func serviceOfGetImage(){
 //            }
 //        })
 //
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {
-//            (action : UIAlertAction!) -> Void in })
-//
-//        alertController.addAction(cancelAction)
-//        alertController.addAction(saveAction)
-//
-//        alertController.preferredAction = saveAction
-//
-//        self.present(alertController, animated: true, completion: nil)
     }
 
 }

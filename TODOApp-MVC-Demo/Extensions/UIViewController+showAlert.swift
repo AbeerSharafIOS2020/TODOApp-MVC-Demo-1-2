@@ -32,38 +32,24 @@ extension UIViewController {
       present(alertController, animated: true, completion: nil)
     }
     //MARK:- alert with text field
-    func openAlertWithTextFeild(title: String?, message: String?, actions: [AlertableAction],text: String, completion: ((Bool) -> Void)?) {
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
-       let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addTextField { (textField : UITextField!) -> Void in
-//            textField.placeholder = "your new \(txt.lowercased())"
+    public func alertWithTextField(title: String? = nil, message: String? = nil, placeholder: String? = nil, completion: @escaping ((String) -> Void) = { _ in }) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addTextField() { newTextField in
+            newTextField.placeholder = placeholder
         }
-        actions.forEach { action in
-            alertController.addAction(UIAlertAction(title: action.title, style: action.style, handler: { _ in completion?(action.result) }))
-        }
-        present(alertController, animated: true, completion: nil)
-
-        let saveAction = UIAlertAction(title: "Confirm", style: .default, handler: { alert -> Void in
-            if let textField = alertController.textFields?[0] {
-                if textField.text!.count > 0 {
-                    print("Text :: \(textField.text ?? "")")
-//                    self.editProfile(txt,"\(textField.text ?? "")")
-//                }else {
-//                    self.presentInfoMsg(with: "Enter you new \(txt.lowercased())")
-                }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in completion("") })
+        alert.addAction(UIAlertAction(title: "Save", style: .default) { action in
+            if
+                let textFields = alert.textFields,
+                let tf = textFields.first,
+                let result = tf.text
+            { completion(result) }
+            else
+            { self.presentInfoMsg(with: "Enter you new\(String(describing: title?.lowercased()))")
+                completion("")
             }
         })
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {
-            (action : UIAlertAction!) -> Void in })
-        
-        alertController.addAction(cancelAction)
-        alertController.addAction(saveAction)
-        
-        alertController.preferredAction = saveAction
-        
-        self.present(alertController, animated: true, completion: nil)
+        navigationController?.present(alert, animated: true)
     }
 
     //MARK:- imagePickerController
