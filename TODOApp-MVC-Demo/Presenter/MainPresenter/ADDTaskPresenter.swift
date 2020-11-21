@@ -17,7 +17,7 @@ protocol ADDTaskPresenterProtocol: class {
 class ADDTaskPresenter: ADDTaskPresenterProtocol {
     //MARK:- Properties
     typealias View = MainViewProtocol
-    private weak var addTaskView : MainViewProtocol?
+    private weak var view : MainViewProtocol?
     weak var validator : Validator!
     init(validator: Validator) {
         self.validator = validator
@@ -27,31 +27,31 @@ class ADDTaskPresenter: ADDTaskPresenterProtocol {
 extension ADDTaskPresenter {
     //MARK:-  Handle Response
     private func serviceSaveTask(with description: String?) {
-        self.addTaskView?.processOnStart()
+        self.view?.processOnStart()
         //let description ="\(descriptionTxtView.text ?? "")"
         APIManager.addTask(description: description!){
             (response) in
             switch response {
             case .failure(let error):
                 print(error.localizedDescription)
-                self.addTaskView?.showErrorMsg(message: error.localizedDescription)
+                self.view?.showErrorMsg(message: error.localizedDescription)
             case .success(let result):
-                self.addTaskView?.processOnStop()
-                self.addTaskView?.showSuccessMsg(message: "Done saved the task successfully")
+                self.view?.processOnStop()
+                self.view?.showSuccessMsg(message: "Done saved the task successfully")
                 AppDelegate.shared().switchToMainState()
                 print("description: \(result.data.description )")
             }
-            self.addTaskView?.processOnStop()
+            self.view?.processOnStop()
         }
     }
     
     //MARK:- The confirm of the Protocol
     internal func onViewDidLoad(view: MainViewProtocol) {
-        self.addTaskView = view
+        self.view = view
     }
     func tryAddTask(description: String?) {
         if description?.isEmpty ?? false {
-            self.addTaskView?.showErrorMsg(message: "Enter your task details..")
+            self.view?.showErrorMsg(message: "Enter your task details..")
         } else {
             self.serviceSaveTask(with: description!)
         }

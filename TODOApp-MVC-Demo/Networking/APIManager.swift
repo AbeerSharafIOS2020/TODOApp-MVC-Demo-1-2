@@ -62,9 +62,9 @@
             }
         
         //MARK:- UploadImage
-        class func uploadPhoto(with image: UIImage, completion: @escaping (Bool) -> Void) {
-            guard let imageJpegData = image.jpegData(compressionQuality: 1),
-            let token = UserDefaultsManager.shared().token else {return}
+        class func uploadPhoto(with imageJpegData: Data, completion: @escaping (Bool) -> Void) {
+            //guard let imageJpegData = image.jpegData(compressionQuality: 1),
+            let token = UserDefaultsManager.shared().token //else {return}
             print("token: \(token)")
             let headers: HTTPHeaders = [HeaderKeys.authorization: HeaderValues.brearerToken]
             

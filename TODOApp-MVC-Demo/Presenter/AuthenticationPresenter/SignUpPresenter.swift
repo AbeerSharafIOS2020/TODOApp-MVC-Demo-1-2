@@ -17,7 +17,7 @@ class SignUpPresenter: SignUpPresenterProtocol {
     
     //MARK:- Properties
     typealias View = MainViewProtocol
-    private weak var signUpView : MainViewProtocol?
+    private weak var view : MainViewProtocol?
     weak var validator : Validator!
     init(validator: Validator) {
         self.validator = validator
@@ -38,13 +38,6 @@ class SignUpPresenter: SignUpPresenterProtocol {
         }
         return true
     }
-    
-    private func userDefaultsData( isLogin: Bool, token: String, userID: String, name: String ){
-        UserDefaultsManager.shared().isLogin = isLogin
-        UserDefaultsManager.shared().token = token
-        UserDefaultsManager.shared().userID = userID
-        UserDefaultsManager.shared().name = name
-    }
 }
 //MARK:- extension
 extension SignUpPresenter {
@@ -52,31 +45,34 @@ extension SignUpPresenter {
     private func serviceRegisterData(with name: String?, email: String?, password: String?, age: Int?) {
         UserDefaultsManager.shared().imagName = nil
         UserDefaultsManager.shared().userID = nil
-        self.signUpView?.processOnStart()
+        self.view?.processOnStart()
         APIManager.register(name: name!, email: email!, password: password!, age: age! ) {
             (response) in
             switch response {
             case .failure(let error):
                 print(error.localizedDescription)
-                self.signUpView?.showErrorMsg(message: error.localizedDescription)
-                self.signUpView?.processOnStop()
+                self.view?.showErrorMsg(message: error.localizedDescription)
+                self.view?.processOnStop()
             case .success(let result):
-                self.userDefaultsData(isLogin: false, token: result.token,userID: result.user.id, name: result.user.name )
+                UserDefaultsManager.shared().isLogin = false
+                UserDefaultsManager.shared().token = result.token
+                UserDefaultsManager.shared().userID = result.user.id
+                UserDefaultsManager.shared().name = result.user.name
                 self.validator.createImageByName()
                 AppDelegate.shared().switchToAuthState()
             }
-            self.signUpView?.processOnStop()
+            self.view?.processOnStop()
         }
     }
     //MARK:- The confirm of the SignInVCPresenterDelegate Protocol
     internal func onViewDidLoad(view : MainViewProtocol){
-        self.signUpView = view
+        self.view = view
     }
     func trySignUp(name: String?, email: String?, password: String?, age: Int?){
         if validateField(name: name, email: email, password: password, age: age){
             self.serviceRegisterData(with: name, email: email!, password: password!, age: age!)
         }else {
-            self.signUpView?.showErrorMsg(message: "Please Enter Valid Email and Password")
+            self.view?.showErrorMsg(message: "Please Enter Valid Email and Password")
         }
     }
 }

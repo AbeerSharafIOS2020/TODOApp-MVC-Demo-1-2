@@ -33,6 +33,7 @@
 		C34045482566EED700329923 /* TodoListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34045472566EED700329923 /* TodoListPresenter.swift */; };
 		C340454A2566EF0100329923 /* ProfileTPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34045492566EF0100329923 /* ProfileTPresenter.swift */; };
 		C340454C2566EF1600329923 /* ADDTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C340454B2566EF1600329923 /* ADDTaskPresenter.swift */; };
+		C340459825692AC600329923 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C340459725692AC600329923 /* AlertPresenter.swift */; };
 		C3C5AF35255C4E30007C7135 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5AF34255C4E30007C7135 /* SignUpPresenter.swift */; };
 		C3C6E84E2557D5EE008250BE /* GetUserImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6E84D2557D5EE008250BE /* GetUserImageResponse.swift */; };
 		C3C6E85025581F61008250BE /* UploadImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6E84F25581F61008250BE /* UploadImageResponse.swift */; };
@@ -82,6 +83,7 @@
 		C34045472566EED700329923 /* TodoListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListPresenter.swift; sourceTree = "<group>"; };
 		C34045492566EF0100329923 /* ProfileTPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTPresenter.swift; sourceTree = "<group>"; };
 		C340454B2566EF1600329923 /* ADDTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADDTaskPresenter.swift; sourceTree = "<group>"; };
+		C340459725692AC600329923 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		C3C5AF34255C4E30007C7135 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
 		C3C6E84D2557D5EE008250BE /* GetUserImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserImageResponse.swift; sourceTree = "<group>"; };
 		C3C6E84F25581F61008250BE /* UploadImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageResponse.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				B76E56C22548B2B100C13D43 /* Constants.swift */,
+				C340459725692AC600329923 /* AlertPresenter.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				C33C8FEB25503DC100F3C0B2 /* TaskDataTVCell.swift in Sources */,
 				C3D510B7254C6D9D008DB194 /* String + RegEx.swift in Sources */,
 				C34045452564FDBC00329923 /* Validator.swift in Sources */,
+				C340459825692AC600329923 /* AlertPresenter.swift in Sources */,
 				C3C5AF35255C4E30007C7135 /* SignUpPresenter.swift in Sources */,
 				B76E56C52548BACC00C13D43 /* UserData.swift in Sources */,
 				C33C8FE4254F48DC00F3C0B2 /* ProfileTVC.swift in Sources */,

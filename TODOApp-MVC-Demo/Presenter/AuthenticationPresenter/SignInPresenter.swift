@@ -17,7 +17,7 @@ protocol SignInVCPresenterDelegate: class {
 class SignInPresenter: SignInVCPresenterDelegate {
     //MARK:- Properties
     typealias View = MainViewProtocol
-    private var loginView : MainViewProtocol?
+    private var view : MainViewProtocol?
     weak var validator : Validator!
     init(validator: Validator) {
         self.validator = validator
@@ -33,42 +33,39 @@ class SignInPresenter: SignInVCPresenterDelegate {
         return true
     }
     
-    private func userDefaultsData( isLogin: Bool, token: String, userID: String, name: String ){
-        UserDefaultsManager.shared().isLogin = isLogin
-        UserDefaultsManager.shared().token = token
-        UserDefaultsManager.shared().userID = userID
-        UserDefaultsManager.shared().name = name
-    }
 }
 //MARK:- extension
 extension SignInPresenter {
     //MARK:-  Handle Response
     private func serviceLogin(with email: String?, password: String?) {
-        UserDefaultsManager.shared().token = nil
+//        UserDefaultsManager.shared().token = nil
         UserDefaultsManager.shared().userID = nil
-        self.loginView?.processOnStart()
+        self.view?.processOnStart()
         APIManager.login(email: email!, password: password!) { (response) in
             switch response {
             case .success(let result):
                 let result = result
-                self.userDefaultsData(isLogin: true, token: result.token,userID: result.user.id, name: result.user.name )
+                UserDefaultsManager.shared().isLogin = true
+                UserDefaultsManager.shared().token = result.token
+                UserDefaultsManager.shared().userID = result.user.id
+                UserDefaultsManager.shared().name = result.user.name
                 AppDelegate.shared().switchToMainState()
             case .failure(let error):
                 print(error.localizedDescription)
-                self.loginView?.showErrorMsg(message: "\(error.localizedDescription)")
+                self.view?.showErrorMsg(message: "\(error.localizedDescription)")
             }
-            self.loginView?.processOnStop()
+            self.view?.processOnStop()
         }
     }
     //MARK:- The confirm of the SignInVCPresenterDelegate Protocol
     internal func onViewDidLoad(view : MainViewProtocol){
-        self.loginView = view
+        self.view = view
     }
     func tryLogin(email: String?, password: String?) {
         if validateField(email: email, password: password){
             self.serviceLogin(with: email!, password: password!)
         }else {
-            self.loginView?.showErrorMsg(message: "Please Enter Valid Email and Password")
+            self.view?.showErrorMsg(message: "Please Enter Valid Email and Password")
         }
     }
 }

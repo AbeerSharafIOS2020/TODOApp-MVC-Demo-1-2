@@ -14,6 +14,8 @@ protocol MainViewProtocol: class {
     func showSuccessMsg(message: String)
     func processOnStart()
     func processOnStop()
+    func confirmationAlert1(title: String,message: String)
+    func showAlertWithTwoActions(title: String, message: String, firstBtn: UIAlertAction)
 }
 
 class MainVC: UIViewController {
@@ -68,6 +70,7 @@ class MainVC: UIViewController {
         }
         return true
     }
+    
     //create image by user name
      func createImageByName() {
         let name = "\(UserDefaultsManager.shared().name ?? "" )"
@@ -90,6 +93,11 @@ class MainVC: UIViewController {
 }
 //MARK:- Extension
 extension MainVC: MainViewProtocol {
+    
+    func confirmationAlert1(title: String,message: String){
+        let okAction =  UIAlertAction(title: "Yes", style: .default, handler: nil)
+        self.confirmationAlert(title: title, message: message, firstBtn: okAction)
+    }
     func showErrorMsg(message: String){
         self.presentError(with: message)
     }
@@ -101,5 +109,8 @@ extension MainVC: MainViewProtocol {
     }
     func processOnStop(){
         self.view.processOnStop()
+    }
+    func showAlertWithTwoActions(title: String, message: String, firstBtn: UIAlertAction){
+        self.showCustomAlertWithAction(title: title, message: message, firstBtn: firstBtn)
     }
 }

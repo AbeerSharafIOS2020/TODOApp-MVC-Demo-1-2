@@ -14,12 +14,6 @@ class TaskDataTVCell: UITableViewCell {
     @IBOutlet weak var taskImg: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    //    // MARK:- Properties
-    //    static let identifier = "TaskDataTVCell"
-    //    static func nib() -> UINib {
-    //        return UINib(nibName: identifier, bundle: nil)
-    //    }
-    
     // MARK:- Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,9 +24,5 @@ class TaskDataTVCell: UITableViewCell {
         let date = object.createdAt
         createdAtLabel.text = "\(date)" //"30/10/2020"
         
-    }
-    
-    @IBAction func deleteBtnPressed(_ sender: Any) {
-        
-    }
+    }    
 }

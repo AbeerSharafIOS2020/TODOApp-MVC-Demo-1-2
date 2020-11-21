@@ -13,6 +13,7 @@ protocol ValidatorProtocol: class {
     func isValidEmail(_ email: String?) -> Bool
     func isValidPassword(_ password: String?) -> Bool
     func isValidAge(_ age: Int?) -> Bool
+    func createImageByName()
 }
 class Validator: ValidatorProtocol {
     //MARK:- Properties
@@ -20,10 +21,20 @@ class Validator: ValidatorProtocol {
     init(view: MainVC) {
         self.view = view
     }
+    weak var profileTVC: ProfileTVC!
+    init(profileTVC: ProfileTVC) {
+        self.profileTVC = profileTVC
+    }
+    
     weak var presenter: SignInPresenter!
     init(presenter: SignInPresenter) {
         self.presenter = presenter
     }
+    weak var profilePresenter: ProfileTPresenter!
+    init(profilePresenter: ProfileTPresenter) {
+        self.profilePresenter = profilePresenter
+    }
+
 }
 //MARK:- Extension
 extension Validator {
