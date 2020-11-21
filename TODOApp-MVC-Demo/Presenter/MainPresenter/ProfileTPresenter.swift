@@ -17,12 +17,9 @@ protocol ProfileTPresenterProtocol: class {
     func tryUploadImage(_ imageData: Data)
     func loadImagByName()
     func ChooseSourceType()
-    //func trySignUp(name: String?, email: String?, password: String?, age: Int?)
 }
 //MARK:- ProfileTPresenter
 class ProfileTPresenter: ProfileTPresenterProtocol {
-    
-    
     //MARK:- Properties
     typealias View = MainViewProtocol
     private weak var view : MainViewProtocol?
@@ -30,7 +27,6 @@ class ProfileTPresenter: ProfileTPresenterProtocol {
     init(mainVC: MainVC) {
         self.mainVC = mainVC
     }
-
     weak var profileTVC: ProfileTVC!
     init(profileTVC: ProfileTVC) {
         self.profileTVC = profileTVC
@@ -75,13 +71,13 @@ class ProfileTPresenter: ProfileTPresenterProtocol {
             break
         }
     }
-
+    
     
 }
 //MARK:- extension
 extension ProfileTPresenter {
     //MARK:- Handle Response of Get Profile
-     func serviceOfGetProfileData() {
+    func serviceOfGetProfileData() {
         self.view?.processOnStart()
         APIManager.getProfile { (response) in
             switch response{
@@ -104,7 +100,7 @@ extension ProfileTPresenter {
         }
     }
     //MARK:- Handle Response of Update Profile
-func serviceUpdateProfile(_ txt: String,_ data: String){
+    func serviceUpdateProfile(_ txt: String,_ data: String){
         self.view?.processOnStart()
         ParameterKeys.edit = txt
         APIManager.updateProfile(data: data){ (response) in
@@ -115,45 +111,45 @@ func serviceUpdateProfile(_ txt: String,_ data: String){
             case .success(let result):
                 let result = result.user
                 print("profile: \(result)")
-        self.serviceOfGetProfileData()
+                self.serviceOfGetProfileData()
             }
             self.view?.processOnStop()
         }
     }
-
-//MARK:- Handle Response of Get user image
-func serviceOfGetImage(){
-    self.view?.processOnStart()
-    print("is uploadimg:\(String(describing: UserDefaultsManager.shared().isUploadImage))")
-    let id = "\(UserDefaultsManager.shared().userID ?? "")"
-    print("id : \(id)")
-    APIManager.getUserImage(id) { (response) in
-        switch response {
-        case .success(let result):
-            let imageData = result.image
-            self.profileTVC?.addImag(imageData: imageData)
-            
-        case .failure(let error):
-            print(error.localizedDescription)
-            self.loadImagByName()
-        }
-        self.view?.processOnStop()
-    }
-}
-        //MARK:- Handle Response of Upload user image
-     func tryUploadImage(_ imageData: Data){
-            self.view?.processOnStart()
-        APIManager.uploadPhoto(with: imageData, completion: { _ in ()
-                guard imageData != nil else {
-                    return
-                }
-            })
+    
+    //MARK:- Handle Response of Get user image
+    func serviceOfGetImage(){
+        self.view?.processOnStart()
+        print("is uploadimg:\(String(describing: UserDefaultsManager.shared().isUploadImage))")
+        let id = "\(UserDefaultsManager.shared().userID ?? "")"
+        print("id : \(id)")
+        APIManager.getUserImage(id) { (response) in
+            switch response {
+            case .success(let result):
+                let imageData = result.image
+                self.profileTVC?.addImag(imageData: imageData)
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+                self.loadImagByName()
+            }
             self.view?.processOnStop()
-            UserDefaultsManager.shared().imagName = nil
-            UserDefaultsManager.shared().isUploadImage = true
         }
-// MARK:- Handle Response of Log Out
-      func serviceOfLogout(){
+    }
+    //MARK:- Handle Response of Upload user image
+    func tryUploadImage(_ imageData: Data){
+        self.view?.processOnStart()
+        APIManager.uploadPhoto(with: imageData, completion: { _ in ()
+            guard imageData != nil else {
+                return
+            }
+        })
+        self.view?.processOnStop()
+        UserDefaultsManager.shared().imagName = nil
+        UserDefaultsManager.shared().isUploadImage = true
+    }
+    // MARK:- Handle Response of Log Out
+    func serviceOfLogout(){
         self.view?.processOnStart()
         APIManager.logout { (response) in
             switch response{
@@ -168,9 +164,9 @@ func serviceOfGetImage(){
             self.view?.processOnStop()
         }
     }
-
+    
     //MARK:- The confirm of the SignInVCPresenterDelegate Protocol
-     func onViewDidLoad(view : MainViewProtocol){
+    func onViewDidLoad(view : MainViewProtocol){
         self.view = view
     }
     
@@ -190,106 +186,94 @@ func serviceOfGetImage(){
     //MARK:- tryLogOutConfirm()
     func tryLogOutConfirm(){
         self.profileTVC.presentAlert(title: "Confirm", message: "Are you sure Do you want log out?",
-             actions: [
-                 AlertableAction(title: "No", style: .cancel, result: false),
-                 AlertableAction(title: "Yes", style: .destructive, result: true),
-             ],
-             completion: { [weak self] result in
-                 guard result else { return }
-                self?.serviceOfLogout()
-             }
-         )
-     }
-    //MARK:- ChooseSourceType action sheet
- func ChooseSourceType(){   self.profileTVC.presentAlertWithActionSheet(title: "Image Selection", message: "From where you want to pick this image?", actions: [
-     AlertableAction(title: "Camera", style: .default, result: true),
-     AlertableAction(title: "Photo Album", style: .default, result: true),
-     AlertableAction(title: "Cancel", style: .default, result: false),
- ], completion: { [weak self] title in
-     switch title {
-     case "Camera" :
-          self?.profileTVC.imagePicker.sourceType = .camera
-          self?.profileTVC.imagePicker.allowsEditing = true
-          self?.profileTVC.present(self!.profileTVC.imagePicker, animated: true, completion: nil)
-
-     case "Photo Album" :
-        self?.profileTVC.imagePicker.sourceType = .photoLibrary
-        self?.profileTVC.imagePicker.allowsEditing = true
-        self?.profileTVC.present(self!.profileTVC.imagePicker, animated: true, completion: nil)
-     case "Cancel" :
-        return //self.present(alert, animated: true, completion: nil)
-     default:
-       break
+                                     actions: [
+                                        AlertableAction(title: "No", style: .cancel, result: false),
+                                        AlertableAction(title: "Yes", style: .destructive, result: true),
+            ],
+                                     completion: { [weak self] result in
+                                        guard result else { return }
+                                        self?.serviceOfLogout()
+            }
+        )
     }
-     }
-     
-     )
- }
-    
+    //MARK:- ChooseSourceType action sheet
+    func ChooseSourceType(){   self.profileTVC.presentAlertWithActionSheet(title: "Image Selection", message: "From where you want to pick this image?", actions: [
+        AlertableAction(title: "Camera", style: .default, result: true),
+        AlertableAction(title: "Photo Album", style: .default, result: true),
+        AlertableAction(title: "Cancel", style: .default, result: false),
+        ], completion: { [weak self] title in
+            switch title {
+            case "Camera" :
+                self?.profileTVC.imagePicker.sourceType = .camera
+                self?.profileTVC.imagePicker.allowsEditing = true
+                self?.profileTVC.present(self!.profileTVC.imagePicker, animated: true, completion: nil)
+                
+            case "Photo Album" :
+                self?.profileTVC.imagePicker.sourceType = .photoLibrary
+                self?.profileTVC.imagePicker.allowsEditing = true
+                self?.profileTVC.present(self!.profileTVC.imagePicker, animated: true, completion: nil)
+            case "Cancel" :
+            return //self.present(alert, animated: true, completion: nil)
+            default:
+                break
+            }
+        }
+        
+        )
+    }
     //MARK:- Setup EditAlert + open text alert
     //Confirm Editting Alert
-     func confirmEdittingMsg(){
+    func confirmEdittingMsg(){
         self.profileTVC.presentAlert(title: "Profile Editting", message: "Are you sure , Do you want to edit your profile?",
-             actions: [
-                 AlertableAction(title: "No", style: .cancel, result: false),
-                 AlertableAction(title: "Yes", style: .destructive, result: true),
-             ],
-             completion: { [weak self] result in
-                 guard result else { return }
-                self?.edittingAlert()
-             }
-         )
+     actions: [
+        AlertableAction(title: "No", style: .cancel, result: false),
+        AlertableAction(title: "Yes", style: .destructive, result: true),
+              ],
+     completion: { [weak self] result in
+        guard result else { return }
+        self?.edittingAlert()
+            }
+        )
         
     }
-//Editting Alert
+    //Editting Alert
     func edittingAlert(){
         self.profileTVC?.presentAlertWithActionSheet(title: "Editting Selection", message: "please...press what do you whant to edit it?", actions: [
             AlertableAction(title: "Name", style: .default, result: true),
             AlertableAction(title: "Email", style: .default, result: true),
             AlertableAction(title: "Password", style: .default, result: true),
             AlertableAction(title: "Age", style: .default, result: true),
-
+            
             AlertableAction(title: "Cancel", style: .default, result: false),
-        ], completion: { [weak self] title in
-            switch title {
-            case "Name" :
-                self?.openAlert("Name")
+            ], completion: { [weak self] title in
+                switch title {
+                case "Name" :
+                    self?.openAlert("Name")
                 case "Email" :
-                self?.openAlert("Email")
-
-                    case "Password" :
-                self?.openAlert("Password")
-
-                        case "Age" :
-                self?.openAlert("Age")
+                    self?.openAlert("Email")
+                    
+                case "Password" :
+                    self?.openAlert("Password")
+                    
+                case "Age" :
+                    self?.openAlert("Age")
                 case "Cancel" :
-                    return //self.present(alert, animated: true, completion: nil)
-                 default:
-                   break
+                return //self.present(alert, animated: true, completion: nil)
+                default:
+                    break
                 }
-
+                
             }
-)
-
-}
-
+        )
+        
+    }
+    
     //Open Alert
     func openAlert(_ txt: String){
         self.profileTVC.alertWithTextField(title: txt, message: "Enter your new \(txt.lowercased())", placeholder: "your new \(txt.lowercased())") { result in
             self.editProfile(txt,"\(result)")
             print(result)
         }
-
-//            if let textField = alertController.textFields?[0] {
-//                if textField.text!.count > 0 {
-//                    print("Text :: \(textField.text ?? "")")
-//                    self.editProfile(txt,"\(textField.text ?? "")")
-//                }else {
-//                    self.presentInfoMsg(with: "Enter you new \(txt.lowercased())")
-//                }
-//            }
-//        })
-//
     }
-
+    
 }

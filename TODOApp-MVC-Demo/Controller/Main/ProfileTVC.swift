@@ -7,14 +7,6 @@
 //
 
 import UIKit
-//MARK:- Protocol  
-//protocol SignInVCDelegate: class {
-//    func showErrorMsg(message: String)
-//    func showSuccessMsg(message: String)
-//    func processOnStart()
-//    func processOnStop()
-//}
-
 class ProfileTVC: UITableViewController {
     //MARK:- Outlets
     @IBOutlet weak var profileImg: UIImageView!
@@ -72,21 +64,21 @@ class ProfileTVC: UITableViewController {
         return profileTVC
     }
     func addImag(imageData: Data){
-    let retreivedImage = UIImage(data: imageData)
-    self.profileImg.image = retreivedImage
+        let retreivedImage = UIImage(data: imageData)
+        self.profileImg.image = retreivedImage
     }
-
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if indexPath.row % 2 == 0{
-            cell.transform = CGAffineTransform(translationX: tableView.bounds.width, y: 0)
-//        }else{
-            cell.transform = CGAffineTransform(translationX: -tableView.bounds.width, y: 0)
-//        }
+        //        if indexPath.row % 2 == 0{
+        cell.transform = CGAffineTransform(translationX: tableView.bounds.width, y: 0)
+        //        }else{
+        cell.transform = CGAffineTransform(translationX: -tableView.bounds.width, y: 0)
+        //        }
         UIView.animate(
             withDuration: 0.5,
             delay: 0.1 * Double(indexPath.row),
@@ -108,133 +100,9 @@ class ProfileTVC: UITableViewController {
         }
         return 6
     }
-    //Open Alert
-//    private func openAlert(_ txt: String){
-//        let alertController = UIAlertController(title: txt, message: "Enter your new \(txt.lowercased())", preferredStyle: .alert)
-//        alertController.addTextField { (textField : UITextField!) -> Void in
-//            textField.placeholder = "your new \(txt.lowercased())"
-//        }
-//        let saveAction = UIAlertAction(title: "Confirm", style: .default, handler: { alert -> Void in
-//            if let textField = alertController.textFields?[0] {
-//                if textField.text!.count > 0 {
-//                    print("Text :: \(textField.text ?? "")")
-//                    self.editProfile(txt,"\(textField.text ?? "")")
-//                }else {
-//                    self.presentInfoMsg(with: "Enter you new \(txt.lowercased())")
-//                }
-//            }
-//        })
-//        
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {
-//            (action : UIAlertAction!) -> Void in })
-//        
-//        alertController.addAction(cancelAction)
-//        alertController.addAction(saveAction)
-//        
-//        alertController.preferredAction = saveAction
-//        
-//        self.present(alertController, animated: true, completion: nil)
-//    }
-    //MARK:- Private Methods:
-//    private func editProfile(_ txt: String, _ editTxt: String){
-////        switch txt {
-//        case "Name":
-//            if !(UI.mainViewController.isValidName(editTxt)){
-//                self.presentError(with: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
-//            }else {
-//                self.presentSuccess(with: "Editting Done Successfully..")
-//                self.serviceUpdateProfile(txt.lowercased(),editTxt)
-//            }
-//        case "Email":
-//            if !(UI.mainViewController.isValidEmail(editTxt)){
-//                self.presentError(with: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
-//            }else {
-//                self.presentSuccess(with: "Editting Done Successfully..")
-//                self.serviceUpdateProfile(txt.lowercased(),editTxt)
-//            }
-//        case "Password":
-//            if !(UI.mainViewController.isValidPassword(editTxt)){
-//                self.presentError(with: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
-//
-//            }else {
-//                self.presentSuccess(with: "Editting Done Successfully..")
-//                self.serviceUpdateProfile(txt.lowercased(),editTxt)
-//            }
-//        case "Age":
-//            if !(UI.mainViewController.isValidAge(Int(editTxt))){
-//                self.presentError(with: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
-//            }else {
-//                self.presentSuccess(with: "Editting Done Successfully..")
-//                self.serviceUpdateProfile(txt.lowercased(),editTxt)
-//            }
-//        default:
-//            break
-//        }
-    }
-
+}
 //MARK:- extensions
 extension ProfileTVC {
-    //MARK:- Handle Response of Get Profile
-//    private func serviceOfGetProfileData() {
-//        self.view.processOnStart()
-//        APIManager.getProfile { (response) in
-//            switch response{
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//                self.presentError(with: error.localizedDescription)
-//            case .success(let result):
-//                let result = result.user
-//                print("profile: \(result)")
-//                self.ageLabel.text = "\(result.age)"
-//                self.dateOfCreateUserLabel.text = "\(result.createdAt)"
-//                self.emailLabel.text = "\(result.email)"
-//                self.userNameLabel.text = "\(result.name)"
-//                self.dateOfUpdateProfileLabel.text = "\(result.updatedAt)"
-//                self.view.processOnStop()
-//                UserDefaultsManager.shared().name = "\(result.name)"
-//                UI.mainViewController.createImageByName()
-//            }
-//            self.view.processOnStop()
-//        }
-//    }
-//    //MARK:- Handle Response of Update Profile
-//    private func serviceUpdateProfile(_ txt: String,_ data: String){
-//        self.view.processOnStart()
-//        ParameterKeys.edit = txt
-//        APIManager.updateProfile(data: data){ (response) in
-//            switch response {
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//                self.presentError(with: error.localizedDescription)
-//            case .success(let result):
-//                let result = result.user
-//                print("profile: \(result)")
-//                self.profileTPresenter?.serviceOfGetProfileData()
-//            }
-//            self.view.processOnStop()
-//        }
-//        
-//    }
-    //MARK:- Handle Response of Get user image
-//    private func serviceOfGetImage(){
-//        self.view.processOnStart()
-//        print("is uploadimg:\(String(describing: UserDefaultsManager.shared().isUploadImage))")
-//        let id = "\(UserDefaultsManager.shared().userID ?? "")"
-//        print("id : \(id)")
-//        APIManager.getUserImage(id) { (response) in
-//            switch response {
-//            case .success(let result):
-//                let retreivedImage = UIImage(data: result.image)
-//                self.profileImg.image = retreivedImage
-//
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//                self.profileTPresenter.loadImagByName()
-//            }
-//            self.view.processOnStop()
-//        }
-//    }
-    // }
     //MARK:- Handle Response of Upload user image
     private func uploadImage(_ image: UIImage){
         let imageJpegData = image.jpegData(compressionQuality: 1)!
