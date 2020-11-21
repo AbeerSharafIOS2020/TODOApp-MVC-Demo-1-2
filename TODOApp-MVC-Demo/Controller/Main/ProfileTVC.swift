@@ -57,7 +57,7 @@ class ProfileTVC: UITableViewController {
     }
     //add image Btn
     @IBAction func addImagBtnTapPressed(_ sender: Any) {
-        self.ChooseSourceType()
+        self.profileTPresenter?.ChooseSourceType()
     }
     //Back Btn
     @IBAction func backTapButton() {
@@ -306,21 +306,24 @@ extension ProfileTVC {
 //MARK:- Image Picker
 extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK:- Private Methods
-    private func ChooseSourceType(){
-        let alert = UIAlertController(title: "Image Selection", message: "From where you want to pick this image?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action: UIAlertAction) in
-            self.imagePicker.sourceType = .camera
-            self.imagePicker.allowsEditing = true
-            self.present(self.imagePicker, animated: true, completion: nil)
-        }))
-        alert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: {(action: UIAlertAction) in
-            self.imagePicker.sourceType = .photoLibrary
-            self.imagePicker.allowsEditing = true
-            self.present(self.imagePicker, animated: true, completion: nil)
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
+//    private func ChooseSourceType(){
+//        let alert = UIAlertController(title: "Image Selection", message: "From where you want to pick this image?", preferredStyle: .actionSheet)
+//        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action: UIAlertAction) in
+//            self.imagePicker.sourceType = .camera
+//            self.imagePicker.allowsEditing = true
+//            self.present(self.imagePicker, animated: true, completion: nil)
+//        }))
+//        alert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: {(action: UIAlertAction) in
+//            self.imagePicker.sourceType = .photoLibrary
+//            self.imagePicker.allowsEditing = true
+//            self.present(self.imagePicker, animated: true, completion: nil)
+//        }))
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+//        self.present(alert, animated: true, completion: nil)
+//    }
+    
+    
+    
 //    private func loadImagByName(){
 //        imageLabel.isHidden = false
 //        if UserDefaultsManager.shared().imagName != nil {

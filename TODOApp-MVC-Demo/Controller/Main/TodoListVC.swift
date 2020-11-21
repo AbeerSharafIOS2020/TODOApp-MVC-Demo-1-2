@@ -98,25 +98,6 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
         let indexPath = indexPath
         let item = indexPath.item
         self.todoListPresenter?.tryDeleteTaskConfirm(row: row, indexPath: indexPath, item: item)
-
-//        let alertConfirmDeleteNotifiy = UIAlertController(title:"Confirm", message: "Are you sure you want to Delete the task ? ", preferredStyle: .alert)
-//        let alertAction = UIAlertAction(title: "OK", style:.default)
-//        { (UIAlertAction) in
-//
-//            // handle delete (by removing the data from your array and updating the tableview)
-//            let row = indexPath.row
-//        self.todoListPresenter?.callDeleteService(self.allTaskObj[row])
-//            print("self.allTaskObj[indexPath.row]: \(self.allTaskObj[indexPath.row] )")
-//            self.allTaskObj.remove(at: indexPath.item)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//            print("row:\(row) ")
-//        }
-//        
-//        let noAlertAction = UIAlertAction(title: "cancel", style: .cancel,handler: nil)
-//        alertConfirmDeleteNotifiy.addAction(alertAction)
-//        alertConfirmDeleteNotifiy.addAction(noAlertAction)
-//        self.present(alertConfirmDeleteNotifiy, animated: true, completion: nil)
-        
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let row = indexPath.row
@@ -147,7 +128,6 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = indexPath.row
         self.todoListPresenter?.willDisplayCell(row: row)
-//        self.todoListPresenter?.willDisplayCell(row: row)
 //        if indexPath.row % 2 == 0 {
 //            cell.transform = CGAffineTransform(translationX: tableView.bounds.width, y: 0)
 //        } else {
@@ -192,55 +172,5 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
                 func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
                 cell.transform = CGAffineTransform(translationX: 0, y: 0)
             }}
-
-}
-//MARK:- Handle Response
-extension TodoListVC {
-//    //get all task
-//    private func serviceOfGetAllTask(){
-//        self.view.processOnStart()
-//        APIManager.getAllTask { (response) in
-//            switch response{
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            case .success(let result):
-//                self.allTaskObj = result.data
-//                if  self.allTaskObj.count == 0 {
-//                    self.noTaskLabel.text = "No Data Found"
-//                    self.noTaskLabel.isHidden = false
-//                }else {
-//                    self.noTaskLabel.isHidden = true
-//                    self.taskTableView.reloadData()
-//                    print("data:  \(self.allTaskObj.description)")
-//                    print("count in data: \(self.allTaskObj.count)")
-//                    self.taskTableView.reloadData()
-//                }
-//                self.view.processOnStop()
-//            }
-//        }
-//    }
-//    //Delete task
-//    private func callDeleteService(_ item: TaskData){
-//        UserDefaultsManager.shared().taskID = item.id
-//        print("id in userDefult : \(UserDefaultsManager.shared().taskID ?? "")")
-//        self.view.processOnStop()
-//        APIManager.deleteTask { (response) in
-//            switch response {
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//                self.presentError(with: "del task \(error.localizedDescription)")
-//            case .success(let result):
-//                let result = result
-//                if result.success == true {
-//                    self.view.processOnStop()
-//                    self.presentSuccess(with: "Delete the task Successfully")
-//                }
-//            }
-//            self.view.processOnStop()
-//        }
-//        self.todoListPresenter?.serviceOfGetAllTask()
-//    }
-    
-
 
 }

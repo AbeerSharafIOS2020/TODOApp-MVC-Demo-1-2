@@ -34,29 +34,6 @@ class TodoListPresenter: TodoListPresenterProtocol {
         self.validator = validator
     }
     var allTaskObj = [TaskData]()
-//    //MARK:- Private Methods
-//    private func validateField(name: String?, email: String?, password: String?, age:Int?) -> Bool{
-//        if !validator.isValidName(name){
-//            return false
-//        }
-//        if !validator.isValidEmail(email){
-//            return false
-//        }
-//        if !validator.isValidPassword(password){
-//            return false
-//        }
-//        if !validator.isValidAge(age){
-//            return false
-//        }
-//        return true
-//    }
-//
-//    private func userDefaultsData( isLogin: Bool, token: String, userID: String, name: String ){
-//        UserDefaultsManager.shared().isLogin = isLogin
-//        UserDefaultsManager.shared().token = token
-//        UserDefaultsManager.shared().userID = userID
-//        UserDefaultsManager.shared().name = name
-//    }
 }
 //MARK:- extension
 extension TodoListPresenter {
@@ -138,12 +115,4 @@ extension TodoListPresenter {
              }
          )
      }
-
-//    func trySignUp(name: String?, email: String?, password: String?, age: Int?){
-//        if validateField(name: name, email: email, password: password, age: age){
-//            self.serviceRegisterData(with: name, email: email!, password: password!, age: age!)
-//        }else {
-//            self.view?.showErrorMsg(message: "Please Enter Valid Email and Password")
-//        }
-//    }
 }

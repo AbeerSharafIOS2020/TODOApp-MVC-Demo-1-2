@@ -16,6 +16,7 @@ protocol ProfileTPresenterProtocol: class {
     func serviceOfGetImage()
     func tryUploadImage(_ imageData: Data)
     func loadImagByName()
+    func ChooseSourceType()
     //func trySignUp(name: String?, email: String?, password: String?, age: Int?)
 }
 //MARK:- ProfileTPresenter
@@ -168,7 +169,30 @@ func serviceOfGetImage(){
              }
          )
      }
+ func ChooseSourceType(){   self.profileTVC.presentAlertWithActionSheet(title: "Image Selection", message: "From where you want to pick this image?", actions: [
+     AlertableAction(title: "Camera", style: .default, result: true),
+     AlertableAction(title: "Photo Album", style: .default, result: true),
+     AlertableAction(title: "Cancel", style: .default, result: false),
+ ], completion: { [weak self] title in
+     switch title {
+     case "Camera" :
+          self?.profileTVC.imagePicker.sourceType = .camera
+          self?.profileTVC.imagePicker.allowsEditing = true
+          self?.profileTVC.present(self!.profileTVC.imagePicker, animated: true, completion: nil)
 
+     case "Photo Album" :
+        self?.profileTVC.imagePicker.sourceType = .photoLibrary
+        self?.profileTVC.imagePicker.allowsEditing = true
+        self?.profileTVC.present(self!.profileTVC.imagePicker, animated: true, completion: nil)
+     case "Cancel" :
+        return //self.present(alert, animated: true, completion: nil)
+     default:
+       break
+    }
+     }
+     
+     )
+ }
 
 }
 
