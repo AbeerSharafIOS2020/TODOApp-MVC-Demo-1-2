@@ -9,21 +9,7 @@
 import UIKit
 class ProfileTVC: UITableViewController {
     //MARK:- Outlets
-    @IBOutlet weak var profileImg: UIImageView!
-    @IBOutlet weak var imageLabel: UILabel!
-    @IBOutlet weak var updateProfileLabel: UILabel!
-    @IBOutlet weak var nameIconImg: UIImageView!
-    @IBOutlet weak var emailIconImg: UIImageView!
-    @IBOutlet weak var ageIconeImg: UIImageView!
-    @IBOutlet weak var dateUserIconImg: UIImageView!
-    @IBOutlet weak var dateOfUpdateProfileImg: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var ageLabel: UILabel!
-    @IBOutlet weak var dateOfCreateUserLabel: UILabel!
-    @IBOutlet weak var dateOfUpdateProfileLabel: UILabel!
-    @IBOutlet weak var logoutLabel: UILabel!
-    
+    @IBOutlet var profileView: ProfileView!
     // MARK:- Properties
     let imagePicker = UIImagePickerController()
     let image = Data()
@@ -34,6 +20,8 @@ class ProfileTVC: UITableViewController {
     //MARK:-Life Cycle:
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.profileView.backgroundColor = Colors.primaryColor
+        self.profileViewSetUp()
         self.imageConfiguration()
         self.profileTPresenter?.serviceOfGetProfileData()
         self.profileTPresenter?.serviceOfGetImage()
@@ -41,6 +29,7 @@ class ProfileTVC: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     
     //MARK:-Actions Methods :
     //log out Btn
@@ -58,14 +47,12 @@ class ProfileTVC: UITableViewController {
     // MARK:- Public Methods
     class func create() -> ProfileTVC {
         let profileTVC: ProfileTVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.profileTVC)
-        profileTVC.profileTPresenter = ProfileTPresenter(profileTVC: profileTVC)
-        profileTVC.validator = Validator(profileTVC: profileTVC)
-        
+            profileTVC.profileTPresenter = ProfileTPresenter(profileTVC: profileTVC)
         return profileTVC
     }
     func addImag(imageData: Data){
         let retreivedImage = UIImage(data: imageData)
-        self.profileImg.image = retreivedImage
+        self.profileView.profileImgView?.image = retreivedImage
     }
     
     // MARK: - Table view data source
@@ -88,11 +75,11 @@ class ProfileTVC: UITableViewController {
         })
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            self.profileTPresenter?.confirmEdittingMsg()
-        }
+        let row = indexPath.row
+        self.profileTPresenter?.confirmEdittingMsg(row: row)
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.addBackground(tableView)
         if section == 0 {
             return 5
         }else if section == 1 {
@@ -100,6 +87,13 @@ class ProfileTVC: UITableViewController {
         }
         return 6
     }
+
+private func addBackground(_ tableView: UITableView){
+// Add a background view to the table view
+  let backgroundImage = UIImage(named: NamesObjects.backgroundImage)
+let imageView = UIImageView(image: backgroundImage)
+tableView.backgroundView = imageView
+}
 }
 //MARK:- extensions
 extension ProfileTVC {
@@ -112,22 +106,29 @@ extension ProfileTVC {
 //MARK:- Image Picker
 extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK:- Private Methods
+    private func profileViewSetUp(){
+        profileView.backgroundColor = Colors.primaryColor
+        profileView.separatorStyle = .singleLine
+        profileView.separatorColor = Colors.placholderColor
+        profileView.setup()
+    }
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.dismiss(animated: true) { [weak self] in
             guard let profileImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
-            self?.imageLabel.isHidden = true
-            self?.profileImg.image = profileImage
+            self?.profileView.imageLabel.isHidden = true
+            self?.profileView.profileImgView.image = profileImage
             self?.uploadImage(profileImage)
         }
     }
     
     private func imageConfiguration() {
         imagePicker.delegate = self
-        profileImg?.layer.cornerRadius = (profileImg?.frame.size.width ?? 0.0) / 2
-        profileImg?.clipsToBounds = true
-        profileImg?.layer.borderWidth = 3.0
-        profileImg?.layer.borderColor = UIColor.white.cgColor
-        imageLabel.isHidden = true
+//        profileView.profileImgView.layer.cornerRadius = (profileView.profileImgView?.frame.size.width ?? 0.0) / 2
+        profileView.profileImgView?.clipsToBounds = true
+//        profileView.profileImgView?.layer.borderWidth = 3.0
+//        profileView.profileImgView?.layer.borderColor = UIColor.white.cgColor
+        profileView.imageLabel.isHidden = true
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)

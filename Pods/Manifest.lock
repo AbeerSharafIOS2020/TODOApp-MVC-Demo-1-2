@@ -3,20 +3,24 @@ PODS:
   - NVActivityIndicatorView (5.0.1):
     - NVActivityIndicatorView/Base (= 5.0.1)
   - NVActivityIndicatorView/Base (5.0.1)
+  - SkyFloatingLabelTextField (3.8.0)
 
 DEPENDENCIES:
   - Alamofire
   - NVActivityIndicatorView
+  - SkyFloatingLabelTextField
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - NVActivityIndicatorView
+    - SkyFloatingLabelTextField
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   NVActivityIndicatorView: 738e843cb8924e9e4fc3e559d0728031624bf860
+  SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
 
-PODFILE CHECKSUM: b8895f042c47f9b5db83e246324f0178f8650c94
+PODFILE CHECKSUM: 90c58ae2545156d987beda92431ca75af6cc9518
 
 COCOAPODS: 1.9.3

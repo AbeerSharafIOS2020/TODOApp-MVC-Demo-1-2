@@ -7,56 +7,78 @@
 //
 
 import Foundation
-//MARK:- Protocol
-protocol ValidatorProtocol: class {
-    func isValidName(_ name: String?) -> Bool
-    func isValidEmail(_ email: String?) -> Bool
-    func isValidPassword(_ password: String?) -> Bool
-    func isValidAge(_ age: Int?) -> Bool
-    func createImageByName()
-}
-class Validator: ValidatorProtocol {
-    //MARK:- Properties
-    weak var view: MainVC!
-    init(view: MainVC) {
-        self.view = view
-    }
-    weak var profileTVC: ProfileTVC!
-    init(profileTVC: ProfileTVC) {
-        self.profileTVC = profileTVC
-    }
-    
-    weak var presenter: SignInPresenter!
-    init(presenter: SignInPresenter) {
-        self.presenter = presenter
-    }
-    weak var profilePresenter: ProfileTPresenter!
-    init(profilePresenter: ProfileTPresenter) {
-        self.profilePresenter = profilePresenter
-    }
 
+enum ErrorValidMsg{
+    case name, email, password, age, noData
+    var errorMsg: (title: String, message: String) {
+        switch self {
+        case .name:
+            return("Invalid Name","Enter Valid name ..at least consists two letters and first & last name")
+            case .email:
+return("Invalid Email", "Please Enter Valid Email")
+            case .password:
+            return("Invalid Password", "Password Must be at Least 8 Characters")
+
+            case .age:
+            return("Invalid Age", "Enter valid age .. greater than or equal 10 years")
+        case .noData:
+            return("Invalid", "Please Enter The data ")
+        }
+    }
 }
-//MARK:- Extension
+class Validator {
+//MARK:- SingleTon
+private static let sharedIntance = Validator()
+    class func shared()->Validator {
+        return Validator.sharedIntance
+    }
+    //MARK:- Private Methods
+    func getTextValidation(name: String?, email: String?, password: String?, age: String?) -> (String, String)? {
+        if let name = name, !name.isEmpty,
+           let email = email?.trimmed, !email.isEmpty,
+           let password = password, !password.isEmpty,
+           let age = age, !age.isEmpty {
+            
+            switch isValidName(name) {
+            case false : return ErrorValidMsg.name.errorMsg
+            case true : break
+            }
+            switch isValidEmail(email) {
+            case false : return ErrorValidMsg.email.errorMsg
+            case true : break
+            }
+            switch isValidPassword(password) {
+            case false : return ErrorValidMsg.password.errorMsg
+            case true : break
+            }
+            switch isValidAge(Int(age)) {
+            case false : return ErrorValidMsg.age.errorMsg
+            case true : break
+            }
+            return nil
+        }
+        return ErrorValidMsg.noData.errorMsg
+        }
+    }
+//MARK:- extension
 extension Validator {
     // name validation
     func isValidName(_ name: String?) -> Bool {
         let nameTemp = name?.split(separator: " ")
         guard let name =  name?.trimmed, !name.isEmpty, nameTemp?.count ?? 0 >= 2, name.count  >= 2  else {
-            self.view.showErrorMsg(message:"Enter Valid name ..at least consists two letters and first & last name")
             return false
         }
         return true
     }
+
     // email validation
     func isValidEmail(_ email: String?) -> Bool {
         guard let email = email?.trimmed, !email.isEmpty else {
-            self.view.showErrorMsg(message: "Please Enter an Email")
             return false
         }
         let regEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         let pred = NSPredicate(format:"SELF MATCHES %@", regEx)
         if !pred.evaluate(with: email) {
-            self.view.showErrorMsg(message: "Please Enter Valid Email")
             return false
         }
         return true
@@ -64,7 +86,6 @@ extension Validator {
     // password validation
     func isValidPassword(_ password: String?) -> Bool {
         guard let password = password, !password.isEmpty, password.count >= 8 else {
-            self.view.showErrorMsg(message:"Password Must be at Least 8 Characters")
             return false
         }
         return true
@@ -72,11 +93,11 @@ extension Validator {
     //age validation
     func isValidAge(_ age: Int?) -> Bool {
         guard let age = age, String(age) != "" , age != 0 , age >= 10 else {
-            self.view.showErrorMsg(message: "Enter valid age .. greater than or equal 10 years")
             return false
         }
         return true
     }
+    
     //create image by user name
     func createImageByName() {
         let name = "\(UserDefaultsManager.shared().name ?? "" )"
@@ -95,4 +116,7 @@ extension Validator {
         print("image: \(imageByName) )")
         UserDefaultsManager.shared().imagName = "\(imageByName)"
     }
+
 }
+
+

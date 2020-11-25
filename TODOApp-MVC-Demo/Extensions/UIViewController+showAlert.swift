@@ -23,13 +23,13 @@ protocol Alertable {
 extension UIViewController {
     //MARK:- showAlert with action
     func presentAlert(title: String?, message: String?, actions: [AlertableAction], completion: ((Bool) -> Void)?) {
-      let generator = UIImpactFeedbackGenerator(style: .medium)
-      generator.impactOccurred()
-      let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-      actions.forEach { action in
-          alertController.addAction(UIAlertAction(title: action.title, style: action.style, handler: { _ in completion?(action.result) }))
-      }
-      present(alertController, animated: true, completion: nil)
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        actions.forEach { action in
+            alertController.addAction(UIAlertAction(title: action.title, style: action.style, handler: { _ in completion?(action.result) }))
+        }
+        present(alertController, animated: true, completion: nil)
     }
     //MARK:- alert with text field
     public func alertWithTextField(title: String? = nil, message: String? = nil, placeholder: String? = nil, completion: @escaping ((String) -> Void) = { _ in }) {
@@ -51,20 +51,20 @@ extension UIViewController {
         })
         navigationController?.present(alert, animated: true)
     }
-
+    
     //MARK:- imagePickerController
-
+    
     //MARK:- showAlert with actionSheet
     func presentAlertWithActionSheet(title: String?, message: String?, actions: [AlertableAction], completion: ((String) -> Void)?) {
-      let generator = UIImpactFeedbackGenerator(style: .medium)
-      generator.impactOccurred()
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-      actions.forEach { action in
-        alertController.addAction(UIAlertAction(title: action.title, style: action.style, handler: { _ in completion?(action.title) }))
-      }
-      present(alertController, animated: true, completion: nil)
+        actions.forEach { action in
+            alertController.addAction(UIAlertAction(title: action.title, style: action.style, handler: { _ in completion?(action.title) }))
+        }
+        present(alertController, animated: true, completion: nil)
     }
-
+    
     //MARK:- showAlert
     func showAlert(message: String, title: String = "",okTitle: String = "OK", okHandler: ((UIAlertAction)-> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -96,15 +96,14 @@ extension UIViewController {
     }
     
     @objc func presentError(with message: String) {
-           self.showAlert(message: message, title: "Sorry")
-       }
-       
+        self.showAlert(message: message, title: "Sorry")
+    }
+    
     @objc func presentSuccess(with message: String) {
-           self.showAlert(message: message, title: "Success")
-       }
+        self.showAlert(message: message, title: "Success")
+    }
     @objc func presentInfoMsg(with message: String) {
-           self.showAlert(message: message)
-       }
-
-
+        self.showAlert(message: message)
+    }
+    
 }

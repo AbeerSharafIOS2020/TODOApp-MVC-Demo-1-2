@@ -74,6 +74,25 @@ struct ParameterKeys {
     static let id = "id"
 }
 
+//colors
+struct Colors {
+     static let labelColor =       UIColor.hexStringToUIColor(hex: "#AA32FD")
+    static let primaryColor =
+       UIColor.hexStringToUIColor(hex: "#4E0E69")
+    static let placholderColor = UIColor.hexStringToUIColor(hex:"#D3C1DA")
+
+}
+struct NamesObjects {
+    static let userNameIcon = "userNameIcon"
+     static let toDoIcon = "todo"
+    static let userEmailcon = "emailIcon"
+    static let userAgeIcon = "ageIcon"
+    static let profileDateIcon = ""
+    static let profileUpdateDateIcon = ""
+    static let passwordIcon = "passwordIcon"
+    static let backgroundImage = "background"
+    static let deleteIcon = "deleteIconCopy"
+}
 // UserDefaultsKeys
 struct UserDefaultsKeys {
     static let token = "UDKToken"

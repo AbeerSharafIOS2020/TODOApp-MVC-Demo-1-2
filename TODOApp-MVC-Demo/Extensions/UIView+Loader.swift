@@ -13,7 +13,7 @@ import NVActivityIndicatorView
 extension UIView {
     
     struct LoadingProgress {
-        static let  loading : NVActivityIndicatorView = NVActivityIndicatorView(frame: CGRect.init(x: 0, y: 0, width: 70, height: 70), type: .ballRotateChase, color: UIColor.blue , padding: 2)
+        static let  loading : NVActivityIndicatorView = NVActivityIndicatorView(frame: CGRect.init(x: 0, y: 0, width: 70, height: 70), type: .ballRotateChase, color: Colors.primaryColor , padding: 2)
     }
     func processOnStart() {
         let activityIndicator = setupActivityIndicator()

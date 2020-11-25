@@ -10,7 +10,7 @@ import Foundation
 protocol SignUpPresenterProtocol: class {
     associatedtype View
     func onViewDidLoad(view : View)
-    func trySignUp(name: String?, email: String?, password: String?, age: Int?)
+    func trySignUp(name: String?, email: String?, password: String?, age: String?)
 }
 //MARK:- SignUpPresenter
 class SignUpPresenter: SignUpPresenterProtocol {
@@ -18,26 +18,28 @@ class SignUpPresenter: SignUpPresenterProtocol {
     //MARK:- Properties
     typealias View = MainViewProtocol
     private weak var view : MainViewProtocol?
-    weak var validator : Validator!
-    init(validator: Validator) {
-        self.validator = validator
-    }
     //MARK:- Private Methods
-    private func validateField(name: String?, email: String?, password: String?, age:Int?) -> Bool{
-        if !validator.isValidName(name){
-            return false
-        }
-        if !validator.isValidEmail(email){
-            return false
-        }
-        if !validator.isValidPassword(password){
-            return false
-        }
-        if !validator.isValidAge(age){
+    private func validateField(name: String?, email: String?, password: String?, age:String?) -> Bool{
+        if let notValidation = Validator().getTextValidation(name: name, email: email, password: password, age: age) {
+            view?.confirmationAlert1(title: notValidation.0, message: notValidation.1)
             return false
         }
         return true
     }
+//        if !validator.isValidName(name){
+//            return false
+//        }
+//        if !validator.isValidEmail(email){
+//            return false
+//        }
+//        if !validator.isValidPassword(password){
+//            return false
+//        }
+//        if !validator.isValidAge(age){
+//            return false
+//        }
+//        return true
+//    }
 }
 //MARK:- extension
 extension SignUpPresenter {
@@ -58,7 +60,7 @@ extension SignUpPresenter {
                 UserDefaultsManager.shared().token = result.token
                 UserDefaultsManager.shared().userID = result.user.id
                 UserDefaultsManager.shared().name = result.user.name
-                self.validator.createImageByName()
+                Validator().createImageByName()
                 AppDelegate.shared().switchToAuthState()
             }
             self.view?.processOnStop()
@@ -68,9 +70,9 @@ extension SignUpPresenter {
     internal func onViewDidLoad(view : MainViewProtocol){
         self.view = view
     }
-    func trySignUp(name: String?, email: String?, password: String?, age: Int?){
+    func trySignUp(name: String?, email: String?, password: String?, age: String?){
         if validateField(name: name, email: email, password: password, age: age){
-            self.serviceRegisterData(with: name, email: email!, password: password!, age: age!)
+            self.serviceRegisterData(with: name, email: email!, password: password!, age: Int(age!))
         }else {
             self.view?.showErrorMsg(message: "Please Enter Valid Email and Password")
         }

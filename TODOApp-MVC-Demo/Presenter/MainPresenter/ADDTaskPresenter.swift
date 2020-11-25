@@ -11,24 +11,19 @@ import Foundation
 protocol ADDTaskPresenterProtocol: class {
     associatedtype View
     func onViewDidLoad(view : View)
-    func tryAddTask(description: String?)
+    func tryAddTask(description: String?, dateAndTime: String?)
 }
 //MARK:- ADDTaskPresenter
 class ADDTaskPresenter: ADDTaskPresenterProtocol {
     //MARK:- Properties
     typealias View = MainViewProtocol
     private weak var view : MainViewProtocol?
-    weak var validator : Validator!
-    init(validator: Validator) {
-        self.validator = validator
-    }
 }
 //MARK:- extension
 extension ADDTaskPresenter {
     //MARK:-  Handle Response
-    private func serviceSaveTask(with description: String?) {
+    private func serviceSaveTask(with description: String?, dateAndTime: String?) {
         self.view?.processOnStart()
-        //let description ="\(descriptionTxtView.text ?? "")"
         APIManager.addTask(description: description!){
             (response) in
             switch response {
@@ -42,6 +37,7 @@ extension ADDTaskPresenter {
                 print("description: \(result.data.description )")
             }
             self.view?.processOnStop()
+            
         }
     }
     
@@ -49,11 +45,16 @@ extension ADDTaskPresenter {
     internal func onViewDidLoad(view: MainViewProtocol) {
         self.view = view
     }
-    func tryAddTask(description: String?) {
+    func tryAddTask(description: String?, dateAndTime: String?) {
+        if dateAndTime?.isEmpty ?? false {
+            self.view?.showErrorMsg(message: "Enter the date , please ..")
+        }
+
         if description?.isEmpty ?? false {
             self.view?.showErrorMsg(message: "Enter your task details..")
-        } else {
-            self.serviceSaveTask(with: description!)
+        }
+        else {
+            self.serviceSaveTask(with: description!, dateAndTime: dateAndTime!)
         }
         
     }

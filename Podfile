@@ -8,6 +8,6 @@ target 'TODOApp-MVC-Demo' do
   # Pods for TODOApp-MVC-Demo
     pod 'Alamofire'
     pod 'NVActivityIndicatorView'
-
+    pod 'SkyFloatingLabelTextField'
 
 end

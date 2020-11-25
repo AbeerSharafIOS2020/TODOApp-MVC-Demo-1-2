@@ -13,25 +13,16 @@ protocol TodoListPresenterProtocol: class {
     func onViewDidLoad(view : View)
     func serviceOfGetAllTask() -> [TaskData]
     func willDisplayCell(row: Int?)
-    func tryDeleteTaskConfirm(row: Int, indexPath: IndexPath, item: Int)
-    //func trySignUp(name: String?, email: String?, password: String?, age: Int?)
+    func tryDeleteTaskConfirm(row: Int, indexPath: IndexPath, item: TaskData)
 }
 //MARK:- SignUpPresenter
 class TodoListPresenter: TodoListPresenterProtocol {
-    
-    
     //MARK:- Properties
     typealias View = MainViewProtocol
     private weak var view : MainViewProtocol?
-    
     weak var todoListVC: TodoListVC!
     init(todoListVC: TodoListVC) {
         self.todoListVC = todoListVC
-    }
-
-    weak var validator : Validator!
-    init(validator: Validator) {
-        self.validator = validator
     }
     var allTaskObj = [TaskData]()
 }
@@ -67,7 +58,7 @@ extension TodoListPresenter {
     }
     
     //Delete task
-    private func callDeleteService(_ item: TaskData){
+    private func callDeleteService(_ item: TaskData!){
         UserDefaultsManager.shared().taskID = item.id
         print("id in userDefult : \(UserDefaultsManager.shared().taskID ?? "")")
         self.view?.processOnStop()
@@ -100,7 +91,8 @@ extension TodoListPresenter {
         }
         self.todoListVC.animate(row: row)
     }
-    func tryDeleteTaskConfirm(row: Int,indexPath: IndexPath, item: Int){
+    func tryDeleteTaskConfirm(row: Int,indexPath: IndexPath, item: TaskData){
+        
         self.todoListVC.presentAlert(title: "Confirm", message: "Are you sure you want to Delete the task ?",
              actions: [
                  AlertableAction(title: "Cancel", style: .cancel, result: false),
@@ -108,9 +100,14 @@ extension TodoListPresenter {
              ],
              completion: { [weak self] result in
                 guard result else { return }
-                self?.callDeleteService((self?.todoListVC.allTaskObj[indexPath.item])!)
-                self?.todoListVC.allTaskObj.remove(at: indexPath.item)
-                self?.todoListVC?.taskTableView.deleteRows(at: [indexPath], with: .fade)
+                // handle delete (by removing the data from your array and updating the tableview)
+                self?.callDeleteService(item)
+                print("self.allTaskObj[indexPath.row]: \(item)")
+                return
+//                self?.todoListVC?.allTaskObj.remove(at: indexPath.item)
+//                self?.todoListVC?.taskTableView?.deleteRows(at: [indexPath], with: .fade)
+
+                print("row:\(row) ")
 
              }
          )

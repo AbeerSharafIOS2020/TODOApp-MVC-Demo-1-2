@@ -17,6 +17,7 @@ protocol ProfileTPresenterProtocol: class {
     func tryUploadImage(_ imageData: Data)
     func loadImagByName()
     func ChooseSourceType()
+    func confirmEdittingMsg(row: Int)
 }
 //MARK:- ProfileTPresenter
 class ProfileTPresenter: ProfileTPresenterProtocol {
@@ -87,11 +88,11 @@ extension ProfileTPresenter {
             case .success(let result):
                 let result = result.user
                 print("profile: \(result)")
-                self.profileTVC.ageLabel.text = "\(result.age)"
-                self.profileTVC.dateOfCreateUserLabel.text = "\(result.createdAt)"
-                self.profileTVC.emailLabel.text = "\(result.email)"
-                self.profileTVC.userNameLabel.text = "\(result.name)"
-                self.profileTVC.dateOfUpdateProfileLabel.text = "\(result.updatedAt)"
+                self.profileTVC.profileView.ageLabel.text = "\(result.age)"
+                self.profileTVC.profileView.dateOfCreateUserLabel.text = "\(result.createdAt)"
+                self.profileTVC.profileView.emailLabel.text = "\(result.email)"
+                self.profileTVC.profileView.userNameLabel.text = "\(result.name)"
+                self.profileTVC.profileView.dateOfUpdateProfileLabel.text = "\(result.updatedAt)"
                 self.view?.processOnStop()
                 UserDefaultsManager.shared().name = "\(result.name)"
                 self.validator?.createImageByName()
@@ -172,13 +173,13 @@ extension ProfileTPresenter {
     
     //Load image by name to the profile image
     func loadImagByName(){
-        self.profileTVC.imageLabel.isHidden = false
+        self.profileTVC.profileView.imageLabel.isHidden = false
         if UserDefaultsManager.shared().imagName != nil {
-            self.profileTVC.imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
+            self.profileTVC.profileView.imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
             print("if is not nil \(UserDefaultsManager.shared().imagName ?? "")")
         }else {
             self.validator?.createImageByName()
-            self.profileTVC.imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
+            self.profileTVC.profileView.imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
             print("if is nil \(UserDefaultsManager.shared().imagName ?? "")")
             
         }
@@ -223,27 +224,27 @@ extension ProfileTPresenter {
     }
     //MARK:- Setup EditAlert + open text alert
     //Confirm Editting Alert
-    func confirmEdittingMsg(){
-        self.profileTVC.presentAlert(title: "Profile Editting", message: "Are you sure , Do you want to edit your profile?",
-     actions: [
-        AlertableAction(title: "No", style: .cancel, result: false),
-        AlertableAction(title: "Yes", style: .destructive, result: true),
-              ],
-     completion: { [weak self] result in
-        guard result else { return }
-        self?.edittingAlert()
-            }
-        )
-        
+    func confirmEdittingMsg(row: Int){
+        if row == 0 {
+            self.profileTVC.presentAlert(title: "Profile Editting", message: "Are you sure , Do you want to edit your profile?",
+                                         actions: [
+                                            AlertableAction(title: "No", style: .cancel, result: false),
+                                            AlertableAction(title: "Yes", style: .destructive, result: true),
+                ],
+                                         completion: { [weak self] result in
+                                            guard result else { return }
+                                            self?.edittingAlert()
+                }
+            )
+        }
     }
     //Editting Alert
     func edittingAlert(){
-        self.profileTVC?.presentAlertWithActionSheet(title: "Editting Selection", message: "please...press what do you whant to edit it?", actions: [
+      self.profileTVC?.presentAlertWithActionSheet(title: "Editting Selection", message: "please...press what do you whant to edit it?", actions: [
             AlertableAction(title: "Name", style: .default, result: true),
             AlertableAction(title: "Email", style: .default, result: true),
             AlertableAction(title: "Password", style: .default, result: true),
             AlertableAction(title: "Age", style: .default, result: true),
-            
             AlertableAction(title: "Cancel", style: .default, result: false),
             ], completion: { [weak self] title in
                 switch title {

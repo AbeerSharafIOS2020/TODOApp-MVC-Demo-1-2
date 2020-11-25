@@ -18,16 +18,12 @@ class SignInPresenter: SignInVCPresenterDelegate {
     //MARK:- Properties
     typealias View = MainViewProtocol
     private var view : MainViewProtocol?
-    weak var validator : Validator!
-    init(validator: Validator) {
-        self.validator = validator
-    }
     //MARK:- Private Methods
     private func validateField(email: String?, password: String?) -> Bool{
-        if !validator.isValidEmail(email){
+        if !Validator().isValidEmail(email){
             return false
         }
-        if !validator.isValidPassword(password){
+        if !Validator().isValidPassword(password){
             return false
         }
         return true
