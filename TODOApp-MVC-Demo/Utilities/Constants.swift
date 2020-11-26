@@ -85,7 +85,7 @@ struct Colors {
 struct LabelText {
   static let loginLabel = "Log In"
   static let signUpLabel = "Sign Up"
-     static let noAccountLabel = "Don’t have an acoount?"
+  static let noAccountLabel = "Don’t have an acoount?"
    //  static let loginLabel = "Log In"
 }
 // messege

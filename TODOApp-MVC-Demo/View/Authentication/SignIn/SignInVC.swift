@@ -17,7 +17,7 @@ class SignInVC: MainVC {
     override func viewDidLoad(){
         super.viewDidLoad()
         mainView.setup()
-        mainView.backgroundColor = Colors.primaryColor
+        navigationStyle()
         self.signInPresenter = SignInPresenter()
         self.signInPresenter?.onViewDidLoad(view: self)
         UserDefaultsManager.shared().isUploadImage = false
