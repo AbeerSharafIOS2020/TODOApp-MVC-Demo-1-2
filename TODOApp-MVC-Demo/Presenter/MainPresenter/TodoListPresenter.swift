@@ -24,6 +24,12 @@ class TodoListPresenter: TodoListPresenterProtocol {
     init(todoListVC: TodoListVC) {
         self.todoListVC = todoListVC
     }
+    
+    weak var addTaskVC: ADDTaskVC!
+    init(addTaskVC: ADDTaskVC) {
+        self.addTaskVC = addTaskVC
+    }
+
     var allTaskObj = [TaskData]()
 }
 //MARK:- extension
@@ -103,10 +109,8 @@ extension TodoListPresenter {
                 // handle delete (by removing the data from your array and updating the tableview)
                 self?.callDeleteService(item)
                 print("self.allTaskObj[indexPath.row]: \(item)")
-                return
-//                self?.todoListVC?.allTaskObj.remove(at: indexPath.item)
-//                self?.todoListVC?.taskTableView?.deleteRows(at: [indexPath], with: .fade)
-
+                self?.todoListVC?.allTaskObj.remove(at: indexPath.item)
+                self?.todoListVC?.taskTableView?.deleteRows(at: [indexPath], with: .fade)
                 print("row:\(row) ")
 
              }

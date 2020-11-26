@@ -18,6 +18,12 @@ class ADDTaskPresenter: ADDTaskPresenterProtocol {
     //MARK:- Properties
     typealias View = MainViewProtocol
     private weak var view : MainViewProtocol?
+    
+    weak var addTaskVC: ADDTaskVC!
+    init(addTaskVC: ADDTaskVC) {
+        self.addTaskVC = addTaskVC
+    }
+
 }
 //MARK:- extension
 extension ADDTaskPresenter {

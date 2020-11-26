@@ -25,9 +25,8 @@
                                           datePickerMode: .date)
 
                 addTaskView.setup()
-                let dateAndTime =
-                self.addTaskPresenter = ADDTaskPresenter()
-              self.addTaskPresenter?.onViewDidLoad(view: self)
+                self.addTaskPresenter = ADDTaskPresenter(addTaskVC: self)
+                self.addTaskPresenter?.onViewDidLoad(view: self)
             }
             // MARK:- Action Methods:
             @objc
@@ -39,7 +38,7 @@
             func doneAction() {
                 if let datePickerView = self.addTaskView.dataAndTimeTxtField.inputView as? UIDatePicker {
                     let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    dateFormatter.dateFormat = "yyyy-MM-dd HH:MM a"
                     let dateString = dateFormatter.string(from: datePickerView.date)
                     self.addTaskView.dataAndTimeTxtField.text = dateString
                     
