@@ -312,8 +312,8 @@
 		C34045402564FD4000329923 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				C34045462566ECA600329923 /* MainPresenter */,
 				C34045412564FD6300329923 /* AuthenticationPresenter */,
+				C34045462566ECA600329923 /* MainPresenter */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";

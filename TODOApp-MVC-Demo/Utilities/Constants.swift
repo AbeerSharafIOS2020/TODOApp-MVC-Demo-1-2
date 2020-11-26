@@ -87,8 +87,10 @@ struct LabelText {
   static let signUpLabel = "Sign Up"
      static let noAccountLabel = "Don’t have an acoount?"
    //  static let loginLabel = "Log In"
-
-
+}
+// messege
+struct Messages {
+     static let  emailAndPassErrorMsg = "Please Enter Valid Email and Password"
 }
 // Screen title
 struct Titles {
@@ -96,8 +98,6 @@ struct Titles {
  // static let signUpLabel = "Sign Up"
   //   static let noAccountLabel = "Don’t have an acoount?"
    //  static let loginLabel = "Log In"
-
-
 }
 
 struct PlaceHolders {
@@ -105,7 +105,6 @@ struct PlaceHolders {
      static let passwordPlaceHolder = "Password"
      static let namePlaceHolder = "Log In"
      static let agePlaceHolder = "Log In"
-
 }
 
 // NamesObjects

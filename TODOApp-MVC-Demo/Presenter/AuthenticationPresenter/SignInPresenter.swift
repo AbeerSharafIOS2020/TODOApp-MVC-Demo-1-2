@@ -34,7 +34,7 @@ class SignInPresenter: SignInVCPresenterDelegate {
 extension SignInPresenter {
     //MARK:-  Handle Response
     private func serviceLogin(with email: String?, password: String?) {
-//        UserDefaultsManager.shared().token = nil
+        UserDefaultsManager.shared().token = nil
         UserDefaultsManager.shared().userID = nil
         self.view?.processOnStart()
         APIManager.login(email: email!, password: password!) { (response) in
@@ -61,7 +61,7 @@ extension SignInPresenter {
         if validateField(email: email, password: password){
             self.serviceLogin(with: email!, password: password!)
         }else {
-            self.view?.showErrorMsg(message: "Please Enter Valid Email and Password")
+            self.view?.showErrorMsg(message: Messages.emailAndPassErrorMsg)
         }
     }
 }

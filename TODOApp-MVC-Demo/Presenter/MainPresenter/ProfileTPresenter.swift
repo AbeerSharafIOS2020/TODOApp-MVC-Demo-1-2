@@ -169,7 +169,7 @@ extension ProfileTPresenter {
     
     //Load image by name to the profile image
     func loadImagByName(){
-        self.profileTVC.profileView.imageLabel.isHidden = false
+        self.profileTVC?.profileView.imageLabel.isHidden = false
         if UserDefaultsManager.shared().imagName != nil {
             self.profileTVC.profileView.imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
             print("if is not nil \(UserDefaultsManager.shared().imagName ?? "")")

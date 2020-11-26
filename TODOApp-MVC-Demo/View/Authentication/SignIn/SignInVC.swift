@@ -11,12 +11,10 @@ import UIKit
 class SignInVC: MainVC {
     // MARK:- Outlets
     @IBOutlet var mainView: SignInView!
-    
     //MARK:- Properties
     var signInPresenter: SignInPresenter!
-    
     // MARK:- Lifecycle methods
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
         mainView.setup()
         mainView.backgroundColor = Colors.primaryColor
@@ -24,18 +22,17 @@ class SignInVC: MainVC {
         self.signInPresenter?.onViewDidLoad(view: self)
         UserDefaultsManager.shared().isUploadImage = false
     }
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning(){
         super.didReceiveMemoryWarning()
     }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle{
         return  .lightContent
     }
     // MARK:- Actions Methods
     //Sign in Btn
     @IBAction func signInBtnPressed(_ sender: Any) {
-        self.signInPresenter?.tryLogin(email:mainView.emailTxtField.text, password: mainView.passTxtField.text)
+self.signInPresenter?.tryLogin(email:mainView.emailTxtField.text, password: mainView.passTxtField.text)
     }
-    
     // Go to Sing UP
     @IBAction func goToSignUpScreenBtnPressed(_ sender: Any) {
         AppDelegate.shared().switchToRegisterState()
