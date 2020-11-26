@@ -20,7 +20,7 @@ class SignUpPresenter: SignUpPresenterProtocol {
     private weak var view : MainViewProtocol?
     //MARK:- Private Methods
     private func validateField(name: String?, email: String?, password: String?, age:String?) -> Bool{
-        if let notValidation = Validator().getTextValidation(name: name, email: email, password: password, age: age) {
+        if let notValidation = Validator.shared().getTextValidation(name: name, email: email, password: password, age: age) {
             view?.confirmationAlert1(title: notValidation.0, message: notValidation.1)
             return false
         }
@@ -60,7 +60,7 @@ extension SignUpPresenter {
                 UserDefaultsManager.shared().token = result.token
                 UserDefaultsManager.shared().userID = result.user.id
                 UserDefaultsManager.shared().name = result.user.name
-                Validator().createImageByName()
+                Validator.shared().createImageByName()
                 AppDelegate.shared().switchToAuthState()
             }
             self.view?.processOnStop()

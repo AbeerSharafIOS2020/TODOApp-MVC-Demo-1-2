@@ -19,6 +19,7 @@ class SignInVC: MainVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.setup()
+        mainView.backgroundColor = Colors.primaryColor
         self.signInPresenter = SignInPresenter()
         self.signInPresenter?.onViewDidLoad(view: self)
         UserDefaultsManager.shared().isUploadImage = false
@@ -27,7 +28,7 @@ class SignInVC: MainVC {
         super.didReceiveMemoryWarning()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return  .lightContent
     }
     // MARK:- Actions Methods
     //Sign in Btn

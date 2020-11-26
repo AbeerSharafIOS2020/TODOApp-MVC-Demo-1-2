@@ -91,7 +91,7 @@ extension ProfileTPresenter {
                 self.profileTVC.profileView.dateOfUpdateProfileLabel.text = "\(result.updatedAt)"
                 self.view?.processOnStop()
                 UserDefaultsManager.shared().name = "\(result.name)"
-                Validator().createImageByName()
+                Validator.shared().createImageByName()
             }
             self.view?.processOnStop()
         }
@@ -174,7 +174,7 @@ extension ProfileTPresenter {
             self.profileTVC.profileView.imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
             print("if is not nil \(UserDefaultsManager.shared().imagName ?? "")")
         }else {
-            Validator().createImageByName()
+            Validator.shared().createImageByName()
             self.profileTVC.profileView.imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
             print("if is nil \(UserDefaultsManager.shared().imagName ?? "")")
             

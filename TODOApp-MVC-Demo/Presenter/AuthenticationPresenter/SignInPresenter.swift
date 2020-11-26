@@ -20,10 +20,10 @@ class SignInPresenter: SignInVCPresenterDelegate {
     private var view : MainViewProtocol?
     //MARK:- Private Methods
     private func validateField(email: String?, password: String?) -> Bool{
-        if !Validator().isValidEmail(email){
+        if !Validator.shared().isValidEmail(email){
             return false
         }
-        if !Validator().isValidPassword(password){
+        if !Validator.shared().isValidPassword(password){
             return false
         }
         return true
