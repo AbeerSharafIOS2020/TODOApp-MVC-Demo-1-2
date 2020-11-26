@@ -32,10 +32,6 @@ class ProfileTPresenter: ProfileTPresenterProtocol {
     init(profileTVC: ProfileTVC) {
         self.profileTVC = profileTVC
     }
-    weak var validator : Validator!
-    init(validator: Validator) {
-        self.validator = validator
-    }
     //MARK:- Private Methods
     private func editProfile(_ txt: String, _ editTxt: String){
         switch txt {
@@ -95,7 +91,7 @@ extension ProfileTPresenter {
                 self.profileTVC.profileView.dateOfUpdateProfileLabel.text = "\(result.updatedAt)"
                 self.view?.processOnStop()
                 UserDefaultsManager.shared().name = "\(result.name)"
-                self.validator?.createImageByName()
+                Validator().createImageByName()
             }
             self.view?.processOnStop()
         }
@@ -178,7 +174,7 @@ extension ProfileTPresenter {
             self.profileTVC.profileView.imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
             print("if is not nil \(UserDefaultsManager.shared().imagName ?? "")")
         }else {
-            self.validator?.createImageByName()
+            Validator().createImageByName()
             self.profileTVC.profileView.imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
             print("if is nil \(UserDefaultsManager.shared().imagName ?? "")")
             

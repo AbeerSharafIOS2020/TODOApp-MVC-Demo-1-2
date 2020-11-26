@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ABn-WJ-bw6">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="702"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="700"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cw-V5-JMI">
                                 <rect key="frame" x="122" y="125" width="156" height="0.0"/>
@@ -102,7 +102,7 @@
                             <constraint firstItem="4TW-c0-xEe" firstAttribute="top" secondItem="Zpo-mT-JwU" secondAttribute="top" constant="262" id="GMA-oR-1SO"/>
                             <constraint firstItem="OQU-E4-BbC" firstAttribute="trailing" secondItem="ks9-08-Wz4" secondAttribute="trailing" identifier="300:300" id="I6h-lu-kMx"/>
                             <constraint firstItem="ks9-08-Wz4" firstAttribute="top" secondItem="0cw-V5-JMI" secondAttribute="bottom" constant="81.5" id="JQg-Rr-5RG"/>
-                            <constraint firstAttribute="top" secondItem="ABn-WJ-bw6" secondAttribute="bottom" constant="-702" id="JVv-EM-rSJ"/>
+                            <constraint firstAttribute="bottom" secondItem="ABn-WJ-bw6" secondAttribute="bottom" id="JVv-EM-rSJ"/>
                             <constraint firstItem="zgY-TG-KRJ" firstAttribute="trailing" secondItem="ks9-08-Wz4" secondAttribute="trailing" constant="1" identifier="300:300" id="MRy-BZ-y1L"/>
                             <constraint firstItem="ks9-08-Wz4" firstAttribute="height" secondItem="Zpo-mT-JwU" secondAttribute="height" multiplier="0.0642857" id="MvU-wP-sXi"/>
                             <constraint firstItem="zgY-TG-KRJ" firstAttribute="height" secondItem="ks9-08-Wz4" secondAttribute="height" id="Pkp-pC-zf9"/>
