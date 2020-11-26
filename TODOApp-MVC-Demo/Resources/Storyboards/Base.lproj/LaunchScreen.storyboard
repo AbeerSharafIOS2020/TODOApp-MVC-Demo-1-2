@@ -24,6 +24,7 @@
                             <constraint firstItem="1v6-8m-3p8" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="F5R-P6-V9j"/>
                             <constraint firstItem="1v6-8m-3p8" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Nt6-RJ-jkc"/>
                             <constraint firstItem="1v6-8m-3p8" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="axL-By-hqR"/>
+                            <constraint firstAttribute="bottom" secondItem="1v6-8m-3p8" secondAttribute="bottom" id="iH6-4b-a3A"/>
                             <constraint firstItem="1v6-8m-3p8" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="kPP-Yc-o3J"/>
                             <constraint firstItem="1v6-8m-3p8" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="-44" id="y9R-Gb-OZp"/>
                         </constraints>
