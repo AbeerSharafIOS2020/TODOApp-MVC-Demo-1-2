@@ -90,7 +90,7 @@ class ProfileTVC: UITableViewController {
 
 private func addBackground(_ tableView: UITableView){
 // Add a background view to the table view
-  let backgroundImage = UIImage(named: NamesObjects.backgroundImage)
+  let backgroundImage = UIImage(named: ImagesName.backgroundImage)
 let imageView = UIImageView(image: backgroundImage)
 tableView.backgroundView = imageView
 }

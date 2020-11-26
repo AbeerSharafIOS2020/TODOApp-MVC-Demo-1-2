@@ -40,7 +40,7 @@ class TaskDataTVCell: UITableViewCell {
     private func setUpImage(){
         taskImg.layer.cornerRadius = taskImg.frame.height / 2
         taskImg.contentMode = .scaleToFill
-        taskImg.image = UIImage(named: NamesObjects.toDoIcon)
+        taskImg.image = UIImage(named: ImagesName.toDoIcon)
     }
     func setupCellTaskData(object: TaskData)
     {   descriptionLabel.text = "\(object.description ) "

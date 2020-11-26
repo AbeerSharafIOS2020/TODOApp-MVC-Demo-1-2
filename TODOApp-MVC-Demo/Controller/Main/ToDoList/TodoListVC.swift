@@ -14,18 +14,18 @@ class TodoListVC: MainVC {
     
     //MARK:- Private Properties
     var todoListPresenter: TodoListPresenter!
-    var allTaskObj = [TaskData]()
+//    var allTaskObj = [TaskData]()
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Colors.primaryColor
         self.todoListPresenter?.onViewDidLoad(view: self)
-        self.allTaskObj = self.todoListPresenter?.serviceOfGetAllTask() ?? []
+        self.todoListPresenter?.serviceOfGetAllTask()
         self.setupView()
     }
     override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.allTaskObj = self.todoListPresenter?.serviceOfGetAllTask() ?? []
+    self.todoListPresenter?.serviceOfGetAllTask()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -67,7 +67,7 @@ self.navigationController?.pushViewController(ProfileTVC.create(), animated: tru
     }
     private func addBackground(_ tableView: UITableView){
     // Add a background view to the table view
-      let backgroundImage = UIImage(named: NamesObjects.backgroundImage)
+      let backgroundImage = UIImage(named: ImagesName.backgroundImage)
     let imageView = UIImageView(image: backgroundImage)
     tableView.backgroundView = imageView
     }
@@ -78,7 +78,7 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.addBackground(tableView)
         let count = self.todoListPresenter.allTaskObj.count
-        print("count in cell : \(allTaskObj.count)")
+        print("count in cell : \(self.todoListPresenter.allTaskObj.count)")
         return count
     }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -87,7 +87,7 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.taskDataTVCell, for: indexPath) as! TaskDataTVCell
         cell.selectionStyle = .none
-        self.allTaskObj = self.todoListPresenter.allTaskObj
+//        self.allTaskObj = self.todoListPresenter.allTaskObj
         let task = self.todoListPresenter.allTaskObj[indexPath.row]
         cell.setupCellTaskData(object: task)
         cell.backgroundColor = .clear
@@ -96,14 +96,14 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         let indexPath = indexPath
-        self.allTaskObj = self.todoListPresenter.allTaskObj
+//        self.allTaskObj = self.todoListPresenter.allTaskObj
         let item = self.todoListPresenter.allTaskObj[indexPath.row]
         self.todoListPresenter?.tryDeleteTaskConfirm(row: row, indexPath: indexPath, item: item)
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let row = indexPath.row
         let indexPath = indexPath
-        self.allTaskObj = self.todoListPresenter.allTaskObj
+//        self.allTaskObj = self.todoListPresenter.allTaskObj
         let item = self.todoListPresenter.allTaskObj[indexPath.row]
         self.todoListPresenter?.tryDeleteTaskConfirm(row: row, indexPath: indexPath, item: item)
 //        self.allTaskObj.remove(at: indexPath.item)

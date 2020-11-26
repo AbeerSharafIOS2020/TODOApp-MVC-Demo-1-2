@@ -14,30 +14,70 @@ enum ErrorValidMsg{
         switch self {
         case .name:
             return("Invalid Name","Enter Valid name ..at least consists two letters and first & last name")
-            case .email:
-return("Invalid Email", "Please Enter Valid Email")
-            case .password:
+        case .email:
+            return("Invalid Email", "Please Enter Valid Email")
+        case .password:
             return("Invalid Password", "Password Must be at Least 8 Characters")
-
-            case .age:
+            
+        case .age:
             return("Invalid Age", "Enter valid age .. greater than or equal 10 years")
         case .noData:
-            return("Invalid", "Please Enter The data ")
+            return("Invalid", "Please Enter your data ")
+        }
+    }
+}
+
+enum ErrorEmptyMsg{
+    case name, email, password, age
+    var errorMsg: (title: String, message: String) {
+        switch self {
+        case .name:
+            return("TextField Empty","Enter Valid name ..at least consists two letters and first & last name")
+        case .email:
+            return("TextField Empty", "Please Enter Valid Email")
+        case .password:
+            return("TextField Empty", "Password Must be at Least 8 Characters")
+            
+        case .age:
+            return("TextField Empty", "Enter valid age .. greater than or equal 10 years")
         }
     }
 }
 class Validator {
-//MARK:- SingleTon
-private static let sharedIntance = Validator()
+    //MARK:- SingleTon
+    private static let sharedIntance = Validator()
     class func shared()->Validator {
         return Validator.sharedIntance
     }
     //MARK:- Private Methods
+    func notEmptyGetText(name: String?, email: String?, password: String?, age: String?) -> (String, String)?{
+            switch name?.isEmpty ?? false {
+            case false : return ErrorEmptyMsg.name.errorMsg
+            case true : break
+            }
+            switch email?.isEmpty ?? false {
+            case false : return ErrorValidMsg.email.errorMsg
+            case true : break
+            }
+            switch password?.isEmpty ?? false {
+            case false : return ErrorValidMsg.password.errorMsg
+            case true : break
+            }
+            switch age?.isEmpty ?? false {
+            case false : return ErrorValidMsg.age.errorMsg
+            case true : break
+            }
+        return nil
+        //return ErrorValidMsg.noData.errorMsg
+    }
     func getTextValidation(name: String?, email: String?, password: String?, age: String?) -> (String, String)? {
-        if let name = name, !name.isEmpty,
-           let email = email?.trimmed, !email.isEmpty,
-           let password = password, !password.isEmpty,
-           let age = age, !age.isEmpty {
+        
+        if (notEmptyGetText(name: name, email: email, password: password, age: age) == nil)
+            {
+//         if let name = name, !name.isEmpty,
+//            let email = email?.trimmed, !email.isEmpty,
+//            let password = password, !password.isEmpty,
+//            let age = age, !age.isEmpty {
             
             switch isValidName(name) {
             case false : return ErrorValidMsg.name.errorMsg
@@ -51,15 +91,15 @@ private static let sharedIntance = Validator()
             case false : return ErrorValidMsg.password.errorMsg
             case true : break
             }
-            switch isValidAge(Int(age)) {
+            switch isValidAge(Int(age!)) {
             case false : return ErrorValidMsg.age.errorMsg
             case true : break
             }
             return nil
         }
         return ErrorValidMsg.noData.errorMsg
-        }
     }
+}
 //MARK:- extension
 extension Validator {
     // name validation
@@ -70,7 +110,7 @@ extension Validator {
         }
         return true
     }
-
+    
     // email validation
     func isValidEmail(_ email: String?) -> Bool {
         guard let email = email?.trimmed, !email.isEmpty else {
@@ -116,7 +156,7 @@ extension Validator {
         print("image: \(imageByName) )")
         UserDefaultsManager.shared().imagName = "\(imageByName)"
     }
-
+    
 }
 
 

@@ -11,7 +11,7 @@ import Foundation
 protocol TodoListPresenterProtocol: class {
     associatedtype View
     func onViewDidLoad(view : View)
-    func serviceOfGetAllTask() -> [TaskData]
+    func serviceOfGetAllTask()
     func willDisplayCell(row: Int?)
     func tryDeleteTaskConfirm(row: Int, indexPath: IndexPath, item: TaskData)
 }
@@ -36,7 +36,7 @@ class TodoListPresenter: TodoListPresenterProtocol {
 extension TodoListPresenter {
     //MARK:-  Handle Response
     //get all task
-     func serviceOfGetAllTask()-> [TaskData]{
+     func serviceOfGetAllTask(){
         self.view?.processOnStart()
         APIManager.getAllTask { (response) in
             switch response{
@@ -45,7 +45,7 @@ extension TodoListPresenter {
             case .success(let result):
                 self.allTaskObj = result.data
                 print("\(self.allTaskObj)")
-                self.todoListVC.allTaskObj = result.data
+//                self.todoListVC.allTaskObj = result.data
                 print(self.allTaskObj)
                 if  result.data.count == 0 {
                     self.todoListVC.noTaskLabel.text = "No Data Found"
@@ -60,7 +60,7 @@ extension TodoListPresenter {
                 self.view?.processOnStop()
             }
         }
-        return self.allTaskObj
+//        return self.allTaskObj
     }
     
     //Delete task
@@ -109,9 +109,9 @@ extension TodoListPresenter {
                 // handle delete (by removing the data from your array and updating the tableview)
                 self?.callDeleteService(item)
                 print("self.allTaskObj[indexPath.row]: \(item)")
-                self?.todoListVC?.allTaskObj.remove(at: indexPath.item)
+                self?.allTaskObj.remove(at: indexPath.item)
                 self?.todoListVC?.taskTableView?.deleteRows(at: [indexPath], with: .fade)
-                print("row:\(row) ")
+               // print("row:\(row) ")
 
              }
          )

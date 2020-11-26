@@ -22,8 +22,8 @@ class SignInView: UIView {
     // MARK:- Public Method
     func setup(){
         self.setupBackGround()
-        self.setupTextField(emailTxtField, placeHolder: "Email", iconImage: UIImage(named: "emailIcon")!)
-        self.setupTextField(passTxtField, placeHolder: "Password",isSceure: true, iconImage: UIImage(named: "passwordIcon")!)
+        self.setupTextField(emailTxtField, placeHolder: PlaceHolders.emailPlaceHolder, iconImage: UIImage(named:  ImagesName.userEmailcon)!)
+        self.setupTextField(passTxtField, placeHolder: PlaceHolders.passwordPlaceHolder ,isSceure: true, iconImage: UIImage(named: ImagesName.passwordIcon)!)
         self.setupSignInButton()
         self.setupUserImage()
         self.setupLabel()
@@ -35,13 +35,13 @@ class SignInView: UIView {
             self.backgroundColor = Colors.primaryColor
         }
         private func setupLabel(){
-            loginLabel.text = "Log In"
+            loginLabel.text = LabelText.loginLabel
             loginLabel.textColor = Colors.primaryColor
             loginLabel.font.withSize(26)
-            signUpLabel.text = "Sign Up"
+            signUpLabel.text = LabelText.signUpLabel
             signUpLabel.textColor = Colors.primaryColor
             signUpLabel.font.withSize(16)
-            noAccountLabel.text = "Don’t have an acoount? "
+            noAccountLabel.text = LabelText.noAccountLabel
             noAccountLabel.textColor = Colors.placholderColor
             noAccountLabel.font.withSize(16)
         }
@@ -71,12 +71,12 @@ class SignInView: UIView {
             signInButton.tintColor = .white
             
             signInButton.layer.cornerRadius = signInButton.frame.height / 5
-            signInButton.setTitle("Log In", for: .normal)
+            signInButton.setTitle(Titles.loginTitle, for: .normal)
 //            signInButton.
             
         }
         private func setupUserImage(){
-            loginImg.image = UIImage(named: "background")
+            loginImg.image = UIImage(named: ImagesName.backgroundImage)
             loginImg.contentMode =  .scaleToFill
             
         }

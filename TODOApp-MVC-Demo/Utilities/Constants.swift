@@ -12,8 +12,7 @@ import NVActivityIndicatorView
 // Storyboards
 struct Storyboards {
     static let authentication = "Authentication"
-    static let main = "Main"
-    
+    static let main = "Main"    
 }
 struct UI {
     static let controller = UIViewController()
@@ -82,9 +81,37 @@ struct Colors {
     static let placholderColor = UIColor.hexStringToUIColor(hex:"#D3C1DA")
 
 }
-struct NamesObjects {
+// label text
+struct LabelText {
+  static let loginLabel = "Log In"
+  static let signUpLabel = "Sign Up"
+     static let noAccountLabel = "Don’t have an acoount?"
+   //  static let loginLabel = "Log In"
+
+
+}
+// Screen title
+struct Titles {
+  static let loginTitle = "Log In"
+ // static let signUpLabel = "Sign Up"
+  //   static let noAccountLabel = "Don’t have an acoount?"
+   //  static let loginLabel = "Log In"
+
+
+}
+
+struct PlaceHolders {
+     static let emailPlaceHolder = "Email"
+     static let passwordPlaceHolder = "Password"
+     static let namePlaceHolder = "Log In"
+     static let agePlaceHolder = "Log In"
+
+}
+
+// NamesObjects
+struct ImagesName {
     static let userNameIcon = "userNameIcon"
-     static let toDoIcon = "todo"
+    static let toDoIcon = "todo"
     static let userEmailcon = "emailIcon"
     static let userAgeIcon = "ageIcon"
     static let profileDateIcon = ""

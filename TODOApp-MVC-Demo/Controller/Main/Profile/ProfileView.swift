@@ -77,7 +77,7 @@ class ProfileView: UITableView{
             profileImgView.layer.borderColor = Colors.placholderColor.cgColor
 
             
-            nameIconImgView.image = UIImage(named: NamesObjects.userNameIcon)
+            nameIconImgView.image = UIImage(named: ImagesName.userNameIcon)
             nameIconImgView.layer.cornerRadius = profileImgView.frame.height / 2
             nameIconImgView.contentMode = .scaleToFill
             nameIconImgView.layer.borderColor = Colors.placholderColor.cgColor
@@ -85,7 +85,7 @@ class ProfileView: UITableView{
 
 
 
-            emailIconImgView.image = UIImage(named: NamesObjects.userEmailcon)
+            emailIconImgView.image = UIImage(named: ImagesName.userEmailcon)
             emailIconImgView.layer.cornerRadius = profileImgView.frame.height / 2
             emailIconImgView.contentMode = .scaleAspectFit
             emailIconImgView.layer.borderColor = Colors.placholderColor.cgColor
@@ -93,7 +93,7 @@ class ProfileView: UITableView{
 
 
 
-            ageIconeImgView.image = UIImage(named: NamesObjects.userAgeIcon)
+            ageIconeImgView.image = UIImage(named: ImagesName.userAgeIcon)
             ageIconeImgView.layer.cornerRadius = profileImgView.frame.height / 2
             ageIconeImgView.contentMode = .scaleToFill
             ageIconeImgView.layer.borderColor = Colors.placholderColor.cgColor
@@ -101,7 +101,7 @@ class ProfileView: UITableView{
 
 
 
-            dateUserIconImgView.image = UIImage(named: NamesObjects.profileDateIcon)
+            dateUserIconImgView.image = UIImage(named: ImagesName.profileDateIcon)
             dateUserIconImgView.layer.cornerRadius = profileImgView.frame.height / 2
             dateUserIconImgView.contentMode = .scaleToFill
             dateUserIconImgView.layer.borderColor = Colors.placholderColor.cgColor
@@ -109,7 +109,7 @@ class ProfileView: UITableView{
 
 
 
-            dateOfUpdateProfileImgView.image = UIImage(named: NamesObjects.profileUpdateDateIcon)
+            dateOfUpdateProfileImgView.image = UIImage(named: ImagesName.profileUpdateDateIcon)
             dateOfUpdateProfileImgView.layer.cornerRadius = profileImgView.frame.height / 2
             dateOfUpdateProfileImgView.contentMode = .scaleToFill
             dateOfUpdateProfileImgView.layer.borderColor = Colors.primaryColor.cgColor
@@ -121,7 +121,7 @@ class ProfileView: UITableView{
         }
         private func setupImages(){
             
-            profileImgView.image = UIImage(named: NamesObjects.backgroundImage)
+            profileImgView.image = UIImage(named: ImagesName.backgroundImage)
             profileImgView.contentMode =  .scaleToFill
             
         }
