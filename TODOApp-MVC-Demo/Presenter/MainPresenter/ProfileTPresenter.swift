@@ -36,21 +36,21 @@ class ProfileTPresenter: ProfileTPresenterProtocol {
     private func editProfile(_ txt: String, _ editTxt: String){
         switch txt {
         case "Name":
-            if !((self.mainVC?.isValidName(editTxt)) ?? false ){
+            if !((Validator.shared().isValidName(editTxt))){
                 self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
             }else {
                 self.profileTVC?.presentSuccess(with: "Editting Done Successfully..")
                 self.serviceUpdateProfile(txt.lowercased(),editTxt)
             }
         case "Email":
-            if !((self.mainVC?.isValidEmail(editTxt)) ?? false ){
+            if !((Validator.shared().isValidEmail(editTxt))){
                 self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
             }else {
                 self.profileTVC?.presentSuccess(with: "Editting Done Successfully..")
                 self.serviceUpdateProfile(txt.lowercased(),editTxt)
             }
         case "Password":
-            if !((self.mainVC?.isValidPassword(editTxt)) ?? false){
+            if !((Validator.shared().isValidPassword(editTxt))){
                 self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
                 
             }else {
@@ -58,7 +58,7 @@ class ProfileTPresenter: ProfileTPresenterProtocol {
                 self.serviceUpdateProfile(txt.lowercased(),editTxt)
             }
         case "Age":
-            if !((self.mainVC?.isValidAge(Int(editTxt))) ?? false ){
+            if !((Validator.shared().isValidAge(Int(editTxt)))){
                 self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
             }else {
                 self.profileTVC?.presentSuccess(with: "Editting Done Successfully..")

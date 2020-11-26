@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class SignInVC: MainVC {
     // MARK:- Outlets
     @IBOutlet var mainView: SignInView!
@@ -31,7 +30,7 @@ class SignInVC: MainVC {
     // MARK:- Actions Methods
     //Sign in Btn
     @IBAction func signInBtnPressed(_ sender: Any) {
-self.signInPresenter?.tryLogin(email:mainView.emailTxtField.text, password: mainView.passTxtField.text)
+    self.signInPresenter?.tryLogin(email:mainView.emailTxtField.text, password: mainView.passTxtField.text)
     }
     // Go to Sing UP
     @IBAction func goToSignUpScreenBtnPressed(_ sender: Any) {

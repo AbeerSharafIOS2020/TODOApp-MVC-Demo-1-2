@@ -18,7 +18,6 @@ enum ErrorValidMsg{
             return("Invalid Email", "Please Enter Valid Email")
         case .password:
             return("Invalid Password", "Password Must be at Least 8 Characters")
-            
         case .age:
             return("Invalid Age", "Enter valid age .. greater than or equal 10 years")
         case .noData:
@@ -52,20 +51,20 @@ class Validator {
     //MARK:- Private Methods
     func notEmptyGetText(name: String?, email: String?, password: String?, age: String?) -> (String, String)?{
             switch name?.isEmpty ?? false {
-            case false : return ErrorEmptyMsg.name.errorMsg
-            case true : break
+            case true : return ErrorEmptyMsg.name.errorMsg
+            case false : break
             }
             switch email?.isEmpty ?? false {
-            case false : return ErrorValidMsg.email.errorMsg
-            case true : break
+            case true : return ErrorValidMsg.email.errorMsg
+            case false : break
             }
             switch password?.isEmpty ?? false {
-            case false : return ErrorValidMsg.password.errorMsg
-            case true : break
+            case true : return ErrorValidMsg.password.errorMsg
+            case false : break
             }
             switch age?.isEmpty ?? false {
-            case false : return ErrorValidMsg.age.errorMsg
-            case true : break
+            case  true: return ErrorValidMsg.age.errorMsg
+            case  false: break
             }
         return nil
         //return ErrorValidMsg.noData.errorMsg

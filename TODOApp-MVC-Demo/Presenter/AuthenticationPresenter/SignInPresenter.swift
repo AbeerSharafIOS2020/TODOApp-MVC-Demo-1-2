@@ -28,7 +28,6 @@ class SignInPresenter: SignInVCPresenterDelegate {
         }
         return true
     }
-    
 }
 //MARK:- extension
 extension SignInPresenter {
