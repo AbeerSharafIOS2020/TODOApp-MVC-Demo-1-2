@@ -14,32 +14,22 @@ protocol SignUpPresenterProtocol: class {
 }
 //MARK:- SignUpPresenter
 class SignUpPresenter: SignUpPresenterProtocol {
-    
     //MARK:- Properties
     typealias View = MainViewProtocol
     private weak var view : MainViewProtocol?
     //MARK:- Private Methods
     private func validateField(name: String?, email: String?, password: String?, age:String?) -> Bool{
-        if let notValidation = Validator.shared().getTextValidation(name: name, email: email, password: password, age: age) {
-            view?.confirmationAlert1(title: notValidation.0, message: notValidation.1)
+        if let emptyTextFeild = Validator.shared().notEmptyGetText(name: name, email: email, password: email, age: age){
+            view?.confirmationAlert1(title: emptyTextFeild.0, message: emptyTextFeild.1)
             return false
+        }else {
+            if let notValidation = Validator.shared().getTextValidation(name: name, email: email, password: password, age: age) {
+                view?.confirmationAlert1(title: notValidation.0, message: notValidation.1)
+                return false
+            }
         }
         return true
     }
-//        if !validator.isValidName(name){
-//            return false
-//        }
-//        if !validator.isValidEmail(email){
-//            return false
-//        }
-//        if !validator.isValidPassword(password){
-//            return false
-//        }
-//        if !validator.isValidAge(age){
-//            return false
-//        }
-//        return true
-//    }
 }
 //MARK:- extension
 extension SignUpPresenter {
@@ -47,6 +37,7 @@ extension SignUpPresenter {
     private func serviceRegisterData(with name: String?, email: String?, password: String?, age: Int?) {
         UserDefaultsManager.shared().imagName = nil
         UserDefaultsManager.shared().userID = nil
+        UserDefaultsManager.shared().token = nil
         self.view?.processOnStart()
         APIManager.register(name: name!, email: email!, password: password!, age: age! ) {
             (response) in
@@ -72,9 +63,6 @@ extension SignUpPresenter {
     }
     func trySignUp(name: String?, email: String?, password: String?, age: String?){
         if validateField(name: name, email: email, password: password, age: age){
-            self.serviceRegisterData(with: name, email: email!, password: password!, age: Int(age!))
-        }else {
-            self.view?.showErrorMsg(message: "Please Enter Valid Email and Password")
-        }
+            self.serviceRegisterData(with: name, email: email!, password: password!, age: Int(age!))}
     }
 }

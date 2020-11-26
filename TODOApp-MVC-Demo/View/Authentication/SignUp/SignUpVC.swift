@@ -13,14 +13,12 @@
         // MARK:- Outlets
         @IBOutlet var signUpView: SignUpView!
         // MARK:- Properties
-        
         var signUpPresenter: SignUpPresenter!
-        var validator: Validator!
-        
         // MARK:- Lifecycle methods
         override func viewDidLoad() {
             super.viewDidLoad()
             signUpView.setup()
+            navigationStyle()
             self.signUpPresenter = SignUpPresenter()
             self.signUpPresenter?.onViewDidLoad(view: self)
         }

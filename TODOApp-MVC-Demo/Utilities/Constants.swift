@@ -75,7 +75,7 @@ struct ParameterKeys {
 
 //colors
 struct Colors {
-     static let labelColor =       UIColor.hexStringToUIColor(hex: "#AA32FD")
+     static let labelColor = UIColor.hexStringToUIColor(hex: "#AA32FD")
     static let primaryColor =
        UIColor.hexStringToUIColor(hex: "#4E0E69")
     static let placholderColor = UIColor.hexStringToUIColor(hex:"#D3C1DA")
@@ -86,7 +86,7 @@ struct LabelText {
   static let loginLabel = "Log In"
   static let signUpLabel = "Sign Up"
   static let noAccountLabel = "Don’t have an acoount?"
-   //  static let loginLabel = "Log In"
+  static let alreadyHaveAccountLabel = "Already have an account?"
 }
 // messege
 struct Messages {
@@ -95,7 +95,7 @@ struct Messages {
 // Screen title
 struct Titles {
   static let loginTitle = "Log In"
- // static let signUpLabel = "Sign Up"
+  static let signUpTitle = "Sign Up"
   //   static let noAccountLabel = "Don’t have an acoount?"
    //  static let loginLabel = "Log In"
 }
@@ -103,8 +103,8 @@ struct Titles {
 struct PlaceHolders {
      static let emailPlaceHolder = "Email"
      static let passwordPlaceHolder = "Password"
-     static let namePlaceHolder = "Log In"
-     static let agePlaceHolder = "Log In"
+     static let namePlaceHolder = "Name"
+     static let agePlaceHolder = "Age"
 }
 
 // NamesObjects

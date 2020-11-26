@@ -31,14 +31,13 @@ enum ErrorEmptyMsg{
     var errorMsg: (title: String, message: String) {
         switch self {
         case .name:
-            return("TextField Empty","Enter Valid name ..at least consists two letters and first & last name")
+            return("No name ","Enter Valid name ..at least consists two letters and first & last name")
         case .email:
-            return("TextField Empty", "Please Enter Valid Email")
+            return("No Email", "Please Enter Valid Email")
         case .password:
-            return("TextField Empty", "Password Must be at Least 8 Characters")
-            
+            return("Empty Password", "Password Must be at Least 8 Characters")
         case .age:
-            return("TextField Empty", "Enter valid age .. greater than or equal 10 years")
+            return("Age", "Enter valid age .. greater than or equal 10 years")
         }
     }
 }
@@ -73,11 +72,6 @@ class Validator {
         
         if (notEmptyGetText(name: name, email: email, password: password, age: age) == nil)
             {
-//         if let name = name, !name.isEmpty,
-//            let email = email?.trimmed, !email.isEmpty,
-//            let password = password, !password.isEmpty,
-//            let age = age, !age.isEmpty {
-            
             switch isValidName(name) {
             case false : return ErrorValidMsg.name.errorMsg
             case true : break
