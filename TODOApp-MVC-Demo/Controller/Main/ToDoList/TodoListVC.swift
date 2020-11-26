@@ -14,7 +14,6 @@ class TodoListVC: MainVC {
     
     //MARK:- Private Properties
     var todoListPresenter: TodoListPresenter!
-//    var allTaskObj = [TaskData]()
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +86,6 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.taskDataTVCell, for: indexPath) as! TaskDataTVCell
         cell.selectionStyle = .none
-//        self.allTaskObj = self.todoListPresenter.allTaskObj
         let task = self.todoListPresenter.allTaskObj[indexPath.row]
         cell.setupCellTaskData(object: task)
         cell.backgroundColor = .clear

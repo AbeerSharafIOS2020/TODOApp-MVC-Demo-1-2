@@ -60,7 +60,6 @@ extension TodoListPresenter {
                 self.view?.processOnStop()
             }
         }
-//        return self.allTaskObj
     }
     
     //Delete task
@@ -83,7 +82,10 @@ extension TodoListPresenter {
             self.view?.processOnStop()
         }
     }
-
+//MARK:- Public Methods
+    func getAllTaskData()-> [TaskData] {
+        return self.allTaskObj
+    }
     //MARK:- The confirm of the Protocol
     internal func onViewDidLoad(view : MainViewProtocol){
         self.view = view
@@ -111,8 +113,6 @@ extension TodoListPresenter {
                 print("self.allTaskObj[indexPath.row]: \(item)")
                 self?.allTaskObj.remove(at: indexPath.item)
                 self?.todoListVC?.taskTableView?.deleteRows(at: [indexPath], with: .fade)
-               // print("row:\(row) ")
-
              }
          )
      }
