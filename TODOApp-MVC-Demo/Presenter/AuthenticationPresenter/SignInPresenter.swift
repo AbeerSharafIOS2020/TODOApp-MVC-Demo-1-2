@@ -8,16 +8,16 @@
 
 import Foundation
 //MARK:- Protocol of SignInVCPresenter
-protocol SignInVCPresenterDelegate: class {
+protocol SignInPresenterProtocol: class {
     associatedtype View
     func onViewDidLoad(view : View)
     func tryLogin(email: String?, password: String?)
 }
 //MARK:- SignInPresenter
-class SignInPresenter: SignInVCPresenterDelegate {
+class SignInPresenter: SignInPresenterProtocol {
     //MARK:- Properties
     typealias View = MainViewProtocol
-    private var view : MainViewProtocol?
+    private weak var view : MainViewProtocol?
     //MARK:- Private Methods
     private func validateField(email: String?, password: String?) -> Bool{
         if !Validator.shared().isValidEmail(email){
