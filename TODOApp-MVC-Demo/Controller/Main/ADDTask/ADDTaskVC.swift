@@ -11,7 +11,7 @@
         
         class ADDTaskVC: MainVC {
             // MARK:- Outlets
-            @IBOutlet var addTaskView: ADDTaskView!
+            @IBOutlet weak var addTaskView: ADDTaskView!
           
            
             //MARK:- Properties

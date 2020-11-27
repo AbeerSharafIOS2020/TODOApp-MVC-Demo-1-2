@@ -9,7 +9,7 @@
 import UIKit
 class ProfileTVC: UITableViewController {
     //MARK:- Outlets
-    @IBOutlet var profileView: ProfileView!
+    @IBOutlet weak var profileView: ProfileView!
     // MARK:- Properties
     let imagePicker = UIImagePickerController()
     let image = Data()

@@ -9,7 +9,7 @@
 import UIKit
 class SignInVC: MainVC {
     // MARK:- Outlets
-    @IBOutlet var mainView: SignInView!
+    @IBOutlet weak var mainView: SignInView!
     //MARK:- Properties
     var signInPresenter: SignInPresenter!
     // MARK:- Lifecycle methods

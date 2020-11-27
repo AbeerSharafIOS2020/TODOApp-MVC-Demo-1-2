@@ -11,7 +11,7 @@
     
     class SignUpVC: MainVC {
         // MARK:- Outlets
-        @IBOutlet var signUpView: SignUpView!
+        @IBOutlet weak var signUpView: SignUpView!
         // MARK:- Properties
         var signUpPresenter: SignUpPresenter!
         // MARK:- Lifecycle methods
