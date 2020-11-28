@@ -21,7 +21,7 @@ class ADDTaskView: UIView {
          // MARK:- Public Method
         func setup(){
             self.setupBackGround()
-            self.setupTextField(descriptionTxtField, placeHolder: PlaceHolders.dateAndTimePlaceHolder)
+            self.setupTextField(descriptionTxtField, placeHolder: PlaceHolders.firstNotePlaceHolder)
             self.setupTextField(dataAndTimeTxtField, placeHolder: PlaceHolders.dateAndTimePlaceHolder)
             self.setupSaveButton()
             self.setupUserImage()
@@ -57,7 +57,7 @@ class ADDTaskView: UIView {
                 textField.selectedIconColor = Colors.placholderColor
                 textField.lineColor = Colors.placholderColor
                 textField.selectedLineColor = Colors.primaryColor
-                textField.font = UIFont.init(name: textField.font!.fontName, size: 20)
+                //textField.font = UIFont.init(name: textField.font!.fontName, size: 20)
                 textField.isSecureTextEntry = isSceure
                 if isPhone {
                     textField.keyboardType = .asciiCapableNumberPad
