@@ -8,16 +8,16 @@
 
 import Foundation
 //MARK:- Protocol
-protocol ADDTaskPresenterProtocol: class {
+protocol ADDTaskViewModelProtocol {
     associatedtype View
     func onViewDidLoad(view : View)
     func tryAddTask(description: String?, dateAndTime: String?)
 }
 //MARK:- ADDTaskPresenter
-class ADDTaskPresenter: ADDTaskPresenterProtocol {
+class ADDTaskViewModel {
     //MARK:- Properties
-    typealias View = MainViewProtocol
-    private weak var view : MainViewProtocol?
+    typealias View = MainVCProtocol
+    private weak var view : MainVCProtocol?
     
     weak var addTaskVC: ADDTaskVC!
     init(addTaskVC: ADDTaskVC) {
@@ -26,7 +26,7 @@ class ADDTaskPresenter: ADDTaskPresenterProtocol {
 
 }
 //MARK:- extension
-extension ADDTaskPresenter {
+extension ADDTaskViewModel: ADDTaskViewModelProtocol {
     //MARK:-  Handle Response
     private func serviceSaveTask(with description: String?, dateAndTime: String?) {
         self.view?.processOnStart()
@@ -48,7 +48,7 @@ extension ADDTaskPresenter {
     }
     
     //MARK:- The confirm of the Protocol
-    internal func onViewDidLoad(view: MainViewProtocol) {
+    internal func onViewDidLoad(view: MainVCProtocol) {
         self.view = view
     }
     func tryAddTask(description: String?, dateAndTime: String?) {

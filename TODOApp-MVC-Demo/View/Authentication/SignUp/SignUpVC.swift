@@ -13,14 +13,14 @@
         // MARK:- Outlets
         @IBOutlet weak var signUpView: SignUpView!
         // MARK:- Properties
-        var signUpPresenter: SignUpPresenter!
+        var viewModel: SignUpViewModel!
         // MARK:- Lifecycle methods
         override func viewDidLoad() {
             super.viewDidLoad()
             signUpView.setup()
             navigationStyle()
-            self.signUpPresenter = SignUpPresenter()
-            self.signUpPresenter?.onViewDidLoad(view: self)
+            self.viewModel = SignUpViewModel()
+            self.viewModel?.onViewDidLoad(view: self)
         }
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
@@ -28,7 +28,7 @@
         // MARK:- Actions Methods
         //Sign Up Btn
         @IBAction func signUpBtnPressed(_ sender: Any) {
-            self.signUpPresenter?.trySignUp(name: signUpView.userNameTxtField.text, email: signUpView.emailTxtField.text, password: signUpView.passTxtField.text, age:signUpView.userAgeTxtField.text!)
+            self.viewModel?.trySignUp(name: signUpView.userNameTxtField.text, email: signUpView.emailTxtField.text, password: signUpView.passTxtField.text, age:signUpView.userAgeTxtField.text!)
         }
         //Go to Sign In
         @IBAction func goToSignInScreenBtnPressed(_ sender: Any) {

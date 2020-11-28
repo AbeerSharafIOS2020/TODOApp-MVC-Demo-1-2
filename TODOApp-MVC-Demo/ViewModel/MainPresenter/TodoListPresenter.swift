@@ -8,7 +8,7 @@
 
 import Foundation
 //MARK:- Protocol of SignInPresenter
-protocol TodoListPresenterProtocol: class {
+protocol TodoListViewModelProtocol {
     associatedtype View
     func onViewDidLoad(view : View)
     func serviceOfGetAllTask()
@@ -16,10 +16,10 @@ protocol TodoListPresenterProtocol: class {
     func tryDeleteTaskConfirm(row: Int, indexPath: IndexPath, item: TaskData)
 }
 //MARK:- SignUpPresenter
-class TodoListPresenter: TodoListPresenterProtocol {
+class TodoListViewModel {
     //MARK:- Properties
-    typealias View = MainViewProtocol
-    private weak var view : MainViewProtocol?
+    typealias View = MainVCProtocol
+    private weak var view : MainVCProtocol?
     weak var todoListVC: TodoListVC!
     init(todoListVC: TodoListVC) {
         self.todoListVC = todoListVC
@@ -33,7 +33,7 @@ class TodoListPresenter: TodoListPresenterProtocol {
     var allTaskObj = [TaskData]()
 }
 //MARK:- extension
-extension TodoListPresenter {
+extension TodoListViewModel: TodoListViewModelProtocol {
     //MARK:-  Handle Response
     //get all task
      func serviceOfGetAllTask(){
@@ -87,7 +87,7 @@ extension TodoListPresenter {
         return self.allTaskObj
     }
     //MARK:- The confirm of the Protocol
-    internal func onViewDidLoad(view : MainViewProtocol){
+    internal func onViewDidLoad(view : MainVCProtocol){
         self.view = view
     }
     

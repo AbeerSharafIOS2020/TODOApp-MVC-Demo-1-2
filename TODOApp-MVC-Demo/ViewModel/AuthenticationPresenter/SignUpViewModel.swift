@@ -7,16 +7,17 @@
 
 import Foundation
 //MARK:- Protocol of SignInPresenter
-protocol SignUpPresenterProtocol: class {
+// single up presenter protocol -use by any class to provide sign up date
+protocol SignUpViewModelProtocol {
     associatedtype View
     func onViewDidLoad(view : View)
     func trySignUp(name: String?, email: String?, password: String?, age: String?)
 }
 //MARK:- SignUpPresenter
-class SignUpPresenter: SignUpPresenterProtocol {
+class SignUpViewModel {
     //MARK:- Properties
-    typealias View = MainViewProtocol
-    private weak var view : MainViewProtocol?
+    typealias View = MainVCProtocol
+    private weak var view : MainVCProtocol?
     //MARK:- Private Methods
     private func validateField(name: String?, email: String?, password: String?, age:String?) -> Bool{
         if let emptyTextFeild = Validator.shared().notEmptyGetText(name: name, email: email, password: email, age: age){
@@ -32,7 +33,7 @@ class SignUpPresenter: SignUpPresenterProtocol {
     }
 }
 //MARK:- extension
-extension SignUpPresenter {
+extension SignUpViewModel: SignUpViewModelProtocol {
     //MARK:-  Handle Response
     private func serviceRegisterData(with name: String?, email: String?, password: String?, age: Int?) {
         UserDefaultsManager.shared().imagName = nil
@@ -58,7 +59,7 @@ extension SignUpPresenter {
         }
     }
     //MARK:- The confirm of the SignInVCPresenterDelegate Protocol
-    internal func onViewDidLoad(view : MainViewProtocol){
+    internal func onViewDidLoad(view : MainVCProtocol){
         self.view = view
     }
     func trySignUp(name: String?, email: String?, password: String?, age: String?){

@@ -13,18 +13,18 @@ class TodoListVC: MainVC {
     @IBOutlet weak var noTaskLabel: UILabel!
     
     //MARK:- Private Properties
-    var todoListPresenter: TodoListPresenter!
+    var todoListViewModel: TodoListViewModel!
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Colors.primaryColor
-        self.todoListPresenter?.onViewDidLoad(view: self)
-        self.todoListPresenter?.serviceOfGetAllTask()
+        self.todoListViewModel?.onViewDidLoad(view: self)
+        self.todoListViewModel?.serviceOfGetAllTask()
         self.setupView()
     }
     override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.todoListPresenter?.serviceOfGetAllTask()
+    self.todoListViewModel?.serviceOfGetAllTask()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -38,7 +38,7 @@ self.navigationController?.pushViewController(ProfileTVC.create(), animated: tru
     // MARK:- Public Methods
     class func create() -> TodoListVC {
         let todoListVC: TodoListVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.todoListVC)
-        todoListVC.todoListPresenter = TodoListPresenter(todoListVC: todoListVC)
+        todoListVC.todoListViewModel = TodoListViewModel(todoListVC: todoListVC)
         return todoListVC
     }
     // add task Btn
@@ -76,8 +76,8 @@ self.navigationController?.pushViewController(ProfileTVC.create(), animated: tru
 extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.addBackground(tableView)
-        let count = self.todoListPresenter.allTaskObj.count
-        print("count in cell : \(self.todoListPresenter.allTaskObj.count)")
+        let count = self.todoListViewModel.allTaskObj.count
+        print("count in cell : \(self.todoListViewModel.allTaskObj.count)")
         return count
     }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -86,7 +86,7 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.taskDataTVCell, for: indexPath) as! TaskDataTVCell
         cell.selectionStyle = .none
-        let task = self.todoListPresenter.allTaskObj[indexPath.row]
+        let task = self.todoListViewModel.allTaskObj[indexPath.row]
         cell.setupCellTaskData(object: task)
         cell.backgroundColor = .clear
         return cell
@@ -95,21 +95,21 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
         let row = indexPath.row
         let indexPath = indexPath
 //        self.allTaskObj = self.todoListPresenter.allTaskObj
-        let item = self.todoListPresenter.allTaskObj[indexPath.row]
-        self.todoListPresenter?.tryDeleteTaskConfirm(row: row, indexPath: indexPath, item: item)
+        let item = self.todoListViewModel.allTaskObj[indexPath.row]
+        self.todoListViewModel?.tryDeleteTaskConfirm(row: row, indexPath: indexPath, item: item)
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let row = indexPath.row
         let indexPath = indexPath
 //        self.allTaskObj = self.todoListPresenter.allTaskObj
-        let item = self.todoListPresenter.allTaskObj[indexPath.row]
-        self.todoListPresenter?.tryDeleteTaskConfirm(row: row, indexPath: indexPath, item: item)
+        let item = self.todoListViewModel.allTaskObj[indexPath.row]
+        self.todoListViewModel?.tryDeleteTaskConfirm(row: row, indexPath: indexPath, item: item)
 //        self.allTaskObj.remove(at: indexPath.item)
 //        self.taskTableView.deleteRows(at: [indexPath], with: .fade)
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        self.todoListPresenter?.willDisplayCell(row: row)
+        self.todoListViewModel?.willDisplayCell(row: row)
     }
     func animate(row: Int?){
         UIView.animate(

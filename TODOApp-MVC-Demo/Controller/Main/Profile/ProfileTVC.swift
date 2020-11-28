@@ -13,7 +13,7 @@ class ProfileTVC: UITableViewController {
     // MARK:- Properties
     let imagePicker = UIImagePickerController()
     let image = Data()
-    var profileTPresenter: ProfileTPresenter!
+    var profileTViewModel: ProfileTViewModel!
     weak var mainVC: MainVC!
     var validator: Validator!
     
@@ -23,8 +23,8 @@ class ProfileTVC: UITableViewController {
         self.profileView.backgroundColor = Colors.primaryColor
         self.profileViewSetUp()
         self.imageConfiguration()
-        self.profileTPresenter?.serviceOfGetProfileData()
-        self.profileTPresenter?.serviceOfGetImage()
+        self.profileTViewModel?.serviceOfGetProfileData()
+        self.profileTViewModel?.serviceOfGetImage()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -34,11 +34,11 @@ class ProfileTVC: UITableViewController {
     //MARK:-Actions Methods :
     //log out Btn
     @IBAction func logoutBtnPressed(_ sender: Any) {
-        self.profileTPresenter?.tryLogOutConfirm()
+        self.profileTViewModel?.tryLogOutConfirm()
     }
     //add image Btn
     @IBAction func addImagBtnTapPressed(_ sender: Any) {
-        self.profileTPresenter?.ChooseSourceType()
+        self.profileTViewModel?.ChooseSourceType()
     }
     //Back Btn
     @IBAction func backTapButton() {
@@ -47,7 +47,7 @@ class ProfileTVC: UITableViewController {
     // MARK:- Public Methods
     class func create() -> ProfileTVC {
         let profileTVC: ProfileTVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.profileTVC)
-            profileTVC.profileTPresenter = ProfileTPresenter(profileTVC: profileTVC)
+            profileTVC.profileTViewModel = ProfileTViewModel(profileTVC: profileTVC)
         return profileTVC
     }
     func addImag(imageData: Data){
@@ -76,7 +76,7 @@ class ProfileTVC: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        self.profileTPresenter?.confirmEdittingMsg(row: row)
+        self.profileTViewModel?.confirmEdittingMsg(row: row)
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.addBackground(tableView)
@@ -100,7 +100,7 @@ extension ProfileTVC {
     //MARK:- Handle Response of Upload user image
     private func uploadImage(_ image: UIImage){
         let imageJpegData = image.jpegData(compressionQuality: 1)!
-        self.profileTPresenter?.tryUploadImage(imageJpegData)
+        self.profileTViewModel?.tryUploadImage(imageJpegData)
     }
 }
 //MARK:- Image Picker

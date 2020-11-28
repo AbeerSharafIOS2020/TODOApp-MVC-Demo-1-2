@@ -12,10 +12,9 @@
         class ADDTaskVC: MainVC {
             // MARK:- Outlets
             @IBOutlet weak var addTaskView: ADDTaskView!
-          
-           
+        
             //MARK:- Properties
-             var addTaskPresenter: ADDTaskPresenter!
+             var addTaskViewModel: ADDTaskViewModel!
             // MARK:- Life Cycle Methods
             override func viewDidLoad() {
                 super.viewDidLoad()
@@ -25,8 +24,8 @@
                                           datePickerMode: .date)
 
                 addTaskView.setup()
-                self.addTaskPresenter = ADDTaskPresenter(addTaskVC: self)
-                self.addTaskPresenter?.onViewDidLoad(view: self)
+                self.addTaskViewModel = ADDTaskViewModel(addTaskVC: self)
+                self.addTaskViewModel?.onViewDidLoad(view: self)
             }
             // MARK:- Action Methods:
             @objc
@@ -49,7 +48,7 @@
                 }
             }
             @IBAction func saveBtnPressed(_ sender: Any) {
-                self.addTaskPresenter?.tryAddTask(description: addTaskView.descriptionTxtField.text,  dateAndTime: addTaskView.dataAndTimeTxtField.text)
+                self.addTaskViewModel?.tryAddTask(description: addTaskView.descriptionTxtField.text,  dateAndTime: addTaskView.dataAndTimeTxtField.text)
                 }
             // MARK:- private Methods
           private func printTimestamp() {

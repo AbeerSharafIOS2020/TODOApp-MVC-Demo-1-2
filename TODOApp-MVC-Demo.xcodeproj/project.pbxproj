@@ -28,16 +28,16 @@
 		C33C8FEC25503DC100F3C0B2 /* TaskDataTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33C8FEA25503DC100F3C0B2 /* TaskDataTVCell.xib */; };
 		C33C8FEE25507A2600F3C0B2 /* UIView+EXtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C8FED25507A2600F3C0B2 /* UIView+EXtention.swift */; };
 		C33C8FF025507F0E00F3C0B2 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C8FEF25507F0E00F3C0B2 /* ShadowView.swift */; };
-		C34045432564FD8F00329923 /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34045422564FD8F00329923 /* SignInPresenter.swift */; };
+		C34045432564FD8F00329923 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34045422564FD8F00329923 /* SignInViewModel.swift */; };
 		C34045452564FDBC00329923 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34045442564FDBC00329923 /* Validator.swift */; };
 		C34045482566EED700329923 /* TodoListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34045472566EED700329923 /* TodoListPresenter.swift */; };
-		C340454A2566EF0100329923 /* ProfileTPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34045492566EF0100329923 /* ProfileTPresenter.swift */; };
-		C340454C2566EF1600329923 /* ADDTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C340454B2566EF1600329923 /* ADDTaskPresenter.swift */; };
+		C340454A2566EF0100329923 /* ProfileTViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34045492566EF0100329923 /* ProfileTViewModel.swift */; };
+		C340454C2566EF1600329923 /* ADDTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C340454B2566EF1600329923 /* ADDTaskViewModel.swift */; };
 		C349DFAB256BF28D00E819AF /* UIColor+hexStringColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349DFAA256BF28D00E819AF /* UIColor+hexStringColor.swift */; };
 		C349DFAD256CF3A100E819AF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349DFAC256CF3A000E819AF /* ProfileView.swift */; };
 		C349DFAF256E556700E819AF /* UIFont+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349DFAE256E556700E819AF /* UIFont+extension.swift */; };
 		C349DFB1256EF8CA00E819AF /* UITextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349DFB0256EF8CA00E819AF /* UITextField+extension.swift */; };
-		C3C5AF35255C4E30007C7135 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5AF34255C4E30007C7135 /* SignUpPresenter.swift */; };
+		C3C5AF35255C4E30007C7135 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5AF34255C4E30007C7135 /* SignUpViewModel.swift */; };
 		C3C5EF65256A4BBE00B06597 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5EF64256A4BBE00B06597 /* SignInView.swift */; };
 		C3C5EF67256A4BCE00B06597 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5EF66256A4BCE00B06597 /* SignUpView.swift */; };
 		C3C5EF6F256A4C6100B06597 /* ADDTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5EF6E256A4C6100B06597 /* ADDTaskView.swift */; };
@@ -84,16 +84,16 @@
 		C33C8FEA25503DC100F3C0B2 /* TaskDataTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskDataTVCell.xib; sourceTree = "<group>"; };
 		C33C8FED25507A2600F3C0B2 /* UIView+EXtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+EXtention.swift"; sourceTree = "<group>"; };
 		C33C8FEF25507F0E00F3C0B2 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
-		C34045422564FD8F00329923 /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
+		C34045422564FD8F00329923 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		C34045442564FDBC00329923 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		C34045472566EED700329923 /* TodoListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListPresenter.swift; sourceTree = "<group>"; };
-		C34045492566EF0100329923 /* ProfileTPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTPresenter.swift; sourceTree = "<group>"; };
-		C340454B2566EF1600329923 /* ADDTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADDTaskPresenter.swift; sourceTree = "<group>"; };
+		C34045492566EF0100329923 /* ProfileTViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTViewModel.swift; sourceTree = "<group>"; };
+		C340454B2566EF1600329923 /* ADDTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADDTaskViewModel.swift; sourceTree = "<group>"; };
 		C349DFAA256BF28D00E819AF /* UIColor+hexStringColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hexStringColor.swift"; sourceTree = "<group>"; };
 		C349DFAC256CF3A000E819AF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C349DFAE256E556700E819AF /* UIFont+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extension.swift"; sourceTree = "<group>"; };
 		C349DFB0256EF8CA00E819AF /* UITextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extension.swift"; sourceTree = "<group>"; };
-		C3C5AF34255C4E30007C7135 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
+		C3C5AF34255C4E30007C7135 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		C3C5EF64256A4BBE00B06597 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		C3C5EF66256A4BCE00B06597 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C3C5EF6E256A4C6100B06597 /* ADDTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADDTaskView.swift; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 				B76E56A62548A2C900C13D43 /* Extensions */,
 				B76E56A82548A2E400C13D43 /* Model */,
 				B76E56A92548A2EA00C13D43 /* View */,
-				C34045402564FD4000329923 /* Presenter */,
+				C34045402564FD4000329923 /* ViewModel */,
 				B76E56AA2548A2F200C13D43 /* Controller */,
 				B76E56A72548A2D300C13D43 /* Resources */,
 				B76E569E2548A24C00C13D43 /* Info.plist */,
@@ -309,20 +309,20 @@
 			path = TaskDataCell;
 			sourceTree = "<group>";
 		};
-		C34045402564FD4000329923 /* Presenter */ = {
+		C34045402564FD4000329923 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				C34045412564FD6300329923 /* AuthenticationPresenter */,
 				C34045462566ECA600329923 /* MainPresenter */,
 			);
-			path = Presenter;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		C34045412564FD6300329923 /* AuthenticationPresenter */ = {
 			isa = PBXGroup;
 			children = (
-				C3C5AF34255C4E30007C7135 /* SignUpPresenter.swift */,
-				C34045422564FD8F00329923 /* SignInPresenter.swift */,
+				C3C5AF34255C4E30007C7135 /* SignUpViewModel.swift */,
+				C34045422564FD8F00329923 /* SignInViewModel.swift */,
 			);
 			path = AuthenticationPresenter;
 			sourceTree = "<group>";
@@ -331,8 +331,8 @@
 			isa = PBXGroup;
 			children = (
 				C34045472566EED700329923 /* TodoListPresenter.swift */,
-				C34045492566EF0100329923 /* ProfileTPresenter.swift */,
-				C340454B2566EF1600329923 /* ADDTaskPresenter.swift */,
+				C34045492566EF0100329923 /* ProfileTViewModel.swift */,
+				C340454B2566EF1600329923 /* ADDTaskViewModel.swift */,
 			);
 			path = MainPresenter;
 			sourceTree = "<group>";
@@ -553,19 +553,19 @@
 				C3D3BC72254DB57B004D2B56 /* LogOutResponse.swift in Sources */,
 				C3C5EF6F256A4C6100B06597 /* ADDTaskView.swift in Sources */,
 				C3C6E85225591EB7008250BE /* APIRouter.swift in Sources */,
-				C340454C2566EF1600329923 /* ADDTaskPresenter.swift in Sources */,
+				C340454C2566EF1600329923 /* ADDTaskViewModel.swift in Sources */,
 				C3EB2C3A2553DCBB003C77E1 /* AddTaskResponse.swift in Sources */,
 				C34045482566EED700329923 /* TodoListPresenter.swift in Sources */,
 				C33C8FE62550073300F3C0B2 /* ProfileResponse.swift in Sources */,
 				B76E56912548A24A00C13D43 /* AppDelegate.swift in Sources */,
-				C34045432564FD8F00329923 /* SignInPresenter.swift in Sources */,
+				C34045432564FD8F00329923 /* SignInViewModel.swift in Sources */,
 				C349DFAD256CF3A100E819AF /* ProfileView.swift in Sources */,
 				C349DFAF256E556700E819AF /* UIFont+extension.swift in Sources */,
 				C3C5EF65256A4BBE00B06597 /* SignInView.swift in Sources */,
 				C33C8FEB25503DC100F3C0B2 /* TaskDataTVCell.swift in Sources */,
 				C3D510B7254C6D9D008DB194 /* String + RegEx.swift in Sources */,
 				C34045452564FDBC00329923 /* Validator.swift in Sources */,
-				C3C5AF35255C4E30007C7135 /* SignUpPresenter.swift in Sources */,
+				C3C5AF35255C4E30007C7135 /* SignUpViewModel.swift in Sources */,
 				B76E56C52548BACC00C13D43 /* UserData.swift in Sources */,
 				C33C8FE4254F48DC00F3C0B2 /* ProfileTVC.swift in Sources */,
 				C3CF89182552C93100140A58 /* UIView+Loader.swift in Sources */,
@@ -574,7 +574,7 @@
 				C3EB2C402554B3DE003C77E1 /* DeleteTaskResponse.swift in Sources */,
 				C33C8FF025507F0E00F3C0B2 /* ShadowView.swift in Sources */,
 				C3D510BE254C95BB008DB194 /* MainVC.swift in Sources */,
-				C340454A2566EF0100329923 /* ProfileTPresenter.swift in Sources */,
+				C340454A2566EF0100329923 /* ProfileTViewModel.swift in Sources */,
 				B76E56BC2548A84600C13D43 /* SignUpVC.swift in Sources */,
 				B76E56C72548BEE100C13D43 /* UserDefaultsManager.swift in Sources */,
 				C3C6E85025581F61008250BE /* UploadImageResponse.swift in Sources */,

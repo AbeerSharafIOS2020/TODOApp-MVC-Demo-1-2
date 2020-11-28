@@ -9,7 +9,7 @@
 import UIKit
 import NVActivityIndicatorView
 //MARK:- Protocol
-protocol MainViewProtocol: class {
+protocol MainVCProtocol: class {
     func showErrorMsg(message: String)
     func showSuccessMsg(message: String)
     func processOnStart()
@@ -31,7 +31,7 @@ class MainVC: UIViewController {
 }
 //MARK:- Extension
 // Confirm protocol
-extension MainVC: MainViewProtocol {
+extension MainVC: MainVCProtocol {
     func confirmationAlert1(title: String,message: String){
         let okAction =  UIAlertAction(title: "Yes", style: .default, handler: nil)
         self.confirmationAlert(title: title, message: message, firstBtn: okAction)

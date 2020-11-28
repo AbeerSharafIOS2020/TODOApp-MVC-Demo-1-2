@@ -8,7 +8,7 @@
 
 import Foundation
 //MARK:- Protocol
-protocol ProfileTPresenterProtocol: class {
+protocol ProfileTViewModelProtocol {
     associatedtype View
     func onViewDidLoad(view : View)
     func tryLogOutConfirm()
@@ -20,10 +20,10 @@ protocol ProfileTPresenterProtocol: class {
     func confirmEdittingMsg(row: Int)
 }
 //MARK:- ProfileTPresenter
-class ProfileTPresenter: ProfileTPresenterProtocol {
+class ProfileTViewModel {
     //MARK:- Properties
-    typealias View = MainViewProtocol
-    private weak var view : MainViewProtocol?
+    typealias View = MainVCProtocol
+    private weak var view : MainVCProtocol?
     weak var mainVC : MainVC!
     init(mainVC: MainVC) {
         self.mainVC = mainVC
@@ -72,7 +72,7 @@ class ProfileTPresenter: ProfileTPresenterProtocol {
     
 }
 //MARK:- extension
-extension ProfileTPresenter {
+extension ProfileTViewModel: ProfileTViewModelProtocol {
     //MARK:- Handle Response of Get Profile
     func serviceOfGetProfileData() {
         self.view?.processOnStart()
@@ -163,7 +163,7 @@ extension ProfileTPresenter {
     }
     
     //MARK:- The confirm of the SignInVCPresenterDelegate Protocol
-    func onViewDidLoad(view : MainViewProtocol){
+    func onViewDidLoad(view : MainVCProtocol){
         self.view = view
     }
     

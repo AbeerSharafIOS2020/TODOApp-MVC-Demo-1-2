@@ -8,16 +8,17 @@
 
 import Foundation
 //MARK:- Protocol of SignInVCPresenter
-protocol SignInPresenterProtocol: class {
+// single in presenter protocol -use by any class to provide login date
+protocol SignInViewModelProtocol {
     associatedtype View
     func onViewDidLoad(view : View)
     func tryLogin(email: String?, password: String?)
 }
 //MARK:- SignInPresenter
-class SignInPresenter: SignInPresenterProtocol {
+class SignInViewModel {
     //MARK:- Properties
-    typealias View = MainViewProtocol
-    private weak var view : MainViewProtocol?
+    typealias View = MainVCProtocol
+    private weak var view : MainVCProtocol?
     //MARK:- Private Methods
     private func validateField(email: String?, password: String?) -> Bool{
         if !Validator.shared().isValidEmail(email){
@@ -30,7 +31,7 @@ class SignInPresenter: SignInPresenterProtocol {
     }
 }
 //MARK:- extension
-extension SignInPresenter {
+extension SignInViewModel: SignInViewModelProtocol  {
     //MARK:-  Handle Response
     private func serviceLogin(with email: String?, password: String?) {
         UserDefaultsManager.shared().token = nil
@@ -53,7 +54,7 @@ extension SignInPresenter {
         }
     }
     //MARK:- The confirm of the SignInVCPresenterDelegate Protocol
-    internal func onViewDidLoad(view : MainViewProtocol){
+    internal func onViewDidLoad(view : MainVCProtocol){
         self.view = view
     }
     func tryLogin(email: String?, password: String?) {
