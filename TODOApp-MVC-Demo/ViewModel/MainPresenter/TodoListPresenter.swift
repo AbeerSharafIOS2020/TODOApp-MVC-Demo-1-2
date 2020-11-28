@@ -24,19 +24,17 @@ class TodoListViewModel {
     init(todoListVC: TodoListVC) {
         self.todoListVC = todoListVC
     }
-    
     weak var addTaskVC: ADDTaskVC!
     init(addTaskVC: ADDTaskVC) {
         self.addTaskVC = addTaskVC
     }
-
     var allTaskObj = [TaskData]()
 }
 //MARK:- extension
 extension TodoListViewModel: TodoListViewModelProtocol {
     //MARK:-  Handle Response
     //get all task
-     func serviceOfGetAllTask(){
+    func serviceOfGetAllTask(){
         self.view?.processOnStart()
         APIManager.getAllTask { (response) in
             switch response{
@@ -45,10 +43,10 @@ extension TodoListViewModel: TodoListViewModelProtocol {
             case .success(let result):
                 self.allTaskObj = result.data
                 print("\(self.allTaskObj)")
-//                self.todoListVC.allTaskObj = result.data
+                //                self.todoListVC.allTaskObj = result.data
                 print(self.allTaskObj)
                 if  result.data.count == 0 {
-                    self.todoListVC.noTaskLabel.text = "No Data Found"
+                    self.todoListVC.noTaskLabel.text = LabelText.noDataFound
                     self.todoListVC.noTaskLabel.isHidden = false
                 }else {
                     self.todoListVC.noTaskLabel.isHidden = true
@@ -76,13 +74,13 @@ extension TodoListViewModel: TodoListViewModelProtocol {
                 let result = result
                 if result.success == true {
                     self.view?.processOnStop()
-                    self.view?.showSuccessMsg(message:"Delete the task Successfully")
+                    self.view?.showSuccessMsg(message:Messages.deleteTaskSuccess)
                 }
             }
             self.view?.processOnStop()
         }
     }
-//MARK:- Public Methods
+    //MARK:- Public Methods
     func getAllTaskData()-> [TaskData] {
         return self.allTaskObj
     }
@@ -102,18 +100,18 @@ extension TodoListViewModel: TodoListViewModelProtocol {
     func tryDeleteTaskConfirm(row: Int,indexPath: IndexPath, item: TaskData){
         
         self.todoListVC.presentAlert(title: "Confirm", message: "Are you sure you want to Delete the task ?",
-             actions: [
-                 AlertableAction(title: "Cancel", style: .cancel, result: false),
-                 AlertableAction(title: "Yes", style: .destructive, result: true),
-             ],
-             completion: { [weak self] result in
-                guard result else { return }
-                // handle delete (by removing the data from your array and updating the tableview)
-                self?.callDeleteService(item)
-                print("self.allTaskObj[indexPath.row]: \(item)")
-                self?.allTaskObj.remove(at: indexPath.item)
-                self?.todoListVC?.taskTableView?.deleteRows(at: [indexPath], with: .fade)
-             }
-         )
-     }
+                                     actions: [
+                                        AlertableAction(title: "Cancel", style: .cancel, result: false),
+                                        AlertableAction(title: "Yes", style: .destructive, result: true),
+            ],
+                                     completion: { [weak self] result in
+                                        guard result else { return }
+                                        // handle delete (by removing the data from your array and updating the tableview)
+                                        self?.callDeleteService(item)
+                                        print("self.allTaskObj[indexPath.row]: \(item)")
+                                        self?.allTaskObj.remove(at: indexPath.item)
+                                        self?.todoListVC?.taskTableView?.deleteRows(at: [indexPath], with: .fade)
+            }
+        )
+    }
 }

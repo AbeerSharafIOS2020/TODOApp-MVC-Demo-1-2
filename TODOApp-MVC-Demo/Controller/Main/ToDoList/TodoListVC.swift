@@ -11,7 +11,6 @@ class TodoListVC: MainVC {
     // MARK:- Outletss
     @IBOutlet weak var taskTableView: UITableView!
     @IBOutlet weak var noTaskLabel: UILabel!
-    
     //MARK:- Private Properties
     var todoListViewModel: TodoListViewModel!
     // MARK:- Lifecycle methods
@@ -29,7 +28,6 @@ class TodoListVC: MainVC {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
     // MARK:- Actions Methods
     //Go to Profile screen
     @IBAction func goToProfileTapButton() {
@@ -43,10 +41,7 @@ self.navigationController?.pushViewController(ProfileTVC.create(), animated: tru
     }
     // add task Btn
     @objc func addTaskBtnPressed(_ sender: Any) {
-        let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ADDTaskVC") as? ADDTaskVC
-        present(vc!, animated: true, completion: nil)
-
-       // AppDelegate.shared().switchToAddTaskState()
+        present(ADDTaskVC.create(), animated: true, completion: nil)
     }
     // MARK:- Private Methods
     private func setupView() {
@@ -79,8 +74,9 @@ self.navigationController?.pushViewController(ProfileTVC.create(), animated: tru
 extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.addBackground(tableView)
-        let count = self.todoListViewModel.allTaskObj.count
-        print("count in cell : \(self.todoListViewModel.allTaskObj.count)")
+        let tasks = todoListViewModel.getAllTaskData()
+        let count = tasks.count
+        print("count in cell : \(self.count)")
         return count
     }
     func numberOfSections(in tableView: UITableView) -> Int {

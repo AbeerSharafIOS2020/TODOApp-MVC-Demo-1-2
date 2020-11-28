@@ -11,82 +11,83 @@ import NVActivityIndicatorView
 
 // Storyboards
 struct Storyboards {
-    static let authentication = "Authentication"
-    static let main = "Main"    
+     static let authentication = "Authentication"
+     static let main = "Main"
 }
 struct UI {
-    static let controller = UIViewController()
-    static let mainViewController = MainVC()
+     static let controller = UIViewController()
+     static let mainViewController = MainVC()
 }
 // Cells
 struct Cells {
-    static let taskDataTVCell = "TaskDataTVCell"
+     static let taskDataTVCell = "TaskDataTVCell"
 }
 // View Controllers
 struct ViewControllers {
-    static let signUpVC = "SignUpVC"
-    static let signInVC = "SignInVC"
-    static let todoListVC = "TodoListVC"
-    static let addTaskVC = "ADDTaskVC"
-    static let profileTVC = "ProfileTVC"
+     static let signUpVC = "SignUpVC"
+     static let signInVC = "SignInVC"
+     static let todoListVC = "TodoListVC"
+     static let addTaskVC = "ADDTaskVC"
+     static let profileTVC = "ProfileTVC"
 }
 
 // Urls
 struct URLs {
-    static let base = "https://api-nodejs-todolist.herokuapp.com"
-    static let user = "/user"
-    static let login = user + "/login"
-    static let register = user + "/register"
-    static let logout = user + "/logout"
-    static let task = "/task"
-    static let getAllTask = task
-    static let getUserProfile = user + "/me"
-    static let uploadImage = base + getUserProfile + "/avatar"
-    static let taskID = "/\(UserDefaultsManager.shared().taskID ?? "")"
-    static let deleteTask = task + taskID
-    static let uploadImg = getUserProfile + "/avatar"
-    static let imageID = "/\(UserDefaultsManager.shared().userID ?? "")"
-    static let getImg =  user + imageID + "/avatar"
+     static let base = "https://api-nodejs-todolist.herokuapp.com"
+     static let user = "/user"
+     static let login = user + "/login"
+     static let register = user + "/register"
+     static let logout = user + "/logout"
+     static let task = "/task"
+     static let getAllTask = task
+     static let getUserProfile = user + "/me"
+     static let uploadImage = base + getUserProfile + "/avatar"
+     static let taskID = "/\(UserDefaultsManager.shared().taskID ?? "")"
+     static let deleteTask = task + taskID
+     static let uploadImg = getUserProfile + "/avatar"
+     static let imageID = "/\(UserDefaultsManager.shared().userID ?? "")"
+     static let getImg =  user + imageID + "/avatar"
 }
 
 // Header Keys
 struct HeaderKeys {
-    static let contentType = "Content-Type"
-    static let authorization = "Authorization"
+     static let contentType = "Content-Type"
+     static let authorization = "Authorization"
 }
 
 // Header Values
 struct HeaderValues {
-    static let applicationJson = "application/json"
-    static let brearerToken = "Bearer \(UserDefaultsManager.shared().token ?? "")"
+     static let applicationJson = "application/json"
+     static let brearerToken = "Bearer \(UserDefaultsManager.shared().token ?? "")"
 }
 
 // Parameters Keys
 struct ParameterKeys {
-    static let email = "email"
-    static let password = "password"
-    static let name = "name"
-    static let age = "age"
-    static let description = "description"
-    static var edit = "edit"
-    static let image = "image"
-    static let id = "id"
+     static let email = "email"
+     static let password = "password"
+     static let name = "name"
+     static let age = "age"
+     static let description = "description"
+     static var edit = "edit"
+     static let image = "image"
+     static let id = "id"
 }
 
 //colors
 struct Colors {
      static let labelColor = UIColor.hexStringToUIColor(hex: "#AA32FD")
-    static let primaryColor =
-       UIColor.hexStringToUIColor(hex: "#4E0E69")
-    static let placholderColor = UIColor.hexStringToUIColor(hex:"#D3C1DA")
-
+     static let primaryColor =
+          UIColor.hexStringToUIColor(hex: "#4E0E69")
+     static let placholderColor = UIColor.hexStringToUIColor(hex:"#D3C1DA")
+     
 }
 // label text
 struct LabelText {
-  static let loginLabel = "Log In"
-  static let signUpLabel = "Sign Up"
-  static let noAccountLabel = "Don’t have an acoount?"
-  static let alreadyHaveAccountLabel = "Already have an account?"
+     static let loginLabel = "Log In"
+     static let signUpLabel = "Sign Up"
+     static let noAccountLabel = "Don’t have an acoount?"
+     static let alreadyHaveAccountLabel = "Already have an account?"
+     static let noDataFound = "No Data Found"
 }
 //Title Message
 struct TitleMsg {
@@ -105,13 +106,14 @@ struct Messages {
      static let ageErrorMsg = "Enter valid age .. greater than or equal 10 years"
      static let emailErrorMsg = "Please Enter Valid Email"
      static let invalidErrorMsg = "Please Enter your Valid data"
+     static let deleteTaskSuccess = "Delete the task Successfully"
 }
 // Screen title
 struct Titles {
-  static let loginTitle = "Log In"
-  static let signUpTitle = "Sign Up"
-  //   static let noAccountLabel = "Don’t have an acoount?"
-   //  static let loginLabel = "Log In"
+     static let loginTitle = "Log In"
+     static let signUpTitle = "Sign Up"
+     //   static let noAccountLabel = "Don’t have an acoount?"
+     //  static let loginLabel = "Log In"
 }
 
 struct PlaceHolders {
@@ -123,24 +125,24 @@ struct PlaceHolders {
 
 // NamesObjects
 struct ImagesName {
-    static let userNameIcon = "userNameIcon"
-    static let toDoIcon = "todo"
-    static let userEmailcon = "emailIcon"
-    static let userAgeIcon = "ageIcon"
-    static let profileDateIcon = ""
-    static let profileUpdateDateIcon = ""
-    static let passwordIcon = "passwordIcon"
-    static let backgroundImage = "background"
-    static let deleteIcon = "deleteIconCopy"
+     static let userNameIcon = "userNameIcon"
+     static let toDoIcon = "todo"
+     static let userEmailcon = "emailIcon"
+     static let userAgeIcon = "ageIcon"
+     static let profileDateIcon = ""
+     static let profileUpdateDateIcon = ""
+     static let passwordIcon = "passwordIcon"
+     static let backgroundImage = "background"
+     static let deleteIcon = "deleteIconCopy"
 }
 // UserDefaultsKeys
 struct UserDefaultsKeys {
-    static let token = "UDKToken"
-    static let imagName = "ImageName"
-    static let isLogin = "isLogin"
-    static let taskID = "id"
-    static let userID = "id"
-    static let isUploadImage = "isUploadImage"
-    static let name = "name"
+     static let token = "UDKToken"
+     static let imagName = "ImageName"
+     static let isLogin = "isLogin"
+     static let taskID = "id"
+     static let userID = "id"
+     static let isUploadImage = "isUploadImage"
+     static let name = "name"
 }
 

@@ -49,29 +49,29 @@ class Validator {
     }
     //MARK:- Private Methods
     func notEmptyGetText(name: String?, email: String?, password: String?, age: String?) -> (String, String)?{
-            switch name?.isEmpty ?? false {
-            case true : return ErrorEmptyMsg.name.errorMsg
-            case false : break
-            }
-            switch email?.isEmpty ?? false {
-            case true : return ErrorValidMsg.email.errorMsg
-            case false : break
-            }
-            switch password?.isEmpty ?? false {
-            case true : return ErrorValidMsg.password.errorMsg
-            case false : break
-            }
-            switch age?.isEmpty ?? false {
-            case  true: return ErrorValidMsg.age.errorMsg
-            case  false: break
-            }
+        switch name?.isEmpty ?? false {
+        case true : return ErrorEmptyMsg.name.errorMsg
+        case false : break
+        }
+        switch email?.isEmpty ?? false {
+        case true : return ErrorValidMsg.email.errorMsg
+        case false : break
+        }
+        switch password?.isEmpty ?? false {
+        case true : return ErrorValidMsg.password.errorMsg
+        case false : break
+        }
+        switch age?.isEmpty ?? false {
+        case  true: return ErrorValidMsg.age.errorMsg
+        case  false: break
+        }
         return nil
         //return ErrorValidMsg.noData.errorMsg
     }
     func getTextValidation(name: String?, email: String?, password: String?, age: String?) -> (String, String)? {
         
         if (notEmptyGetText(name: name, email: email, password: password, age: age) == nil)
-            {
+        {
             switch isValidName(name) {
             case false : return ErrorValidMsg.name.errorMsg
             case true : break
