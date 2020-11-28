@@ -76,7 +76,7 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
         self.addBackground(tableView)
         let tasks = todoListViewModel.getAllTaskData()
         let count = tasks.count
-        print("count in cell : \(self.count)")
+        print("count in cell : \(count)")
         return count
     }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -93,15 +93,13 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         let indexPath = indexPath
-//        self.allTaskObj = self.todoListPresenter.allTaskObj
-        let item = self.todoListViewModel.allTaskObj[indexPath.row]
+        let item = self.todoListViewModel.getAllTaskData()[indexPath.row]
         self.todoListViewModel?.tryDeleteTaskConfirm(row: row, indexPath: indexPath, item: item)
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let row = indexPath.row
         let indexPath = indexPath
-//        self.allTaskObj = self.todoListPresenter.allTaskObj
-        let item = self.todoListViewModel.allTaskObj[indexPath.row]
+        let item = self.todoListViewModel.getAllTaskData()[indexPath.row]
         self.todoListViewModel?.tryDeleteTaskConfirm(row: row, indexPath: indexPath, item: item)
 //        self.allTaskObj.remove(at: indexPath.item)
 //        self.taskTableView.deleteRows(at: [indexPath], with: .fade)
