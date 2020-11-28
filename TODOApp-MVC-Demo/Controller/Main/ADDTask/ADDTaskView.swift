@@ -21,11 +21,11 @@ class ADDTaskView: UIView {
          // MARK:- Public Method
         func setup(){
             self.setupBackGround()
-            self.setupTextField(descriptionTxtField, placeHolder: "First note")
-            self.setupTextField(dataAndTimeTxtField, placeHolder: "Date And Time")
+            self.setupTextField(descriptionTxtField, placeHolder: PlaceHolders.dateAndTimePlaceHolder)
+            self.setupTextField(dataAndTimeTxtField, placeHolder: PlaceHolders.dateAndTimePlaceHolder)
             self.setupSaveButton()
             self.setupUserImage()
-            self.setupLabel()
+            self.setupTitle()
             self.setupShadowView()
         }
     }
@@ -34,8 +34,8 @@ class ADDTaskView: UIView {
              private func setupBackGround(){
               //self.backgroundColor = .clear 
             }
-            private func setupLabel(){
-                screenTitle.text = "Add Task"
+            private func setupTitle(){
+                screenTitle.text = Titles.addTaskTitle
                 screenTitle.textColor = Colors.primaryColor
                 screenTitle.font.withSize(16)
             }
@@ -43,7 +43,7 @@ class ADDTaskView: UIView {
                 shadowView.backgroundColor = .white
                 shadowView.shadowColor = .white
                 shadowView.layer.cornerRadius = 8
-                shadowView.largeContentImage = UIImage(named: "background")
+                shadowView.largeContentImage = UIImage(named: ImagesName.backgroundImage)
             }
             private func setupTextField(_ textField: SkyFloatingLabelTextFieldWithIcon, placeHolder: String, isSceure: Bool = false, isPhone: Bool = false){
                 textField.backgroundColor = .clear
@@ -67,11 +67,11 @@ class ADDTaskView: UIView {
                 saveButton.backgroundColor = Colors.primaryColor
                 saveButton.frame = CGRect(x: 48, y: 432, width: 304, height: 60)
                 saveButton.tintColor = .white
-                saveButton.layer.cornerRadius = 5 //saveButton.frame.height / 2
-                saveButton.setTitle("Save", for: .normal)
+                saveButton.layer.cornerRadius = 5
+                saveButton.setTitle(Titles.saveTitle, for: .normal)
             }
             private func setupUserImage(){
-                imgBackimag.image = UIImage(named: "background")
+                imgBackimag.image = UIImage(named: ImagesName.backgroundImage)
                 imgBackimag.contentMode =  .scaleAspectFit
                 
             }

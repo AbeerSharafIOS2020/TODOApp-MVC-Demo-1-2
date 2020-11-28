@@ -18,12 +18,12 @@
             // MARK:- Life Cycle Methods
             override func viewDidLoad() {
                 super.viewDidLoad()
+                addTaskView.setup()
                 self.addTaskView.dataAndTimeTxtField.datePicker(target: self,
                                           doneAction: #selector(doneAction),
                                           cancelAction: #selector(cancelAction),
                                           datePickerMode: .date)
 
-                addTaskView.setup()
                 self.addTaskViewModel = ADDTaskViewModel(addTaskVC: self)
                 self.addTaskViewModel?.onViewDidLoad(view: self)
             }

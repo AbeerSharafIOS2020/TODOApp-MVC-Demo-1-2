@@ -112,6 +112,8 @@ struct Messages {
 struct Titles {
      static let loginTitle = "Log In"
      static let signUpTitle = "Sign Up"
+     static let saveTitle = "Save"
+     static let addTaskTitle = "Add Task"
      //   static let noAccountLabel = "Don’t have an acoount?"
      //  static let loginLabel = "Log In"
 }
@@ -121,6 +123,8 @@ struct PlaceHolders {
      static let passwordPlaceHolder = "Password"
      static let namePlaceHolder = "Name"
      static let agePlaceHolder = "Age"
+     static let firstNotePlaceHolder = "First note"
+     static let dateAndTimePlaceHolder = "Date And Time"
 }
 
 // NamesObjects
