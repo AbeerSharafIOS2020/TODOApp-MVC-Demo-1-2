@@ -88,9 +88,23 @@ struct LabelText {
   static let noAccountLabel = "Don’t have an acoount?"
   static let alreadyHaveAccountLabel = "Already have an account?"
 }
-// messege
+//Title Message
+struct TitleMsg {
+     static let invalidName = "Invalid Name"
+     static let invalidEmail = "Invalid Email"
+     static let invalidPassword = "Invalid Password"
+     static let invalidAge = "Invalid Age"
+     static let invalid = "Invalid"
+}
+
+// Messege content
 struct Messages {
      static let  emailAndPassErrorMsg = "Please Enter Valid Email and Password"
+     static let nameErrorMsg = "Enter Valid name ..at least consists two letters and first & last name"
+     static let passwordErrorMsg = "Password Must be at Least 8 Characters"
+     static let ageErrorMsg = "Enter valid age .. greater than or equal 10 years"
+     static let emailErrorMsg = "Please Enter Valid Email"
+     static let invalidErrorMsg = "Please Enter your Valid data"
 }
 // Screen title
 struct Titles {

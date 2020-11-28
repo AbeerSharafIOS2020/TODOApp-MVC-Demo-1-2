@@ -90,7 +90,7 @@ enum APIRouter: URLRequestConvertible{
         case .login, .register :
             urlRequest.setValue(HeaderValues.applicationJson, forHTTPHeaderField: HeaderKeys.contentType)
         case .getUserImage:
-           urlRequest.setValue("image/png", forHTTPHeaderField: HeaderKeys.contentType)
+            urlRequest.setValue("image/png", forHTTPHeaderField: HeaderKeys.contentType)
         }
         // MARK: - HTTP Body
         let httpBody: Data? = {

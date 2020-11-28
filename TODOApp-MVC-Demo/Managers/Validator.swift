@@ -13,15 +13,15 @@ enum ErrorValidMsg{
     var errorMsg: (title: String, message: String) {
         switch self {
         case .name:
-            return("Invalid Name","Enter Valid name ..at least consists two letters and first & last name")
+            return(TitleMsg.invalidName,Messages.nameErrorMsg)
         case .email:
-            return("Invalid Email", "Please Enter Valid Email")
+            return(TitleMsg.invalidEmail, Messages.emailErrorMsg)
         case .password:
-            return("Invalid Password", "Password Must be at Least 8 Characters")
+            return(TitleMsg.invalidPassword, Messages.passwordErrorMsg)
         case .age:
-            return("Invalid Age", "Enter valid age .. greater than or equal 10 years")
+            return(TitleMsg.invalidAge, Messages.ageErrorMsg)
         case .noData:
-            return("Invalid", "Please Enter your data ")
+            return(TitleMsg.invalid, Messages.invalidErrorMsg)
         }
     }
 }
@@ -31,13 +31,13 @@ enum ErrorEmptyMsg{
     var errorMsg: (title: String, message: String) {
         switch self {
         case .name:
-            return("No name ","Enter Valid name ..at least consists two letters and first & last name")
+            return(TitleMsg.invalidName,Messages.nameErrorMsg)
         case .email:
-            return("No Email", "Please Enter Valid Email")
+            return(TitleMsg.invalidEmail, Messages.emailErrorMsg)
         case .password:
-            return("Empty Password", "Password Must be at Least 8 Characters")
+            return(TitleMsg.invalidPassword, Messages.passwordErrorMsg)
         case .age:
-            return("Age", "Enter valid age .. greater than or equal 10 years")
+            return(TitleMsg.invalidAge, Messages.ageErrorMsg)
         }
     }
 }

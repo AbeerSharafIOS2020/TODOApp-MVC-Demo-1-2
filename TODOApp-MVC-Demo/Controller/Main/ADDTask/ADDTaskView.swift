@@ -32,7 +32,7 @@ class ADDTaskView: UIView {
         // MARK:- Private Method
         extension ADDTaskView {
              private func setupBackGround(){
-              //  self.backgroundColor = .clear 
+              //self.backgroundColor = .clear 
             }
             private func setupLabel(){
                 screenTitle.text = "Add Task"
@@ -40,7 +40,9 @@ class ADDTaskView: UIView {
                 screenTitle.font.withSize(16)
             }
             private func setupShadowView(){
-                shadowView.layer.cornerRadius = 8 //shadowView.frame.height/5
+                shadowView.backgroundColor = .white
+                shadowView.shadowColor = .white
+                shadowView.layer.cornerRadius = 8
                 shadowView.largeContentImage = UIImage(named: "background")
             }
             private func setupTextField(_ textField: SkyFloatingLabelTextFieldWithIcon, placeHolder: String, isSceure: Bool = false, isPhone: Bool = false){

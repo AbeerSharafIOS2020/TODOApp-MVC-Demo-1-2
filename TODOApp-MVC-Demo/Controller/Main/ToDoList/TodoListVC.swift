@@ -17,7 +17,7 @@ class TodoListVC: MainVC {
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = Colors.primaryColor
+        navigationStyle()
         self.todoListViewModel?.onViewDidLoad(view: self)
         self.todoListViewModel?.serviceOfGetAllTask()
         self.setupView()
@@ -43,7 +43,10 @@ self.navigationController?.pushViewController(ProfileTVC.create(), animated: tru
     }
     // add task Btn
     @objc func addTaskBtnPressed(_ sender: Any) {
-        AppDelegate.shared().switchToAddTaskState()
+        let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ADDTaskVC") as? ADDTaskVC
+        present(vc!, animated: true, completion: nil)
+
+       // AppDelegate.shared().switchToAddTaskState()
     }
     // MARK:- Private Methods
     private func setupView() {

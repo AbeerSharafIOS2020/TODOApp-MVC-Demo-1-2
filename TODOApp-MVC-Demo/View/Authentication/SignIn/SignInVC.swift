@@ -30,7 +30,7 @@ class SignInVC: MainVC {
     // MARK:- Actions Methods
     //Sign in Btn
     @IBAction func signInBtnPressed(_ sender: Any) {
-    self.viewModel?.tryLogin(email:mainView.emailTxtField.text, password: mainView.passTxtField.text)
+        self.viewModel?.tryLogin(email:mainView.emailTxtField.text, password: mainView.passTxtField.text)
     }
     // Go to Sing UP
     @IBAction func goToSignUpScreenBtnPressed(_ sender: Any) {

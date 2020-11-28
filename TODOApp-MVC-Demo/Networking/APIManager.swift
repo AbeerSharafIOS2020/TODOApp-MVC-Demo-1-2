@@ -31,9 +31,9 @@
         }
         //MARK:- Get TODOS
         class func getAllTask(completion: @escaping (Result<ToDoResponse, Error>)-> ()){
-           request(APIRouter.getAllTask){ (response) in
-               completion(response)
-           }
+            request(APIRouter.getAllTask){ (response) in
+                completion(response)
+            }
         }
         //MARK:- Logout
         class func logout(completion: @escaping (Result<LogOutResponse, Error>)-> ()){
@@ -50,16 +50,16 @@
         //MARK:- DeleteTask
         class func deleteTask(completion: @escaping (Result<DeleteTaskByIdResponse, Error>)-> ()){
             request(APIRouter.deleteTask){ (response) in
-               completion(response)
-           }
-        }
-
-            //MARK:- UpdateProfile
-            class func updateProfile(data: String, completion: @escaping (Result<ProfileResponse, Error>)-> ()){
-                request(APIRouter.updateProfile(data)){ (response) in
-                   completion(response)
-               }
+                completion(response)
             }
+        }
+        
+        //MARK:- UpdateProfile
+        class func updateProfile(data: String, completion: @escaping (Result<ProfileResponse, Error>)-> ()){
+            request(APIRouter.updateProfile(data)){ (response) in
+                completion(response)
+            }
+        }
         
         //MARK:- UploadImage
         class func uploadPhoto(with imageJpegData: Data, completion: @escaping (Bool) -> Void) {
@@ -104,19 +104,19 @@
                 print(response)
             }
         }
-//        private static func upload<T: Decodable>(_ urlConvertible: URLRequestConvertible, completion:  @escaping (Result<T, Error>) -> ()) {
-//            // Trigger the HttpRequest using AlamoFire
-//            AF.upload(multipartFormData: { (<#MultipartFormData#>) in
-//                switch response.result {
-//                case .success(let value):
-//                    completion(.success(value))
-//                case .failure(let error):
-//                    completion(.failure(error))
-//                }
-//            }
-//            .responseJSON { response in
-//                print(response)
-//            }
-//        }
-
+        //        private static func upload<T: Decodable>(_ urlConvertible: URLRequestConvertible, completion:  @escaping (Result<T, Error>) -> ()) {
+        //            // Trigger the HttpRequest using AlamoFire
+        //            AF.upload(multipartFormData: { (<#MultipartFormData#>) in
+        //                switch response.result {
+        //                case .success(let value):
+        //                    completion(.success(value))
+        //                case .failure(let error):
+        //                    completion(.failure(error))
+        //                }
+        //            }
+        //            .responseJSON { response in
+        //                print(response)
+        //            }
+        //        }
+        
     }
