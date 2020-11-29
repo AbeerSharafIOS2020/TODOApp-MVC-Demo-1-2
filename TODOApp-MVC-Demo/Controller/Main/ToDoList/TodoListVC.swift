@@ -15,7 +15,6 @@ class TodoListVC: MainVC {
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationStyle()
         self.toDoListView.setup()
         self.todoListViewModel?.onViewDidLoad(view: self)
         self.todoListViewModel?.serviceOfGetAllTask()
@@ -52,6 +51,7 @@ self.navigationController?.pushViewController(ProfileTVC.create(), animated: tru
 
     }
     private func setupNavbar() {
+        navigationStyle()
         let addingButton = UIBarButtonItem(barButtonSystemItem: .add , target: self, action: #selector(addTaskBtnPressed))
         self.navigationItem.rightBarButtonItem = addingButton
     }
