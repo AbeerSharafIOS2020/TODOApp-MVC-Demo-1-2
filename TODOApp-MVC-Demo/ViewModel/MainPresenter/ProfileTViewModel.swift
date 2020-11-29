@@ -230,10 +230,10 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
     //Confirm Editting Alert
     func confirmEdittingMsg(row: Int){
         if row == 0 {
-            self.profileTVC.presentAlert(title: "Profile Editting", message: "Are you sure , Do you want to edit your profile?",
+            self.profileTVC.presentAlert(title: TitleMsg.profileEditting , message: Messages.edittingMsg ,
                                          actions: [
-                                            AlertableAction(title: "No", style: .cancel, result: false),
-                                            AlertableAction(title: "Yes", style: .destructive, result: true),
+                                            AlertableAction(title: AlertActionTitle.no, style: .cancel, result: false),
+                                            AlertableAction(title: AlertActionTitle.yes, style: .destructive, result: true),
                 ],
                                          completion: { [weak self] result in
                                             guard result else { return }
@@ -244,25 +244,25 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
     }
     //Editting Alert
     func edittingAlert(){
-      self.profileTVC?.presentAlertWithActionSheet(title: "Editting Selection", message: "please...press what do you whant to edit it?", actions: [
-            AlertableAction(title: "Name", style: .default, result: true),
-            AlertableAction(title: "Email", style: .default, result: true),
-            AlertableAction(title: "Password", style: .default, result: true),
-            AlertableAction(title: "Age", style: .default, result: true),
-            AlertableAction(title: "Cancel", style: .default, result: false),
+        self.profileTVC?.presentAlertWithActionSheet(title: TitleMsg.edittingSelection, message: Messages.editSelection, actions: [
+            AlertableAction(title: AlertActionTitle.name, style: .default, result: true),
+            AlertableAction(title: AlertActionTitle.email, style: .default, result: true),
+            AlertableAction(title: AlertActionTitle.age, style: .default, result: true),
+            AlertableAction(title: AlertActionTitle.password, style: .default, result: true),
+            AlertableAction(title: AlertActionTitle.cancel, style: .default, result: false),
             ], completion: { [weak self] title in
                 switch title {
-                case "Name" :
-                    self?.openAlert("Name")
-                case "Email" :
-                    self?.openAlert("Email")
+                case AlertActionTitle.name :
+                    self?.openAlert(AlertActionTitle.name)
+                case AlertActionTitle.age :
+                    self?.openAlert(AlertActionTitle.age)
                     
-                case "Password" :
-                    self?.openAlert("Password")
+                case AlertActionTitle.password :
+                    self?.openAlert(AlertActionTitle.password)
                     
-                case "Age" :
-                    self?.openAlert("Age")
-                case "Cancel" :
+                case AlertActionTitle.email :
+                    self?.openAlert(AlertActionTitle.email)
+                case AlertActionTitle.cancel :
                 return //self.present(alert, animated: true, completion: nil)
                 default:
                     break

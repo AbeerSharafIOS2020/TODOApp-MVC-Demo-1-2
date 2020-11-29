@@ -94,8 +94,20 @@ struct TitleMsg {
      static let invalidPassword = "Invalid Password"
      static let invalidAge = "Invalid Age"
      static let invalid = "Invalid"
+     static let profileEditting = "Profile Editting"
+     static let edittingSelection = "Editting Selection"
 }
+//Title Alert Action
+struct AlertActionTitle {
+     static let no = "No"
+     static let yes = "Yes"
+     static let name = "Name"
+          static let email = "Email"
+     static let password = "Password"
+     static let age = "Age"
+     static let cancel = "Cancel"
 
+}
 // Messege content
 struct Messages {
      static let  emailAndPassErrorMsg = "Please Enter Valid Email and Password"
@@ -108,6 +120,8 @@ struct Messages {
      static let dateErrorMsg = "Enter the date , please .."
      static let taskErrorMsg = "Enter your task details.."
      static let taskSavedSuccessMsg = "Done saved the task successfully"
+     static let edittingMsg = "Are you sure , Do you want to edit your profile?"
+     static let editSelection = "please...press what do you whant to edit it?"
 }
 // Screen title
 struct Titles {

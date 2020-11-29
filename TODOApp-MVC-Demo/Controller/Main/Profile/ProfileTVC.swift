@@ -14,7 +14,7 @@ class ProfileTVC: UITableViewController {
     let imagePicker = UIImagePickerController()
     let image = Data()
     var profileTViewModel: ProfileTViewModel!
-    weak var mainVC: MainVC!
+   // weak var mainVC: MainVC!
     //MARK:-Life Cycle:
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +45,10 @@ self.navigationController?.popViewController(animated: true)
             profileTVC.profileTViewModel = ProfileTViewModel(profileTVC: profileTVC)
         return profileTVC
     }
-    func addImag(imageData: Data){
-        let retreivedImage = UIImage(data: imageData)
-        self.profileView.profileImgView?.image = retreivedImage
-    }
+//    func addImag(imageData: Data){
+//        let retreivedImage = UIImage(data: imageData)
+//        self.profileView.profileImgView?.image = retreivedImage
+//    }
     
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
