@@ -44,7 +44,7 @@
                     print(datePickerView.date)
                     print(dateString)
                     
-                    self.addTaskView.dataAndTimeTxtField.resignFirstResponder()
+                    self.addTaskView?.dataAndTimeTxtField.resignFirstResponder()
                 }
             }
             @IBAction func saveBtnPressed(_ sender: Any) {

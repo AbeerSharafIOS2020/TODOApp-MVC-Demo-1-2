@@ -32,7 +32,7 @@ class ADDTaskView: UIView {
         // MARK:- Private Method
         extension ADDTaskView {
              private func setupBackGround(){
-              //self.backgroundColor = .clear 
+//                self.shadowView.backgroundColor = .white
             }
             private func setupTitle(){
                 screenTitle.text = Titles.addTaskTitle
@@ -57,7 +57,8 @@ class ADDTaskView: UIView {
                 textField.selectedIconColor = Colors.placholderColor
                 textField.lineColor = Colors.placholderColor
                 textField.selectedLineColor = Colors.primaryColor
-                //textField.font = UIFont.init(name: textField.font!.fontName, size: 20)
+                textField.font = UIFont(name:"Helvetica Neue",size:20)
+               // textField.font = UIFont.init(name: textField.font?.fontName ?? UIFont.openSans().fontName, size: 20)
                 textField.isSecureTextEntry = isSceure
                 if isPhone {
                     textField.keyboardType = .asciiCapableNumberPad

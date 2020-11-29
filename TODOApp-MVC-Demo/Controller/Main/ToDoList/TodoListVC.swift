@@ -41,7 +41,10 @@ class TodoListVC: MainVC {
     }
     // add task Btn
     @objc func addTaskBtnPressed(_ sender: Any) {
-        present(ADDTaskVC.create(), animated: true, completion: nil)
+       // self.navigationController?.pushViewController(ADDTaskVC.create(), animated: true)
+
+      //  AppDelegate.shared().switchToAddTaskState()
+        self.present(ADDTaskVC.create(), animated: true, completion: nil)
     }
     // MARK:- Private Methods
     private func setupView(){
