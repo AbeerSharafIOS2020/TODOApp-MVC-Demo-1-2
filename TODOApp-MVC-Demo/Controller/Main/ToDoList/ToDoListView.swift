@@ -57,7 +57,7 @@ class ToDoListView: UIView {
             self.backgroundColor = Colors.primaryColor
         }
         private func setupLabel(){
-            noTaskLabel.text = LabelText.noDataFound
+            noTaskLabel.text = LabelText.noDataFoundLabel
             noTaskLabel.textColor = Colors.primaryColor
             noTaskLabel.font.withSize(16)
         }

@@ -46,7 +46,7 @@ extension TodoListViewModel: TodoListViewModelProtocol {
                 //                self.todoListVC.allTaskObj = result.data
                 print(self.allTaskObj)
                 if  result.data.count == 0 {
-                    self.todoListVC.toDoListView.noTaskLabel.text = LabelText.noDataFound
+                    self.todoListVC.toDoListView.noTaskLabel.text = LabelText.noDataFoundLabel
                     self.todoListVC.toDoListView.noTaskLabel.isHidden = false
                 }else {
                     self.todoListVC.toDoListView.noTaskLabel.isHidden = true

@@ -15,22 +15,19 @@ class ProfileTVC: UITableViewController {
     let image = Data()
     var profileTViewModel: ProfileTViewModel!
     weak var mainVC: MainVC!
-    var validator: Validator!
-    
     //MARK:-Life Cycle:
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.profileView.backgroundColor = Colors.primaryColor
-        self.profileViewSetUp()
-        self.imageConfiguration()
+        self.objectDelegation()
+       // self.profileView.backgroundColor = Colors.primaryColor
+        self.profileView.setup()
+        //self.profileViewSetUp()
         self.profileTViewModel?.serviceOfGetProfileData()
         self.profileTViewModel?.serviceOfGetImage()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    
     //MARK:-Actions Methods :
     //log out Btn
     @IBAction func logoutBtnPressed(_ sender: Any) {
@@ -106,12 +103,12 @@ extension ProfileTVC {
 //MARK:- Image Picker
 extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK:- Private Methods
-    private func profileViewSetUp(){
-        profileView.backgroundColor = Colors.primaryColor
-        profileView.separatorStyle = .singleLine
-        profileView.separatorColor = Colors.placholderColor
-        profileView.setup()
-    }
+//    private func profileViewSetUp(){
+//        profileView.backgroundColor = Colors.primaryColor
+//        profileView.separatorStyle = .singleLine
+//        profileView.separatorColor = Colors.placholderColor
+//        profileView.setup()
+//    }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.dismiss(animated: true) { [weak self] in
@@ -121,15 +118,17 @@ extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
             self?.uploadImage(profileImage)
         }
     }
-    
-    private func imageConfiguration() {
+    private func objectDelegation(){
         imagePicker.delegate = self
-//        profileView.profileImgView.layer.cornerRadius = (profileView.profileImgView?.frame.size.width ?? 0.0) / 2
-        profileView.profileImgView?.clipsToBounds = true
-//        profileView.profileImgView?.layer.borderWidth = 3.0
-//        profileView.profileImgView?.layer.borderColor = UIColor.white.cgColor
-        profileView.imageLabel.isHidden = true
     }
+//    private func imageConfiguration() {
+//        imagePicker.delegate = self
+////        profileView.profileImgView.layer.cornerRadius = (profileView.profileImgView?.frame.size.width ?? 0.0) / 2
+//        profileView.profileImgView?.clipsToBounds = true
+////        profileView.profileImgView?.layer.borderWidth = 3.0
+////        profileView.profileImgView?.layer.borderColor = UIColor.white.cgColor
+//        profileView.imageLabel.isHidden = true
+//    }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }

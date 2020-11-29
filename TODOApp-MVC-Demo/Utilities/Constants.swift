@@ -83,7 +83,9 @@ struct LabelText {
      static let signUpLabel = "Sign Up"
      static let noAccountLabel = "Don’t have an acoount?"
      static let alreadyHaveAccountLabel = "Already have an account?"
-     static let noDataFound = "No Data Found"
+     static let noDataFoundLabel = "No Data Found"
+     static let editProfileLabel = "Edit Profile"
+     static let logOutLabel = "LOG OUT"
 }
 //Title Message
 struct TitleMsg {

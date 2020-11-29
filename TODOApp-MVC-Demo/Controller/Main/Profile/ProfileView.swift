@@ -25,21 +25,29 @@ class ProfileView: UITableView{
     @IBOutlet weak var dateOfCreateUserLabel: UILabel!
     @IBOutlet weak var dateOfUpdateProfileLabel: UILabel!
     @IBOutlet weak var logoutLabel: UILabel!
-  // MARK:- Public Method
+  // MARK:- Properties
+//  let imagePicker = UIImagePickerController()
+//  let image = Data()
+// MARK:- Public Method
     func setup(){
         self.setupBackGround()
-        self.setupLogoutButton()
-        self.setupUserImages()
         self.setupLabel()
+        self.setupLogoutButton()
+        self.UserImagesConfigruation()
+
+       // self.setupUserImages()
+        self.imageConfiguration()
     }
 }
     // MARK:- Private Method
     extension ProfileView {
          private func setupBackGround(){
             self.backgroundColor = Colors.primaryColor
+            self.separatorStyle = .singleLine
+            self.separatorColor = Colors.placholderColor
         }
         private func setupLabel(){
-            updateProfileLabel.text = "Edit Profile"
+            updateProfileLabel.text = LabelText.editProfileLabel
             updateProfileLabel.textColor = Colors.primaryColor
             updateProfileLabel.font.withSize(16)
             
@@ -64,67 +72,44 @@ class ProfileView: UITableView{
             logoutLabel.tintColor = .white
             
             logoutLabel.layer.cornerRadius = logoutLabel.frame.height / 5
-            logoutLabel.text = "LOG OUT"
+            logoutLabel.text = LabelText.logOutLabel
             logoutLabel.textColor = Colors.placholderColor
             logoutLabel.font.withSize(16)
-
-            
         }
-        private func setupUserImages(){
-            profileImgView.layer.cornerRadius = profileImgView.frame.height / 2
-            profileImgView.contentMode = .scaleToFill
-            profileImgView.layer.borderWidth = 2.0
-            profileImgView.layer.borderColor = Colors.placholderColor.cgColor
 
-            
-            nameIconImgView.image = UIImage(named: ImagesName.userNameIcon)
-            nameIconImgView.layer.cornerRadius = profileImgView.frame.height / 2
-            nameIconImgView.contentMode = .scaleToFill
-            nameIconImgView.layer.borderColor = Colors.placholderColor.cgColor
-            nameIconImgView.layer.borderWidth = 2.0
+        private func UserImagesConfigruation(){
+            self.setupUserImages(profileImgView,  UIImage(named: ImagesName.userEmailcon)!)
 
+            self.setupUserImages(emailIconImgView,  UIImage(named: ImagesName.userEmailcon)!)
+            self.setupUserImages(nameIconImgView,  UIImage(named: ImagesName.userNameIcon)!)
+            self.setupUserImages(ageIconeImgView,  UIImage(named: ImagesName.userAgeIcon)!)
+            //self.setupUserImages(dateUserIconImgView,  UIImage(named: ImagesName.profileDateIcon)!)
+         //   self.setupUserImages(dateOfUpdateProfileImgView,  UIImage(named: ImagesName.profileUpdateDateIcon)!)
 
-
-            emailIconImgView.image = UIImage(named: ImagesName.userEmailcon)
-            emailIconImgView.layer.cornerRadius = profileImgView.frame.height / 2
-            emailIconImgView.contentMode = .scaleAspectFit
-            emailIconImgView.layer.borderColor = Colors.placholderColor.cgColor
-            emailIconImgView.layer.borderWidth = 2.0
-
-
-
-            ageIconeImgView.image = UIImage(named: ImagesName.userAgeIcon)
-            ageIconeImgView.layer.cornerRadius = profileImgView.frame.height / 2
-            ageIconeImgView.contentMode = .scaleToFill
-            ageIconeImgView.layer.borderColor = Colors.placholderColor.cgColor
-            ageIconeImgView.layer.borderWidth = 2.0
-
-
-
-            dateUserIconImgView.image = UIImage(named: ImagesName.profileDateIcon)
-            dateUserIconImgView.layer.cornerRadius = profileImgView.frame.height / 2
-            dateUserIconImgView.contentMode = .scaleToFill
-            dateUserIconImgView.layer.borderColor = Colors.placholderColor.cgColor
-            dateUserIconImgView.layer.borderWidth = 2.0
-
-
-
-            dateOfUpdateProfileImgView.image = UIImage(named: ImagesName.profileUpdateDateIcon)
-            dateOfUpdateProfileImgView.layer.cornerRadius = profileImgView.frame.height / 2
-            dateOfUpdateProfileImgView.contentMode = .scaleToFill
-            dateOfUpdateProfileImgView.layer.borderColor = Colors.primaryColor.cgColor
-            dateOfUpdateProfileImgView.layer.borderWidth = 3.0
-
-
-
-            
         }
-        private func setupImages(){
-            
-            profileImgView.image = UIImage(named: ImagesName.backgroundImage)
-            profileImgView.contentMode =  .scaleToFill
-            
+        //private func addBackground(_ tableView: UITableView){
+        //// Add a background view to the table view
+        //  let backgroundImage = UIImage(named: ImagesName.backgroundImage)
+        //let imageView = UIImageView(image: backgroundImage)
+        //tableView.backgroundView = imageView
+        //}
+
+        private func setupUserImages(_ imagViewe: UIImageView!,_ image1: UIImage = UIImage(named: ImagesName.userNameIcon)!){
+            imagViewe.image = image1
+            imagViewe.layer.cornerRadius = profileImgView.frame.height / 2
+            imagViewe.contentMode = .scaleToFill
+            imagViewe.layer.borderColor = Colors.placholderColor.cgColor
+            imagViewe.layer.borderWidth = 2.0
+
         }
+            private func imageConfiguration() {
+                self.profileImgView?.clipsToBounds = true
+                self.imageLabel.isHidden = true
+                self.profileImgView.image = UIImage(named: ImagesName.backgroundImage)
+                self.profileImgView.contentMode =  .scaleToFill
+
+            }
+
             
 
     }
