@@ -275,7 +275,7 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
     
     //Open Alert
     func openAlert(_ txt: String){
-        self.profileTVC.alertWithTextField(title: txt, message: "Enter your new \(txt.lowercased())", placeholder: "your new \(txt.lowercased())") { result in
+        self.profileTVC.alertWithTextField(title: txt, message: "\(Messages.enterYourNew) \(txt.lowercased())", placeholder: "\(PlaceHolders.yourNew) \(txt.lowercased())") { result in
             self.editProfile(txt,"\(result)")
             print(result)
         }

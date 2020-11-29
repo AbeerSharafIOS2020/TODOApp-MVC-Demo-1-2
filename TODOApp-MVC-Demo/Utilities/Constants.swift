@@ -122,6 +122,7 @@ struct Messages {
      static let taskSavedSuccessMsg = "Done saved the task successfully"
      static let edittingMsg = "Are you sure , Do you want to edit your profile?"
      static let editSelection = "please...press what do you whant to edit it?"
+     static let enterYourNew = "Enter your new"
 }
 // Screen title
 struct Titles {
@@ -140,6 +141,7 @@ struct PlaceHolders {
      static let agePlaceHolder = "Age"
      static let firstNotePlaceHolder = "First note"
      static let dateAndTimePlaceHolder = "Date And Time"
+     static let yourNew = "your new"
 }
 
 // NamesObjects
