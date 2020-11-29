@@ -31,7 +31,8 @@ class ProfileView: UITableView{
 // MARK:- Public Method
     func setup(){
         self.setupBackGround()
-        self.setupLabel()
+        self.labelConfigruation()
+        //self.setupLabel()
         self.setupLogoutButton()
         self.UserImagesConfigruation()
 
@@ -46,24 +47,36 @@ class ProfileView: UITableView{
             self.separatorStyle = .singleLine
             self.separatorColor = Colors.placholderColor
         }
-        private func setupLabel(){
-            updateProfileLabel.text = LabelText.editProfileLabel
-            updateProfileLabel.textColor = Colors.primaryColor
-            updateProfileLabel.font.withSize(16)
-            
-            userNameLabel.textColor = Colors.primaryColor
-            userNameLabel.font.withSize(16)
-            
-            emailLabel.textColor = Colors.primaryColor
-            emailLabel.font.withSize(16)
-            
-            ageLabel.textColor = Colors.primaryColor
-            ageLabel.font.withSize(16)
-            
-            dateOfCreateUserLabel.textColor = Colors.primaryColor
-            dateOfCreateUserLabel.font.withSize(16)
-            dateOfUpdateProfileLabel.textColor = Colors.placholderColor
-            dateOfUpdateProfileLabel.font.withSize(16)
+        private func labelConfigruation(){
+            setupLabel(updateProfileLabel,LabelText.editProfileLabel)
+            setupLabel(userNameLabel,"" )
+            setupLabel(emailLabel, "")
+            setupLabel(ageLabel, "" )
+            setupLabel(dateOfCreateUserLabel, "")
+            setupLabel(dateOfUpdateProfileLabel,"" )
+        }
+        private func setupLabel(_ label: UILabel,_ text: String){
+            label.text = text
+            label.textColor = Colors.primaryColor
+            label.font.withSize(16)
+
+//            updateProfileLabel.text = LabelText.editProfileLabel
+//            updateProfileLabel.textColor = Colors.primaryColor
+//            updateProfileLabel.font.withSize(16)
+//
+//            userNameLabel.textColor = Colors.primaryColor
+//            userNameLabel.font.withSize(16)
+//
+//            emailLabel.textColor = Colors.primaryColor
+//            emailLabel.font.withSize(16)
+//
+//            ageLabel.textColor = Colors.primaryColor
+//            ageLabel.font.withSize(16)
+//
+//            dateOfCreateUserLabel.textColor = Colors.primaryColor
+//            dateOfCreateUserLabel.font.withSize(16)
+//            dateOfUpdateProfileLabel.textColor = Colors.placholderColor
+//            dateOfUpdateProfileLabel.font.withSize(16)
         }
         private func setupLogoutButton(){
             logoutLabel.backgroundColor = Colors.primaryColor
