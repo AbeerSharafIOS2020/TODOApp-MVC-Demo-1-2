@@ -35,7 +35,7 @@ class ProfileView: UITableView{
         //self.setupLabel()
         self.setupLogoutButton()
         self.UserImagesConfigruation()
-
+        self.addBackground()
        // self.setupUserImages()
         self.imageConfiguration()
     }
@@ -59,31 +59,11 @@ class ProfileView: UITableView{
             label.text = text
             label.textColor = Colors.primaryColor
             label.font.withSize(16)
-
-//            updateProfileLabel.text = LabelText.editProfileLabel
-//            updateProfileLabel.textColor = Colors.primaryColor
-//            updateProfileLabel.font.withSize(16)
-//
-//            userNameLabel.textColor = Colors.primaryColor
-//            userNameLabel.font.withSize(16)
-//
-//            emailLabel.textColor = Colors.primaryColor
-//            emailLabel.font.withSize(16)
-//
-//            ageLabel.textColor = Colors.primaryColor
-//            ageLabel.font.withSize(16)
-//
-//            dateOfCreateUserLabel.textColor = Colors.primaryColor
-//            dateOfCreateUserLabel.font.withSize(16)
-//            dateOfUpdateProfileLabel.textColor = Colors.placholderColor
-//            dateOfUpdateProfileLabel.font.withSize(16)
         }
         private func setupLogoutButton(){
             logoutLabel.backgroundColor = Colors.primaryColor
             logoutLabel.frame = CGRect(x: 48, y: 432, width: 304, height: 50)
-
             logoutLabel.tintColor = .white
-            
             logoutLabel.layer.cornerRadius = logoutLabel.frame.height / 5
             logoutLabel.text = LabelText.logOutLabel
             logoutLabel.textColor = Colors.placholderColor
@@ -92,7 +72,6 @@ class ProfileView: UITableView{
 
         private func UserImagesConfigruation(){
             self.setupUserImages(profileImgView,  UIImage(named: ImagesName.userEmailcon)!)
-
             self.setupUserImages(emailIconImgView,  UIImage(named: ImagesName.userEmailcon)!)
             self.setupUserImages(nameIconImgView,  UIImage(named: ImagesName.userNameIcon)!)
             self.setupUserImages(ageIconeImgView,  UIImage(named: ImagesName.userAgeIcon)!)
@@ -100,12 +79,12 @@ class ProfileView: UITableView{
          //   self.setupUserImages(dateOfUpdateProfileImgView,  UIImage(named: ImagesName.profileUpdateDateIcon)!)
 
         }
-        //private func addBackground(_ tableView: UITableView){
-        //// Add a background view to the table view
-        //  let backgroundImage = UIImage(named: ImagesName.backgroundImage)
-        //let imageView = UIImageView(image: backgroundImage)
-        //tableView.backgroundView = imageView
-        //}
+        private func addBackground(){
+        // Add a background view to the table view
+          let backgroundImage = UIImage(named: ImagesName.backgroundImage)
+        let imageView = UIImageView(image: backgroundImage)
+            self.backgroundView = imageView
+        }
 
         private func setupUserImages(_ imagViewe: UIImageView!,_ image1: UIImage = UIImage(named: ImagesName.userNameIcon)!){
             imagViewe.image = image1

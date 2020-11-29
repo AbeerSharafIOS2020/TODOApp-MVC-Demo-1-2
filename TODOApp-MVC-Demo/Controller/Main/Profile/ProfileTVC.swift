@@ -76,7 +76,7 @@ class ProfileTVC: UITableViewController {
         self.profileTViewModel?.confirmEdittingMsg(row: row)
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.addBackground(tableView)
+     //   self.addBackground(tableView)
         if section == 0 {
             return 5
         }else if section == 1 {
@@ -85,12 +85,12 @@ class ProfileTVC: UITableViewController {
         return 6
     }
 
-private func addBackground(_ tableView: UITableView){
-// Add a background view to the table view
-  let backgroundImage = UIImage(named: ImagesName.backgroundImage)
-let imageView = UIImageView(image: backgroundImage)
-tableView.backgroundView = imageView
-}
+//private func addBackground(_ tableView: UITableView){
+//// Add a background view to the table view
+//  let backgroundImage = UIImage(named: ImagesName.backgroundImage)
+//let imageView = UIImageView(image: backgroundImage)
+//tableView.backgroundView = imageView
+//}
 }
 //MARK:- extensions
 extension ProfileTVC {
