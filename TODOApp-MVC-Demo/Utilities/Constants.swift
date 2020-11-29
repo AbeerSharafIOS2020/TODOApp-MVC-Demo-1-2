@@ -14,10 +14,6 @@ struct Storyboards {
      static let authentication = "Authentication"
      static let main = "Main"
 }
-struct UI {
-     static let controller = UIViewController()
-     static let mainViewController = MainVC()
-}
 // Cells
 struct Cells {
      static let taskDataTVCell = "TaskDataTVCell"
