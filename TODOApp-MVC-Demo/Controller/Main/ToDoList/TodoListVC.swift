@@ -31,7 +31,7 @@ class TodoListVC: MainVC {
     // MARK:- Actions Methods
     //Go to Profile screen
     @IBAction func goToProfileTapButton() {
-self.navigationController?.pushViewController(ProfileTVC.create(), animated: true)
+        self.navigationController?.pushViewController(ProfileTVC.create(), animated: true)
     }
     // MARK:- Public Methods
     class func create() -> TodoListVC {
@@ -44,13 +44,12 @@ self.navigationController?.pushViewController(ProfileTVC.create(), animated: tru
         present(ADDTaskVC.create(), animated: true, completion: nil)
     }
     // MARK:- Private Methods
-    private func setupView() {
+    private func setupView(){
         self.setupNavbar()
         self.toDoListView.taskTableView.dataSource = self
         self.toDoListView.taskTableView.delegate = self
-
     }
-    private func setupNavbar() {
+    private func setupNavbar(){
         navigationStyle()
         let addingButton = UIBarButtonItem(barButtonSystemItem: .add , target: self, action: #selector(addTaskBtnPressed))
         self.navigationItem.rightBarButtonItem = addingButton

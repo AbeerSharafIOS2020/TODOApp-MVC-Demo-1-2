@@ -38,7 +38,7 @@ extension ADDTaskViewModel: ADDTaskViewModelProtocol {
                 self.view?.showErrorMsg(message: error.localizedDescription)
             case .success(let result):
                 self.view?.processOnStop()
-                self.view?.showSuccessMsg(message: "Done saved the task successfully")
+                self.view?.showSuccessMsg(message: Messages.taskSavedSuccessMsg)
                 AppDelegate.shared().switchToMainState()
                 print("description: \(result.data.description )")
             }
@@ -53,11 +53,11 @@ extension ADDTaskViewModel: ADDTaskViewModelProtocol {
     }
     func tryAddTask(description: String?, dateAndTime: String?) {
         if dateAndTime?.isEmpty ?? false {
-            self.view?.showErrorMsg(message: "Enter the date , please ..")
+            self.view?.showErrorMsg(message:  Messages.dateErrorMsg)
         }
 
         if description?.isEmpty ?? false {
-            self.view?.showErrorMsg(message: "Enter your task details..")
+            self.view?.showErrorMsg(message:Messages.taskErrorMsg)
         }
         else {
             self.serviceSaveTask(with: description!, dateAndTime: dateAndTime!)

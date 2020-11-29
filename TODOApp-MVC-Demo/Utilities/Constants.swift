@@ -106,7 +106,10 @@ struct Messages {
      static let ageErrorMsg = "Enter valid age .. greater than or equal 10 years"
      static let emailErrorMsg = "Please Enter Valid Email"
      static let invalidErrorMsg = "Please Enter your Valid data"
-     static let deleteTaskSuccess = "Delete the task Successfully"
+     static let deleteTaskSuccessMsg = "Delete the task Successfully"
+     static let dateErrorMsg = "Enter the date , please .."
+     static let taskErrorMsg = "Enter your task details.."
+     static let taskSavedSuccessMsg = "Done saved the task successfully"
 }
 // Screen title
 struct Titles {

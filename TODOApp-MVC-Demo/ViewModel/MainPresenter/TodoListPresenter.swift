@@ -74,7 +74,7 @@ extension TodoListViewModel: TodoListViewModelProtocol {
                 let result = result
                 if result.success == true {
                     self.view?.processOnStop()
-                    self.view?.showSuccessMsg(message:Messages.deleteTaskSuccess)
+                    self.view?.showSuccessMsg(message:Messages.deleteTaskSuccessMsg)
                 }
             }
             self.view?.processOnStop()
