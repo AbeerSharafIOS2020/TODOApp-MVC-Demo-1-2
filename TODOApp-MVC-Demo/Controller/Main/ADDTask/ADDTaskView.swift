@@ -48,6 +48,7 @@ class ADDTaskView: UIView {
             private func setupTextField(_ textField: SkyFloatingLabelTextFieldWithIcon, placeHolder: String, isSceure: Bool = false, isPhone: Bool = false){
                 textField.backgroundColor = .clear
                 textField.placeholder = placeHolder
+                textField.frame = CGRect(x: 48, y: 432, width: 304, height: 50)
                 textField.placeholderColor = Colors.placholderColor
                 textField.selectedTitleColor = Colors.placholderColor
                 textField.textColor = Colors.primaryColor

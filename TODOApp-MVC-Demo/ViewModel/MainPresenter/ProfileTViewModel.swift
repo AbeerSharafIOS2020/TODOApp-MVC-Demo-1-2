@@ -125,7 +125,7 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
             switch response {
             case .success(let result):
                 let imageData = result.image
-                self.profileTVC?.addImag(imageData: imageData)
+                self.profileTVC?.profileView.addImag(imageData: imageData)
                 
             case .failure(let error):
                 print(error.localizedDescription)
