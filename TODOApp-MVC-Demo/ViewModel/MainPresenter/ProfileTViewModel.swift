@@ -190,10 +190,10 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
     }
     //MARK:- tryLogOutConfirm()
     func tryLogOutConfirm(){
-        self.profileTVC.presentAlert(title: "Confirm", message: "Are you sure Do you want log out?",
+        self.profileTVC.presentAlert(title: TitleMsg.confirm, message: Messages.confirmLogout,
                                      actions: [
-                                        AlertableAction(title: "No", style: .cancel, result: false),
-                                        AlertableAction(title: "Yes", style: .destructive, result: true),
+                                        AlertableAction(title: AlertActionTitle.no, style: .cancel, result: false),
+                                        AlertableAction(title: AlertActionTitle.yes, style: .destructive, result: true),
             ],
                                      completion: { [weak self] result in
                                         guard result else { return }

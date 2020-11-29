@@ -96,6 +96,7 @@ struct TitleMsg {
      static let invalid = "Invalid"
      static let profileEditting = "Profile Editting"
      static let edittingSelection = "Editting Selection"
+     static let confirm = "Confirm"
 }
 //Title Alert Action
 struct AlertActionTitle {
@@ -123,6 +124,7 @@ struct Messages {
      static let edittingMsg = "Are you sure , Do you want to edit your profile?"
      static let editSelection = "please...press what do you whant to edit it?"
      static let enterYourNew = "Enter your new"
+     static let confirmLogout = "Are you sure Do you want log out?"
 }
 // Screen title
 struct Titles {
