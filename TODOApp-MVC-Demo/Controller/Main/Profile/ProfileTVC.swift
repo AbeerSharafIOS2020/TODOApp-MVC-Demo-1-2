@@ -14,7 +14,7 @@ class ProfileTVC: UITableViewController {
     let imagePicker = UIImagePickerController()
     let image = Data()
     var profileTViewModel: ProfileTViewModel!
-   // weak var mainVC: MainVC!
+    weak var mainVC: MainVC!
     //MARK:-Life Cycle:
     override func viewDidLoad() {
         super.viewDidLoad()

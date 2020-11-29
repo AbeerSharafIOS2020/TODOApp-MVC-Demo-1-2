@@ -40,7 +40,6 @@ class ProfileView: UITableView{
         let retreivedImage = UIImage(data: imageData)
         self.profileImgView?.image = retreivedImage
     }
-
     
 }
 // MARK:- Private Method

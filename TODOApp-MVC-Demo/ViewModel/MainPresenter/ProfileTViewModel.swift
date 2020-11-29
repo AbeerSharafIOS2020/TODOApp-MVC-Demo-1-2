@@ -34,36 +34,56 @@ class ProfileTViewModel {
         self.profileTVC = profileTVC
     }
     //MARK:- Private Methods
+    func inValidEditing(_ txt: String){
+        self.view?.showErrorMsg(message: "\(TitleMsg.invalid)  \(txt)\(Messages.tryAgainWithCorrect) \(txt)")
+    }
+    func profileEdit(_ txt: String, _ editTxt: String){
+        self.profileTVC?.presentSuccess(with: Messages.edittingDoneSuccessMsg)
+    self.serviceUpdateProfile(txt, editTxt)
+    }
     private func editProfile(_ txt: String, _ editTxt: String){
         switch txt {
-        case "Name":
+        case AlertActionTitle.name:
             if !((Validator.shared().isValidName(editTxt))){
-                self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
+                self.inValidEditing(txt.lowercased())
+//                self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
             }else {
-                self.profileTVC?.presentSuccess(with: "Editting Done Successfully..")
-                self.serviceUpdateProfile(txt.lowercased(),editTxt)
+                self.profileEdit(txt.lowercased(),editTxt)
+
+//                self.profileTVC?.presentSuccess(with: "Editting Done Successfully..")
+//                self.serviceUpdateProfile(txt.lowercased(),editTxt)
             }
-        case "Email":
+        case AlertActionTitle.email:
             if !((Validator.shared().isValidEmail(editTxt))){
-                self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
+                self.inValidEditing(txt.lowercased())
+//                self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
             }else {
-                self.profileTVC?.presentSuccess(with: "Editting Done Successfully..")
-                self.serviceUpdateProfile(txt.lowercased(),editTxt)
+                self.profileEdit(txt.lowercased(),editTxt)
+
+//                self.profileTVC?.presentSuccess(with: "Editting Done Successfully..")
+//                self.serviceUpdateProfile(txt.lowercased(),editTxt)
             }
-        case "Password":
+        case AlertActionTitle.password:
             if !((Validator.shared().isValidPassword(editTxt))){
-                self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
+                self.inValidEditing(txt.lowercased())
+
+//                self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
                 
             }else {
-                self.profileTVC?.presentSuccess(with: "Editting Done Successfully..")
-                self.serviceUpdateProfile(txt.lowercased(),editTxt)
+                self.profileEdit(txt.lowercased(),editTxt)
+
+//                self.profileTVC?.presentSuccess(with: "Editting Done Successfully..")
+//                self.serviceUpdateProfile(txt.lowercased(),editTxt)
             }
-        case "Age":
+        case AlertActionTitle.age:
             if !((Validator.shared().isValidAge(Int(editTxt)))){
-                self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
+                self.inValidEditing(txt.lowercased())
+
+//                self.view?.showErrorMsg(message: "Unvalid \(txt.lowercased())...try again with correct \(txt.lowercased())")
             }else {
-                self.profileTVC?.presentSuccess(with: "Editting Done Successfully..")
-                self.serviceUpdateProfile(txt.lowercased(),editTxt)
+                self.profileEdit(txt.lowercased(),editTxt)
+//                self.profileTVC?.presentSuccess(with: "Editting Done Successfully..")
+//                self.serviceUpdateProfile(txt.lowercased(),editTxt)
             }
         default:
             break

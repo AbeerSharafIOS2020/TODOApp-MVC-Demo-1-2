@@ -123,12 +123,15 @@ struct Messages {
      static let dateErrorMsg = "Enter the date , please .."
      static let taskErrorMsg = "Enter your task details.."
      static let taskSavedSuccessMsg = "Done saved the task successfully"
+     static let edittingDoneSuccessMsg = "Editting Done Successfully.."
      static let edittingMsg = "Are you sure , Do you want to edit your profile?"
      static let editSelection = "please...press what do you whant to edit it?"
      static let enterYourNew = "Enter your new"
      static let confirmLogout = "Are you sure Do you want log out?"
      static let howToPickedImageMsg = "From where you want to pick this image?"
-}
+     static let tryAgainWithCorrect =   "please...try again with correct"
+     
+     }
 // Screen title
 struct Titles {
      static let loginTitle = "Log In"
