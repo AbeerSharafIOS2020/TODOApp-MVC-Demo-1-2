@@ -18,16 +18,17 @@ protocol ProfileTViewModelProtocol {
     func loadImagByName()
     func ChooseSourceType()
     func confirmEdittingMsg(row: Int)
+    func numberOfRowsInSection(_ section: Int) -> Int
 }
 //MARK:- ProfileTPresenter
 class ProfileTViewModel {
     //MARK:- Properties
     typealias View = MainVCProtocol
     private weak var view : MainVCProtocol?
-    weak var mainVC : MainVC!
-    init(mainVC: MainVC) {
-        self.mainVC = mainVC
-    }
+//    weak var mainVC : MainVC!
+//    init(mainVC: MainVC) {
+//        self.mainVC = mainVC
+//    }
     weak var profileTVC: ProfileTVC!
     init(profileTVC: ProfileTVC) {
         self.profileTVC = profileTVC
@@ -85,7 +86,7 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
                 let result = result.user
                 print("profile: \(result)")
                 self.profileTVC.profileView.ageLabel.text = "\(result.age)"
-                self.profileTVC.profileView.dateOfCreateUserLabel.text = "\(result.createdAt)"
+             self.profileTVC.profileView.dateOfCreateUserLabel.text = "\(result.createdAt)"
                 self.profileTVC.profileView.emailLabel.text = "\(result.email)"
                 self.profileTVC.profileView.userNameLabel.text = "\(result.name)"
                 self.profileTVC.profileView.dateOfUpdateProfileLabel.text = "\(result.updatedAt)"
@@ -162,11 +163,18 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
         }
     }
     
-    //MARK:- The confirm of the SignInVCPresenterDelegate Protocol
+    //MARK:- The confirm of the ProfileTViewModelProtocol Protocol
     func onViewDidLoad(view : MainVCProtocol){
         self.view = view
     }
-    
+    func numberOfRowsInSection(_ section: Int) -> Int{
+        if section == 0 {
+            return 6
+        }else if section == 1 {
+            return 1
+        }
+        return 6
+    }
     //Load image by name to the profile image
     func loadImagByName(){
         self.profileTVC?.profileView.imageLabel.isHidden = false

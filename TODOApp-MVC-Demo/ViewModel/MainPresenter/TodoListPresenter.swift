@@ -43,7 +43,7 @@ extension TodoListViewModel: TodoListViewModelProtocol {
             case .success(let result):
                 self.allTaskObj = result.data
                 print("\(self.allTaskObj)")
-                //                self.todoListVC.allTaskObj = result.data
+                //self.todoListVC.allTaskObj = result.data
                 print(self.allTaskObj)
                 if  result.data.count == 0 {
                     self.todoListVC.toDoListView.noTaskLabel.text = LabelText.noDataFoundLabel
@@ -88,7 +88,6 @@ extension TodoListViewModel: TodoListViewModelProtocol {
     internal func onViewDidLoad(view : MainVCProtocol){
         self.view = view
     }
-    
     func willDisplayCell(row: Int?) {
         if (row ?? 0) % 2 == 0 {
             self.todoListVC.toDoListView.transformPlus()

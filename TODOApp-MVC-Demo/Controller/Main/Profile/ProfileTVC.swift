@@ -19,9 +19,7 @@ class ProfileTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.objectDelegation()
-       // self.profileView.backgroundColor = Colors.primaryColor
         self.profileView.setup()
-        //self.profileViewSetUp()
         self.profileTViewModel?.serviceOfGetProfileData()
         self.profileTViewModel?.serviceOfGetImage()
     }
@@ -39,7 +37,7 @@ class ProfileTVC: UITableViewController {
     }
     //Back Btn
     @IBAction func backTapButton() {
-        self.navigationController?.popViewController(animated: true)
+self.navigationController?.popViewController(animated: true)
     }
     // MARK:- Public Methods
     class func create() -> ProfileTVC {
@@ -77,12 +75,7 @@ class ProfileTVC: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
      //   self.addBackground(tableView)
-        if section == 0 {
-            return 5
-        }else if section == 1 {
-            return 1
-        }
-        return 6
+        return (self.profileTViewModel?.numberOfRowsInSection(section))!
     }
 
 //private func addBackground(_ tableView: UITableView){

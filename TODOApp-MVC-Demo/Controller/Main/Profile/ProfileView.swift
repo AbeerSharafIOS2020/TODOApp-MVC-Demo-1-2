@@ -42,6 +42,10 @@ class ProfileView: UITableView{
 }
     // MARK:- Private Method
     extension ProfileView {
+        private func addImag(imageData: Data){
+            let retreivedImage = UIImage(data: imageData)
+            self.profileImgView?.image = retreivedImage
+        }
          private func setupBackGround(){
             self.backgroundColor = Colors.primaryColor
             self.separatorStyle = .singleLine
@@ -75,9 +79,8 @@ class ProfileView: UITableView{
             self.setupUserImages(emailIconImgView,  UIImage(named: ImagesName.userEmailcon)!)
             self.setupUserImages(nameIconImgView,  UIImage(named: ImagesName.userNameIcon)!)
             self.setupUserImages(ageIconeImgView,  UIImage(named: ImagesName.userAgeIcon)!)
-            //self.setupUserImages(dateUserIconImgView,  UIImage(named: ImagesName.profileDateIcon)!)
-         //   self.setupUserImages(dateOfUpdateProfileImgView,  UIImage(named: ImagesName.profileUpdateDateIcon)!)
-
+            self.setupUserImages(dateUserIconImgView,  UIImage(named: ImagesName.profileDateIcon)!)
+            self.setupUserImages(dateOfUpdateProfileImgView,  UIImage(named: ImagesName.profileUpdateDateIcon)!)
         }
         private func addBackground(){
         // Add a background view to the table view
@@ -99,7 +102,6 @@ class ProfileView: UITableView{
                 self.imageLabel.isHidden = true
                 self.profileImgView.image = UIImage(named: ImagesName.backgroundImage)
                 self.profileImgView.contentMode =  .scaleToFill
-
             }
 
             
