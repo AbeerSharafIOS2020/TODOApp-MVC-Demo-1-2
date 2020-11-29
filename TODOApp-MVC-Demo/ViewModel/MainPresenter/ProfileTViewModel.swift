@@ -202,22 +202,25 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
         )
     }
     //MARK:- ChooseSourceType action sheet
-    func ChooseSourceType(){   self.profileTVC.presentAlertWithActionSheet(title: "Image Selection", message: "From where you want to pick this image?", actions: [
-        AlertableAction(title: "Camera", style: .default, result: true),
-        AlertableAction(title: "Photo Album", style: .default, result: true),
-        AlertableAction(title: "Cancel", style: .default, result: false),
+    func ChooseSourceType(){   self.profileTVC.presentAlertWithActionSheet(title: TitleMsg.imageSelection, message: Messages.howToPickedImageMsg, actions: [
+        AlertableAction(title: AlertActionTitle.camera, style: .default, result: true),
+        AlertableAction(title: AlertActionTitle.photoAlbum, style: .default, result: true),
+        AlertableAction(title: AlertActionTitle.cancel, style: .default, result: false),
         ], completion: { [weak self] title in
             switch title {
-            case "Camera" :
-                self?.profileTVC.imagePicker.sourceType = .camera
-                self?.profileTVC.imagePicker.allowsEditing = true
-                self?.profileTVC.present(self!.profileTVC.imagePicker, animated: true, completion: nil)
+            case AlertActionTitle.camera :
+                self!.profileTVC?.sourceType(.camera)
+
+//                self?.profileTVC.imagePicker.sourceType = .camera
+//                self?.profileTVC.imagePicker.allowsEditing = true
+//                self?.profileTVC.present(self!.profileTVC.imagePicker, animated: true, completion: nil)
                 
-            case "Photo Album" :
-                self?.profileTVC.imagePicker.sourceType = .photoLibrary
-                self?.profileTVC.imagePicker.allowsEditing = true
-                self?.profileTVC.present(self!.profileTVC.imagePicker, animated: true, completion: nil)
-            case "Cancel" :
+            case AlertActionTitle.photoAlbum :
+                self!.profileTVC?.sourceType(.photoLibrary)
+//                self?.profileTVC.imagePicker.sourceType = .photoLibrary
+//                self?.profileTVC.imagePicker.allowsEditing = true
+//                self?.profileTVC.present(self!.profileTVC.imagePicker, animated: true, completion: nil)
+            case AlertActionTitle.cancel :
             return //self.present(alert, animated: true, completion: nil)
             default:
                 break
@@ -280,5 +283,9 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
             print(result)
         }
     }
-    
+//    private func sourceType(_ source: String){
+//        self.profileTVC.imagePicker.sourceType = .
+//        self.profileTVC.imagePicker.allowsEditing = true
+//        self.profileTVC.present(self.profileTVC.imagePicker, animated: true, completion: nil)
+//    }
 }

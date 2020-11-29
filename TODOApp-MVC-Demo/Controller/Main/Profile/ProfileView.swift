@@ -25,7 +25,7 @@ class ProfileView: UITableView{
     @IBOutlet weak var dateOfUpdateProfileLabel: UILabel!
     @IBOutlet weak var logoutLabel: UILabel!
     // MARK:- Properties
-    //  let imagePicker = UIImagePickerController()
+      let imagePicker = UIImagePickerController()
     //  let image = Data()
     // MARK:- Public Method
     func setup(){
@@ -40,6 +40,7 @@ class ProfileView: UITableView{
         let retreivedImage = UIImage(data: imageData)
         self.profileImgView?.image = retreivedImage
     }
+
     
 }
 // MARK:- Private Method

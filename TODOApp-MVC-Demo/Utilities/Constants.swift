@@ -97,6 +97,7 @@ struct TitleMsg {
      static let profileEditting = "Profile Editting"
      static let edittingSelection = "Editting Selection"
      static let confirm = "Confirm"
+     static let imageSelection = "Image Selection"
 }
 //Title Alert Action
 struct AlertActionTitle {
@@ -107,7 +108,8 @@ struct AlertActionTitle {
      static let password = "Password"
      static let age = "Age"
      static let cancel = "Cancel"
-
+     static let camera = "Camera"
+     static let photoAlbum = "Photo Album"
 }
 // Messege content
 struct Messages {
@@ -125,6 +127,7 @@ struct Messages {
      static let editSelection = "please...press what do you whant to edit it?"
      static let enterYourNew = "Enter your new"
      static let confirmLogout = "Are you sure Do you want log out?"
+     static let howToPickedImageMsg = "From where you want to pick this image?"
 }
 // Screen title
 struct Titles {

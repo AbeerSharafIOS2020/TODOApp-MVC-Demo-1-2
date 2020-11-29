@@ -45,6 +45,12 @@ self.navigationController?.popViewController(animated: true)
             profileTVC.profileTViewModel = ProfileTViewModel(profileTVC: profileTVC)
         return profileTVC
     }
+    func sourceType(_ source: UIImagePickerController.SourceType){
+        imagePicker.sourceType = source
+        imagePicker.allowsEditing = true
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+
 //    func addImag(imageData: Data){
 //        let retreivedImage = UIImage(data: imageData)
 //        self.profileView.profileImgView?.image = retreivedImage
