@@ -46,14 +46,14 @@ extension TodoListViewModel: TodoListViewModelProtocol {
                 //                self.todoListVC.allTaskObj = result.data
                 print(self.allTaskObj)
                 if  result.data.count == 0 {
-                    self.todoListVC.noTaskLabel.text = LabelText.noDataFound
-                    self.todoListVC.noTaskLabel.isHidden = false
+                    self.todoListVC.toDoListView.noTaskLabel.text = LabelText.noDataFound
+                    self.todoListVC.toDoListView.noTaskLabel.isHidden = false
                 }else {
-                    self.todoListVC.noTaskLabel.isHidden = true
-                    self.todoListVC.taskTableView.reloadData()
+                    self.todoListVC.toDoListView.noTaskLabel.isHidden = true
+                    self.todoListVC.toDoListView.taskTableView.reloadData()
                     print("data:  \(self.allTaskObj.description)")
                     print("count in data: \(self.allTaskObj.count)")
-                    self.todoListVC.taskTableView.reloadData()
+                    self.todoListVC.toDoListView.taskTableView.reloadData()
                 }
                 self.view?.processOnStop()
             }
@@ -91,11 +91,11 @@ extension TodoListViewModel: TodoListViewModelProtocol {
     
     func willDisplayCell(row: Int?) {
         if (row ?? 0) % 2 == 0 {
-            self.todoListVC.transformPlus()
+            self.todoListVC.toDoListView.transformPlus()
         } else {
-            self.todoListVC.transformMince()
+            self.todoListVC.toDoListView.transformMince()
         }
-        self.todoListVC.animate(row: row)
+        self.todoListVC.toDoListView.animate(row: row)
     }
     func tryDeleteTaskConfirm(row: Int,indexPath: IndexPath, item: TaskData){
         
@@ -110,7 +110,7 @@ extension TodoListViewModel: TodoListViewModelProtocol {
                                         self?.callDeleteService(item)
                                         print("self.allTaskObj[indexPath.row]: \(item)")
                                         self?.allTaskObj.remove(at: indexPath.item)
-                                        self?.todoListVC?.taskTableView?.deleteRows(at: [indexPath], with: .fade)
+                                        self?.todoListVC?.toDoListView.taskTableView?.deleteRows(at: [indexPath], with: .fade)
             }
         )
     }

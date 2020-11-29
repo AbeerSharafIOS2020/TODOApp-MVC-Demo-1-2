@@ -36,7 +36,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="faC-Lj-5cD" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="36" y="36" width="290" height="109"/>
+                                        <rect key="frame" x="164.5" y="36" width="33" height="109"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
@@ -44,7 +44,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kvK-vT-CeE" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="36" y="145" width="290" height="108.5"/>
+                                        <rect key="frame" x="164.5" y="145" width="33" height="108.5"/>
                                         <attributedString key="attributedText"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -130,33 +130,36 @@
         <scene sceneID="9s0-rT-SbE">
             <objects>
                 <viewController storyboardIdentifier="TodoListVC" id="1EZ-l5-fPz" customClass="TodoListVC" customModule="TODOApp_MVC_Demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wEd-ce-qjx">
+                    <view key="view" contentMode="scaleToFill" id="wEd-ce-qjx" customClass="ToDoListView" customModule="TODOApp_MVC_Demo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKY-dp-bFL">
-                                <rect key="frame" x="150" y="474.5" width="114" height="19.5"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
-                                <color key="textColor" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nah-wf-fBY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nah-wf-fBY">
                                 <rect key="frame" x="0.0" y="88" width="414" height="813"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKY-dp-bFL">
+                                <rect key="frame" x="150" y="465.5" width="114" height="19.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="Nah-wf-fBY" secondAttribute="bottom" constant="-39" id="8Bb-Dm-qaQ"/>
-                            <constraint firstItem="PKY-dp-bFL" firstAttribute="leading" secondItem="jbC-ca-bL1" secondAttribute="leading" constant="150" id="ASf-FG-3fQ"/>
-                            <constraint firstItem="Nah-wf-fBY" firstAttribute="centerX" secondItem="PKY-dp-bFL" secondAttribute="centerX" id="VFf-Hd-6Rb"/>
+                            <constraint firstItem="Nah-wf-fBY" firstAttribute="centerX" secondItem="PKY-dp-bFL" secondAttribute="centerX" id="KcX-zk-rHg"/>
                             <constraint firstItem="Nah-wf-fBY" firstAttribute="leading" secondItem="jbC-ca-bL1" secondAttribute="leading" id="cRo-Fk-pAu"/>
                             <constraint firstItem="Nah-wf-fBY" firstAttribute="top" secondItem="jbC-ca-bL1" secondAttribute="top" id="npw-wb-hgR"/>
-                            <constraint firstItem="PKY-dp-bFL" firstAttribute="top" secondItem="jbC-ca-bL1" secondAttribute="top" constant="386.5" id="oWu-AD-iqn"/>
+                            <constraint firstItem="PKY-dp-bFL" firstAttribute="centerY" secondItem="jbC-ca-bL1" secondAttribute="centerY" id="pMv-FO-uWF"/>
                             <constraint firstItem="PKY-dp-bFL" firstAttribute="centerX" secondItem="wEd-ce-qjx" secondAttribute="centerX" id="yVE-Np-Wh9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jbC-ca-bL1"/>
+                        <connections>
+                            <outlet property="noTaskLabel" destination="PKY-dp-bFL" id="snr-m0-5N7"/>
+                            <outlet property="taskTableView" destination="Nah-wf-fBY" id="9aT-No-hzP"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="TO DO LIST" id="Wma-1n-L82">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="backArrow" style="done" id="FaE-mq-Jr1">
@@ -177,8 +180,7 @@
                     </navigationItem>
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
-                        <outlet property="noTaskLabel" destination="PKY-dp-bFL" id="jjO-Oe-b9x"/>
-                        <outlet property="taskTableView" destination="Nah-wf-fBY" id="zGs-kT-iXo"/>
+                        <outlet property="toDoListView" destination="wEd-ce-qjx" id="qXC-bQ-RjY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8C-10-te9" userLabel="First Responder" sceneMemberID="firstResponder"/>
