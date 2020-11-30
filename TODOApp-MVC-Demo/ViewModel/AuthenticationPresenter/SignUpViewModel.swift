@@ -7,13 +7,13 @@
 
 import Foundation
 //MARK:- Protocol of SignInPresenter
-// single up presenter protocol -use by any class to provide sign up date
+// SignUpViewModelProtocol -use by any class to provide sign up date
 protocol SignUpViewModelProtocol {
  //   associatedtype View
     func onViewDidLoad(view : MainVCProtocol)
     func trySignUp(name: String?, email: String?, password: String?, age: String?)
 }
-//MARK:- SignUpPresenter
+//MARK:- SignUpViewModel
 class SignUpViewModel {
     //MARK:- Properties
    // typealias View = MainVCProtocol

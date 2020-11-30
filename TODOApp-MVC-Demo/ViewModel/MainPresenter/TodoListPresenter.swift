@@ -7,19 +7,21 @@
 //
 
 import Foundation
-//MARK:- Protocol of SignInPresenter
+//MARK:- Protocol of TodoListViewModel
 protocol TodoListViewModelProtocol {
-    associatedtype View
-    func onViewDidLoad(view : View)
+    //associatedtype View
+    func onViewDidLoad(view : MainVCProtocol)
     func serviceOfGetAllTask()
     func willDisplayCell(row: Int?)
+    func getAllTaskData()-> [TaskData]
     func tryDeleteTaskConfirm(row: Int, indexPath: IndexPath, item: TaskData)
 }
-//MARK:- SignUpPresenter
+//MARK:- TodoListViewModel
 class TodoListViewModel {
     //MARK:- Properties
-    typealias View = MainVCProtocol
+   // typealias View = MainVCProtocol
     private weak var view : MainVCProtocol?
+    
     weak var todoListVC: TodoListVC!
     init(todoListVC: TodoListVC) {
         self.todoListVC = todoListVC
@@ -80,11 +82,11 @@ extension TodoListViewModel: TodoListViewModelProtocol {
             self.view?.processOnStop()
         }
     }
+    //MARK:- The confirm of the Protocol
     //MARK:- Public Methods
     func getAllTaskData()-> [TaskData] {
         return self.allTaskObj
     }
-    //MARK:- The confirm of the Protocol
     internal func onViewDidLoad(view : MainVCProtocol){
         self.view = view
     }

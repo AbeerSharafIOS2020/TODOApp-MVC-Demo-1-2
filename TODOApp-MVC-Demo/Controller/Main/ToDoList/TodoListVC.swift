@@ -11,7 +11,7 @@ class TodoListVC: MainVC {
     // MARK:- Outletss
     @IBOutlet weak var toDoListView: ToDoListView!
     //MARK:- Private Properties
-    var todoListViewModel: TodoListViewModel!
+    var todoListViewModel: TodoListViewModelProtocol!
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
