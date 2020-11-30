@@ -10,15 +10,19 @@ import Foundation
 //MARK:- Protocol of SignInVCPresenter
 // single in presenter protocol -use by any class to provide login date
 protocol SignInViewModelProtocol {
-    associatedtype View
-    func onViewDidLoad(view : View)
+   // associatedtype View
+    func onViewDidLoad(view : MainVCProtocol)
     func tryLogin(email: String?, password: String?)
 }
 //MARK:- SignInPresenter
 class SignInViewModel {
     //MARK:- Properties
-    typealias View = MainVCProtocol
     private weak var view : MainVCProtocol?
+    weak var signInVC: SignInVC!
+    init(signInVC: SignInVC) {
+        self.signInVC = signInVC
+    }
+    //typealias View = MainVCProtocol
     //MARK:- Private Methods
     private func validateField(email: String?, password: String?) -> Bool{
         if !Validator.shared().isValidEmail(email){

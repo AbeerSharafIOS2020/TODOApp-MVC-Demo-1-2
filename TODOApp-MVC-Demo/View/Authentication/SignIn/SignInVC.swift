@@ -11,14 +11,13 @@ class SignInVC: MainVC {
     // MARK:- Outlets
     @IBOutlet weak var mainView: SignInView!
     //MARK:- Properties
-    var viewModel: SignInViewModel!
+    var signInViewModel: SignInViewModelProtocol!
     // MARK:- Lifecycle methods
     override func viewDidLoad(){
         super.viewDidLoad()
         mainView.setup()
         navigationStyle()
-        viewModel = SignInViewModel()
-        viewModel?.onViewDidLoad(view: self)
+        signInViewModel?.onViewDidLoad(view: self)
         UserDefaultsManager.shared().isUploadImage = false
     }
     override func didReceiveMemoryWarning(){
@@ -30,7 +29,7 @@ class SignInVC: MainVC {
     // MARK:- Actions Methods
     //Sign in Btn
     @IBAction func signInBtnPressed(_ sender: Any) {
-        self.viewModel?.tryLogin(email:mainView.emailTxtField.text, password: mainView.passTxtField.text)
+        self.signInViewModel?.tryLogin(email:mainView.emailTxtField.text, password: mainView.passTxtField.text)
     }
     // Go to Sing UP
     @IBAction func goToSignUpScreenBtnPressed(_ sender: Any) {
