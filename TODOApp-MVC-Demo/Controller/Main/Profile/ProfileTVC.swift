@@ -13,7 +13,7 @@ class ProfileTVC: UITableViewController {
     // MARK:- Properties
     let imagePicker = UIImagePickerController()
     let image = Data()
-    var profileTViewModel: ProfileTViewModel!
+    var profileTViewModel: ProfileTViewModelProtocol!
     weak var mainVC: MainVC!
     //MARK:-Life Cycle:
     override func viewDidLoad() {
@@ -22,6 +22,7 @@ class ProfileTVC: UITableViewController {
         self.profileView.setup()
         self.profileTViewModel?.serviceOfGetProfileData()
         self.profileTViewModel?.serviceOfGetImage()
+        //profileTViewModel = ProfileTViewModelProtocol()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -81,7 +82,7 @@ self.navigationController?.popViewController(animated: true)
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
      //   self.addBackground(tableView)
-        return (self.profileTViewModel?.numberOfRowsInSection(section))!
+        return self.profileTViewModel.numberOfRowsInSection(section)
     }
 
 //private func addBackground(_ tableView: UITableView){

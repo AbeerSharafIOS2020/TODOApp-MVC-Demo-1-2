@@ -11,7 +11,8 @@ class TodoListVC: MainVC {
     // MARK:- Outletss
     @IBOutlet weak var toDoListView: ToDoListView!
     //MARK:- Private Properties
-    var todoListViewModel: TodoListViewModelProtocol!
+    var todoListViewModel : TodoListViewModelProtocol!
+    var addTaskViewModel : ADDTaskViewModelProtocol!
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,14 +38,18 @@ class TodoListVC: MainVC {
     class func create() -> TodoListVC {
         let todoListVC: TodoListVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.todoListVC)
         todoListVC.todoListViewModel = TodoListViewModel(todoListVC: todoListVC)
+//        todoListVC.addTaskViewModel = ADDTaskViewModelProtocol(todoListVC: todoListVC)
+
         return todoListVC
     }
     // add task Btn
     @objc func addTaskBtnPressed(_ sender: Any) {
+        self.navigationController?.pushViewController(ADDTaskVC.create(), animated: true)
+
        // self.navigationController?.pushViewController(ADDTaskVC.create(), animated: true)
 
       //  AppDelegate.shared().switchToAddTaskState()
-        self.present(ADDTaskVC.create(), animated: true, completion: nil)
+        //self.present(ADDTaskVC.create(), animated: true, completion: nil)
     }
     // MARK:- Private Methods
     private func setupView(){
@@ -77,10 +82,10 @@ class TodoListVC: MainVC {
 extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        // self.toDoListView.addBackground()
-        let tasks = todoListViewModel.getAllTaskData()
-        let count = tasks.count
-        print("count in cell : \(count)")
-        return count
+       // let tasks = self.todoListViewModel?.getAllTaskData().count
+       // let count = tasks.count
+       // print("count in cell : \(count)")
+        return self.todoListViewModel.getAllTaskData().count
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

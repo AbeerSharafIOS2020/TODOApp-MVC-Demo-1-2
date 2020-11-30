@@ -26,6 +26,11 @@ class TodoListViewModel {
     init(todoListVC: TodoListVC) {
         self.todoListVC = todoListVC
     }
+    weak var profileCV: ProfileTVC!
+    init(profileCV: ProfileTVC) {
+        self.profileCV = profileCV
+    }
+
     weak var addTaskVC: ADDTaskVC!
     init(addTaskVC: ADDTaskVC) {
         self.addTaskVC = addTaskVC

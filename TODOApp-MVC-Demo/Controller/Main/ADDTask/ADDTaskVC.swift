@@ -19,7 +19,7 @@
             override func viewDidLoad() {
                 super.viewDidLoad()
                 addTaskView.setup()
-                self.addTaskView.dataAndTimeTxtField.datePicker(target: self,
+                addTaskView?.dataAndTimeTxtField.datePicker(target: self,
                                           doneAction: #selector(doneAction),
                                           cancelAction: #selector(cancelAction),
                                           datePickerMode: .date)
@@ -30,21 +30,21 @@
             // MARK:- Action Methods:
             @objc
             func cancelAction() {
-                self.addTaskView.dataAndTimeTxtField.resignFirstResponder()
+            addTaskView?.dataAndTimeTxtField.resignFirstResponder()
             }
 
             @objc
             func doneAction() {
-                if let datePickerView = self.addTaskView.dataAndTimeTxtField.inputView as? UIDatePicker {
+                if let datePickerView = addTaskView.dataAndTimeTxtField.inputView as? UIDatePicker {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd HH:MM a"
                     let dateString = dateFormatter.string(from: datePickerView.date)
-                    self.addTaskView.dataAndTimeTxtField.text = dateString
+                    addTaskView.dataAndTimeTxtField.text = dateString
                     
                     print(datePickerView.date)
                     print(dateString)
                     
-                    self.addTaskView?.dataAndTimeTxtField.resignFirstResponder()
+                    addTaskView?.dataAndTimeTxtField.resignFirstResponder()
                 }
             }
             @IBAction func saveBtnPressed(_ sender: Any) {

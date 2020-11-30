@@ -18,6 +18,7 @@ protocol MainVCProtocol: class {
     func showAlertWithTwoActions(title: String, message: String, firstBtn: UIAlertAction)
 }
 class MainVC: UIViewController {
+    // MARK:- Outlets
     // MARK:- Lifecycle methods
     override func viewDidLoad(){
         super.viewDidLoad()

@@ -9,8 +9,8 @@
 import Foundation
 //MARK:- Protocol
 protocol ProfileTViewModelProtocol {
-    associatedtype View
-    func onViewDidLoad(view : View)
+   // associatedtype View
+    func onViewDidLoad(view : MainVCProtocol)
     func tryLogOutConfirm()
     func serviceOfGetProfileData()
     func serviceOfGetImage()
@@ -23,12 +23,12 @@ protocol ProfileTViewModelProtocol {
 //MARK:- ProfileTPresenter
 class ProfileTViewModel {
     //MARK:- Properties
-    typealias View = MainVCProtocol
-    private weak var view : MainVCProtocol?
-//    weak var mainVC : MainVC!
-//    init(mainVC: MainVC) {
-//        self.mainVC = mainVC
-//    }
+   // typealias View = MainVCProtocol
+   // private weak var view : MainVCProtocol?
+    weak var view : MainVCProtocol!
+    init(view: MainVCProtocol) {
+        self.view = view
+    }
     weak var profileTVC: ProfileTVC!
     init(profileTVC: ProfileTVC) {
         self.profileTVC = profileTVC
