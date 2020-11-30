@@ -7,16 +7,16 @@
 //
 
 import Foundation
-//MARK:- Protocol
+//MARK:- Protocol of ADDTaskViewModelProtocol
 protocol ADDTaskViewModelProtocol {
-    associatedtype View
-    func onViewDidLoad(view : View)
+    //associatedtype View
+    func onViewDidLoad(view : MainVCProtocol)
     func tryAddTask(description: String?, dateAndTime: String?)
 }
-//MARK:- ADDTaskPresenter
+//MARK:- ADDTaskViewModel
 class ADDTaskViewModel {
     //MARK:- Properties
-    typealias View = MainVCProtocol
+   // typealias View = MainVCProtocol
     private weak var view : MainVCProtocol?
     
     weak var addTaskVC: ADDTaskVC!

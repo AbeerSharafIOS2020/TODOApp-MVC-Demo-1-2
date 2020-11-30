@@ -14,7 +14,7 @@
             @IBOutlet weak var addTaskView: ADDTaskView!
         
             //MARK:- Properties
-             var addTaskViewModel: ADDTaskViewModel!
+             var addTaskViewModel: ADDTaskViewModelProtocol!
             // MARK:- Life Cycle Methods
             override func viewDidLoad() {
                 super.viewDidLoad()
