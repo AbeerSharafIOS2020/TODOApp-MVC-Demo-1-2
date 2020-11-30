@@ -9,14 +9,14 @@ import Foundation
 //MARK:- Protocol of SignInPresenter
 // single up presenter protocol -use by any class to provide sign up date
 protocol SignUpViewModelProtocol {
-    associatedtype View
-    func onViewDidLoad(view : View)
+ //   associatedtype View
+    func onViewDidLoad(view : MainVCProtocol)
     func trySignUp(name: String?, email: String?, password: String?, age: String?)
 }
 //MARK:- SignUpPresenter
 class SignUpViewModel {
     //MARK:- Properties
-    typealias View = MainVCProtocol
+   // typealias View = MainVCProtocol
     private weak var view : MainVCProtocol?
     //MARK:- Private Methods
     private func validateField(name: String?, email: String?, password: String?, age:String?) -> Bool{

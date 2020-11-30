@@ -8,13 +8,13 @@
 
 import Foundation
 //MARK:- Protocol of SignInVCPresenter
-// single in presenter protocol -use by any class to provide login date
+// SignInViewModelProtocol -use by any class to provide login date
 protocol SignInViewModelProtocol {
    // associatedtype View
     func onViewDidLoad(view : MainVCProtocol)
     func tryLogin(email: String?, password: String?)
 }
-//MARK:- SignInPresenter
+//MARK:- SignInViewModel
 class SignInViewModel {
     //MARK:- Properties
     private weak var view : MainVCProtocol?

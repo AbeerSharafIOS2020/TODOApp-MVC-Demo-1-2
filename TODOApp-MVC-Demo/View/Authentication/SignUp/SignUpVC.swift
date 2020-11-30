@@ -13,13 +13,13 @@
         // MARK:- Outlets
         @IBOutlet weak var signUpView: SignUpView!
         // MARK:- Properties
-        var viewModel: SignUpViewModel!
+        var viewModel: SignUpViewModelProtocol!
         // MARK:- Lifecycle methods
         override func viewDidLoad() {
             super.viewDidLoad()
             signUpView.setup()
             navigationStyle()
-            self.viewModel = SignUpViewModel()
+            //self.viewModel = SignUpViewModelProtocol()
             self.viewModel?.onViewDidLoad(view: self)
         }
         override func didReceiveMemoryWarning() {
