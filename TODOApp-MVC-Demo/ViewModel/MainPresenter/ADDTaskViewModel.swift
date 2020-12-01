@@ -23,7 +23,6 @@ class ADDTaskViewModel {
     init(addTaskVC: ADDTaskVC) {
         self.addTaskVC = addTaskVC
     }
-
 }
 //MARK:- extension
 extension ADDTaskViewModel: ADDTaskViewModelProtocol {
@@ -46,7 +45,6 @@ extension ADDTaskViewModel: ADDTaskViewModelProtocol {
             
         }
     }
-    
     //MARK:- The confirm of the Protocol
     internal func onViewDidLoad(view: MainVCProtocol) {
         self.view = view

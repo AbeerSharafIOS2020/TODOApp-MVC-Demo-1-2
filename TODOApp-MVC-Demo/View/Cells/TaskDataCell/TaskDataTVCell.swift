@@ -20,7 +20,7 @@ class TaskDataTVCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUpImage()
-        self.setUpLabel()
+        self.labelConfiguration()
         self.setUpLineView()
     }
     // MARK:- Configuration Of Cell
@@ -28,15 +28,16 @@ class TaskDataTVCell: UITableViewCell {
    //     lineView.frame.width = CGSize(width: width, height: 3)
         lineView.backgroundColor = Colors.labelColor
     }
-
-    private func setUpLabel(){
-        createdAtLabel.textColor = Colors.labelColor
-        createdAtLabel.font = UIFont(name:"Helvetica Neue",size:14)
-        descriptionLabel.textColor = Colors.primaryColor
-        descriptionLabel.font = UIFont(name:"Helvetica Neue",size:14)
-        descriptionLabel.backgroundColor = .clear
+    private func labelConfiguration(){
+        setUpLabel(createdAtLabel)
+        setUpLabel(descriptionLabel)
     }
-
+    private func setUpLabel( _ label: UILabel){
+        label.textColor = Colors.labelColor
+        label.font = UIFont(name:"Helvetica Neue",size:14)
+        label.textColor = Colors.primaryColor
+        label.backgroundColor = .clear
+    }
     private func setUpImage(){
         taskImg.layer.cornerRadius = taskImg.frame.height / 2
         taskImg.contentMode = .scaleToFill
