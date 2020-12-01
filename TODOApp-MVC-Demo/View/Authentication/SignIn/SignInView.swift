@@ -22,8 +22,7 @@
         // MARK:- Public Method
         func setup(){
             self.setupBackGround()
-            self.setupTextField(emailTxtField, placeHolder: PlaceHolders.emailPlaceHolder, iconImage: UIImage(named: ImagesName.userEmailcon)!)
-            self.setupTextField(passTxtField, placeHolder: PlaceHolders.passwordPlaceHolder, isSceure: true, iconImage: UIImage(named: ImagesName.passwordIcon)!)
+            self.txtFieldConfiguration()
             self.setupSignInButton()
             self.setupUserImage()
             self.setupLabel()
@@ -33,6 +32,11 @@
     extension SignInView {
         private func setupBackGround(){
             self.backgroundColor = Colors.primaryColor
+        }
+        private func txtFieldConfiguration(){
+        self.setupTextField(emailTxtField, placeHolder: PlaceHolders.emailPlaceHolder, iconImage: UIImage(named: ImagesName.userEmailcon)!)
+        self.setupTextField(passTxtField, placeHolder: PlaceHolders.passwordPlaceHolder, isSceure: true, iconImage: UIImage(named: ImagesName.passwordIcon)!)
+
         }
         private func setupLabel(){
             loginLabel.text = LabelText.loginLabel
@@ -59,9 +63,9 @@
             textField.selectedLineColor = Colors.primaryColor
             textField.font = UIFont.init(name: textField.font!.fontName, size: 20)
             textField.isSecureTextEntry = isSceure
-//            if isPhone {
-//                textField.keyboardType = .asciiCapableNumberPad
-//            }
+            //            if isPhone {
+            //                textField.keyboardType = .asciiCapableNumberPad
+            //            }
         }
         private func setupSignInButton(){
             signInButton.backgroundColor = Colors.primaryColor
