@@ -34,13 +34,11 @@ class ProfileView: UITableView{
         self.setupLogoutButton()
         self.UserImagesConfigruation()
         self.addBackground()
-        self.imageConfiguration()
     }
     func addImag(imageData: Data){
         let retreivedImage = UIImage(data: imageData)
         self.profileImgView?.image = retreivedImage
     }
-    
 }
 // MARK:- Private Method
 extension ProfileView {
@@ -57,7 +55,6 @@ extension ProfileView {
         setupLabel(dateOfCreateUserLabel, "")
         setupLabel(dateOfUpdateProfileLabel,"" )
         setupLabel(imageLabel, "")
-        
     }
     private func setupLabel(_ label: UILabel,_ text: String){
         label.text = text
@@ -74,7 +71,7 @@ extension ProfileView {
         logoutLabel.font.withSize(16)
     }
     private func UserImagesConfigruation(){
-        self.setupUserImages(profileImgView,  UIImage(named: ImagesName.userEmailcon)!)
+        self.setupUserImages(profileImgView,  UIImage(named: ImagesName.backgroundImage)!)
         self.setupUserImages(emailIconImgView,  UIImage(named: ImagesName.userEmailcon)!)
         self.setupUserImages(nameIconImgView,  UIImage(named: ImagesName.userNameIcon)!)
         self.setupUserImages(ageIconeImgView,  UIImage(named: ImagesName.userAgeIcon)!)
@@ -87,20 +84,13 @@ extension ProfileView {
         let imageView = UIImageView(image: backgroundImage)
         self.backgroundView = imageView
     }
-    private func setupUserImages(_ imagViewe: UIImageView!,_ image1: UIImage = UIImage(named: ImagesName.userNameIcon)!){
+    private func setupUserImages(_ imagViewe: UIImageView!,_ image1: UIImage = UIImage(named: ImagesName.backgroundImage)!){
         imagViewe.image = image1
-        imagViewe.layer.cornerRadius = profileImgView.frame.height / 2
+        imagViewe.layer.cornerRadius = imagViewe.frame.height / 2
         imagViewe.contentMode = .scaleToFill
         imagViewe.layer.borderColor = Colors.placholderColor.cgColor
         imagViewe.layer.borderWidth = 2.0
     }
-    private func imageConfiguration() {
-        self.profileImgView?.clipsToBounds = true
-        self.imageLabel.isHidden = true
-        self.profileImgView.image = UIImage(named: ImagesName.backgroundImage)
-        self.profileImgView.contentMode =  .scaleToFill
-    }
-    
 }
 
 

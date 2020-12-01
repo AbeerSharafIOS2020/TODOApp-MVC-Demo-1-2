@@ -22,7 +22,6 @@ class ProfileTVC: UITableViewController {
         self.profileView.setup()
         self.profileTViewModel?.serviceOfGetProfileData()
         self.profileTViewModel?.serviceOfGetImage()
-        //profileTViewModel = ProfileTViewModelProtocol()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -38,7 +37,7 @@ class ProfileTVC: UITableViewController {
     }
     //Back Btn
     @IBAction func backTapButton() {
-self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     // MARK:- Public Methods
     class func create() -> ProfileTVC {
@@ -51,23 +50,12 @@ self.navigationController?.popViewController(animated: true)
         imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
     }
-
-//    func addImag(imageData: Data){
-//        let retreivedImage = UIImage(data: imageData)
-//        self.profileView.profileImgView?.image = retreivedImage
-//    }
-    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        //        if indexPath.row % 2 == 0{
         cell.transform = CGAffineTransform(translationX: tableView.bounds.width, y: 0)
-        //        }else{
-        cell.transform = CGAffineTransform(translationX: -tableView.bounds.width, y: 0)
-        //        }
         UIView.animate(
             withDuration: 0.5,
             delay: 0.1 * Double(indexPath.row),
@@ -81,16 +69,8 @@ self.navigationController?.popViewController(animated: true)
         self.profileTViewModel.confirmEdittingMsg(row: row)
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-     //   self.addBackground(tableView)
         return self.profileTViewModel.numberOfRowsInSection(section)
     }
-
-//private func addBackground(_ tableView: UITableView){
-//// Add a background view to the table view
-//  let backgroundImage = UIImage(named: ImagesName.backgroundImage)
-//let imageView = UIImageView(image: backgroundImage)
-//tableView.backgroundView = imageView
-//}
 }
 //MARK:- extensions
 extension ProfileTVC {
@@ -103,13 +83,6 @@ extension ProfileTVC {
 //MARK:- Image Picker
 extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK:- Private Methods
-//    private func profileViewSetUp(){
-//        profileView.backgroundColor = Colors.primaryColor
-//        profileView.separatorStyle = .singleLine
-//        profileView.separatorColor = Colors.placholderColor
-//        profileView.setup()
-//    }
-
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.dismiss(animated: true) { [weak self] in
             guard let profileImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
@@ -121,14 +94,6 @@ extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
     private func objectDelegation(){
         imagePicker.delegate = self
     }
-//    private func imageConfiguration() {
-//        imagePicker.delegate = self
-////        profileView.profileImgView.layer.cornerRadius = (profileView.profileImgView?.frame.size.width ?? 0.0) / 2
-//        profileView.profileImgView?.clipsToBounds = true
-////        profileView.profileImgView?.layer.borderWidth = 3.0
-////        profileView.profileImgView?.layer.borderColor = UIColor.white.cgColor
-//        profileView.imageLabel.isHidden = true
-//    }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }

@@ -113,7 +113,7 @@ extension TodoListViewModel: TodoListViewModelProtocol {
                                         guard result else { return }
                                         // handle delete (by removing the data from your array and updating the tableview)
                                         self?.callDeleteService(item)
-                                        print("self.allTaskObj[indexPath.row]: \(item)")
+                                print("self.allTaskObj[indexPath.row]: \(item)")
                                         self?.allTaskObj.remove(at: indexPath.item)
                                         self?.todoListVC?.toDoListView.taskTableView?.deleteRows(at: [indexPath], with: .fade)
             }
