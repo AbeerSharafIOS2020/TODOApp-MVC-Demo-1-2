@@ -9,15 +9,19 @@ import Foundation
 //MARK:- Protocol of SignInPresenter
 // SignUpViewModelProtocol -use by any class to provide sign up date
 protocol SignUpViewModelProtocol {
- //   associatedtype View
+    //   associatedtype View
     func onViewDidLoad(view : MainVCProtocol)
     func trySignUp(name: String?, email: String?, password: String?, age: String?)
 }
 //MARK:- SignUpViewModel
 class SignUpViewModel {
     //MARK:- Properties
-   // typealias View = MainVCProtocol
+    // typealias View = MainVCProtocol
     private weak var view : MainVCProtocol?
+    weak var signUpVC: SignUpVC!
+    init(signUpVC: SignUpVC) {
+        self.signUpVC = signUpVC
+    }
     //MARK:- Private Methods
     private func validateField(name: String?, email: String?, password: String?, age:String?) -> Bool{
         if let emptyTextFeild = Validator.shared().notEmptyGetText(name: name, email: email, password: email, age: age){

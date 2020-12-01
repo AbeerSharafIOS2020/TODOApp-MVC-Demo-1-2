@@ -19,7 +19,6 @@
             super.viewDidLoad()
             signUpView.setup()
             navigationStyle()
-            //self.viewModel = SignUpViewModelProtocol()
             self.viewModel?.onViewDidLoad(view: self)
         }
         override func didReceiveMemoryWarning() {
@@ -37,6 +36,7 @@
         // MARK:- Public Methods
         class func create() -> SignUpVC {
             let signUpVC: SignUpVC = UIViewController.create(storyboardName: Storyboards.authentication, identifier: ViewControllers.signUpVC)
+            signUpVC.viewModel = SignUpViewModel(signUpVC: signUpVC)
             return signUpVC
         }
     }
