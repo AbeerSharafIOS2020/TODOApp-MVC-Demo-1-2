@@ -26,9 +26,11 @@ class SignInViewModel {
     //MARK:- Private Methods
     private func validateField(email: String?, password: String?) -> Bool{
         if !Validator.shared().isValidEmail(email){
+            self.view?.showErrorMsg(message: Messages.emailErrorMsg)
             return false
         }
         if !Validator.shared().isValidPassword(password){
+            self.view?.showErrorMsg(message: Messages.passwordErrorMsg)
             return false
         }
         return true
@@ -50,6 +52,7 @@ extension SignInViewModel: SignInViewModelProtocol  {
                 UserDefaultsManager.shared().userID = result.user.id
                 UserDefaultsManager.shared().name = result.user.name
                 AppDelegate.shared().switchToMainState()
+                print("token is : \(result.token)")
             case .failure(let error):
                 print(error.localizedDescription)
                 self.view?.showErrorMsg(message: "\(error.localizedDescription)")

@@ -174,7 +174,6 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let result):
-                UserDefaultsManager.shared().token = nil
                 UserDefaultsManager.shared().isLogin = false
                 AppDelegate.shared().switchToAuthState()
                 print("logout: \(result)")
@@ -199,7 +198,7 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
     func loadImagByName(){
         self.profileTVC?.profileView.imageLabel.isHidden = false
         if UserDefaultsManager.shared().imagName != nil {
-            self.profileTVC.profileView.imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
+            self.profileTVC?.profileView.imageLabel.text = "\(UserDefaultsManager.shared().imagName ?? "")"
             print("if is not nil \(UserDefaultsManager.shared().imagName ?? "")")
         }else {
             Validator.shared().createImageByName()

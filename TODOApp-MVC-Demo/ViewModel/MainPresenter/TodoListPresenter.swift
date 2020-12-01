@@ -43,6 +43,7 @@ extension TodoListViewModel: TodoListViewModelProtocol {
     //get all task
     func serviceOfGetAllTask(){
         self.view?.processOnStart()
+        UserDefaultsManager.shared().token = HeaderValues.brearerToken
         APIManager.getAllTask { (response) in
             switch response{
             case .failure(let error):
@@ -50,7 +51,6 @@ extension TodoListViewModel: TodoListViewModelProtocol {
             case .success(let result):
                 self.allTaskObj = result.data
                 print("\(self.allTaskObj)")
-                //self.todoListVC.allTaskObj = result.data
                 print(self.allTaskObj)
                 if  result.data.count == 0 {
                     self.todoListVC.toDoListView.noTaskLabel.text = LabelText.noDataFoundLabel

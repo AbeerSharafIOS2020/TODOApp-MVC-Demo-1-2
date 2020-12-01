@@ -59,9 +59,9 @@
             textField.selectedLineColor = Colors.primaryColor
             textField.font = UIFont.init(name: textField.font!.fontName, size: 20)
             textField.isSecureTextEntry = isSceure
-            if isPhone {
-                textField.keyboardType = .asciiCapableNumberPad
-            }
+//            if isPhone {
+//                textField.keyboardType = .asciiCapableNumberPad
+//            }
         }
         private func setupSignInButton(){
             signInButton.backgroundColor = Colors.primaryColor
