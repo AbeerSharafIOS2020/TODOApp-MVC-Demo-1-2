@@ -42,7 +42,9 @@ class TodoListVC: MainVC {
     }
     // add task Btn
     @objc func addTaskBtnPressed(_ sender: Any) {
-        self.present(ADDTaskVC.create(), animated: true, completion: nil)
+        let vc = ADDTaskVC.create()
+       // vc.modalPresentationStyle = .overCurrentContext
+        self.present(vc, animated: true, completion: nil)
     }
     // MARK:- Private Methods
     private func setupView(){

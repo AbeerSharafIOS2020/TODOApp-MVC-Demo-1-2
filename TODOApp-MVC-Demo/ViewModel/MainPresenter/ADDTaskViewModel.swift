@@ -18,7 +18,6 @@ class ADDTaskViewModel {
     //MARK:- Properties
    // typealias View = MainVCProtocol
     private weak var view : MainVCProtocol?
-    
     weak var addTaskVC: ADDTaskVC!
     init(addTaskVC: ADDTaskVC) {
         self.addTaskVC = addTaskVC
@@ -42,7 +41,6 @@ extension ADDTaskViewModel: ADDTaskViewModelProtocol {
                 print("description: \(result.data.description )")
             }
             self.view?.processOnStop()
-            
         }
     }
     //MARK:- The confirm of the Protocol
@@ -53,7 +51,6 @@ extension ADDTaskViewModel: ADDTaskViewModelProtocol {
         if dateAndTime?.isEmpty ?? false {
             self.view?.showErrorMsg(message:  Messages.dateErrorMsg)
         }
-
         if description?.isEmpty ?? false {
             self.view?.showErrorMsg(message:Messages.taskErrorMsg)
         }

@@ -21,8 +21,7 @@ class ADDTaskView: UIView {
          // MARK:- Public Method
         func setup(){
             self.setupBackGround()
-            self.setupTextField(descriptionTxtField, placeHolder: PlaceHolders.firstNotePlaceHolder)
-            self.setupTextField(dataAndTimeTxtField, placeHolder: PlaceHolders.dateAndTimePlaceHolder)
+            self.textFieldConfiguration()
             self.setupSaveButton()
             self.setupUserImage()
             self.setupTitle()
@@ -32,7 +31,12 @@ class ADDTaskView: UIView {
         // MARK:- Private Method
         extension ADDTaskView {
              private func setupBackGround(){
-//                self.shadowView.backgroundColor = .white
+                self.shadowView.backgroundColor = .white
+            }
+            private func textFieldConfiguration(){
+                self.setupTextField(descriptionTxtField, placeHolder: PlaceHolders.firstNotePlaceHolder)
+                self.setupTextField(dataAndTimeTxtField, placeHolder: PlaceHolders.dateAndTimePlaceHolder)
+
             }
             private func setupTitle(){
                 screenTitle.text = Titles.addTaskTitle
@@ -59,11 +63,10 @@ class ADDTaskView: UIView {
                 textField.lineColor = Colors.placholderColor
                 textField.selectedLineColor = Colors.primaryColor
                 textField.font = UIFont(name:"Helvetica Neue",size:20)
-               // textField.font = UIFont.init(name: textField.font?.fontName ?? UIFont.openSans().fontName, size: 20)
                 textField.isSecureTextEntry = isSceure
-                if isPhone {
+//                if isPhone {
                     textField.keyboardType = .asciiCapableNumberPad
-                }
+//                }
             }
             private func setupSaveButton(){
                 saveButton.backgroundColor = Colors.primaryColor
@@ -75,7 +78,6 @@ class ADDTaskView: UIView {
             private func setupUserImage(){
                 imgBackimag.image = UIImage(named: ImagesName.backgroundImage)
                 imgBackimag.contentMode =  .scaleAspectFit
-                
             }
         }
 

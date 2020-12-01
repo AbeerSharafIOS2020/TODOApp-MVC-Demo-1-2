@@ -12,53 +12,47 @@
         class ADDTaskVC: MainVC {
             // MARK:- Outlets
             @IBOutlet weak var addTaskView: ADDTaskView!
-        
             //MARK:- Properties
-             var addTaskViewModel: ADDTaskViewModelProtocol!
+            var addTaskViewModel: ADDTaskViewModelProtocol!
             // MARK:- Life Cycle Methods
             override func viewDidLoad() {
                 super.viewDidLoad()
                 addTaskView.setup()
                 addTaskView.dataAndTimeTxtField.datePicker(target: self,
-                                          doneAction: #selector(doneAction),
-                                          cancelAction: #selector(cancelAction),
-                                          datePickerMode: .date)
-
+                                                           doneAction: #selector(doneAction),
+                                                           cancelAction: #selector(cancelAction),
+                                                           datePickerMode: .date)
+                
                 self.addTaskViewModel = ADDTaskViewModel(addTaskVC: self)
                 self.addTaskViewModel?.onViewDidLoad(view: self)
             }
             // MARK:- Action Methods:
-            @objc
-            func cancelAction() {
-            addTaskView.dataAndTimeTxtField.resignFirstResponder()
+            @objc func cancelAction() {
+                addTaskView.dataAndTimeTxtField.resignFirstResponder()
             }
-
-            @objc
-            func doneAction() {
+            @objc func doneAction() {
                 if let datePickerView = addTaskView.dataAndTimeTxtField.inputView as? UIDatePicker {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd HH:MM a"
                     let dateString = dateFormatter.string(from: datePickerView.date)
                     addTaskView.dataAndTimeTxtField.text = dateString
-                    
                     print(datePickerView.date)
                     print(dateString)
-                    
                     addTaskView?.dataAndTimeTxtField.resignFirstResponder()
                 }
             }
             @IBAction func saveBtnPressed(_ sender: Any) {
                 self.addTaskViewModel?.tryAddTask(description: addTaskView.descriptionTxtField.text,  dateAndTime: addTaskView.dataAndTimeTxtField.text)
-                }
+            }
             // MARK:- private Methods
-          private func printTimestamp() {
-             let timestamp = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: .medium, timeStyle: .short)
+            private func printTimestamp() {
+                let timestamp = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: .medium, timeStyle: .short)
                 print("timestamp: \(timestamp)")
             }
-
             // MARK:- Public Methods
             class func create() -> ADDTaskVC {
                 let addTaskVC: ADDTaskVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.addTaskVC)
+                
                 return addTaskVC
             }
         }

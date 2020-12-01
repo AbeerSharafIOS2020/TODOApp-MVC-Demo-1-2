@@ -15,8 +15,8 @@
         <!--ADD Task-->
         <scene sceneID="J6M-0P-ZA6">
             <objects>
-                <viewController storyboardIdentifier="ADDTaskVC" id="H9N-g9-gBb" userLabel="ADD Task" customClass="ADDTaskVC" customModule="TODOApp_MVC_Demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" alpha="0.5" contentMode="scaleToFill" id="ot2-Qr-jkQ" customClass="ADDTaskView" customModule="TODOApp_MVC_Demo" customModuleProvider="target">
+                <viewController storyboardIdentifier="ADDTaskVC" modalPresentationStyle="overCurrentContext" id="H9N-g9-gBb" userLabel="ADD Task" customClass="ADDTaskVC" customModule="TODOApp_MVC_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" alpha="0.5" contentMode="scaleToFill" id="ot2-Qr-jkQ" customClass="ADDTaskView" customModule="TODOApp_MVC_Demo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -29,6 +29,7 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7X0-Si-2hl">
                                         <rect key="frame" x="144" y="12" width="74.5" height="21"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="t2e-We-7g2"/>
                                         </constraints>
@@ -38,11 +39,13 @@
                                     </label>
                                     <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="faC-Lj-5cD" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
                                         <rect key="frame" x="164.5" y="36" width="33" height="109"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kvK-vT-CeE" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
                                         <rect key="frame" x="164.5" y="145" width="33" height="108.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <attributedString key="attributedText"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -64,7 +67,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="kvK-vT-CeE" firstAttribute="width" secondItem="faC-Lj-5cD" secondAttribute="width" id="14Q-OU-ose"/>
                                     <constraint firstAttribute="bottom" secondItem="Hwj-Au-RHH" secondAttribute="bottom" constant="84.5" id="D7X-KD-MS4"/>
@@ -96,7 +99,6 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="A8F-EH-qjI" firstAttribute="height" secondItem="ot2-Qr-jkQ" secondAttribute="height" multiplier="0.457589" id="6aE-yx-Yfs"/>
@@ -553,5 +555,4 @@
         <image name="backArrow" width="20.5" height="14"/>
         <image name="plus" catalog="system" width="64" height="56"/>
     </resources>
-    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
