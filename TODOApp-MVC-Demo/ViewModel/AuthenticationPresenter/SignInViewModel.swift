@@ -40,7 +40,7 @@ class SignInViewModel {
 extension SignInViewModel: SignInViewModelProtocol  {
     //MARK:-  Handle Response
     private func serviceLogin(with email: String?, password: String?) {
-        UserDefaultsManager.shared().token = nil
+       // UserDefaultsManager.shared().token = nil
         UserDefaultsManager.shared().userID = nil
         self.view?.processOnStart()
         APIManager.login(email: email!, password: password!) { (response) in

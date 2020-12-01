@@ -125,6 +125,7 @@ struct Messages {
      static let taskSavedSuccessMsg = "Done saved the task successfully"
      static let edittingDoneSuccessMsg = "Editting Done Successfully.."
      static let edittingMsg = "Are you sure , Do you want to edit your profile?"
+     static let deleteTaskMsg = "Are you sure you want to Delete the task ?"
      static let editSelection = "please...press what do you whant to edit it?"
      static let enterYourNew = "Enter your new"
      static let confirmLogout = "Are you sure Do you want log out?"

@@ -22,9 +22,9 @@ class TodoListVC: MainVC {
         self.setupView()
     }
     override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    self.toDoListView.noTaskLabel.isHidden = true
-    self.todoListViewModel?.serviceOfGetAllTask()
+        super.viewWillAppear(animated)
+        self.toDoListView.noTaskLabel.isHidden = true
+        self.todoListViewModel?.serviceOfGetAllTask()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -42,10 +42,6 @@ class TodoListVC: MainVC {
     }
     // add task Btn
     @objc func addTaskBtnPressed(_ sender: Any) {
-
-       // self.navigationController?.pushViewController(ADDTaskVC.create(), animated: true)
-
-//        AppDelegate.shared().switchToAddTaskState()
         self.present(ADDTaskVC.create(), animated: true, completion: nil)
     }
     // MARK:- Private Methods
@@ -59,21 +55,6 @@ class TodoListVC: MainVC {
         let addingButton = UIBarButtonItem(barButtonSystemItem: .add , target: self, action: #selector(addTaskBtnPressed))
         self.navigationItem.rightBarButtonItem = addingButton
     }
-//    private func tableViewConfiguration(){
-//        self.taskTableView.register(UINib(nibName: Cells.taskDataTVCell, bundle: nil), forCellReuseIdentifier: Cells.taskDataTVCell)
-//        self.taskTableView.separatorStyle = .none
-//        self.taskTableView.rowHeight = UITableView.automaticDimension
-//        self.taskTableView.isOpaque = false
-//        self.noTaskLabel.isHidden = true
-//        self.taskTableView.reloadData()
-//    }
-//    private func addBackground(_ tableView: UITableView){
-//    // Add a background view to the table view
-//    let backgroundImage = UIImage(named: ImagesName.backgroundImage)
-//    let imageView = UIImageView(image: backgroundImage)
-//    tableView.backgroundView = imageView
-//    }
-
 }
 // MARK:- Table View Methods
 extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
@@ -102,43 +83,14 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
         let indexPath = indexPath
         let item = self.todoListViewModel.getAllTaskData()[indexPath.row]
         self.todoListViewModel?.tryDeleteTaskConfirm(row: row, indexPath: indexPath, item: item)
-//        self.allTaskObj.remove(at: indexPath.item)
-//        self.taskTableView.deleteRows(at: [indexPath], with: .fade)
+        //        self.allTaskObj.remove(at: indexPath.item)
+        //        self.taskTableView.deleteRows(at: [indexPath], with: .fade)
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = indexPath.row
         self.todoListViewModel?.willDisplayCell(row: row)
     }
-//    func animate(row: Int?){
-//        UIView.animate(
-//            withDuration: 0.5,
-//            delay: 0.1 * Double(row!),
-//            options: [.curveEaseInOut],
-//            animations: {
-//                self.transform()
-//        })
-//    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
-//    // to transform the cell form south
-//    func transformPlus(){
-//        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//            cell.transform = CGAffineTransform(translationX: tableView.bounds.width, y: 0)
-//            
-//        }
-//    }
-//    // to transform the cell form north
-//    func transformMince(){
-//        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//            cell.transform = CGAffineTransform(translationX: -tableView.bounds.width, y: 0)
-//            
-//        }}
-//    // to transform the cell
-//    func transform(){
-//        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//            cell.transform = CGAffineTransform(translationX: 0, y: 0)
-//        }}
-    
 }

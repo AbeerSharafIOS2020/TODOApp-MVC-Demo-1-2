@@ -19,7 +19,7 @@ protocol TodoListViewModelProtocol {
 //MARK:- TodoListViewModel
 class TodoListViewModel {
     //MARK:- Properties
-   // typealias View = MainVCProtocol
+    // typealias View = MainVCProtocol
     private weak var view : MainVCProtocol?
     
     weak var todoListVC: TodoListVC!
@@ -30,7 +30,7 @@ class TodoListViewModel {
     init(profileCV: ProfileTVC) {
         self.profileCV = profileCV
     }
-
+    
     weak var addTaskVC: ADDTaskVC!
     init(addTaskVC: ADDTaskVC) {
         self.addTaskVC = addTaskVC
@@ -43,7 +43,6 @@ extension TodoListViewModel: TodoListViewModelProtocol {
     //get all task
     func serviceOfGetAllTask(){
         self.view?.processOnStart()
-        UserDefaultsManager.shared().token = HeaderValues.brearerToken
         APIManager.getAllTask { (response) in
             switch response{
             case .failure(let error):
@@ -71,12 +70,12 @@ extension TodoListViewModel: TodoListViewModelProtocol {
     private func callDeleteService(_ item: TaskData!){
         UserDefaultsManager.shared().taskID = item.id
         print("id in userDefult : \(UserDefaultsManager.shared().taskID ?? "")")
-        self.view?.processOnStop()
+        self.view?.processOnStart()
         APIManager.deleteTask { (response) in
             switch response {
             case .failure(let error):
                 print(error.localizedDescription)
-                self.view?.showErrorMsg(message: "del task \(error.localizedDescription)")
+                self.view?.showErrorMsg(message: (error.localizedDescription))
             case .success(let result):
                 let result = result
                 if result.success == true {
@@ -105,10 +104,10 @@ extension TodoListViewModel: TodoListViewModelProtocol {
     }
     func tryDeleteTaskConfirm(row: Int,indexPath: IndexPath, item: TaskData){
         
-        self.todoListVC.presentAlert(title: "Confirm", message: "Are you sure you want to Delete the task ?",
+        self.todoListVC.presentAlert(title: TitleMsg.confirm, message: Messages.deleteTaskMsg,
                                      actions: [
-                                        AlertableAction(title: "Cancel", style: .cancel, result: false),
-                                        AlertableAction(title: "Yes", style: .destructive, result: true),
+                                        AlertableAction(title: AlertActionTitle.cancel , style: .cancel, result: false),
+                                        AlertableAction(title: AlertActionTitle.yes, style: .destructive, result: true),
             ],
                                      completion: { [weak self] result in
                                         guard result else { return }
