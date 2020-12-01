@@ -56,6 +56,8 @@ extension ProfileView {
         setupLabel(ageLabel, "" )
         setupLabel(dateOfCreateUserLabel, "")
         setupLabel(dateOfUpdateProfileLabel,"" )
+        setupLabel(imageLabel, "")
+        
     }
     private func setupLabel(_ label: UILabel,_ text: String){
         label.text = text
@@ -98,6 +100,7 @@ extension ProfileView {
         self.profileImgView.image = UIImage(named: ImagesName.backgroundImage)
         self.profileImgView.contentMode =  .scaleToFill
     }
+    
 }
 
 

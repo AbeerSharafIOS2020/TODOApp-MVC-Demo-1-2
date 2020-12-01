@@ -49,7 +49,7 @@ extension UIViewController {
                 completion("")
             }
         })
-        navigationController?.present(alert, animated: true)
+        self.present(alert, animated: true, completion: nil)
     }
     
     //MARK:- imagePickerController

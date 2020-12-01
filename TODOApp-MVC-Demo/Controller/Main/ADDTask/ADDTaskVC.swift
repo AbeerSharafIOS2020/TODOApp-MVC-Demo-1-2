@@ -19,7 +19,7 @@
             override func viewDidLoad() {
                 super.viewDidLoad()
                 addTaskView.setup()
-                addTaskView?.dataAndTimeTxtField.datePicker(target: self,
+                addTaskView.dataAndTimeTxtField.datePicker(target: self,
                                           doneAction: #selector(doneAction),
                                           cancelAction: #selector(cancelAction),
                                           datePickerMode: .date)
@@ -30,7 +30,7 @@
             // MARK:- Action Methods:
             @objc
             func cancelAction() {
-            addTaskView?.dataAndTimeTxtField.resignFirstResponder()
+            addTaskView.dataAndTimeTxtField.resignFirstResponder()
             }
 
             @objc

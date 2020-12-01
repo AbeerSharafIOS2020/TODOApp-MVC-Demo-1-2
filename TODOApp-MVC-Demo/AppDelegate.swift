@@ -22,11 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 //MARK:- Public Methods
-    func setStatusBarBackgroundColor(color: UIColor) {
-          guard let statusBar = UIApplication.shared.value(forKeyPath: "mainView") as? UIView else { return }
-        statusBar.backgroundColor = Colors.primaryColor
-    }
-
     func switchToMainState() {
         let todoListVC = TodoListVC.create()
         let navigationController = UINavigationController(rootViewController: todoListVC)

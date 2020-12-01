@@ -20,7 +20,7 @@ protocol ProfileTViewModelProtocol {
     func confirmEdittingMsg(row: Int)
     func numberOfRowsInSection(_ section: Int) -> Int
 }
-//MARK:- ProfileTPresenter
+//MARK:- ProfileTViewModel
 class ProfileTViewModel {
     //MARK:- Properties
    // typealias View = MainVCProtocol
@@ -41,7 +41,7 @@ class ProfileTViewModel {
         self.profileTVC?.presentSuccess(with: Messages.edittingDoneSuccessMsg)
     self.serviceUpdateProfile(txt, editTxt)
     }
-    private func editProfile(_ txt: String, _ editTxt: String){
+     func editProfile(_ txt: String, _ editTxt: String){
         switch txt {
         case AlertActionTitle.name:
             if !((Validator.shared().isValidName(editTxt))){
@@ -266,7 +266,7 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
         }
     }
     //Editting Alert
-    func edittingAlert(){
+     func edittingAlert(){
         self.profileTVC?.presentAlertWithActionSheet(title: TitleMsg.edittingSelection, message: Messages.editSelection, actions: [
             AlertableAction(title: AlertActionTitle.name, style: .default, result: true),
             AlertableAction(title: AlertActionTitle.email, style: .default, result: true),
@@ -297,8 +297,8 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
     }
     
     //Open Alert
-    func openAlert(_ txt: String){
-        self.profileTVC.alertWithTextField(title: txt, message: "\(Messages.enterYourNew) \(txt.lowercased())", placeholder: "\(PlaceHolders.yourNew) \(txt.lowercased())") { result in
+    private func openAlert(_ txt: String){
+        profileTVC?.alertWithTextField(title: txt, message: "\(Messages.enterYourNew) \(txt.lowercased())", placeholder: "\(PlaceHolders.yourNew) \(txt.lowercased())") { result in
             self.editProfile(txt,"\(result)")
             print(result)
         }

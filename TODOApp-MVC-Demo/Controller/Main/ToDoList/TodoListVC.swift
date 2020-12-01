@@ -38,18 +38,15 @@ class TodoListVC: MainVC {
     class func create() -> TodoListVC {
         let todoListVC: TodoListVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.todoListVC)
         todoListVC.todoListViewModel = TodoListViewModel(todoListVC: todoListVC)
-//        todoListVC.addTaskViewModel = ADDTaskViewModelProtocol(todoListVC: todoListVC)
-
         return todoListVC
     }
     // add task Btn
     @objc func addTaskBtnPressed(_ sender: Any) {
-        self.navigationController?.pushViewController(ADDTaskVC.create(), animated: true)
 
        // self.navigationController?.pushViewController(ADDTaskVC.create(), animated: true)
 
-      //  AppDelegate.shared().switchToAddTaskState()
-        //self.present(ADDTaskVC.create(), animated: true, completion: nil)
+//        AppDelegate.shared().switchToAddTaskState()
+        self.present(ADDTaskVC.create(), animated: true, completion: nil)
     }
     // MARK:- Private Methods
     private func setupView(){
@@ -81,10 +78,6 @@ class TodoListVC: MainVC {
 // MARK:- Table View Methods
 extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       // self.toDoListView.addBackground()
-       // let tasks = self.todoListViewModel?.getAllTaskData().count
-       // let count = tasks.count
-       // print("count in cell : \(count)")
         return self.todoListViewModel.getAllTaskData().count
     }
     func numberOfSections(in tableView: UITableView) -> Int {

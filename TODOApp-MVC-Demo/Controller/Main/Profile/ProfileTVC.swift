@@ -78,7 +78,7 @@ self.navigationController?.popViewController(animated: true)
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        self.profileTViewModel?.confirmEdittingMsg(row: row)
+        self.profileTViewModel.confirmEdittingMsg(row: row)
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
      //   self.addBackground(tableView)
