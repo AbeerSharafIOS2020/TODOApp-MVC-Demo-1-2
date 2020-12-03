@@ -17,8 +17,6 @@ class TodoListVC: MainVC {
     @IBOutlet weak var toDoListView: ToDoListView!
     //MARK:- Private Properties
     var todoListViewModel : TodoListViewModelProtocol!
-    var addTaskViewModel : ADDTaskViewModelProtocol!
-    var profileViewModel : ProfileTViewModelProtocol!
     // 2-
     weak var delegate: ToDoListNavigationDelegate?
     // MARK:- Lifecycle methods
@@ -46,7 +44,6 @@ class TodoListVC: MainVC {
     class func create() -> TodoListVC {
         let todoListVC: TodoListVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.todoListVC)
         todoListVC.todoListViewModel = TodoListViewModel(todoListVC: todoListVC)
-        todoListVC.profileViewModel = ProfileTViewModel(todoListVC: todoListVC)
         return todoListVC
     }
     // add task Btn
@@ -94,8 +91,6 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
         let indexPath = indexPath
         let item = self.todoListViewModel.getAllTaskData()[indexPath.row]
         self.todoListViewModel?.tryDeleteTaskConfirm(row: row, indexPath: indexPath, item: item)
-        //        self.allTaskObj.remove(at: indexPath.item)
-        //        self.taskTableView.deleteRows(at: [indexPath], with: .fade)
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = indexPath.row

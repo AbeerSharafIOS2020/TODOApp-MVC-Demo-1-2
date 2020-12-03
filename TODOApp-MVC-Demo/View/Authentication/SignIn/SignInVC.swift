@@ -50,7 +50,7 @@ class SignInVC: MainVC {
     }
 }
 extension SignInVC: AuthNavigationDelegate {
-    func showMainState() {
+    func showMainState(){
         // 3-
         self.delegate?.showMainState()
     }
