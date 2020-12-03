@@ -43,7 +43,8 @@ extension ADDTaskViewModel: ADDTaskViewModelProtocol {
             case .success(let result):
                 self.view?.processOnStop()
                 self.view?.showSuccessMsg(message: Messages.taskSavedSuccessMsg)
-                self.toDoListVC.delegate?.showAuthState() // delegate?.showMainState()
+                AppStateManager.shared().showMainState()
+               // self.toDoListVC.delegate?.showAuthState() // delegate?.showMainState()
                // AppDelegate.shared().switchToMainState()
                 print("description: \(result.data.description )")
             }

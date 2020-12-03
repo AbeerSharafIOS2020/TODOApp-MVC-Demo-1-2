@@ -31,7 +31,7 @@
 		C33C8FF025507F0E00F3C0B2 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C8FEF25507F0E00F3C0B2 /* ShadowView.swift */; };
 		C34045432564FD8F00329923 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34045422564FD8F00329923 /* SignInViewModel.swift */; };
 		C34045452564FDBC00329923 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34045442564FDBC00329923 /* Validator.swift */; };
-		C34045482566EED700329923 /* TodoListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34045472566EED700329923 /* TodoListPresenter.swift */; };
+		C34045482566EED700329923 /* TodoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34045472566EED700329923 /* TodoListViewModel.swift */; };
 		C340454A2566EF0100329923 /* ProfileTViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34045492566EF0100329923 /* ProfileTViewModel.swift */; };
 		C340454C2566EF1600329923 /* ADDTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C340454B2566EF1600329923 /* ADDTaskViewModel.swift */; };
 		C349DFAB256BF28D00E819AF /* UIColor+hexStringColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349DFAA256BF28D00E819AF /* UIColor+hexStringColor.swift */; };
@@ -89,7 +89,7 @@
 		C33C8FEF25507F0E00F3C0B2 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		C34045422564FD8F00329923 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		C34045442564FDBC00329923 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
-		C34045472566EED700329923 /* TodoListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListPresenter.swift; sourceTree = "<group>"; };
+		C34045472566EED700329923 /* TodoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewModel.swift; sourceTree = "<group>"; };
 		C34045492566EF0100329923 /* ProfileTViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTViewModel.swift; sourceTree = "<group>"; };
 		C340454B2566EF1600329923 /* ADDTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADDTaskViewModel.swift; sourceTree = "<group>"; };
 		C349DFAA256BF28D00E819AF /* UIColor+hexStringColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hexStringColor.swift"; sourceTree = "<group>"; };
@@ -334,7 +334,7 @@
 		C34045462566ECA600329923 /* MainViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C34045472566EED700329923 /* TodoListPresenter.swift */,
+				C34045472566EED700329923 /* TodoListViewModel.swift */,
 				C34045492566EF0100329923 /* ProfileTViewModel.swift */,
 				C340454B2566EF1600329923 /* ADDTaskViewModel.swift */,
 			);
@@ -569,7 +569,7 @@
 				C3C6E85225591EB7008250BE /* APIRouter.swift in Sources */,
 				C340454C2566EF1600329923 /* ADDTaskViewModel.swift in Sources */,
 				C3EB2C3A2553DCBB003C77E1 /* AddTaskResponse.swift in Sources */,
-				C34045482566EED700329923 /* TodoListPresenter.swift in Sources */,
+				C34045482566EED700329923 /* TodoListViewModel.swift in Sources */,
 				C33C8FE62550073300F3C0B2 /* ProfileResponse.swift in Sources */,
 				B76E56912548A24A00C13D43 /* AppDelegate.swift in Sources */,
 				C34045432564FD8F00329923 /* SignInViewModel.swift in Sources */,

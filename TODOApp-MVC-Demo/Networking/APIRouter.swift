@@ -78,6 +78,7 @@ enum APIRouter: URLRequestConvertible{
     // MARK: - URLRequestConvertible
     func asURLRequest() throws -> URLRequest {
         let url = try URLs.base.asURL()
+        HeaderValues.brearerToken = "Bearer \(UserDefaultsManager.shared().token ?? "")"
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         //httpMethod
         urlRequest.httpMethod = method.rawValue

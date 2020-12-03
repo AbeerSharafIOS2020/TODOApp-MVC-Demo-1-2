@@ -1,5 +1,5 @@
 //
-//  TodoListPresenter.swift
+//  TodoListViewModel.swift
 //  TODOApp-MVC-Demo
 //
 //  Created by AbeerSharaf on 11/19/20.
@@ -42,6 +42,7 @@ extension TodoListViewModel: TodoListViewModelProtocol {
     //MARK:-  Handle Response
     //get all task
     func serviceOfGetAllTask(){
+        HeaderValues.brearerToken = "Bearer \(UserDefaultsManager.shared().token ?? "")"
         self.view?.processOnStart()
         APIManager.getAllTask { (response) in
             switch response{
