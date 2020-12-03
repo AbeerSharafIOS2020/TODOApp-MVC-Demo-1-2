@@ -110,6 +110,7 @@ struct AlertActionTitle {
      static let cancel = "Cancel"
      static let camera = "Camera"
      static let photoAlbum = "Photo Album"
+     static let success = "Success"
 }
 // Messege content
 struct Messages {

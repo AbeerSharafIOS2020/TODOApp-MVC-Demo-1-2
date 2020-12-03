@@ -34,14 +34,14 @@ class MainVC: UIViewController {
 // Confirm protocol
 extension MainVC: MainVCProtocol {
     func confirmationAlert1(title: String,message: String){
-        let okAction =  UIAlertAction(title: "Yes", style: .default, handler: nil)
+        let okAction =  UIAlertAction(title: AlertActionTitle.yes, style: .default, handler: nil)
         self.confirmationAlert(title: title, message: message, firstBtn: okAction)
     }
     func showErrorMsg(message: String){
         self.presentError(with: message)
     }
     func showSuccessMsg(message: String){
-        self.showAlert(message: message, title: "Success")
+        self.showAlert(message: message, title: AlertActionTitle.success)
     }
     func processOnStart(){
         self.view.processOnStart()
