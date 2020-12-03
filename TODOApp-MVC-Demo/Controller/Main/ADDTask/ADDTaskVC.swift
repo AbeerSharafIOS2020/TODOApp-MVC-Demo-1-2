@@ -52,7 +52,6 @@
             // MARK:- Public Methods
             class func create() -> ADDTaskVC {
                 let addTaskVC: ADDTaskVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.addTaskVC)
-                
                 return addTaskVC
             }
         }
