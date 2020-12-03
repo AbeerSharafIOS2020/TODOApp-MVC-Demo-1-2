@@ -316,29 +316,29 @@
 		C34045402564FD4000329923 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C34045412564FD6300329923 /* AuthenticationPresenter */,
-				C34045462566ECA600329923 /* MainPresenter */,
+				C34045412564FD6300329923 /* AuthenticationViewModel */,
+				C34045462566ECA600329923 /* MainViewModel */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		C34045412564FD6300329923 /* AuthenticationPresenter */ = {
+		C34045412564FD6300329923 /* AuthenticationViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				C3C5AF34255C4E30007C7135 /* SignUpViewModel.swift */,
 				C34045422564FD8F00329923 /* SignInViewModel.swift */,
 			);
-			path = AuthenticationPresenter;
+			path = AuthenticationViewModel;
 			sourceTree = "<group>";
 		};
-		C34045462566ECA600329923 /* MainPresenter */ = {
+		C34045462566ECA600329923 /* MainViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				C34045472566EED700329923 /* TodoListPresenter.swift */,
 				C34045492566EF0100329923 /* ProfileTViewModel.swift */,
 				C340454B2566EF1600329923 /* ADDTaskViewModel.swift */,
 			);
-			path = MainPresenter;
+			path = MainViewModel;
 			sourceTree = "<group>";
 		};
 		C3A456182551FF360064B074 /* Authentication */ = {

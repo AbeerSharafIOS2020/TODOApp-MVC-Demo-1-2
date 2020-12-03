@@ -14,6 +14,7 @@ class ProfileTVC: UITableViewController {
     let imagePicker = UIImagePickerController()
     let image = Data()
     var profileTViewModel: ProfileTViewModelProtocol!
+    var delegate: ToDoListNavigationDelegate!
     weak var mainVC: MainVC!
     //MARK:-Life Cycle:
     override func viewDidLoad() {
@@ -98,7 +99,11 @@ extension ProfileTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         picker.dismiss(animated: true, completion: nil)
     }
 }
-
+extension ProfileTVC: ToDoListNavigationDelegate {
+    func showAuthState() {
+        self.delegate.showAuthState()
+    }
+}
 
 
 

@@ -17,8 +17,7 @@ class SignInVC: MainVC {
     //MARK:- Properties
     var signInViewModel: SignInViewModelProtocol!
     // 2-
-
-      weak var delegate: AuthNavigationDelegate?
+    weak var delegate: AuthNavigationDelegate?
     // MARK:- Lifecycle methods
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -40,8 +39,8 @@ class SignInVC: MainVC {
     }
     // Go to Sing UP
     @IBAction func goToSignUpScreenBtnPressed(_ sender: Any) {
-        self.navigationController?.popToViewController(SignUpVC.create(), animated: true)
-       // AppDelegate.shared().switchToRegisterState()
+        self.navigationController?
+            .pushViewController(SignUpVC.create(), animated: true)
     }
     // MARK:- Public Methods
     class func create() -> SignInVC {
@@ -51,9 +50,8 @@ class SignInVC: MainVC {
     }
 }
 extension SignInVC: AuthNavigationDelegate {
-
-func showMainState() {
-    // 3-
-    self.delegate?.showMainState()
-}
+    func showMainState() {
+        // 3-
+        self.delegate?.showMainState()
+    }
 }

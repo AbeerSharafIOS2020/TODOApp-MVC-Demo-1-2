@@ -18,8 +18,8 @@ class TodoListVC: MainVC {
     //MARK:- Private Properties
     var todoListViewModel : TodoListViewModelProtocol!
     var addTaskViewModel : ADDTaskViewModelProtocol!
+    var profileViewModel : ProfileTViewModelProtocol!
     // 2-
-
     weak var delegate: ToDoListNavigationDelegate?
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
@@ -46,6 +46,7 @@ class TodoListVC: MainVC {
     class func create() -> TodoListVC {
         let todoListVC: TodoListVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.todoListVC)
         todoListVC.todoListViewModel = TodoListViewModel(todoListVC: todoListVC)
+        todoListVC.profileViewModel = ProfileTViewModel(todoListVC: todoListVC)
         return todoListVC
     }
     // add task Btn
@@ -105,9 +106,7 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
     }
 }
 extension TodoListVC: ToDoListNavigationDelegate {
-
     func showAuthState() {
-    
     // 3-
     self.delegate?.showAuthState()
 }

@@ -32,7 +32,8 @@
         }
         //Go to Sign In
         @IBAction func goToSignInScreenBtnPressed(_ sender: Any) {
-            self.delegate?.showAuthState()
+            self.navigationController?.popToRootViewController(animated: true)
+         //   self.delegate?.showAuthState()
            // AppDelegate.shared().switchToAuthState()
         }
         // MARK:- Public Methods

@@ -30,6 +30,11 @@ class ProfileTViewModel {
     init(view: MainVCProtocol) {
         self.view = view
     }
+    weak var todoListVC: TodoListVC!
+    init(todoListVC: TodoListVC) {
+        self.todoListVC = todoListVC
+    }
+
     weak var profileTVC: ProfileTVC!
     init(profileTVC: ProfileTVC) {
         self.profileTVC = profileTVC
@@ -131,7 +136,10 @@ class ProfileTViewModel {
                 print(error.localizedDescription)
             case .success(let result):
                 UserDefaultsManager.shared().isLogin = false
-                self.delegate?.showAuthState()
+                UserDefaultsManager.shared().token = nil
+                AppStateManager.shared().switchToAuthState()
+               // self.profileTVC.delegate?.showAuthState()
+              //  self.todoListVC.delegate?.showAuthState()
                 //AppDelegate.shared().switchToAuthState()
                 print("logout: \(result)")
             }
@@ -264,4 +272,10 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
             )
         }
     }
+}
+extension ProfileTViewModel: ToDoListNavigationDelegate {
+    func showAuthState() {
+    // 3-
+    self.delegate?.showAuthState()
+}
 }

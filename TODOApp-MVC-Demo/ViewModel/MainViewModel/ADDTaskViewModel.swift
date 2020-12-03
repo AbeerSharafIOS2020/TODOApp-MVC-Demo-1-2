@@ -17,12 +17,17 @@ protocol ADDTaskViewModelProtocol {
 class ADDTaskViewModel {
     //MARK:- Properties
    // typealias View = MainVCProtocol
-    weak var delegate: AuthNavigationDelegate?
+ //   weak var delegate: AuthNavigationDelegate?
     private weak var view : MainVCProtocol?
     weak var addTaskVC: ADDTaskVC!
     init(addTaskVC: ADDTaskVC) {
         self.addTaskVC = addTaskVC
     }
+    weak var toDoListVC: TodoListVC!
+    init(toDoListVC: TodoListVC) {
+        self.toDoListVC = toDoListVC
+    }
+
 }
 //MARK:- extension
 extension ADDTaskViewModel: ADDTaskViewModelProtocol {
@@ -38,7 +43,7 @@ extension ADDTaskViewModel: ADDTaskViewModelProtocol {
             case .success(let result):
                 self.view?.processOnStop()
                 self.view?.showSuccessMsg(message: Messages.taskSavedSuccessMsg)
-                self.delegate?.showMainState()
+                self.toDoListVC.delegate?.showAuthState() // delegate?.showMainState()
                // AppDelegate.shared().switchToMainState()
                 print("description: \(result.data.description )")
             }
