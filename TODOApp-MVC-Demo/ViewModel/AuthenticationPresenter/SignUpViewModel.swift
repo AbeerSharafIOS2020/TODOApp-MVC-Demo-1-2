@@ -17,6 +17,8 @@ protocol SignUpViewModelProtocol {
 class SignUpViewModel {
     //MARK:- Properties
     // typealias View = MainVCProtocol
+    weak var delegate: ToDoListNavigationDelegate?
+
     private weak var view : MainVCProtocol?
     weak var signUpVC: SignUpVC!
     init(signUpVC: SignUpVC) {
@@ -57,7 +59,8 @@ extension SignUpViewModel: SignUpViewModelProtocol {
                 UserDefaultsManager.shared().userID = result.user.id
                 UserDefaultsManager.shared().name = result.user.name
                 Validator.shared().createImageByName()
-                AppDelegate.shared().switchToAuthState()
+                self.delegate?.showAuthState()
+               // AppDelegate.shared().switchToAuthState()
             }
             self.view?.processOnStop()
         }

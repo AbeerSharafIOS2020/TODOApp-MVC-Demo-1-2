@@ -25,6 +25,7 @@ class ProfileTViewModel {
     //MARK:- Properties
     // typealias View = MainVCProtocol
     // private weak var view : MainVCProtocol?
+    weak var delegate: ToDoListNavigationDelegate?
     weak var view : MainVCProtocol!
     init(view: MainVCProtocol) {
         self.view = view
@@ -130,7 +131,8 @@ class ProfileTViewModel {
                 print(error.localizedDescription)
             case .success(let result):
                 UserDefaultsManager.shared().isLogin = false
-                AppDelegate.shared().switchToAuthState()
+                self.delegate?.showAuthState()
+                //AppDelegate.shared().switchToAuthState()
                 print("logout: \(result)")
             }
             self.profileTVC.view?.processOnStop()

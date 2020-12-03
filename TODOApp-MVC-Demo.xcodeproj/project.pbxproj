@@ -54,6 +54,7 @@
 		C3D510C0254CC72F008DB194 /* ToDoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D510BF254CC72F008DB194 /* ToDoResponse.swift */; };
 		C3D510C2254CC7A5008DB194 /* TaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D510C1254CC7A5008DB194 /* TaskData.swift */; };
 		C3D510C6254CD109008DB194 /* ADDTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D510C5254CD109008DB194 /* ADDTaskVC.swift */; };
+		C3DCC4962578D2F9005F87EE /* AppStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DCC4952578D2F9005F87EE /* AppStateManager.swift */; };
 		C3E24CF0254B64C20096F934 /* CustomBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E24CEF254B64C20096F934 /* CustomBtn.swift */; };
 		C3EB2C3A2553DCBB003C77E1 /* AddTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB2C392553DCBB003C77E1 /* AddTaskResponse.swift */; };
 		C3EB2C402554B3DE003C77E1 /* DeleteTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB2C3F2554B3DE003C77E1 /* DeleteTaskResponse.swift */; };
@@ -111,6 +112,7 @@
 		C3D510BF254CC72F008DB194 /* ToDoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoResponse.swift; sourceTree = "<group>"; };
 		C3D510C1254CC7A5008DB194 /* TaskData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskData.swift; sourceTree = "<group>"; };
 		C3D510C5254CD109008DB194 /* ADDTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADDTaskVC.swift; sourceTree = "<group>"; };
+		C3DCC4952578D2F9005F87EE /* AppStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateManager.swift; sourceTree = "<group>"; };
 		C3E24CEF254B64C20096F934 /* CustomBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBtn.swift; sourceTree = "<group>"; };
 		C3EB2C392553DCBB003C77E1 /* AddTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskResponse.swift; sourceTree = "<group>"; };
 		C3EB2C3F2554B3DE003C77E1 /* DeleteTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTaskResponse.swift; sourceTree = "<group>"; };
@@ -168,7 +170,7 @@
 		B76E568F2548A24A00C13D43 /* TODOApp-MVC-Demo */ = {
 			isa = PBXGroup;
 			children = (
-				B76E56902548A24A00C13D43 /* AppDelegate.swift */,
+				C3DCC4942578D2D5005F87EE /* Shared */,
 				B76E56A42548A2B400C13D43 /* Networking */,
 				B76E56A52548A2BE00C13D43 /* Managers */,
 				B76E56AB2548A32D00C13D43 /* Utilities */,
@@ -423,6 +425,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		C3DCC4942578D2D5005F87EE /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B76E56902548A24A00C13D43 /* AppDelegate.swift */,
+				C3DCC4952578D2F9005F87EE /* AppStateManager.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		C3E24CEE254B64A50096F934 /* CustomeUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -594,6 +605,7 @@
 				C349DFB1256EF8CA00E819AF /* UITextField+extension.swift in Sources */,
 				B76E56C12548B0FD00C13D43 /* LoginResponse.swift in Sources */,
 				B76E56C32548B2B100C13D43 /* Constants.swift in Sources */,
+				C3DCC4962578D2F9005F87EE /* AppStateManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

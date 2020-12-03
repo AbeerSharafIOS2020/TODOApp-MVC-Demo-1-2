@@ -17,6 +17,7 @@ protocol ADDTaskViewModelProtocol {
 class ADDTaskViewModel {
     //MARK:- Properties
    // typealias View = MainVCProtocol
+    weak var delegate: AuthNavigationDelegate?
     private weak var view : MainVCProtocol?
     weak var addTaskVC: ADDTaskVC!
     init(addTaskVC: ADDTaskVC) {
@@ -37,7 +38,8 @@ extension ADDTaskViewModel: ADDTaskViewModelProtocol {
             case .success(let result):
                 self.view?.processOnStop()
                 self.view?.showSuccessMsg(message: Messages.taskSavedSuccessMsg)
-                AppDelegate.shared().switchToMainState()
+                self.delegate?.showMainState()
+               // AppDelegate.shared().switchToMainState()
                 print("description: \(result.data.description )")
             }
             self.view?.processOnStop()

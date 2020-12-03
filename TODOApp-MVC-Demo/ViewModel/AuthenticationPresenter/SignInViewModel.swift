@@ -17,6 +17,7 @@ protocol SignInViewModelProtocol {
 //MARK:- SignInViewModel
 class SignInViewModel {
     //MARK:- Properties
+    weak var delegate: AuthNavigationDelegate?
     private weak var view : MainVCProtocol?
     weak var signInVC: SignInVC!
     init(signInVC: SignInVC) {
@@ -51,7 +52,8 @@ extension SignInViewModel: SignInViewModelProtocol  {
                 UserDefaultsManager.shared().token = result.token
                 UserDefaultsManager.shared().userID = result.user.id
                 UserDefaultsManager.shared().name = result.user.name
-                AppDelegate.shared().switchToMainState()
+                self.delegate?.showMainState()
+               // AppDelegate.shared().switchToMainState()
                 print("token is : \(result.token)")
             case .failure(let error):
                 print(error.localizedDescription)

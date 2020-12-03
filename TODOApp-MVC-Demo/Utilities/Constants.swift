@@ -54,7 +54,7 @@ struct HeaderKeys {
 // Header Values
 struct HeaderValues {
      static let applicationJson = "application/json"
-     static let brearerToken = "Bearer \(UserDefaultsManager.shared().token ?? "")"
+     static var brearerToken = "Bearer \(UserDefaultsManager.shared().token ?? "")"
 }
 
 // Parameters Keys

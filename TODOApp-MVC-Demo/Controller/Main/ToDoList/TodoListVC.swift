@@ -7,12 +7,20 @@
 //
 
 import UIKit
+// 1-
+protocol ToDoListNavigationDelegate: class {
+    func showAuthState()
+}
 class TodoListVC: MainVC {
+    
     // MARK:- Outletss
     @IBOutlet weak var toDoListView: ToDoListView!
     //MARK:- Private Properties
     var todoListViewModel : TodoListViewModelProtocol!
     var addTaskViewModel : ADDTaskViewModelProtocol!
+    // 2-
+
+    weak var delegate: ToDoListNavigationDelegate?
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,4 +103,12 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+}
+extension TodoListVC: ToDoListNavigationDelegate {
+
+    func showAuthState() {
+    
+    // 3-
+    self.delegate?.showAuthState()
+}
 }
