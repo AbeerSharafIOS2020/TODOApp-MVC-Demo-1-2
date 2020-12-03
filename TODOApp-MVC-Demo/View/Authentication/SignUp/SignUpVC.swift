@@ -14,7 +14,6 @@
         @IBOutlet weak var signUpView: SignUpView!
         // MARK:- Properties
         var viewModel: SignUpViewModelProtocol!
-        weak var delegate: ToDoListNavigationDelegate?
         // MARK:- Lifecycle methods
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -33,8 +32,6 @@
         //Go to Sign In
         @IBAction func goToSignInScreenBtnPressed(_ sender: Any) {
             self.navigationController?.popToRootViewController(animated: true)
-         //   self.delegate?.showAuthState()
-           // AppDelegate.shared().switchToAuthState()
         }
         // MARK:- Public Methods
         class func create() -> SignUpVC {
