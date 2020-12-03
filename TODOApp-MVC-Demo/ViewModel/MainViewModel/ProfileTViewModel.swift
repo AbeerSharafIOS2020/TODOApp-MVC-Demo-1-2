@@ -9,7 +9,6 @@
 import Foundation
 //MARK:- Protocol
 protocol ProfileTViewModelProtocol {
-    // associatedtype View
     func onViewDidLoad(view : MainVCProtocol)
     func tryLogOutConfirm()
     func serviceOfGetProfileData()
@@ -23,18 +22,10 @@ protocol ProfileTViewModelProtocol {
 //MARK:- ProfileTViewModel
 class ProfileTViewModel {
     //MARK:- Properties
-    // typealias View = MainVCProtocol
-    // private weak var view : MainVCProtocol?
-    weak var delegate: ToDoListNavigationDelegate?
     weak var view : MainVCProtocol!
     init(view: MainVCProtocol) {
         self.view = view
     }
-    weak var todoListVC: TodoListVC!
-    init(todoListVC: TodoListVC) {
-        self.todoListVC = todoListVC
-    }
-
     weak var profileTVC: ProfileTVC!
     init(profileTVC: ProfileTVC) {
         self.profileTVC = profileTVC
@@ -138,9 +129,6 @@ class ProfileTViewModel {
                 UserDefaultsManager.shared().isLogin = false
                 UserDefaultsManager.shared().token = nil
                 AppStateManager.shared().switchToAuthState()
-               // self.profileTVC.delegate?.showAuthState()
-              //  self.todoListVC.delegate?.showAuthState()
-                //AppDelegate.shared().switchToAuthState()
                 print("logout: \(result)")
             }
             self.profileTVC.view?.processOnStop()
@@ -249,7 +237,7 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
             case AlertActionTitle.photoAlbum :
                 self!.profileTVC?.sourceType(.photoLibrary)
             case AlertActionTitle.cancel :
-            return //self.present(alert, animated: true, completion: nil)
+            return
             default:
                 break
             }
@@ -272,10 +260,4 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
             )
         }
     }
-}
-extension ProfileTViewModel: ToDoListNavigationDelegate {
-    func showAuthState() {
-    // 3-
-    self.delegate?.showAuthState()
-}
 }
