@@ -37,6 +37,7 @@ extension TodoListViewModel: TodoListViewModelProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let result):
+                print("\(HeaderValues.brearerToken)")
                 self.allTaskObj = result.data
                 print("\(self.allTaskObj)")
                 print(self.allTaskObj)

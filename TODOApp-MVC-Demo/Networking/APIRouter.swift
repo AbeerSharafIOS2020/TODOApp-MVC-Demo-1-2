@@ -107,7 +107,6 @@ enum APIRouter: URLRequestConvertible{
             case .get, .delete:
                 return URLEncoding.default
             default:
-                
                 return JSONEncoding.default
             }
         }()

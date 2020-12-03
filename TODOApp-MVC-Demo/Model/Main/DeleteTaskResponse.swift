@@ -9,7 +9,7 @@
 import Foundation
 struct DeleteTaskByIdResponse : Codable {
 let success : Bool
-let data : TaskData
+let data : DeleteTask?
 
 enum CodingKeys: String, CodingKey {
 
