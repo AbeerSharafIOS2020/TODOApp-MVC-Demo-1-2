@@ -25,7 +25,6 @@ class TaskDataTVCell: UITableViewCell {
     }
     // MARK:- Configuration Of Cell
     private func setUpLineView(){
-   //     lineView.frame.width = CGSize(width: width, height: 3)
         lineView.backgroundColor = Colors.labelColor
     }
     private func labelConfiguration(){
@@ -44,9 +43,10 @@ class TaskDataTVCell: UITableViewCell {
         taskImg.image = UIImage(named: ImagesName.toDoIcon)
     }
     func setupCellTaskData(object: TaskData)
-    {   descriptionLabel.text = "\(object.description ) "
-        let date = object.createdAt
-        createdAtLabel.text = "\(date)" //"30/10/2020"
-        
+    {  
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:MM a"
+         descriptionLabel.text = "\(object.description ) "
+        createdAtLabel.text = (object.createdAt)
     }    
 }
