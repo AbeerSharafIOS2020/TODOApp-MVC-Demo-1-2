@@ -7,23 +7,20 @@
 //
 
 import Foundation
-//MARK:- Protocol of SignInVCPresenter
+//MARK:- Protocol of SignInViewModelProtocol
 // SignInViewModelProtocol -use by any class to provide login date
 protocol SignInViewModelProtocol {
-    // associatedtype View
     func onViewDidLoad(view : MainVCProtocol)
     func tryLogin(email: String?, password: String?)
 }
 //MARK:- SignInViewModel
 class SignInViewModel {
     //MARK:- Properties
-  // weak var delegate: AuthNavigationDelegate?
     private weak var view : MainVCProtocol?
     weak var signInVC: SignInVC!
     init(signInVC: SignInVC) {
         self.signInVC = signInVC
     }
-    //typealias View = MainVCProtocol
     //MARK:- Private Methods
     private func validateField(email: String?, password: String?) -> Bool{
         if !Validator.shared().isValidEmail(email){
@@ -41,7 +38,7 @@ class SignInViewModel {
 extension SignInViewModel: SignInViewModelProtocol  {
     //MARK:-  Handle Response
     private func serviceLogin(with email: String?, password: String?) {
-       // UserDefaultsManager.shared().token = nil
+        UserDefaultsManager.shared().token = nil
         UserDefaultsManager.shared().userID = nil
         self.view?.processOnStart()
         APIManager.login(email: email!, password: password!) { (response) in
@@ -53,8 +50,6 @@ extension SignInViewModel: SignInViewModelProtocol  {
                 UserDefaultsManager.shared().userID = result.user.id
                 UserDefaultsManager.shared().name = result.user.name
                 self.signInVC.delegate?.showMainState()
-               // self.delegate?.showMainState()
-               // AppDelegate.shared().switchToMainState()
                 print("token is : \(result.token)")
             case .failure(let error):
                 print(error.localizedDescription)
