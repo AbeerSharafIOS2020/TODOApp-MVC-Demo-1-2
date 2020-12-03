@@ -9,7 +9,6 @@
 import Foundation
 //MARK:- Protocol of TodoListViewModel
 protocol TodoListViewModelProtocol {
-    //associatedtype View
     func onViewDidLoad(view : MainVCProtocol)
     func serviceOfGetAllTask()
     func willDisplayCell(row: Int?)
@@ -19,21 +18,10 @@ protocol TodoListViewModelProtocol {
 //MARK:- TodoListViewModel
 class TodoListViewModel {
     //MARK:- Properties
-    // typealias View = MainVCProtocol
     private weak var view : MainVCProtocol?
-    
     weak var todoListVC: TodoListVC!
     init(todoListVC: TodoListVC) {
         self.todoListVC = todoListVC
-    }
-    weak var profileCV: ProfileTVC!
-    init(profileCV: ProfileTVC) {
-        self.profileCV = profileCV
-    }
-    
-    weak var addTaskVC: ADDTaskVC!
-    init(addTaskVC: ADDTaskVC) {
-        self.addTaskVC = addTaskVC
     }
     var allTaskObj = [TaskData]()
 }
