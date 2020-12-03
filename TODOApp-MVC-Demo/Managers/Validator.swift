@@ -66,7 +66,6 @@ class Validator {
         case  false: break
         }
         return nil
-        //return ErrorValidMsg.noData.errorMsg
     }
     func getTextValidation(name: String?, email: String?, password: String?, age: String?) -> (String, String)? {
         

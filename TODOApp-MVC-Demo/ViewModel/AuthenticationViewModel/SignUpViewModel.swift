@@ -6,19 +6,15 @@
 //  Copyright © 2020 IDEAEG. All rights reserved.
 
 import Foundation
-//MARK:- Protocol of SignInPresenter
+//MARK:- Protocol of SignUpViewModelProtocol
 // SignUpViewModelProtocol -use by any class to provide sign up date
 protocol SignUpViewModelProtocol {
-    //   associatedtype View
     func onViewDidLoad(view : MainVCProtocol)
     func trySignUp(name: String?, email: String?, password: String?, age: String?)
 }
 //MARK:- SignUpViewModel
 class SignUpViewModel {
     //MARK:- Properties
-    // typealias View = MainVCProtocol
-    weak var delegate: ToDoListNavigationDelegate?
-
     private weak var view : MainVCProtocol?
     weak var signUpVC: SignUpVC!
     init(signUpVC: SignUpVC) {
@@ -59,8 +55,7 @@ extension SignUpViewModel: SignUpViewModelProtocol {
                 UserDefaultsManager.shared().userID = result.user.id
                 UserDefaultsManager.shared().name = result.user.name
                 Validator.shared().createImageByName()
-                self.delegate?.showAuthState()
-               // AppDelegate.shared().switchToAuthState()
+                AppStateManager.shared().showAuthState()
             }
             self.view?.processOnStop()
         }
