@@ -9,25 +9,17 @@
 import Foundation
 //MARK:- Protocol of ADDTaskViewModelProtocol
 protocol ADDTaskViewModelProtocol {
-    //associatedtype View
     func onViewDidLoad(view : MainVCProtocol)
     func tryAddTask(description: String?, dateAndTime: String?)
 }
 //MARK:- ADDTaskViewModel
 class ADDTaskViewModel {
     //MARK:- Properties
-   // typealias View = MainVCProtocol
- //   weak var delegate: AuthNavigationDelegate?
     private weak var view : MainVCProtocol?
     weak var addTaskVC: ADDTaskVC!
     init(addTaskVC: ADDTaskVC) {
         self.addTaskVC = addTaskVC
     }
-    weak var toDoListVC: TodoListVC!
-    init(toDoListVC: TodoListVC) {
-        self.toDoListVC = toDoListVC
-    }
-
 }
 //MARK:- extension
 extension ADDTaskViewModel: ADDTaskViewModelProtocol {
@@ -44,8 +36,6 @@ extension ADDTaskViewModel: ADDTaskViewModelProtocol {
                 self.view?.processOnStop()
                 self.view?.showSuccessMsg(message: Messages.taskSavedSuccessMsg)
                 AppStateManager.shared().showMainState()
-               // self.toDoListVC.delegate?.showAuthState() // delegate?.showMainState()
-               // AppDelegate.shared().switchToMainState()
                 print("description: \(result.data.description )")
             }
             self.view?.processOnStop()
