@@ -89,13 +89,13 @@ class UserDefaultsManager {
     }
     var userID: String? {
         set {
-            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.taskID)
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.userID)
         }
         get {
-            guard UserDefaults.standard.object(forKey: UserDefaultsKeys.taskID) != nil else {
+            guard UserDefaults.standard.object(forKey: UserDefaultsKeys.userID) != nil else {
                 return nil
             }
-            return UserDefaults.standard.string(forKey: UserDefaultsKeys.taskID)!
+            return UserDefaults.standard.string(forKey: UserDefaultsKeys.userID)!
         }
     }
     

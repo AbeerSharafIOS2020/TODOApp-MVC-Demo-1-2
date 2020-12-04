@@ -148,6 +148,7 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
             case .success(let result):
                 let result = result.user
                 print("profile: \(result)")
+                UserDefaultsManager.shared().userID = result.id
                 self.profileTVC.profileView.ageLabel.text = "\(result.age)"
                 self.profileTVC.profileView.dateOfCreateUserLabel.text = "\(result.createdAt)"
                 self.profileTVC.profileView.emailLabel.text = "\(result.email)"
@@ -156,6 +157,7 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
                 self.profileTVC.view?.processOnStop()
                 UserDefaultsManager.shared().name = "\(result.name)"
                 Validator.shared().createImageByName()
+                print("\(String(describing: UserDefaultsManager.shared().userID))")
             }
             self.view?.processOnStop()
         }
@@ -169,7 +171,8 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
         APIManager.getUserImage(id) { (response) in
             switch response {
             case .success(let result):
-                let imageData = result.image
+                let imageData =  try Data(contentsOf: result.avatar as URL) //Data(result.avatar)
+                print("\(result.avatar)")
                 self.profileTVC?.profileView.addImag(imageData: imageData)
             case .failure(let error):
                 print(error.localizedDescription)

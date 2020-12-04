@@ -8,12 +8,12 @@
 
 import Foundation
 struct DeleteTaskByIdResponse : Codable {
-let success : Bool
-let data : DeleteTask?
-
-enum CodingKeys: String, CodingKey {
-
-    case success = "success"
-    case data = "data"
-}
+    let success : Bool
+    let data : DeleteTask?
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case success = "success"
+        case data = "data"
+    }
 }

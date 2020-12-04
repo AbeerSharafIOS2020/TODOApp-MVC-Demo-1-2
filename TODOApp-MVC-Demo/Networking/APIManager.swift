@@ -83,6 +83,7 @@
         }
         //MARK:- GetImage
         class func getUserImage(_ id: String , completion: @escaping (Result<GetUserImageResponse, Error>) -> ()){
+            print("id in get is : \(id)")
             request(APIRouter.getUserImage(id)){ (response) in
                 completion(response)
             }
