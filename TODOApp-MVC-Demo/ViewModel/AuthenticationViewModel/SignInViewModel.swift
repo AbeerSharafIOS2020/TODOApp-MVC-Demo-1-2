@@ -38,8 +38,6 @@ class SignInViewModel {
 extension SignInViewModel: SignInViewModelProtocol  {
     //MARK:-  Handle Response
     private func serviceLogin(with email: String?, password: String?) {
-//        UserDefaultsManager.shared().token = nil
-//        UserDefaultsManager.shared().userID = nil
         self.view?.processOnStart()
         APIManager.login(email: email!, password: password!) { (response) in
             switch response {
@@ -49,7 +47,7 @@ extension SignInViewModel: SignInViewModelProtocol  {
                 UserDefaultsManager.shared().token = result.token
                 UserDefaultsManager.shared().userID = result.user.id
                 UserDefaultsManager.shared().name = result.user.name
-                self.signInVC.delegate?.showMainState()
+                AppStateManager.shared().state = .main
                 print("token is : \(result.token)")
             case .failure(let error):
                 print(error.localizedDescription)

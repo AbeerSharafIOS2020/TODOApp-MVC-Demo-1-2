@@ -49,7 +49,6 @@ class TodoListVC: MainVC {
     // add task Btn
     @objc func addTaskBtnPressed(_ sender: Any) {
         let vc = ADDTaskVC.create()
-       // vc.modalPresentationStyle = .overCurrentContext
         self.present(vc, animated: true, completion: nil)
     }
     // MARK:- Private Methods
@@ -103,6 +102,6 @@ extension TodoListVC : UITableViewDataSource , UITableViewDelegate{
 extension TodoListVC: ToDoListNavigationDelegate {
     func showAuthState() {
     // 3-
-    self.delegate?.showAuthState()
+        self.delegate?.showAuthState()
 }
 }

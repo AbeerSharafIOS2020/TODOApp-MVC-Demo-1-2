@@ -57,7 +57,7 @@ class ProfileTViewModel {
                 case AlertActionTitle.email :
                     self?.openAlert(AlertActionTitle.email)
                 case AlertActionTitle.cancel :
-                return //self.present(alert, animated: true, completion: nil)
+                return
                 default:
                     break
                 }
@@ -136,7 +136,7 @@ class ProfileTViewModel {
                 print(error.localizedDescription)
             case .success(let result):
                 self.deleteAllUserDefaultData()
-                AppStateManager.shared().switchToAuthState()
+                AppStateManager.shared().state = .auth
                 print("logout: \(result)")
             }
             self.profileTVC.view?.processOnStop()
@@ -179,7 +179,6 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
         APIManager.getUserImage(id) { (response) in
             switch response {
             case .success(let result):
-                
                 let imageData = result.image
                 print("\(result.image)")
                 self.profileTVC?.profileView.addImag(imageData: imageData)
@@ -197,7 +196,6 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
             guard imageData != nil else {return}
         })
         self.profileTVC.view?.processOnStop()
-//        UserDefaultsManager.shared().imagName = nil
         UserDefaultsManager.shared().isUploadImage = true
     }
     //MARK:- The confirm of the ProfileTViewModelProtocol Protocol

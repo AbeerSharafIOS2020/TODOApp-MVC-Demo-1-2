@@ -38,9 +38,6 @@ class SignUpViewModel {
 extension SignUpViewModel: SignUpViewModelProtocol {
     //MARK:-  Handle Response
     private func serviceRegisterData(with name: String?, email: String?, password: String?, age: Int?) {
-//        UserDefaultsManager.shared().imagName = nil
-//        UserDefaultsManager.shared().userID = nil
-//        UserDefaultsManager.shared().token = nil
         self.view?.processOnStart()
         APIManager.register(name: name!, email: email!, password: password!, age: age! ) {
             (response) in
@@ -55,7 +52,8 @@ extension SignUpViewModel: SignUpViewModelProtocol {
                 UserDefaultsManager.shared().userID = result.user.id
                 UserDefaultsManager.shared().name = result.user.name
                 Validator.shared().createImageByName()
-                AppStateManager.shared().showAuthState()
+                AppStateManager.shared().state = .auth
+               // AppStateManager.shared().showAuthState()
             }
             self.view?.processOnStop()
         }

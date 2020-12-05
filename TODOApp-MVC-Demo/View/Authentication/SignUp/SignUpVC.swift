@@ -12,8 +12,7 @@
     class SignUpVC: MainVC {
         // MARK:- Outlets
         @IBOutlet weak var signUpView: SignUpView!
-        // MARK:- Properties
-        
+        // MARK:- Properties        
         var viewModel: SignUpViewModelProtocol!
         // MARK:- Lifecycle methods
         override func viewDidLoad() {

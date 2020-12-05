@@ -35,7 +35,7 @@ extension ADDTaskViewModel: ADDTaskViewModelProtocol {
             case .success(let result):
                 self.view?.processOnStop()
                 self.view?.showSuccessMsg(message: Messages.taskSavedSuccessMsg)
-                AppStateManager.shared().showMainState()
+                AppStateManager.shared().state = .main
                 print("description: \(result.data.description )")
             }
             self.view?.processOnStop()
