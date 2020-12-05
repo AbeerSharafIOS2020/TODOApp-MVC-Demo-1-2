@@ -101,6 +101,15 @@ class ProfileTViewModel {
             print(result)
         }
     }
+    private func deleteAllUserDefaultData(){
+        UserDefaultsManager.shared().isLogin = false
+        UserDefaultsManager.shared().token = nil
+        UserDefaultsManager.shared().imagName = nil
+        UserDefaultsManager.shared().isUploadImage = nil
+        UserDefaultsManager.shared().name = nil
+        UserDefaultsManager.shared().taskID = nil
+        UserDefaultsManager.shared().userID = nil
+    }
     //MARK:- Handle Response of Update Profile
     private func serviceUpdateProfile(_ txt: String,_ data: String){
         self.profileTVC.view?.processOnStart()
@@ -126,8 +135,7 @@ class ProfileTViewModel {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let result):
-                UserDefaultsManager.shared().isLogin = false
-                UserDefaultsManager.shared().token = nil
+                self.deleteAllUserDefaultData()
                 AppStateManager.shared().switchToAuthState()
                 print("logout: \(result)")
             }
@@ -171,8 +179,9 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
         APIManager.getUserImage(id) { (response) in
             switch response {
             case .success(let result):
-                let imageData =  try Data(contentsOf: result.avatar as URL) //Data(result.avatar)
-                print("\(result.avatar)")
+                
+                let imageData = result.image
+                print("\(result.image)")
                 self.profileTVC?.profileView.addImag(imageData: imageData)
             case .failure(let error):
                 print(error.localizedDescription)
@@ -188,7 +197,7 @@ extension ProfileTViewModel: ProfileTViewModelProtocol {
             guard imageData != nil else {return}
         })
         self.profileTVC.view?.processOnStop()
-        UserDefaultsManager.shared().imagName = nil
+//        UserDefaultsManager.shared().imagName = nil
         UserDefaultsManager.shared().isUploadImage = true
     }
     //MARK:- The confirm of the ProfileTViewModelProtocol Protocol

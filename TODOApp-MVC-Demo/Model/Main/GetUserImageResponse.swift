@@ -9,8 +9,12 @@
 import Foundation
 
 struct GetUserImageResponse : Codable {
-    var image: Data
+    let image: Data
     enum CodingKeys: String, CodingKey {
-       case image = "data"
-}
+        case image = "image"
+    }
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        image = try values.decodeIfPresent(Data.self, forKey: .image)!
+    }
 }
