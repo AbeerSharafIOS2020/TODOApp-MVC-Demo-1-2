@@ -140,8 +140,6 @@ struct Titles {
      static let signUpTitle = "Sign Up"
      static let saveTitle = "Save"
      static let addTaskTitle = "Add Task"
-     //   static let noAccountLabel = "Don’t have an acoount?"
-     //  static let loginLabel = "Log In"
 }
 
 struct PlaceHolders {
@@ -161,7 +159,7 @@ struct ImagesName {
      static let userEmailcon = "emailIcon"
      static let userAgeIcon = "ageIcon"
      static let profileDateIcon = "todo"
-     static let profileUpdateDateIcon = "loginImage"
+     static let profileUpdateDateIcon = "LOGINImage"
      static let passwordIcon = "passwordIcon"
      static let backgroundImage = "background"
      static let deleteIcon = "deleteIconCopy"
