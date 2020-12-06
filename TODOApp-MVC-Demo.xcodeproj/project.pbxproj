@@ -55,6 +55,7 @@
 		C3D510C2254CC7A5008DB194 /* TaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D510C1254CC7A5008DB194 /* TaskData.swift */; };
 		C3D510C6254CD109008DB194 /* ADDTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D510C5254CD109008DB194 /* ADDTaskVC.swift */; };
 		C3DCC4962578D2F9005F87EE /* AppStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DCC4952578D2F9005F87EE /* AppStateManager.swift */; };
+		C3DCC49C257CCFC4005F87EE /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DCC49B257CCFC4005F87EE /* UserDataModel.swift */; };
 		C3E24CF0254B64C20096F934 /* CustomBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E24CEF254B64C20096F934 /* CustomBtn.swift */; };
 		C3EB2C3A2553DCBB003C77E1 /* AddTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB2C392553DCBB003C77E1 /* AddTaskResponse.swift */; };
 		C3EB2C402554B3DE003C77E1 /* DeleteTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB2C3F2554B3DE003C77E1 /* DeleteTaskResponse.swift */; };
@@ -113,6 +114,7 @@
 		C3D510C1254CC7A5008DB194 /* TaskData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskData.swift; sourceTree = "<group>"; };
 		C3D510C5254CD109008DB194 /* ADDTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADDTaskVC.swift; sourceTree = "<group>"; };
 		C3DCC4952578D2F9005F87EE /* AppStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateManager.swift; sourceTree = "<group>"; };
+		C3DCC49B257CCFC4005F87EE /* UserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
 		C3E24CEF254B64C20096F934 /* CustomBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBtn.swift; sourceTree = "<group>"; };
 		C3EB2C392553DCBB003C77E1 /* AddTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskResponse.swift; sourceTree = "<group>"; };
 		C3EB2C3F2554B3DE003C77E1 /* DeleteTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTaskResponse.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 			children = (
 				B76E56C02548B0FD00C13D43 /* LoginResponse.swift */,
 				B76E56C42548BACC00C13D43 /* UserData.swift */,
+				C3DCC49B257CCFC4005F87EE /* UserDataModel.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				C3D510BE254C95BB008DB194 /* MainVC.swift in Sources */,
 				C340454A2566EF0100329923 /* ProfileTViewModel.swift in Sources */,
 				B76E56BC2548A84600C13D43 /* SignUpVC.swift in Sources */,
+				C3DCC49C257CCFC4005F87EE /* UserDataModel.swift in Sources */,
 				B76E56C72548BEE100C13D43 /* UserDefaultsManager.swift in Sources */,
 				C3C6E85025581F61008250BE /* UploadImageResponse.swift in Sources */,
 				C349DFAB256BF28D00E819AF /* UIColor+hexStringColor.swift in Sources */,
