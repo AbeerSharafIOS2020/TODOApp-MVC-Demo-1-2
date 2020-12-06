@@ -40,11 +40,9 @@ enum APIRouter: URLRequestConvertible{
         switch self {
         case .login(let email, let password):
             return [ParameterKeys.email: email, ParameterKeys.password: password]
-//            case .register( let name, let email, let password, let age):
-//                return [ParameterKeys.name: name, ParameterKeys.email: email, ParameterKeys.password: password, ParameterKeys.age: age]
+            case .register( let name, let email, let password, let age):
+                return [ParameterKeys.name: name, ParameterKeys.email: email, ParameterKeys.password: password, ParameterKeys.age: age]
 
-        case .register(user: userDataMode):
-            return [ParameterKeys.name: name, ParameterKeys.email: email, ParameterKeys.password: password, ParameterKeys.age: age]
         case .addTask(let description):
             return [ParameterKeys.description: description]
         case .uploadImage(let image):
