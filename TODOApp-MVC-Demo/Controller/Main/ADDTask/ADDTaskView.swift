@@ -45,8 +45,6 @@ class ADDTaskView: UIView {
                 screenTitle.font.withSize(16)
             }
             private func setupShadowView(){
-                shadowView.backgroundColor = .white
-                shadowView.shadowColor = .white
                 shadowView.layer.cornerRadius = 8
                 shadowView.largeContentImage = UIImage(named: ImagesName.backgroundImage)
             }
