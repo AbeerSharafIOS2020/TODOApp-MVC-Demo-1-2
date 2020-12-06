@@ -15,17 +15,18 @@
         <!--ADD Task-->
         <scene sceneID="J6M-0P-ZA6">
             <objects>
-                <viewController storyboardIdentifier="ADDTaskVC" modalPresentationStyle="overCurrentContext" id="H9N-g9-gBb" userLabel="ADD Task" customClass="ADDTaskVC" customModule="TODOApp_MVC_Demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" alpha="0.5" contentMode="scaleToFill" id="ot2-Qr-jkQ" customClass="ADDTaskView" customModule="TODOApp_MVC_Demo" customModuleProvider="target">
+                <viewController storyboardIdentifier="ADDTaskVC" modalPresentationStyle="currentContext" interfaceStyle="light" id="H9N-g9-gBb" userLabel="ADD Task" customClass="ADDTaskVC" customModule="TODOApp_MVC_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ot2-Qr-jkQ" customClass="ADDTaskView" customModule="TODOApp_MVC_Demo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8F-EH-qjI" customClass="ShadowView" customModule="TODOApp_MVC_Demo" customModuleProvider="target">
+                            <view clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8F-EH-qjI" customClass="ShadowView" customModule="TODOApp_MVC_Demo" customModuleProvider="target">
                                 <rect key="frame" x="26" y="243" width="362" height="410"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KrD-Kb-e1a">
                                         <rect key="frame" x="0.0" y="0.0" width="362" height="410"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7X0-Si-2hl">
                                         <rect key="frame" x="144" y="12" width="74.5" height="21"/>
@@ -67,7 +68,8 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="kvK-vT-CeE" firstAttribute="width" secondItem="faC-Lj-5cD" secondAttribute="width" id="14Q-OU-ose"/>
                                     <constraint firstAttribute="bottom" secondItem="Hwj-Au-RHH" secondAttribute="bottom" constant="84.5" id="D7X-KD-MS4"/>
@@ -90,12 +92,27 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.0"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="13" height="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isShadow" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -105,7 +122,7 @@
                             <constraint firstItem="A8F-EH-qjI" firstAttribute="leading" secondItem="ek8-sG-SmX" secondAttribute="leading" constant="26" id="7Y7-fH-06b"/>
                             <constraint firstItem="ek8-sG-SmX" firstAttribute="trailing" secondItem="A8F-EH-qjI" secondAttribute="trailing" constant="26" id="WLb-Kx-uTd"/>
                             <constraint firstItem="A8F-EH-qjI" firstAttribute="centerY" secondItem="ot2-Qr-jkQ" secondAttribute="centerY" id="Y25-nB-euP"/>
-                            <constraint firstItem="A8F-EH-qjI" firstAttribute="centerX" secondItem="ot2-Qr-jkQ" secondAttribute="centerX" id="u6W-sv-6uQ"/>
+                            <constraint firstAttribute="centerX" secondItem="A8F-EH-qjI" secondAttribute="centerXWithinMargins" id="u6W-sv-6uQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ek8-sG-SmX"/>
                         <connections>
@@ -555,4 +572,5 @@
         <image name="backArrow" width="20.5" height="14"/>
         <image name="plus" catalog="system" width="64" height="56"/>
     </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

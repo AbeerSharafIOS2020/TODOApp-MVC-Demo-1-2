@@ -40,6 +40,7 @@ class ADDTaskView: UIView {
             }
             private func setupTitle(){
                 screenTitle.text = Titles.addTaskTitle
+                screenTitle.backgroundColor = .clear
                 screenTitle.textColor = Colors.primaryColor
                 screenTitle.font.withSize(16)
             }

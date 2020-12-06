@@ -49,6 +49,8 @@ class TodoListVC: MainVC {
     // add task Btn
     @objc func addTaskBtnPressed(_ sender: Any) {
         let vc = ADDTaskVC.create()
+        vc.modalPresentationStyle = .popover
+        self.presentedViewController?.becomeFirstResponder()
         self.present(vc, animated: true, completion: nil)
     }
     // MARK:- Private Methods
